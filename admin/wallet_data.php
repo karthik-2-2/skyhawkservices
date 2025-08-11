@@ -60,21 +60,17 @@ try {
 
 // --- 2. Fetch Data for Chart (Revenue last 30 days) ---
 try {
-    $chart_result = $conn->query("
+    $chart_result = $conn->prepare("
         SELECT 
             DATE(created_at) as date, 
             SUM(total_price) as daily_revenue
         FROM userordersuccess
-        WHERE created_at >= CURDATE() - INTERVAL 30 DAY
+        WHERE created_at >= CURRENT_DATE - INTERVAL '30 days'
         GROUP BY DATE(created_at)
         ORDER BY date ASC
     ");
-    $chart_data = [];
-    if ($chart_result) {
-        while($row = $chart_result->fetch_assoc()) {
-            $chart_data[] = $row;
-        }
-    }
+    $chart_result->execute();
+    $chart_data = $chart_result->fetchAll(PDO::FETCH_ASSOC);
     $response['chart_data'] = $chart_data;
 } catch (Exception $e) {
     $response['chart_data'] = [];
@@ -82,13 +78,9 @@ try {
 
 // --- 3. Fetch Pending Wallet Top-up Requests ---
 try {
-    $pending_result = $conn->query("SELECT id, user_name, phone, amount, txn_id, created_at FROM userwallet ORDER BY created_at DESC");
-    $pending_requests = [];
-    if ($pending_result) {
-        while($row = $pending_result->fetch_assoc()) {
-            $pending_requests[] = $row;
-        }
-    }
+    $pending_result = $conn->prepare("SELECT id, user_name, phone, amount, txn_id, created_at FROM userwallet ORDER BY created_at DESC");
+    $pending_result->execute();
+    $pending_requests = $pending_result->fetchAll(PDO::FETCH_ASSOC);
     $response['pending_requests'] = $pending_requests;
 } catch (Exception $e) {
     $response['pending_requests'] = [];
@@ -96,5 +88,4 @@ try {
 
 
 echo json_encode($response);
-$conn->close();
 ?>

@@ -47,95 +47,119 @@ try {
         $response['stats']['pending_orders'] = $pendingOrdersCountResult ? $pendingOrdersCountResult['total'] : 0;
     } else {
         // If no order_status column, count orders not in success/cancel tables
-        $pendingOrdersCountResult = $conn->query("
+        $pendingOrdersCountResult = $conn->prepare("
             SELECT COUNT(*) AS total FROM orders o 
             WHERE o.id NOT IN (SELECT order_id FROM userordersuccess WHERE order_id IS NOT NULL) 
             AND o.id NOT IN (SELECT order_id FROM userordercancel WHERE order_id IS NOT NULL)
         ");
-        $response['stats']['pending_orders'] = $pendingOrdersCountResult ? $pendingOrdersCountResult->fetch()['total'] : 0;
+        $pendingOrdersCountResult->execute();
+        $pendingOrdersCountData = $pendingOrdersCountResult->fetch(PDO::FETCH_ASSOC);
+        $response['stats']['pending_orders'] = $pendingOrdersCountData ? $pendingOrdersCountData['total'] : 0;
     }
 
-    $completedOrdersCountResult = $conn->query("SELECT COUNT(*) AS total FROM userordersuccess");
-    $response['stats']['completed_orders'] = $completedOrdersCountResult ? $completedOrdersCountResult->fetch()['total'] : 0;
+    $completedOrdersCountResult = $conn->prepare("SELECT COUNT(*) AS total FROM userordersuccess");
+    $completedOrdersCountResult->execute();
+    $completed = $completedOrdersCountResult->fetch(PDO::FETCH_ASSOC);
+    $response['stats']['completed_orders'] = $completed ? $completed['total'] : 0;
 
-    $cancelledOrdersCountResult = $conn->query("SELECT COUNT(*) AS total FROM userordercancel");
-    $response['stats']['cancelled_orders'] = $cancelledOrdersCountResult ? $cancelledOrdersCountResult->fetch()['total'] : 0;
+    $cancelledOrdersCountResult = $conn->prepare("SELECT COUNT(*) AS total FROM userordercancel");
+    $cancelledOrdersCountResult->execute();
+    $cancelled = $cancelledOrdersCountResult->fetch(PDO::FETCH_ASSOC);
+    $response['stats']['cancelled_orders'] = $cancelled ? $cancelled['total'] : 0;
 
-    $walletBalanceResult = $conn->query("SELECT SUM(total_price) AS balance FROM userordersuccess");
-    $response['stats']['wallet_balance'] = $walletBalanceResult ? ($walletBalanceResult->fetch()['balance'] ?? 0) : 0;
+    $walletBalanceResult = $conn->prepare("SELECT COALESCE(SUM(total_price), 0) AS balance FROM userordersuccess");
+    $walletBalanceResult->execute();
+    $wallet = $walletBalanceResult->fetch(PDO::FETCH_ASSOC);
+    $response['stats']['wallet_balance'] = $wallet ? $wallet['balance'] : 0;
 
     // Additional stats for enhanced dashboard
-    $totalOrdersResult = $conn->query("SELECT COUNT(*) AS total FROM orders");
-    $response['stats']['total_orders'] = $totalOrdersResult ? $totalOrdersResult->fetch()['total'] : 0;
+    $totalOrdersResult = $conn->prepare("SELECT COUNT(*) AS total FROM orders");
+    $totalOrdersResult->execute();
+    $total = $totalOrdersResult->fetch(PDO::FETCH_ASSOC);
+    $response['stats']['total_orders'] = $total ? $total['total'] : 0;
 
     // Check if pilot_earnings table exists
-    $tableCheck = $conn->query("SELECT table_name FROM information_schema.tables WHERE table_name = 'pilot_earnings'");
-    if ($tableCheck && $tableCheck->rowCount() > 0) {
-        $pilotEarningsResult = $conn->query("SELECT SUM(amount) AS total FROM pilot_earnings");
-        $response['stats']['pilot_earnings'] = $pilotEarningsResult ? ($pilotEarningsResult->fetch()['total'] ?? 0) : 0;
+    $tableCheck = $conn->prepare("SELECT table_name FROM information_schema.tables WHERE table_name = 'pilot_earnings'");
+    $tableCheck->execute();
+    $pilotEarningsTable = $tableCheck->fetch(PDO::FETCH_ASSOC);
+    if ($pilotEarningsTable) {
+        $pilotEarningsResult = $conn->prepare("SELECT COALESCE(SUM(amount), 0) AS total FROM pilot_earnings");
+        $pilotEarningsResult->execute();
+        $earnings = $pilotEarningsResult->fetch(PDO::FETCH_ASSOC);
+        $response['stats']['pilot_earnings'] = $earnings ? $earnings['total'] : 0;
     } else {
         $response['stats']['pilot_earnings'] = 0;
     }
 
     // QR Payment verification stats - Count orders with payment screenshots (pending verification)
-    $checkPaymentColumn = $conn->query("SELECT column_name FROM information_schema.columns WHERE table_name = 'orders' AND column_name = 'payment_screenshot'");
-    if ($checkPaymentColumn && $checkPaymentColumn->rowCount() > 0) {
-        $pendingVerificationResult = $conn->query("SELECT COUNT(*) AS total FROM orders WHERE payment_screenshot IS NOT NULL AND (order_status = 'Payment Verification Pending' OR order_status = 'Pending Admin Approval')");
-        $response['stats']['pending_verification'] = $pendingVerificationResult ? $pendingVerificationResult->fetch()['total'] : 0;
+    $checkPaymentColumn = $conn->prepare("SELECT column_name FROM information_schema.columns WHERE table_name = 'orders' AND column_name = 'payment_screenshot'");
+    $checkPaymentColumn->execute();
+    $paymentColumn = $checkPaymentColumn->fetch(PDO::FETCH_ASSOC);
+    if ($paymentColumn) {
+        $pendingVerificationResult = $conn->prepare("SELECT COUNT(*) AS total FROM orders WHERE payment_screenshot IS NOT NULL AND (order_status = 'Payment Verification Pending' OR order_status = 'Pending Admin Approval')");
+        $pendingVerificationResult->execute();
+        $pending = $pendingVerificationResult->fetch(PDO::FETCH_ASSOC);
+        $response['stats']['pending_verification'] = $pending ? $pending['total'] : 0;
     } else {
         $response['stats']['pending_verification'] = 0;
     }
 
     // In-Progress Orders stats - Count orders that are currently being worked on
-    $checkOrderStatusColumn2 = $conn->query("SELECT column_name FROM information_schema.columns WHERE table_name = 'orders' AND column_name = 'order_status'");
-    if ($checkOrderStatusColumn2 && $checkOrderStatusColumn2->rowCount() > 0) {
-        $inProgressOrdersResult = $conn->query("SELECT COUNT(*) AS total FROM orders WHERE order_status IN ('Waiting for Pilot', 'Pilot Accepted', 'Order Completed', 'Cancellation Requested')");
-        $response['stats']['inprogress_orders'] = $inProgressOrdersResult ? $inProgressOrdersResult->fetch()['total'] : 0;
+    $checkOrderStatusColumn2 = $conn->prepare("SELECT column_name FROM information_schema.columns WHERE table_name = 'orders' AND column_name = 'order_status'");
+    $checkOrderStatusColumn2->execute();
+    $statusColumn = $checkOrderStatusColumn2->fetch(PDO::FETCH_ASSOC);
+    if ($statusColumn) {
+        $inProgressOrdersResult = $conn->prepare("SELECT COUNT(*) AS total FROM orders WHERE order_status IN ('Waiting for Pilot', 'Pilot Accepted', 'Order Completed', 'Cancellation Requested')");
+        $inProgressOrdersResult->execute();
+        $inProgress = $inProgressOrdersResult->fetch(PDO::FETCH_ASSOC);
+        $response['stats']['inprogress_orders'] = $inProgress ? $inProgress['total'] : 0;
     } else {
         $response['stats']['inprogress_orders'] = 0;
     }
 
     // --- 2. Fetch Data for Charts ---
     // Orders by day with date column check
-    $checkDateColumn = $conn->query("SELECT column_name FROM information_schema.columns WHERE table_name = 'userordersuccess' AND column_name = 'booking_date'");
-    if ($checkDateColumn && $checkDateColumn->rowCount() > 0) {
-        $ordersByDayResult = $conn->query("
+    $checkDateColumn = $conn->prepare("SELECT column_name FROM information_schema.columns WHERE table_name = 'userordersuccess' AND column_name = 'booking_date'");
+    $checkDateColumn->execute();
+    $dateColumn = $checkDateColumn->fetch(PDO::FETCH_ASSOC);
+    if ($dateColumn) {
+        $ordersByDayResult = $conn->prepare("
             SELECT DATE(booking_date) as order_day, COUNT(*) as order_count
             FROM userordersuccess
             WHERE booking_date >= CURRENT_DATE - INTERVAL '7 days'
             GROUP BY DATE(booking_date) ORDER BY order_day ASC
         ");
-        if ($ordersByDayResult) {
-            while($row = $ordersByDayResult->fetch()) {
-                $response['charts']['ordersByDay'][] = $row;
-            }
+        $ordersByDayResult->execute();
+        $ordersByDay = $ordersByDayResult->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($ordersByDay as $row) {
+            $response['charts']['ordersByDay'][] = $row;
         }
     } else {
         // Use created_at or a default if booking_date doesn't exist
-        $ordersByDayResult = $conn->query("
+        $ordersByDayResult = $conn->prepare("
             SELECT DATE(created_at) as order_day, COUNT(*) as order_count
             FROM userordersuccess
             WHERE created_at >= CURRENT_DATE - INTERVAL '7 days'
             GROUP BY DATE(created_at) ORDER BY order_day ASC
         ");
-        if ($ordersByDayResult) {
-            while($row = $ordersByDayResult->fetch()) {
-                $response['charts']['ordersByDay'][] = $row;
-            }
+        $ordersByDayResult->execute();
+        $ordersByDay = $ordersByDayResult->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($ordersByDay as $row) {
+            $response['charts']['ordersByDay'][] = $row;
         }
     }
 
     // Service distribution
-    $serviceDistResult = $conn->query("SELECT service_type, COUNT(*) as count FROM userordersuccess GROUP BY service_type");
-    if ($serviceDistResult) {
-        while($row = $serviceDistResult->fetch()) {
-            $response['charts']['serviceDistribution'][] = $row;
-        }
+    $serviceDistResult = $conn->prepare("SELECT service_type, COUNT(*) as count FROM userordersuccess GROUP BY service_type");
+    $serviceDistResult->execute();
+    $serviceDist = $serviceDistResult->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($serviceDist as $row) {
+        $response['charts']['serviceDistribution'][] = $row;
     }
 
     // Monthly revenue chart data
-    if ($checkDateColumn && $checkDateColumn->rowCount() > 0) {
-        $monthlyRevenueResult = $conn->query("
+    if ($dateColumn) {
+        $monthlyRevenueResult = $conn->prepare("
             SELECT 
                 TO_CHAR(booking_date, 'YYYY-MM') as month,
                 SUM(total_price) as revenue,
@@ -145,8 +169,13 @@ try {
             GROUP BY TO_CHAR(booking_date, 'YYYY-MM')
             ORDER BY month ASC
         ");
+        $monthlyRevenueResult->execute();
+        $monthlyRevenue = $monthlyRevenueResult->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($monthlyRevenue as $row) {
+            $response['charts']['monthlyRevenue'][] = $row;
+        }
     } else {
-        $monthlyRevenueResult = $conn->query("
+        $monthlyRevenueResult = $conn->prepare("
             SELECT 
                 TO_CHAR(created_at, 'YYYY-MM') as month,
                 SUM(total_price) as revenue,
@@ -156,16 +185,16 @@ try {
             GROUP BY TO_CHAR(created_at, 'YYYY-MM')
             ORDER BY month ASC
         ");
-    
-    if ($monthlyRevenueResult) {
-        while($row = $monthlyRevenueResult->fetch()) {
+        $monthlyRevenueResult->execute();
+        $monthlyRevenue = $monthlyRevenueResult->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($monthlyRevenue as $row) {
             $response['charts']['monthlyRevenue'][] = $row;
         }
     }
 
     // Pilot performance data - only if pilot_earnings table exists
-    if ($tableCheck && $tableCheck->rowCount() > 0) {
-        $pilotPerformanceResult = $conn->query("
+    if ($pilotEarningsTable) {
+        $pilotPerformanceResult = $conn->prepare("
             SELECT 
                 p.name,
                 COUNT(pe.id) as completed_jobs,
@@ -176,17 +205,17 @@ try {
             ORDER BY completed_jobs DESC
             LIMIT 10
         ");
-        if ($pilotPerformanceResult) {
-            while($row = $pilotPerformanceResult->fetch()) {
-                $response['charts']['pilotPerformance'][] = $row;
-            }
+        $pilotPerformanceResult->execute();
+        $pilotPerformance = $pilotPerformanceResult->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($pilotPerformance as $row) {
+            $response['charts']['pilotPerformance'][] = $row;
         }
     }
 
     // --- 3. Fetch Data for Actionable Widgets ---
     // QR Payment verification requests (orders with payment screenshots pending verification)
-    if ($checkPaymentColumn && $checkPaymentColumn->rowCount() > 0) {
-        $paymentVerificationResult = $conn->query("
+    if ($paymentColumn) {
+        $paymentVerificationResult = $conn->prepare("
             SELECT id, name, service_type, total_price, payment_screenshot, transaction_id 
             FROM orders 
             WHERE payment_screenshot IS NOT NULL 
@@ -194,38 +223,38 @@ try {
             ORDER BY id DESC 
             LIMIT 5
         ");
-        if ($paymentVerificationResult) {
-            while($row = $paymentVerificationResult->fetch()) {
-                $response['pending_actions']['payment_verification'][] = $row;
-            }
+        $paymentVerificationResult->execute();
+        $paymentVerification = $paymentVerificationResult->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($paymentVerification as $row) {
+            $response['pending_actions']['payment_verification'][] = $row;
         }
     }
 
-    $pendingOrdersResult = $conn->query("SELECT id, name, service_type FROM orders ORDER BY id DESC LIMIT 5");
-    if ($pendingOrdersResult) {
-        while($row = $pendingOrdersResult->fetch()) {
-            $response['pending_actions']['pending_orders'][] = $row;
-        }
+    $pendingOrdersResult = $conn->prepare("SELECT id, name, service_type FROM orders ORDER BY id DESC LIMIT 5");
+    $pendingOrdersResult->execute();
+    $pendingOrders = $pendingOrdersResult->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($pendingOrders as $row) {
+        $response['pending_actions']['pending_orders'][] = $row;
     }
 
     // In-progress orders for activity section
-    if ($checkOrderStatusColumn && $checkOrderStatusColumn->rowCount() > 0) {
-        $inProgressOrdersResult = $conn->query("
+    if ($statusColumn) {
+        $inProgressOrdersResult = $conn->prepare("
             SELECT id, name, service_type, order_status 
             FROM orders 
             WHERE order_status IN ('Waiting for Pilot', 'Pilot Accepted', 'Order Completed') 
             ORDER BY id DESC 
             LIMIT 5
         ");
-        if ($inProgressOrdersResult) {
-            while($row = $inProgressOrdersResult->fetch()) {
-                $response['pending_actions']['inprogress_orders'][] = $row;
-            }
+        $inProgressOrdersResult->execute();
+        $inProgressOrders = $inProgressOrdersResult->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($inProgressOrders as $row) {
+            $response['pending_actions']['inprogress_orders'][] = $row;
         }
     }
 
     // --- 4. Fetch Recent Activity Data ---
-    $recentActivityResult = $conn->query("
+    $recentActivityResult = $conn->prepare("
         SELECT 'order_completed' as type, name as title, service_type as details, created_at as timestamp
         FROM userordersuccess 
         WHERE created_at >= CURRENT_DATE - INTERVAL '7 days'
@@ -236,10 +265,10 @@ try {
         ORDER BY timestamp DESC
         LIMIT 10
     ");
-    if ($recentActivityResult) {
-        while($row = $recentActivityResult->fetch()) {
-            $response['recent_activity'][] = $row;
-        }
+    $recentActivityResult->execute();
+    $recentActivity = $recentActivityResult->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($recentActivity as $row) {
+        $response['recent_activity'][] = $row;
     }
 
 } catch (Exception $e) {

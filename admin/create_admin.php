@@ -19,8 +19,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Check if admin exists
         $stmt_check = $conn->prepare("SELECT id FROM admin WHERE phone = ?");
         $stmt_check->execute([$phone]);
+        $existingAdmin = $stmt_check->fetch(PDO::FETCH_ASSOC);
 
-        if ($stmt_check->rowCount() > 0) {
+        if ($existingAdmin) {
             $message = "Error: An admin with this phone number already exists.";
             $message_type = 'error';
         } else {
