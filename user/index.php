@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $phone = $_POST['phone'];
     $password = $_POST['password'];
 
-    $sql = "SELECT * FROM users WHERE phone = ?";
+    $sql = "SELECT * FROM \"user\" WHERE phone = ?";
     $stmt = $conn->prepare($sql);
     $stmt->execute([$phone]);
     $user = $stmt->fetch();

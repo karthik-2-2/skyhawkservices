@@ -23,16 +23,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['phone'])) {
     if ($user) {
         $balanceChecked = true;
 
-        // 2. Sum total balance from wallet table
-        $stmt = $conn->prepare("SELECT SUM(amount) as total_balance FROM wallet WHERE phone = ?");
+        // 2. Sum total balance from userwallet table
+        $stmt = $conn->prepare("SELECT SUM(amount) as total_balance FROM userwallet WHERE phone = ?");
         $stmt->execute([$phone]);
         $balanceRow = $stmt->fetch(PDO::FETCH_ASSOC);
         $balance = $balanceRow['total_balance'] ?? 0;
 
         // 3. Get wallet transaction history
         $stmt = $conn->prepare("
-            SELECT amount, utr, additional_msg, created_at 
-            FROM wallet 
+            SELECT amount, txn_id, created_at 
+            FROM userwallet 
             WHERE phone = ? 
             ORDER BY created_at DESC
         ");
@@ -271,8 +271,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['phone'])) {
           <?php $i = 1; foreach ($wallet as $entry): ?>
             <tr style="--i: <?= $i++; ?>">
               <td>₹<?= number_format($entry['amount'], 2) ?></td>
-              <td><?= htmlspecialchars($entry['utr']) ?></td>
-              <td><?= htmlspecialchars($entry['additional_msg'] ?: 'N/A') ?></td>
+              <td><?= htmlspecialchars($entry['txn_id']) ?></td>
+              <td>Wallet Top-up</td>
               <td><?= date("d M Y, h:i A", strtotime($entry['created_at'])) ?></td>
             </tr>
           <?php endforeach; ?>
