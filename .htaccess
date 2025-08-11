@@ -1,0 +1,27 @@
+# Enable error reporting (remove in production)
+php_flag display_errors On
+
+# Security headers
+Header always set X-Content-Type-Options nosniff
+Header always set X-Frame-Options DENY
+Header always set X-XSS-Protection "1; mode=block"
+
+# Protect config files
+<Files "db.php">
+    Order Allow,Deny
+    Deny from all
+</Files>
+
+# Enable clean URLs
+RewriteEngine On
+
+# Redirect to HTTPS (if available)
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# File upload security
+<FilesMatch "\.(php|php3|php4|php5|phtml)$">
+    <IfModule mod_headers.c>
+        Header set X-Content-Type-Options nosniff
+    </IfModule>
+</FilesMatch>

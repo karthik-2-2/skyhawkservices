@@ -1,0 +1,266 @@
+<?php
+session_start();
+include('../config/db.php');
+$error_message = '';
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $phone = $_POST['phone'];
+    $password = $_POST['password'];
+
+    $sql = "SELECT * FROM pilot WHERE phone = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([$phone]);
+    $pilot = $stmt->fetch();
+
+    if ($pilot && password_verify($password, $pilot['password'])) {
+        $_SESSION['pilot_phone'] = $pilot['phone'];
+        header('Location: dashboard.php');
+        exit();
+    } else {
+        $error_message = 'Invalid phone or password!';
+    }
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pilot Login</title>
+      <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    html, body {
+      background-color: #000;
+      color: #fff;
+      height: 100%;
+      overflow: auto;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 850px;
+      min-width: 320px;
+    }
+
+    .login-box {
+      display: flex;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 20px #39ff14;
+      flex-wrap: nowrap;
+      background-color: #000;
+    }
+
+    .left-panel,
+    .right-panel {
+      padding: 40px 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .left-panel {
+      width: 50%;
+      background-color: #000;
+      z-index: 1;
+    }
+
+    .left-panel h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 28px;
+      color: #39ff14;
+    }
+
+    .input-box {
+      position: relative;
+      margin-bottom: 25px;
+    }
+
+    .input-box input {
+      width: 100%;
+      padding: 12px 40px 12px 10px;
+      background-color: transparent;
+      border: none;
+      border-bottom: 1px solid #ccc;
+      color: #fff;
+      font-size: 16px;
+      outline: none;
+    }
+
+    .input-box i {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #ccc;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      background: linear-gradient(135deg, #39ff14, #c0c0c0);
+      color: black;
+      font-weight: bold;
+      font-size: 16px;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #39ff14;
+    }
+
+    .signup-text {
+      margin-top: 15px;
+      text-align: center;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .signup-text a {
+      color: #39ff14;
+      text-decoration: none;
+      margin-left: 4px;
+    }
+
+    .right-panel {
+      width: 50%;
+      background: linear-gradient(-45deg, #39ff14, #c0c0c0, #2d2d2d, #39ff14);
+      background-size: 400% 400%;
+      animation: gradientBG 10s ease infinite;
+      color: white;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      justify-content: right;
+      padding-right: 30px;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 60% 100%);
+    }
+
+    .right-panel h1 {
+      font-size: 32px;
+      line-height: 1.2;
+      text-shadow: 0 0 10px rgba(61, 201, 36, 0.3);
+    }
+
+    .right-panel h1 span {
+      font-weight: bold;
+      display: block;
+    }
+
+    .right-panel p {
+      margin-top: 20px;
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    @keyframes gradientBG {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .login-box {
+        transform: scale(0.85);
+        transform-origin: center top;
+        flex-direction: row;
+        overflow-x: auto;
+      }
+
+      .left-panel, .right-panel {
+        padding: 30px 20px;
+      }
+
+      .signup-text {
+        font-size: 13px;
+        white-space: nowrap;
+      }
+
+      .right-panel h1 {
+        font-size: 26px;
+      }
+
+      .right-panel p {
+        font-size: 11px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .login-box {
+        transform: scale(0.75);
+        transform-origin: center top;
+      }
+
+      .left-panel h2 {
+        font-size: 22px;
+      }
+
+      .right-panel h1 {
+        font-size: 20px;
+      }
+
+      .signup-text {
+        font-size: 12px;
+        white-space: nowrap;
+      }
+    }
+  </style>
+</head>
+<body>
+    <div class="container">
+        <div class="login-box">
+            <div class="left-panel">
+                <h2>Pilot Login</h2>
+                <?php if (!empty($error_message)): ?>
+                    <p style="color: red; text-align: center;"><?php echo $error_message; ?></p>
+                <?php endif; ?>
+                <form method="POST" action="">
+                    <div class="input-box">
+                        <input type="tel" name="phone" placeholder="Phone" required />
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="password" name="password" placeholder="Password" required />
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <button type="submit">Login</button>
+                    <p class="signup-text">
+                        Don’t have an account?
+                        <a href="register.php">Register</a>
+                    </p>
+                </form>
+            </div>
+            <div class="right-panel">
+                <div>
+                    <h1>WELCOME<br /><span>BACK!</span></h1>
+                    <p>To the digital drone world.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
