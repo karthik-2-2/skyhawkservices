@@ -612,7 +612,6 @@ $adminPhone = $_SESSION['admin_phone'];
     
     .stat-card.urgent {
       animation: pulse 2s ease-in-out infinite;
-      border: 2px solid var(--warning);
       display: block !important;
       visibility: visible !important;
     }
@@ -1100,45 +1099,54 @@ function populateRecentActivity(pendingActions) {
     const activityList = document.getElementById('recent-activity-list');
     activityList.innerHTML = '';
     
-    // Add pending orders activity
+    // Track order IDs to prevent duplicates
+    const seenOrderIds = new Set();
+    
+    // Add pending orders activity first (higher priority)
     if (pendingActions.pending_orders && pendingActions.pending_orders.length > 0) {
         pendingActions.pending_orders.slice(0, 3).forEach(order => {
-            const activityItem = document.createElement('div');
-            activityItem.className = 'activity-item';
-            activityItem.innerHTML = `
-                <div class="activity-icon warning">
-                    <i class="fas fa-hourglass-half"></i>
-                </div>
-                <div style="flex: 1;">
-                    <strong>New Order Pending</strong><br>
-                    <small style="color: var(--text-secondary);">${order.name} - ${order.service_type}</small>
-                </div>
-                <div style="color: var(--text-secondary); font-size: 0.85rem;">
-                    Just now
-                </div>
-            `;
-            activityList.appendChild(activityItem);
+            if (!seenOrderIds.has(order.id)) {
+                seenOrderIds.add(order.id);
+                const activityItem = document.createElement('div');
+                activityItem.className = 'activity-item';
+                activityItem.innerHTML = `
+                    <div class="activity-icon warning">
+                        <i class="fas fa-hourglass-half"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <strong>New Order Pending</strong><br>
+                        <small style="color: var(--text-secondary);">${order.name} - ${order.service_type}</small>
+                    </div>
+                    <div style="color: var(--text-secondary); font-size: 0.85rem;">
+                        Just now
+                    </div>
+                `;
+                activityList.appendChild(activityItem);
+            }
         });
     }
     
-    // Add in-progress orders activity (if any new orders are in progress)
+    // Add in-progress orders activity only if not already shown as pending
     if (pendingActions.inprogress_orders && pendingActions.inprogress_orders.length > 0) {
         pendingActions.inprogress_orders.slice(0, 2).forEach(order => {
-            const activityItem = document.createElement('div');
-            activityItem.className = 'activity-item';
-            activityItem.innerHTML = `
-                <div class="activity-icon info">
-                    <i class="fas fa-cogs"></i>
-                </div>
-                <div style="flex: 1;">
-                    <strong>Order In Progress</strong><br>
-                    <small style="color: var(--text-secondary);">${order.name} - ${order.service_type}</small>
-                </div>
-                <div style="color: var(--text-secondary); font-size: 0.85rem;">
-                    Active
-                </div>
-            `;
-            activityList.appendChild(activityItem);
+            if (!seenOrderIds.has(order.id)) {
+                seenOrderIds.add(order.id);
+                const activityItem = document.createElement('div');
+                activityItem.className = 'activity-item';
+                activityItem.innerHTML = `
+                    <div class="activity-icon info">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <strong>Order In Progress</strong><br>
+                        <small style="color: var(--text-secondary);">${order.name} - ${order.service_type}</small>
+                    </div>
+                    <div style="color: var(--text-secondary); font-size: 0.85rem;">
+                        Active
+                    </div>
+                `;
+                activityList.appendChild(activityItem);
+            }
         });
     }
     
