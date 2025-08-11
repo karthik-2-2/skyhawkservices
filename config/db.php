@@ -1,6 +1,6 @@
 <?php
 // Supabase PostgreSQL connection
-$host = 'db.gnmkefyljcjagchzjxif.supabase.co';
+$host = 'db.gnrnkefylcjpgcbzjxif.supabase.co';
 $port = '5432';
 $dbname = 'postgres';
 $user = 'postgres';
