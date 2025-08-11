@@ -277,6 +277,13 @@ $adminPhone = $_SESSION['admin_phone'];
       min-width: 280px;
     }
     
+    /* Stronger override to prevent any JavaScript from hiding cards */
+    .stat-card[style*="display: none"],
+    .stat-card[style*="visibility: hidden"] {
+      display: block !important;
+      visibility: visible !important;
+    }
+    
     .stat-card:nth-child(1) { animation-delay: 0.1s; }
     .stat-card:nth-child(2) { animation-delay: 0.2s; }
     .stat-card:nth-child(3) { animation-delay: 0.3s; }
@@ -862,18 +869,27 @@ document.addEventListener('DOMContentLoaded', function() {
             animateCountUp('inprogress-orders', data.stats.inprogress_orders || 0);
             animateCountUp('total-revenue', data.stats.wallet_balance || 0, '₹');
             
-            // Add urgent animation to pending orders if there are any
+            // Add/remove urgent animation for pending orders
+            const pendingCard = document.querySelector('#pending-orders').closest('.stat-card');
             if (data.stats.pending_orders > 0) {
-                document.querySelector('#pending-orders').closest('.stat-card').classList.add('urgent');
+                pendingCard.classList.add('urgent');
+            } else {
+                pendingCard.classList.remove('urgent');
             }
             
-            // Add urgent animation to in-progress orders if there are many
+            // Add/remove urgent animation for in-progress orders if there are many
+            const inprogressCard = document.querySelector('#inprogress-orders').closest('.stat-card');
             if (data.stats.inprogress_orders > 5) {
-                document.querySelector('#inprogress-orders').closest('.stat-card').classList.add('urgent');
+                inprogressCard.classList.add('urgent');
+            } else {
+                inprogressCard.classList.remove('urgent');
             }
             
             // Update change indicators
             updateChangeIndicators(data.stats);
+            
+            // Ensure all stat cards are visible (fix for disappearing cards issue)
+            ensureAllCardsVisible();
             
             // Create Charts
             try {
@@ -972,6 +988,16 @@ function updateChangeIndicators(stats) {
         document.getElementById('pending-change').textContent = 'All caught up!';
         document.getElementById('pending-change').className = 'change positive';
     }
+}
+
+function ensureAllCardsVisible() {
+    // Force all stat cards to be visible regardless of their content
+    const statCards = document.querySelectorAll('.stat-card');
+    statCards.forEach(card => {
+        card.style.display = 'block';
+        card.style.visibility = 'visible';
+        card.style.opacity = '1';
+    });
 }
 
 function createOrdersTrendChart(ordersByDay) {
