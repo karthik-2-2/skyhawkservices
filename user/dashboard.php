@@ -149,6 +149,32 @@ if (!isset($_SESSION['user_phone'])) {
     }
 
     @media (max-width: 768px) {
+      .hero-section {
+        padding: 1rem;
+        height: auto;
+        min-height: 100vh;
+      }
+
+      .hero-title-container {
+        margin-bottom: 1rem;
+      }
+
+      #hero-line1 {
+        font-size: clamp(18px, 6vw, 50px);
+        min-height: 40px;
+      }
+
+      #hero-line2 {
+        font-size: clamp(30px, 10vw, 80px);
+        min-height: 80px;
+      }
+
+      .hero-content p {
+        font-size: clamp(14px, 4vw, 18px);
+        margin-bottom: 1.5rem;
+        padding: 0 1rem;
+      }
+
       .menu-toggle {
         display: block;
       }
@@ -242,14 +268,15 @@ if (!isset($_SESSION['user_phone'])) {
       text-align: center;
       background: linear-gradient(135deg, #000, var(--mint-green));
       color: var(--metallic-silver);
-      padding-top: 3rem;
+      padding: 1rem; /* Reduced from 3rem */
     }
 
     .hero-content {
       /* This is already a flex container */
     }
 
-    /* --- Flip Animation Styles --- */
+    /* --- Flip Animation Styles (COMMENTED OUT) --- */
+    /*
     .hero-title-container {
       position: relative;
       height: 300px;
@@ -292,6 +319,17 @@ if (!isset($_SESSION['user_phone'])) {
       height: 350px;
       width: auto;
       object-fit: contain;
+    }
+    */
+
+    /* Simplified hero title without flip animation */
+    .hero-title-container {
+      position: relative;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 2rem;
     }
 
     /* === HERO TYPING ANIMATION STYLES === */
@@ -841,17 +879,17 @@ if (!isset($_SESSION['user_phone'])) {
   <header class="hero-section" data-aos="fade-right" data-aos-delay="200">
     <div class="hero-content">
       <div class="hero-title-container">
-        <div class="hero-flipper">
-          <div class="flip-front">
+        <!-- <div class="hero-flipper">
+          <div class="flip-front"> -->
             <div class="hero-text-wrapper">
                 <span id="hero-line1"></span>
                 <span id="hero-line2"></span>
             </div>
-          </div>
+          <!-- </div>
           <div class="flip-back">
             <img src="logo.png" alt="Skyhawk Logo" id="hero-logo">
           </div>
-        </div>
+        </div> -->
       </div>
       <p>"Experience precision, reliability, and speed with Skyhawk’s advanced drone services.<br>From aerial photography to surveying, we deliver top-notch solutions for all your needs."</p>
       <a href="#services" class="cta-btn">Explore Services</a>
@@ -1202,8 +1240,8 @@ if (!isset($_SESSION['user_phone'])) {
         }
       });
       
-      // === START: NEW INFINITE LOOP TYPING ANIMATION LOGIC (REWRITTEN) ===
-      const flipper = document.querySelector('.hero-flipper');
+      // === START: NEW INFINITE LOOP TYPING ANIMATION LOGIC (FLIP ANIMATION COMMENTED OUT) ===
+      // const flipper = document.querySelector('.hero-flipper');
       const titleContainer = document.querySelector('.hero-title-container');
       const line1 = document.getElementById('hero-line1');
       const line2 = document.getElementById('hero-line2');
@@ -1273,6 +1311,7 @@ if (!isset($_SESSION['user_phone'])) {
           line2.classList.remove('blinking-cursor');
       }
 
+      /* FLIP ANIMATION FUNCTIONS COMMENTED OUT
       function startInitialSequence() {
           flipper.classList.add('flipped'); 
           resetTypingAnimation();
@@ -1304,6 +1343,12 @@ if (!isset($_SESSION['user_phone'])) {
       if (flipper && titleContainer && line1 && line2) {
           titleContainer.addEventListener('mouseenter', handleHover);
           startInitialSequence();
+      }
+      */
+
+      // Simple start without flip animation
+      if (titleContainer && line1 && line2) {
+          setTimeout(runTypingAnimation, 1000);
       }
       // === END: NEW INFINITE LOOP TYPING ANIMATION LOGIC ===
 

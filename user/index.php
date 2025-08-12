@@ -190,43 +190,51 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     @media (max-width: 768px) {
       .login-box {
-        transform: scale(0.85);
-        transform-origin: center top;
-        flex-direction: row;
-        overflow-x: auto;
+        flex-direction: column; /* Stack vertically on mobile */
+        overflow-x: visible;
       }
 
       .left-panel, .right-panel {
-        padding: 30px 20px;
+        padding: 20px;
+        width: 100%;
       }
 
       .signup-text {
         font-size: 13px;
-        white-space: nowrap;
+        white-space: normal;
       }
 
       .right-panel h1 {
-        font-size: 26px;
+        font-size: 24px;
       }
 
       .right-panel p {
-        font-size: 11px;
+        font-size: 14px;
       }
     }
 
     @media (max-width: 480px) {
       .login-box {
-        transform: scale(0.75);
-        transform-origin: center top;
+        flex-direction: column;
+        margin: 10px;
+      }
+
+      .left-panel, .right-panel {
+        padding: 15px;
       }
 
       .left-panel h2 {
-        font-size: 22px;
+        font-size: 20px;
       }
 
       .right-panel h1 {
         font-size: 20px;
       }
+
+      .right-panel p {
+        font-size: 12px;
+      }
+    }
 
       .signup-text {
         font-size: 12px;
