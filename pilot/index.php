@@ -9,7 +9,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $sql = "SELECT * FROM pilot WHERE phone = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->execute([$phone]);
+    $s                    <button type="submit">Login</button>
+                    <p class="signup-text">
+                        <a href="forgot_password.php" style="color: #39ff14; text-decoration: none; font-size: 14px;">Forgot Password?</a>
+                    </p>
+                    <p class="signup-text">
+                        Don't have an account?
+                        <a href="register.php">Register</a>
+                    </p>execute([$phone]);
     $pilot = $stmt->fetch();
 
     if ($pilot && password_verify($password, $pilot['password'])) {

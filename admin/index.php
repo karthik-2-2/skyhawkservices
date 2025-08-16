@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     .container {
       width: 100%;
-      max-width: 800px; /* Reduced from 850px to bring panels closer */
+      max-width: 700px; /* Reduced from 850px to bring panels closer */
       min-width: 320px;
     }
 
@@ -78,6 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     .left-panel {
+      margin-left:25px;
       width: 40%;
       background-color: #000;
       z-index: 1;
@@ -146,7 +147,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     .right-panel {
-      width: 50%;
+      width: 60%;
       background: linear-gradient(-45deg, #39ff14, #c0c0c0, #000, #39ff14);
       background-size: 400% 400%;
       animation: gradientBG 10s ease infinite;

@@ -54,7 +54,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
     }
-    }
 }
 ?>
 <!DOCTYPE html>
@@ -308,7 +307,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           </div>
           
           <!-- Security Questions Section -->
-          <div style="margin: 20px 0; padding: 15px; border: 1px solid #39ff14; border-radius: 8px; background: rgba(57, 255, 20, 0.1);">
+          <div style="margin: 20px 0; padding: 15px; border: 1px solid #39ff14; border-radius: 15px; background: rgba(57, 255, 20, 0.1);">
             <h3 style="color: #39ff14; margin-bottom: 15px; text-align: center; font-size: 16px;">Security Questions</h3>
             <p style="color: #c0c0c0; font-size: 12px; text-align: center; margin-bottom: 15px;">Please answer these questions for account recovery</p>
             
