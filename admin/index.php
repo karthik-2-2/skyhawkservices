@@ -201,16 +201,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     @media (max-width: 768px) {
       .container {
-        width: 100%; /* Ensure full width on mobile */
+        width: 100vw; /* Ensure full width on mobile */
         max-width: none; /* Remove max-width constraint */
-        margin: 0; /* Remove any margins */
+        margin: 20px; /* Remove any margins */
       }
 
       .login-box {
         flex-direction: column; /* Stack vertically on mobile */
         overflow-x: visible;
         width: 100%; /* Ensure full width */
-        margin: 0; /* Remove any margins */
+        margin: 10px; /* Remove any margins */
       }
 
       .left-panel, .right-panel {
