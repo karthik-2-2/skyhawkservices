@@ -141,8 +141,8 @@
     @media (max-width: 768px) {
       .hero-section {
         padding: 1rem;
-        height: auto;
-        min-height: 100vh;
+        height: auto; /* Remove fixed height on mobile */
+        min-height: 70vh; /* Reduced from 100vh to reduce excessive spacing */
       }
 
       .hero-title-container {
@@ -207,6 +207,15 @@
 
       .cta-section {
         padding: 2rem 1rem;
+      }
+
+      .services-section {
+        padding: 3rem 1rem; /* Ensure mobile padding for services */
+      }
+
+      .about-section {
+        padding: 3rem 1rem; /* Ensure mobile padding for about */
+        margin: 0 1rem 2rem 1rem; /* Add side margins */
       }
 
       .cta-section h2 {
@@ -389,7 +398,7 @@
 
     .services-section {
       background-color: var(--black);
-      padding: 4rem 0;
+      padding: 4rem 2rem; /* Added horizontal padding */
     }
 
     .services-section h2 {
@@ -535,7 +544,7 @@
     .cta-section {
       background-color: var(--mint-green);
       color: #000;
-      padding: 4rem 0;
+      padding: 4rem 2rem; /* Added horizontal padding */
       text-align: center;
     }
 
@@ -582,7 +591,7 @@
       display: block;
       margin-bottom: 0.5rem;
       font-weight: bold; 
-      color: var(--metallic-silver); 
+      color: #000; /* Changed to black */
     }
 
     .contact-form input,
@@ -592,15 +601,15 @@
       margin-bottom: 1rem;
       border: 1px solid var(--metallic-silver); 
       border-radius: 8px;
-      background-color: var(--black); 
-      color: var(--metallic-silver); 
+      background-color: var(--metallic-silver); /* Changed to metallic silver */
+      color: #000; /* Changed text color to black */
       font-size: 1rem;
       resize: vertical;
     }
 
     .contact-form input::placeholder,
     .contact-form textarea::placeholder {
-      color: var(--metallic-silver); 
+      color: #000; /* Changed placeholder to black */
       opacity: 0.7;
     }
 
@@ -637,7 +646,7 @@
     
     .contact-section-label{
       font-weight: bold;
-      color: var(--metallic-silver);
+      color: #000; /* Changed to black */
       font-size:clamp(14px, 4vw, 20px);
     }
 

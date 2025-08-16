@@ -199,6 +199,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         width: 100%;
       }
 
+      /* Welcome panel on top, remove clip-path for mobile */
+      .right-panel {
+        order: -1; /* Move to top */
+        clip-path: none; /* Remove diagonal cut */
+        padding: 30px 20px;
+        text-align: center;
+        justify-content: center;
+      }
+
       .signup-text {
         font-size: 13px;
         white-space: normal;

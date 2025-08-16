@@ -151,8 +151,8 @@ if (!isset($_SESSION['user_phone'])) {
     @media (max-width: 768px) {
       .hero-section {
         padding: 1rem;
-        height: auto;
-        min-height: 100vh;
+        height: auto; /* Remove fixed height on mobile */
+        min-height: 70vh; /* Reduced from 100vh to reduce excessive spacing */
       }
 
       .hero-title-container {
