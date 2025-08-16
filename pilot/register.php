@@ -1,6 +1,10 @@
 <?php
 
 include('../config/db.php');
+include('../config/security_questions.php');
+
+// Get random security questions for display
+$security_questions = getRandomSecurityQuestions($conn, 3);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Collect form inputs
@@ -12,55 +16,74 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $aadhaar_number = $_POST['aadhaar_number'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-    // Upload folder
-    $upload_dir = "uploads/";
-    if (!is_dir($upload_dir)) {
-        mkdir($upload_dir, 0777, true);
+    // Collect security answers
+    $security_answers = [];
+    for ($i = 1; $i <= 3; $i++) {
+        if (isset($_POST["question_$i"]) && isset($_POST["answer_$i"])) {
+            $security_answers[] = [
+                'question_id' => $_POST["question_$i"],
+                'answer' => trim($_POST["answer_$i"])
+            ];
+        }
     }
 
-    // Function to generate new filename based on field name and phone number
-    function generateFileName($fieldName, $phone, $originalName) {
-        $ext = pathinfo($originalName, PATHINFO_EXTENSION);
-        // Sanitize phone to avoid unwanted characters in filename
-        $safePhone = preg_replace('/[^0-9]/', '', $phone);
-        return $fieldName . '_' . $safePhone . '.' . $ext;
+    // Validate security answers
+    if (count($security_answers) != 3) {
+        $error_message = "Please answer all security questions!";
+    } else {
+        // Upload folder
+        $upload_dir = "uploads/";
+        if (!is_dir($upload_dir)) {
+            mkdir($upload_dir, 0777, true);
+        }
+
+        // Function to generate new filename based on field name and phone number
+        function generateFileName($fieldName, $phone, $originalName) {
+            $ext = pathinfo($originalName, PATHINFO_EXTENSION);
+            // Sanitize phone to avoid unwanted characters in filename
+            $safePhone = preg_replace('/[^0-9]/', '', $phone);
+            return $fieldName . '_' . $safePhone . '.' . $ext;
+        }
+
+        // Handle file uploads with new names
+        $dgca_license_photo_name = generateFileName('dgca_license_photo', $phone, $_FILES["dgca_license_photo"]["name"]);
+        $address_photo_name = generateFileName('address_photo', $phone, $_FILES["address_photo"]["name"]);
+        $person_photo_name = generateFileName('person_photo', $phone, $_FILES["person_photo"]["name"]);
+
+        $dgca_license_photo_path = $upload_dir . $dgca_license_photo_name;
+        $address_photo_path = $upload_dir . $address_photo_name;
+        $person_photo_path = $upload_dir . $person_photo_name;
+
+        // Move uploaded files to upload directory with new names
+        move_uploaded_file($_FILES["dgca_license_photo"]["tmp_name"], $dgca_license_photo_path);
+        move_uploaded_file($_FILES["address_photo"]["tmp_name"], $address_photo_path);
+        move_uploaded_file($_FILES["person_photo"]["tmp_name"], $person_photo_path);
+
+        // Check if phone exists (PDO)
+        $check_query = "SELECT * FROM pilot WHERE phone = ?";
+        $stmt = $conn->prepare($check_query);
+        $stmt->execute([$phone]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($result) {
+            $error_message = "Phone number already exists!";
+        } else {
+            $insert_query = "INSERT INTO pilot (name, email, phone, address, password, pilot_license_number, dgca_license_photo, aadhaar_number, address_photo, person_photo) 
+                     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $stmt = $conn->prepare($insert_query);
+            $stmt->execute([
+              $name, $email, $phone, $address, $password, $pilot_license_number, $dgca_license_photo_path, $aadhaar_number, $address_photo_path, $person_photo_path
+            ]);
+            
+            // Save security answers
+            if (savePilotSecurityAnswers($conn, $phone, $security_answers)) {
+                header('Location: index.php');
+                exit();
+            } else {
+                $error_message = "Registration failed! Could not save security questions.";
+            }
+        }
     }
-
-    // Handle file uploads with new names
-    $dgca_license_photo_name = generateFileName('dgca_license_photo', $phone, $_FILES["dgca_license_photo"]["name"]);
-    $address_photo_name = generateFileName('address_photo', $phone, $_FILES["address_photo"]["name"]);
-    $person_photo_name = generateFileName('person_photo', $phone, $_FILES["person_photo"]["name"]);
-
-    $dgca_license_photo_path = $upload_dir . $dgca_license_photo_name;
-    $address_photo_path = $upload_dir . $address_photo_name;
-    $person_photo_path = $upload_dir . $person_photo_name;
-
-    // Move uploaded files to upload directory with new names
-    move_uploaded_file($_FILES["dgca_license_photo"]["tmp_name"], $dgca_license_photo_path);
-    move_uploaded_file($_FILES["address_photo"]["tmp_name"], $address_photo_path);
-    move_uploaded_file($_FILES["person_photo"]["tmp_name"], $person_photo_path);
-
-  // Check if phone exists (PDO)
-  $check_query = "SELECT * FROM pilot WHERE phone = ?";
-  $stmt = $conn->prepare($check_query);
-  $stmt->execute([$phone]);
-  $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-  if ($result) {
-    $error_message = "Phone number already exists!";
-  } else {
-    $insert_query = "INSERT INTO pilot (name, email, phone, address, password, pilot_license_number, dgca_license_photo, aadhaar_number, address_photo, person_photo) 
-             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    $stmt = $conn->prepare($insert_query);
-    $stmt->execute([
-      $name, $email, $phone, $address, $password, $pilot_license_number, $dgca_license_photo_path, $aadhaar_number, $address_photo_path, $person_photo_path
-    ]);
-    header('Location: index.php');
-    exit();
-  }
-
-  // No need to close PDO connection or statement
-}
 ?>
 
 <!DOCTYPE html>
@@ -310,6 +333,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label style="color:#ccc;">Your Photo</label>
             <input type="file" name="person_photo" accept="image/*" required />
           </div>
+          
+          <!-- Security Questions Section -->
+          <div style="margin: 20px 0; padding: 15px; border: 1px solid #39ff14; border-radius: 8px; background: rgba(57, 255, 20, 0.1);">
+            <h3 style="color: #39ff14; margin-bottom: 15px; text-align: center; font-size: 16px;">Security Questions</h3>
+            <p style="color: #c0c0c0; font-size: 12px; text-align: center; margin-bottom: 15px;">Please answer these questions for account recovery</p>
+            
+            <?php for ($i = 0; $i < 3; $i++): ?>
+              <div class="input-box" style="margin-bottom: 15px;">
+                <label style="color: #c0c0c0; font-size: 13px; display: block; margin-bottom: 5px;">
+                  <?php echo htmlspecialchars($security_questions[$i]['question']); ?>
+                </label>
+                <input type="hidden" name="question_<?php echo $i+1; ?>" value="<?php echo $security_questions[$i]['id']; ?>" />
+                <input type="text" name="answer_<?php echo $i+1; ?>" placeholder="Your answer" required 
+                       style="border-bottom: 1px solid #c0c0c0; background: transparent; color: #c0c0c0; padding: 8px 0; font-size: 14px;" />
+              </div>
+            <?php endfor; ?>
+          </div>
+
           <button type="submit">Register</button>
           <p class="signup-text">
             Already have an account? <a href="index.php">Login</a>

@@ -1,6 +1,10 @@
 <?php
 // Include database connection
 include('../config/db.php');
+include('../config/security_questions.php');
+
+// Get random security questions for display
+$security_questions = getRandomSecurityQuestions($conn, 3);
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -10,24 +14,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $address = trim($_POST['address']);
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-    // Check if phone exists
-    $check_query = "SELECT * FROM \"user\" WHERE phone = ?";
-    $stmt = $conn->prepare($check_query);
-    $stmt->execute([$phone]);
-
-    if ($stmt->rowCount() > 0) {
-        $error_message = "Phone number already exists!";
-    } else {
-        // Insert new user
-        $insert_query = "INSERT INTO \"user\" (name, email, phone, address, password) VALUES (?, ?, ?, ?, ?)";
-        $stmt = $conn->prepare($insert_query);
-        
-        if ($stmt->execute([$name, $email, $phone, $address, $password])) {
-            header('Location: index.php');
-            exit();
-        } else {
-            $error_message = "Registration failed!";
+    // Collect security answers
+    $security_answers = [];
+    for ($i = 1; $i <= 3; $i++) {
+        if (isset($_POST["question_$i"]) && isset($_POST["answer_$i"])) {
+            $security_answers[] = [
+                'question_id' => $_POST["question_$i"],
+                'answer' => trim($_POST["answer_$i"])
+            ];
         }
+    }
+
+    // Validate security answers
+    if (count($security_answers) != 3) {
+        $error_message = "Please answer all security questions!";
+    } else {
+        // Check if phone exists
+        $check_query = "SELECT * FROM \"user\" WHERE phone = ?";
+        $stmt = $conn->prepare($check_query);
+        $stmt->execute([$phone]);
+
+        if ($stmt->rowCount() > 0) {
+            $error_message = "Phone number already exists!";
+        } else {
+            // Insert new user
+            $insert_query = "INSERT INTO \"user\" (name, email, phone, address, password) VALUES (?, ?, ?, ?, ?)";
+            $stmt = $conn->prepare($insert_query);
+            
+            if ($stmt->execute([$name, $email, $phone, $address, $password])) {
+                // Save security answers
+                if (saveUserSecurityAnswers($conn, $phone, $security_answers)) {
+                    header('Location: index.php');
+                    exit();
+                } else {
+                    $error_message = "Registration failed! Could not save security questions.";
+                }
+            } else {
+                $error_message = "Registration failed!";
+            }
+        }
+    }
     }
 }
 ?>
@@ -280,6 +306,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="password" id="password" name="password" placeholder="Password" required />
             <i class="fas fa-lock"></i>
           </div>
+          
+          <!-- Security Questions Section -->
+          <div style="margin: 20px 0; padding: 15px; border: 1px solid #39ff14; border-radius: 8px; background: rgba(57, 255, 20, 0.1);">
+            <h3 style="color: #39ff14; margin-bottom: 15px; text-align: center; font-size: 16px;">Security Questions</h3>
+            <p style="color: #c0c0c0; font-size: 12px; text-align: center; margin-bottom: 15px;">Please answer these questions for account recovery</p>
+            
+            <?php for ($i = 0; $i < 3; $i++): ?>
+              <div class="input-box" style="margin-bottom: 15px;">
+                <label style="color: #c0c0c0; font-size: 13px; display: block; margin-bottom: 5px;">
+                  <?php echo htmlspecialchars($security_questions[$i]['question']); ?>
+                </label>
+                <input type="hidden" name="question_<?php echo $i+1; ?>" value="<?php echo $security_questions[$i]['id']; ?>" />
+                <input type="text" name="answer_<?php echo $i+1; ?>" placeholder="Your answer" required 
+                       style="border-bottom: 1px solid #c0c0c0; background: transparent; color: #c0c0c0; padding: 8px 0; font-size: 14px;" />
+              </div>
+            <?php endfor; ?>
+          </div>
+
           <button type="submit">Register</button>
           <p class="signup-text">
             Already have an account?

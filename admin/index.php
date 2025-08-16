@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     .left-panel {
-      width: 50%;
+      width: 40%;
       background-color: #000;
       z-index: 1;
     }

@@ -11,7 +11,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $phone = $_POST['phone'];
     $password = $_POST['password'];
 
-    $sql = "SELECT * FROM \"user\" WHERE phone = ?";
+    $sql = "SELECT * FROM \"user\" WH          <button type="submit">Login</button>
+          <p class="signup-text">
+            Don't have an account?
+            <a href="register.php">Register</a>
+          </p>
+          <p class="signup-text">
+            <a href="forgot_password.php">Forgot Password?</a>
+          </p>hone = ?";
     $stmt = $conn->prepare($sql);
     $stmt->execute([$phone]);
     $user = $stmt->fetch();
