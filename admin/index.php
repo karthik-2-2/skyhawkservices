@@ -155,7 +155,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       align-items: center;
       justify-content: center; /* Changed from right to center */
       padding: 30px; /* Changed from padding-right to all sides */
-      /* Removed clip-path completely */
+      /* Removed clip-path for mobile, will be added for larger screens */
+    }
+
+    /* Add clip-path for larger screens only */
+    @media (min-width: 769px) {
+      .right-panel {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 60% 100%);
+      }
     }
 
     .right-panel h1 {

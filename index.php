@@ -475,14 +475,14 @@
       transform: rotateY(0deg);
     }
 
-    /* NEW: Top half image frame */
+    /* NEW: Top image section */
     .service-image-frame {
-      height: 50%; /* Top half */
+      height: 65%; /* Top 65% */
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 20px;
-      background: transparent; /* Let the background image show through */
+      background: var(--black); /* Solid black background */
     }
 
     .service-image-frame img {
@@ -495,10 +495,10 @@
       padding: 10px;
     }
 
-    /* MODIFIED: Bottom half info */
+    /* MODIFIED: Bottom info section */
     .service-card-info {
-      height: 50%; /* Bottom half */
-      background: rgba(0,0,0,0.9); /* Black background */
+      height: 35%; /* Bottom 35% */
+      background: var(--black); /* Solid black background */
       border-radius: 0 0 16px 16px;
       padding: 1rem;
       display: flex;
@@ -854,7 +854,7 @@
     <h2>Our Drone Services</h2>
     <div class="services">
       <div class="card" data-aos="fade-right" data-aos-delay="400">
-        <div class="services-card-front" style="background-image: url('./drone2.png'); background-size:cover; background-position: center;">
+        <div class="services-card-front">
           <div class="service-image-frame">
             <img src="./drone2.png" alt="Videography Drone">
           </div>
@@ -875,7 +875,7 @@
         </div>
       </div>
       <div class="card" data-aos="fade-right" data-aos-delay="500">
-        <div class="services-card-front" style="background-image: url('./drone1.png'); background-size:cover; background-position: center;">
+        <div class="services-card-front">
           <div class="service-image-frame">
             <img src="./drone1.png" alt="Inspection Drone">
           </div>
@@ -896,17 +896,12 @@
         </div>
       </div>
       <div class="card" data-aos="fade-right" data-aos-delay="600">
-        <div class="services-card-front" style="background-image: url('./spray.png');">
+        <div class="services-card-front">
           <div class="service-image-frame">
             <img src="./spray.png" alt="Agriculture Spraying Drone">
           </div>
           <div class="service-card-info">
             <h3>Agriculture Spraying</h3>
-            <div class="specs">
-              <strong>Model:</strong> DJI Mini 3<br>
-              <strong>Fly Time:</strong> 25 min per Battery<br>
-              <strong>Experience:</strong> 4 yrs
-            </div>
           </div>
         </div>
         <div class="services-card-back">
@@ -917,17 +912,12 @@
         </div>
       </div>
       <div class="card" data-aos="fade-right" data-aos-delay="700">
-        <div class="services-card-front" style="background-image: url('./dheli.png');">
+        <div class="services-card-front">
           <div class="service-image-frame">
             <img src="./dheli.png" alt="Delivery Drone">
           </div>
           <div class="service-card-info">
             <h3>Delivery Service</h3>
-            <div class="specs">
-              <strong>Model:</strong> DJI Mini 3<br>
-              <strong>Fly Time:</strong> 25 min per Battery<br>
-              <strong>Experience:</strong> 4 yrs
-            </div>
           </div>
         </div>
         <div class="services-card-back">
