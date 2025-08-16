@@ -418,83 +418,88 @@
     }
 
     .card {
-      background-color: var(--dark-gray);
-      border-radius: 16px;
-      width: 270px;
-      height: 440px;
-      perspective: 1000px;
+      background-color: var(--metallic-silver);
+      border-radius: 12px;
+      width: 280px;
+      height: 380px;
       position: relative;
-      display: inline-block;
+      display: flex;
+      flex-direction: column;
       margin: 1rem;
       cursor: pointer;
-      border: 1px solid var(--mint-green);
-      box-shadow: 5px 5px 10px var(--mint-green), -5px -5px 10px var(--mint-green);
+      border: 2px solid var(--mint-green);
+      box-shadow: 0 4px 20px rgba(57, 255, 20, 0.3);
       vertical-align: top;
-      color: var(--metallic-silver);
+      color: var(--black);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    .card .services-card-front, .card .services-card-back {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      border-radius: 16px;
-      backface-visibility: hidden;
-      transition: transform 1.5s cubic-bezier(0.23, 1, 0.32, 1);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 30px rgba(57, 255, 20, 0.5);
     }
+
+    /* Top half - Image section */
     .card .services-card-front {
-      background-size: cover;
-      background-position: center;
-      z-index: 2;
-      transform: rotateY(0deg);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-    }
-    .card .services-card-back {
-      background: var(--dark-gray);
-      color: var(--metallic-silver);
-      transform: rotateY(180deg);
-      z-index: 3;
+      width: 100%;
+      height: 50%; /* Exactly half */
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-direction: column;
-      padding: 2rem;
+      background-color: var(--black);
+      padding: 20px;
+      box-sizing: border-box;
     }
-    .card:hover .services-card-front {
-      transform: rotateY(180deg);
+
+    .card .services-card-front img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain; /* Scale down and center with padding */
+      border-radius: 8px;
     }
-    .card:hover .services-card-back {
-      transform: rotateY(0deg);
-    }
+
+    /* Bottom half - Info section */
     .service-card-info {
       width: 100%;
-      background: rgba(0,0,0,0.5);
-      border-radius: 0 0 16px 16px;
-      padding: 1rem 0.5rem 1.2rem 0.5rem;
+      height: 50%; /* Exactly half */
+      background: var(--metallic-silver);
+      padding: 20px;
       text-align: center;
-    }
-    .service-card-info h3 {
-      margin: 0;
-      font-size: 1.3rem;
-      font-weight: bold;
-      color: var(--mint-green);
-      text-shadow: 2px 2px 6px var(--dark-gray);
-    }
-    .service-card-content {
       display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
-      height: 100%;
-      text-align: center;
+      box-sizing: border-box;
     }
-    .service-card-content p {
-      margin-bottom: 1.5rem;
-      color: var(--metallic-silver);
+
+    .service-card-info h3 {
+      margin: 0 0 15px 0;
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: var(--mint-green); /* Highlighted title */
+      text-transform: uppercase;
     }
+
+    .service-card-info .specs {
+      color: var(--black);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .service-card-info .specs strong {
+      color: var(--black);
+      font-weight: bold;
+    }
+
+    /* Remove the old flip card styles */
+    .card .services-card-back {
+      display: none;
+    }
+    
+    /* Removed old service-card-info h3 styles - already defined above */
+
+    /* Removed old service-card-content styles - no longer needed */
 
     .book-btn {
       display: inline-block;
@@ -807,54 +812,54 @@
     <h2>Our Drone Services</h2>
     <div class="services">
       <div class="card" data-aos="fade-right" data-aos-delay="400">
-        <div class="services-card-front" style="background-image: url('./drone2.png'); background-size:cover; background-position: center;">
-          <div class="service-card-info">
-            <h3>Videography & Photography</h3>
-          </div>
+        <div class="services-card-front">
+          <img src="./drone2.png" alt="Videography Drone">
         </div>
-        <div class="services-card-back">
-          <div class="service-card-content">
-            <p>Capture stunning aerial footage for events, marketing, and real estate.</p>
-            <a href="user/index.php" class="book-btn">Book Now</a>
+        <div class="service-card-info">
+          <h3>Videography & Photography</h3>
+          <div class="specs">
+            <strong>Model:</strong> DJI Mini 3<br>
+            <strong>Fly Time:</strong> 25 min per Battery<br>
+            <strong>Experience:</strong> 4 yrs
           </div>
         </div>
       </div>
       <div class="card" data-aos="fade-right" data-aos-delay="500">
-        <div class="services-card-front" style="background-image: url('./drone1.png'); background-size:cover; background-position: center;">
-          <div class="service-card-info">
-            <h3>Inspection</h3>
-          </div>
+        <div class="services-card-front">
+          <img src="./drone1.png" alt="Inspection Drone">
         </div>
-        <div class="services-card-back">
-          <div class="service-card-content">
-            <p>Perform structural and utility inspections with precision and safety.</p>
-            <a href="user/index.php" class="book-btn">Book Now</a>
+        <div class="service-card-info">
+          <h3>Inspection</h3>
+          <div class="specs">
+            <strong>Model:</strong> DJI Mini 3<br>
+            <strong>Fly Time:</strong> 25 min per Battery<br>
+            <strong>Experience:</strong> 4 yrs
           </div>
         </div>
       </div>
       <div class="card" data-aos="fade-right" data-aos-delay="600">
-        <div class="services-card-front" style="background-image: url('./spray.png');">
-          <div class="service-card-info">
-            <h3>Agriculture Spraying</h3>
-          </div>
+        <div class="services-card-front">
+          <img src="./spray.png" alt="Agriculture Spraying Drone">
         </div>
-        <div class="services-card-back">
-          <div class="service-card-content">
-            <p>Efficient and eco-friendly crop spraying with smart drone technology.</p>
-            <button class="book-btn" onclick="openComingSoonModal()">Book Now</button>
+        <div class="service-card-info">
+          <h3>Agriculture Spraying</h3>
+          <div class="specs">
+            <strong>Model:</strong> DJI Mini 3<br>
+            <strong>Fly Time:</strong> 25 min per Battery<br>
+            <strong>Experience:</strong> 4 yrs
           </div>
         </div>
       </div>
       <div class="card" data-aos="fade-right" data-aos-delay="700">
-        <div class="services-card-front" style="background-image: url('./dheli.png');">
-          <div class="service-card-info">
-            <h3>Delivery Service</h3>
-          </div>
+        <div class="services-card-front">
+          <img src="./dheli.png" alt="Delivery Drone">
         </div>
-        <div class="services-card-back">
-          <div class="service-card-content">
-            <p>Fast and reliable drone delivery, bringing your packages swiftly and safely to your doorstep.</p>
-            <button class="book-btn" onclick="openComingSoonModal()">Book Now</button>
+        <div class="service-card-info">
+          <h3>Delivery Service</h3>
+          <div class="specs">
+            <strong>Model:</strong> DJI Mini 3<br>
+            <strong>Fly Time:</strong> 25 min per Battery<br>
+            <strong>Experience:</strong> 4 yrs
           </div>
         </div>
       </div>

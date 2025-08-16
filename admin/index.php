@@ -42,14 +42,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     html, body {
       background-color: #000;
       color: #c0c0c0; /* Changed from #fff to metallic silver */
-      height: 100%;
+      min-height: 100vh; /* Changed from height: 100% */
       overflow: auto;
     }
 
     body {
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: center; /* Keep center for admin */
       padding: 20px;
     }
 

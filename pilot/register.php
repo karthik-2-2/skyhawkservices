@@ -87,9 +87,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     body {
       display: flex;
       justify-content: center;
-      align-items: flex-start;
+      align-items: center; /* Back to center for better positioning */
       padding: 20px;
-      padding-top: 50px; /* Add some top padding */
     }
     .container {
       width: 100%;
