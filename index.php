@@ -419,7 +419,7 @@
 
     .card {
       background-color: var(--dark-gray);
-      border-radius: 16px;
+      border-radius: 20px; /* Increased from 16px for softer look */
       width: 270px;
       height: 440px;
       perspective: 1000px;
@@ -431,6 +431,7 @@
       box-shadow: 5px 5px 10px var(--mint-green), -5px -5px 10px var(--mint-green);
       vertical-align: top;
       color: var(--metallic-silver);
+      overflow: hidden; /* Ensure content respects the border radius */
     }
     
     .card .services-card-front, .card .services-card-back {
@@ -439,11 +440,12 @@
       position: absolute;
       top: 0;
       left: 0;
-      border-radius: 16px;
+      border-radius: 20px; /* Increased from 16px to match card */
       backface-visibility: hidden;
       transition: transform 1.5s cubic-bezier(0.23, 1, 0.32, 1);
       display: flex;
       flex-direction: column;
+      overflow: hidden; /* Ensure content respects the border radius */
     }
     
     .card .services-card-front {
@@ -483,13 +485,14 @@
       justify-content: center;
       padding: 20px;
       background: var(--black); /* Solid black background */
+      border-radius: 20px 20px 0 0; /* Rounded top corners to match card */
     }
 
     .service-image-frame img {
       width: 80%;
       height: 80%;
       object-fit: cover; /* Changed from contain to cover for better aspect ratio */
-      border-radius: 8px;
+      border-radius: 15px; /* Increased from 8px for softer image corners */
       border: none; /* Removed the mint green border */
       background: rgba(0,0,0,0.3);
       padding: 10px;
@@ -499,7 +502,7 @@
     .service-card-info {
       height: 35%; /* Bottom 35% */
       background: var(--black); /* Solid black background */
-      border-radius: 0 0 16px 16px;
+      border-radius: 0 0 20px 20px; /* Increased from 16px to match card */
       padding: 1rem;
       display: flex;
       flex-direction: column;
