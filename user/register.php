@@ -48,16 +48,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     html, body {
       background-color: #000;
-      color: #fff;
-      height: 100%;
+      color: #c0c0c0; /* Changed from #fff to metallic silver */
+      min-height: 100vh; /* Changed from height: 100% */
       overflow: auto;
     }
 
     body {
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start; /* Changed from center to flex-start */
       padding: 20px;
+      padding-top: 50px; /* Add some top padding */
     }
 
     .container {
@@ -153,16 +154,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     .right-panel {
       width: 50%;
-      background: linear-gradient(-45deg, #39ff14, #c0c0c0, #2d2d2d, #39ff14);
+      background: linear-gradient(-45deg, #39ff14, #c0c0c0, #000, #39ff14);
       background-size: 400% 400%;
       animation: gradientBG 10s ease infinite;
       color: white;
       text-align: left;
       display: flex;
       align-items: center;
-      justify-content: right;
-      padding-right: 30px;
-      clip-path: polygon(0 0, 100% 0, 100% 100%, 60% 100%);
+      justify-content: center; /* Changed from right to center */
+      padding: 30px; /* Changed from padding-right to all sides */
+      /* Removed clip-path completely */
     }
 
     .right-panel h1 {

@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     html, body {
       background-color: #000;
-      color: #fff;
+      color: #c0c0c0; /* Changed from #fff to metallic silver */
       height: 100%;
       overflow: auto;
     }
@@ -99,8 +99,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       padding: 12px 40px 12px 10px;
       background-color: transparent;
       border: none;
-      border-bottom: 1px solid #ccc;
-      color: #fff;
+      border-bottom: 1px solid #c0c0c0; /* Changed from #ccc to metallic silver */
+      color: #c0c0c0; /* Changed from #fff to metallic silver */
       font-size: 16px;
       outline: none;
     }
@@ -110,7 +110,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       right: 10px;
       top: 50%;
       transform: translateY(-50%);
-      color: #ccc;
+      color: #c0c0c0; /* Changed from #ccc to metallic silver */
     }
 
     button {
@@ -146,16 +146,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     .right-panel {
       width: 50%;
-      background: linear-gradient(-45deg, #39ff14, #c0c0c0, #2d2d2d, #39ff14);
+      background: linear-gradient(-45deg, #39ff14, #c0c0c0, #000, #39ff14);
       background-size: 400% 400%;
       animation: gradientBG 10s ease infinite;
       color: white;
       text-align: left;
       display: flex;
       align-items: center;
-      justify-content: right;
-      padding-right: 30px;
-      clip-path: polygon(0 0, 100% 0, 100% 100%, 60% 100%);
+      justify-content: center; /* Changed from right to center */
+      padding: 30px; /* Changed from padding-right to all sides */
+      /* Removed clip-path completely */
     }
 
     .right-panel h1 {
