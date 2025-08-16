@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     .container {
       width: 100%;
-      max-width: 850px;
+      max-width: 800px; /* Reduced from 850px to bring panels closer */
       min-width: 320px;
     }
 
@@ -67,6 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       box-shadow: 0 0 20px #39ff14;
       flex-wrap: nowrap;
       background-color: #000;
+      gap: 0; /* Remove any gap between panels */
     }
 
     .left-panel,
@@ -154,15 +155,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       text-align: left;
       display: flex;
       align-items: center;
-      justify-content: center; /* Changed from right to center */
-      padding: 30px; /* Changed from padding-right to all sides */
-      /* Removed clip-path completely */
+      justify-content: flex-start; /* Changed to align content to left side */
+      padding: 20px 40px; /* Reduced padding to bring content closer */
+      position: relative;
+    }
+
+    /* Add clip-path for larger screens only */
+    @media (min-width: 769px) {
+      .right-panel {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 60% 100%);
+        justify-content: flex-start; /* Keep text on left side of the panel */
+        padding-left: 30px; /* Ensure proper spacing from left edge */
+      }
     }
 
     .right-panel h1 {
-      font-size: 32px;
-      line-height: 1.2;
+      font-size: 28px; /* Slightly reduced */
+      line-height: 1.1;
       text-shadow: 0 0 10px rgba(61, 201, 36, 0.3);
+      margin: 0; /* Remove default margin */
+      text-align: left;
     }
 
     .right-panel h1 span {
@@ -189,9 +201,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     @media (max-width: 768px) {
+      .container {
+        width: 100%; /* Ensure full width on mobile */
+        max-width: none; /* Remove max-width constraint */
+        margin: 0; /* Remove any margins */
+      }
+
       .login-box {
         flex-direction: column; /* Stack vertically on mobile */
         overflow-x: visible;
+        width: 100%; /* Ensure full width */
+        margin: 0; /* Remove any margins */
       }
 
       .left-panel, .right-panel {

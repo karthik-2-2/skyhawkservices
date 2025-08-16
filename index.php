@@ -488,9 +488,9 @@
     .service-image-frame img {
       width: 80%;
       height: 80%;
-      object-fit: contain;
+      object-fit: cover; /* Changed from contain to cover for better aspect ratio */
       border-radius: 8px;
-      border: 2px solid var(--mint-green);
+      border: none; /* Removed the mint green border */
       background: rgba(0,0,0,0.3);
       padding: 10px;
     }
@@ -508,11 +508,32 @@
     
     .service-card-info h3 {
       margin: 0 0 10px 0;
-      font-size: 1.3rem;
+      font-size: 1.1rem; /* Reduced from 1.3rem for first card */
       font-weight: bold;
       color: var(--mint-green); /* Mint green title */
       text-align: center;
       text-shadow: 2px 2px 6px var(--dark-gray);
+    }
+
+    /* Coming Soon Animation for last 2 cards */
+    .coming-soon {
+      font-size: 0.95rem;
+      color: var(--mint-green);
+      text-align: center;
+      animation: pulse-glow 2s ease-in-out infinite;
+      margin-top: 5px;
+      font-weight: bold;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% {
+        opacity: 1;
+        text-shadow: 0 0 5px var(--mint-green);
+      }
+      50% {
+        opacity: 0.7;
+        text-shadow: 0 0 15px var(--mint-green), 0 0 25px var(--mint-green);
+      }
     }
 
     .service-card-info .specs {
@@ -902,6 +923,7 @@
           </div>
           <div class="service-card-info">
             <h3>Agriculture Spraying</h3>
+            <div class="coming-soon">Coming Soon</div>
           </div>
         </div>
         <div class="services-card-back">
@@ -918,6 +940,7 @@
           </div>
           <div class="service-card-info">
             <h3>Delivery Service</h3>
+            <div class="coming-soon">Coming Soon</div>
           </div>
         </div>
         <div class="services-card-back">
