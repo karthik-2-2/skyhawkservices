@@ -28,7 +28,7 @@ $users = $stmt->fetchAll();
       margin: 20px;
     }
     h1 {
-      color: #39ff14;
+      color: #3EB489;
     }
     table {
       width: 100%;
@@ -43,14 +43,14 @@ $users = $stmt->fetchAll();
       vertical-align: top;
     }
     th {
-      background-color: #39ff14;
+      background-color: #3EB489;
       color: #000;
     }
     tr:hover {
       background-color: #333;
     }
     .view-btn {
-      background-color: #39ff14;
+      background-color: #3EB489;
       color: #000;
       padding: 6px 12px;
       border: none;
@@ -68,7 +68,7 @@ $users = $stmt->fetchAll();
     a.back {
       display: inline-block;
       margin-bottom: 15px;
-      color: #39ff14;
+      color: #3EB489;
       text-decoration: none;
       font-weight: bold;
     }

@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       display: flex;
       border-radius: 10px;
       overflow: hidden;
-      box-shadow: 0 0 20px #39ff14;
+      box-shadow: 0 0 20px #3EB489;
       flex-wrap: nowrap;
       background-color: #000;
       gap: 0; /* Remove any gap between panels */
@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       text-align: center;
       margin-bottom: 30px;
       font-size: 28px;
-      color: #39ff14;
+      color: #3EB489;
     }
 
     .input-box {
@@ -119,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       width: 100%;
       padding: 12px;
       border: none;
-      background: linear-gradient(135deg, #39ff14, #c0c0c0);
+      background: linear-gradient(135deg, #3EB489, #c0c0c0);
       color: black;
       font-weight: bold;
       font-size: 16px;
@@ -130,7 +130,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     button:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 15px #39ff14;
+      box-shadow: 0 0 15px #3EB489;
     }
 
     .signup-text {
@@ -141,14 +141,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     .signup-text a {
-      color: #39ff14;
+      color: #3EB489;
       text-decoration: none;
       margin-left: 4px;
     }
 
     .right-panel {
       width: 50%;
-      background: linear-gradient(-45deg, #39ff14, #c0c0c0, #000, #39ff14);
+      background: linear-gradient(-45deg, #3EB489, #c0c0c0, #000, #3EB489);
       background-size: 400% 400%;
       animation: gradientBG 10s ease infinite;
       color: white;
@@ -289,7 +289,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <i class="fas fa-lock"></i>
           </div>
           <p style="text-align: right; margin: 10px 0; font-size: 14px;">
-            <a href="forgot_password.php" style="color: #39ff14; text-decoration: none;">Forgot Password?</a>
+            <a href="forgot_password.php" style="color: #3EB489; text-decoration: none;">Forgot Password?</a>
           </p>
           <button type="submit">Login</button>
           <p class="signup-text">

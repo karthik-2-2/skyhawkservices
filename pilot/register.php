@@ -124,7 +124,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       display: flex;
       border-radius: 10px;
       overflow: hidden;
-      box-shadow: 0 0 20px #39ff14;
+      box-shadow: 0 0 20px #3EB489;
       flex-wrap: nowrap;
       background-color: #000;
     }
@@ -144,7 +144,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       text-align: center;
       margin-bottom: 30px;
       font-size: 28px;
-      color: #39ff14;
+      color: #3EB489;
     }
     .input-box {
       position: relative;
@@ -171,7 +171,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       width: 100%;
       padding: 12px;
       border: none;
-      background: linear-gradient(135deg, #39ff14, #c0c0c0);
+      background: linear-gradient(135deg, #3EB489, #c0c0c0);
       color: black;
       font-weight: bold;
       font-size: 16px;
@@ -181,7 +181,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     button:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 15px #39ff14;
+      box-shadow: 0 0 15px #3EB489;
     }
     .signup-text {
       margin-top: 15px;
@@ -190,13 +190,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       white-space: nowrap;
     }
     .signup-text a {
-      color: #39ff14;
+      color: #3EB489;
       text-decoration: none;
       margin-left: 4px;
     }
     .right-panel {
       width: 50%;
-      background: linear-gradient(-45deg, #39ff14, #c0c0c0, #000, #39ff14);
+      background: linear-gradient(-45deg, #3EB489, #c0c0c0, #000, #3EB489);
       background-size: 400% 400%;
       animation: gradientBG 10s ease infinite;
       color: white;
@@ -336,8 +336,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           </div>
           
           <!-- Security Questions Section -->
-          <div style="margin: 20px 0; padding: 15px; border: 1px solid #39ff14; border-radius: 15px; background: rgba(57, 255, 20, 0.1);">
-            <h3 style="color: #39ff14; margin-bottom: 15px; text-align: center; font-size: 16px;">Security Questions</h3>
+          <div style="margin: 20px 0; padding: 15px; border: 1px solid #3EB489; border-radius: 15px; background: rgba(62, 180, 137, 0.1);">
+            <h3 style="color: #3EB489; margin-bottom: 15px; text-align: center; font-size: 16px;">Security Questions</h3>
             <p style="color: #c0c0c0; font-size: 12px; text-align: center; margin-bottom: 15px;">Please answer these questions for account recovery</p>
             
             <?php for ($i = 0; $i < 3; $i++): ?>

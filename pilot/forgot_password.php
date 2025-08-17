@@ -99,17 +99,17 @@ if ($step == 2 && isset($_GET['qid'])) {
         .forgot-password-box {
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 0 20px #39ff14;
+            box-shadow: 0 0 20px #3EB489;
             background-color: #000;
             padding: 40px;
-            border: 1px solid #39ff14;
+            border: 1px solid #3EB489;
         }
 
         h2 {
             text-align: center;
             margin-bottom: 30px;
             font-size: 28px;
-            color: #39ff14;
+            color: #3EB489;
         }
 
         .step-indicator {
@@ -146,7 +146,7 @@ if ($step == 2 && isset($_GET['qid'])) {
             width: 100%;
             padding: 12px;
             border: none;
-            background: linear-gradient(135deg, #39ff14, #c0c0c0);
+            background: linear-gradient(135deg, #3EB489, #c0c0c0);
             color: black;
             font-weight: bold;
             font-size: 16px;
@@ -158,7 +158,7 @@ if ($step == 2 && isset($_GET['qid'])) {
 
         button:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 15px #39ff14;
+            box-shadow: 0 0 15px #3EB489;
         }
 
         .back-link {
@@ -167,15 +167,15 @@ if ($step == 2 && isset($_GET['qid'])) {
         }
 
         .back-link a {
-            color: #39ff14;
+            color: #3EB489;
             text-decoration: none;
             font-size: 14px;
         }
 
         .success-message {
             background: rgba(57, 255, 20, 0.1);
-            border: 1px solid #39ff14;
-            color: #39ff14;
+            border: 1px solid #3EB489;
+            color: #3EB489;
             padding: 15px;
             border-radius: 8px;
             margin-bottom: 20px;
@@ -238,7 +238,7 @@ if ($step == 2 && isset($_GET['qid'])) {
                     <form method="POST">
                         <div class="input-box">
                             <label>Security Question:</label>
-                            <p style="color: #39ff14; font-weight: bold; margin-bottom: 15px; padding: 10px; background: rgba(57, 255, 20, 0.1); border-radius: 5px;">
+                            <p style="color: #3EB489; font-weight: bold; margin-bottom: 15px; padding: 10px; background: rgba(62, 180, 137, 0.1); border-radius: 5px;">
                                 <?php echo htmlspecialchars($current_question); ?>
                             </p>
                             <input type="text" name="answer" placeholder="Your answer" required />

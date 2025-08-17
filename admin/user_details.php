@@ -107,7 +107,7 @@ $completion_rate = $total_bookings > 0 ? ($completed_bookings / $total_bookings)
     <style>
         :root {
             --black: #000;
-            --mint-green: #39ff14;
+            --mint-green: #3EB489;
             --metallic-silver: #c0c0c0;
             --dark-gray: #1a1a1a;
             --light-gray: #333;
