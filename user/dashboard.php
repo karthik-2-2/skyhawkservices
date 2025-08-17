@@ -244,6 +244,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_review'])) {
         padding: 2rem 1rem;
       }
 
+      .services-section {
+        padding: 3rem 1rem; /* Ensure mobile padding for services */
+      }
+
+      .about-section {
+        padding: 3rem 1rem; /* Ensure mobile padding for about */
+        margin: 0 1rem 2rem 1rem; /* Add side margins */
+      }
+
       .cta-section h2 {
         font-size: 1.8rem;
       }
@@ -425,7 +434,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_review'])) {
 
     .services-section {
       background-color: var(--black);
-      padding: 4rem 0;
+      padding: 4rem 2rem; /* Added horizontal padding */
     }
 
     .services-section h2 {
@@ -447,7 +456,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_review'])) {
 
     .card {
       background-color: var(--dark-gray);
-      border-radius: 16px;
+      border-radius: 20px; /* Increased from 16px for softer look */
       width: 270px;
       height: 440px;
       perspective: 1000px;
@@ -459,27 +468,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_review'])) {
       box-shadow: 5px 5px 10px var(--mint-green), -5px -5px 10px var(--mint-green);
       vertical-align: top;
       color: var(--metallic-silver);
+      overflow: hidden; /* Ensure content respects the border radius */
     }
+    
     .card .services-card-front, .card .services-card-back {
       width: 100%;
       height: 100%;
       position: absolute;
       top: 0;
       left: 0;
-      border-radius: 16px;
+      border-radius: 20px; /* Increased from 16px to match card */
       backface-visibility: hidden;
       transition: transform 1.5s cubic-bezier(0.23, 1, 0.32, 1);
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
+      overflow: hidden; /* Ensure content respects the border radius */
     }
+    
     .card .services-card-front {
       background-size: cover;
       background-position: center;
       z-index: 2;
       transform: rotateY(0deg);
       box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      justify-content: space-between; /* Changed to distribute space between top and bottom */
     }
+    
     .card .services-card-back {
       background: var(--dark-gray);
       color: var(--metallic-silver);
@@ -491,25 +505,87 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_review'])) {
       flex-direction: column;
       padding: 2rem;
     }
+    
     .card:hover .services-card-front {
       transform: rotateY(180deg);
     }
+    
     .card:hover .services-card-back {
       transform: rotateY(0deg);
     }
-    .service-card-info {
-      width: 100%;
-      background: rgba(0,0,0,0.5);
-      border-radius: 0 0 16px 16px;
-      padding: 1rem 0.5rem 1.2rem 0.5rem;
-      text-align: center;
+
+    /* NEW: Top image section */
+    .service-image-frame {
+      height: 65%; /* Top 65% */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: var(--black); /* Solid black background */
+      border-radius: 20px 20px 0 0; /* Rounded top corners to match card */
     }
+
+    .service-image-frame img {
+      width: 80%;
+      height: 80%;
+      object-fit: cover; /* Changed from contain to cover for better aspect ratio */
+      border-radius: 15px; /* Increased from 8px for softer image corners */
+      border: none; /* Removed the mint green border */
+      background: rgba(0,0,0,0.3);
+      padding: 10px;
+    }
+
+    /* MODIFIED: Bottom info section */
+    .service-card-info {
+      height: 35%; /* Bottom 35% */
+      background: var(--black); /* Solid black background */
+      border-radius: 0 0 20px 20px; /* Increased from 16px to match card */
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
     .service-card-info h3 {
-      margin: 0;
-      font-size: 1.3rem;
+      margin: 0 0 10px 0;
+      font-size: 1.1rem; /* Reduced from 1.3rem for first card */
       font-weight: bold;
-      color: var(--mint-green);
+      color: var(--mint-green); /* Mint green title */
+      text-align: center;
       text-shadow: 2px 2px 6px var(--dark-gray);
+    }
+
+    /* Coming Soon Animation for last 2 cards */
+    .coming-soon {
+      font-size: 0.95rem;
+      color: var(--mint-green);
+      text-align: center;
+      animation: pulse-glow 2s ease-in-out infinite;
+      margin-top: 5px;
+      font-weight: bold;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% {
+        opacity: 1;
+        text-shadow: 0 0 5px var(--mint-green);
+      }
+      50% {
+        opacity: 0.7;
+        text-shadow: 0 0 15px var(--mint-green), 0 0 25px var(--mint-green);
+      }
+    }
+
+    .service-card-info .specs {
+      color: var(--metallic-silver); /* Metallic silver text */
+      font-size: 0.9rem;
+      line-height: 1.6;
+      text-align: left; /* Starts from left */
+    }
+
+    .service-card-info .specs strong {
+      color: var(--metallic-silver);
+      font-weight: bold;
     }
     .service-card-content {
       display: flex;
@@ -572,7 +648,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_review'])) {
     .cta-section {
       background-color: var(--mint-green);
       color: #000;
-      padding: 4rem 0;
+      padding: 4rem 2rem; /* Added horizontal padding */
       text-align: center;
     }
 
@@ -619,7 +695,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_review'])) {
       display: block;
       margin-bottom: 0.5rem;
       font-weight: bold; 
-      color: var(--metallic-silver); 
+      color: #000; /* Changed to black */
     }
 
     .contact-form input,
@@ -629,15 +705,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_review'])) {
       margin-bottom: 1rem;
       border: 1px solid var(--metallic-silver); 
       border-radius: 8px;
-      background-color: var(--black); 
-      color: var(--metallic-silver); 
+      background-color: var(--metallic-silver); /* Changed to metallic silver */
+      color: #000; /* Changed text color to black */
       font-size: 1rem;
       resize: vertical;
     }
 
     .contact-form input::placeholder,
     .contact-form textarea::placeholder {
-      color: var(--metallic-silver); 
+      color: #000; /* Changed placeholder to black */
       opacity: 0.7;
     }
 
@@ -674,7 +750,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_review'])) {
     
     .contact-section-label{
       font-weight: bold;
-      color: var(--metallic-silver);
+      color: #000; /* Changed to black */
       font-size:clamp(14px, 4vw, 20px);
     }
 
@@ -1188,9 +1264,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_review'])) {
 
     <div class="services">
       <div class="card" data-aos="fade-right" data-aos-delay="400" data-service="Videography & Photography" data-price="2000">
-        <div class="services-card-front" style="background-image: url('drone2.png'); background-size:cover; background-position: center;">
+        <div class="services-card-front">
+          <div class="service-image-frame">
+            <img src="./drone2.png" alt="Videography Drone">
+          </div>
           <div class="service-card-info">
             <h3>Videography & Photography</h3>
+            <div class="specs">
+              <strong>Model:</strong> DJI Mini 3<br>
+              <strong>Fly Time:</strong> 25 min per Battery<br>
+              <strong>Experience:</strong> 4 yrs
+            </div>
           </div>
         </div>
         <div class="services-card-back">
@@ -1203,9 +1287,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_review'])) {
       </div>
 
       <div class="card" data-aos="fade-right" data-aos-delay="500" data-service="Inspection" data-price="2000">
-        <div class="services-card-front" style="background-image: url('drone1.png'); background-size:cover; background-position: center;">
+        <div class="services-card-front">
+          <div class="service-image-frame">
+            <img src="./drone1.png" alt="Inspection Drone">
+          </div>
           <div class="service-card-info">
             <h3>Inspection</h3>
+            <div class="specs">
+              <strong>Model:</strong> DJI Mini 3<br>
+              <strong>Fly Time:</strong> 25 min per Battery<br>
+              <strong>Experience:</strong> 4 yrs
+            </div>
           </div>
         </div>
         <div class="services-card-back">
@@ -1216,9 +1308,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_review'])) {
         </div>
       </div>
       <div class="card" data-aos="fade-right" data-aos-delay="600">
-        <div class="services-card-front" style="background-image: url('spray.png');">
+        <div class="services-card-front">
+          <div class="service-image-frame">
+            <img src="./spray.png" alt="Agriculture Spraying Drone">
+          </div>
           <div class="service-card-info">
             <h3>Agriculture Spraying</h3>
+            <div class="coming-soon">Coming Soon</div>
           </div>
         </div>
         <div class="services-card-back">
@@ -1229,9 +1325,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_review'])) {
         </div>
       </div>
       <div class="card" data-aos="fade-right" data-aos-delay="700">
-        <div class="services-card-front" style="background-image: url('dheli.png');">
+        <div class="services-card-front">
+          <div class="service-image-frame">
+            <img src="./dheli.png" alt="Delivery Drone">
+          </div>
           <div class="service-card-info">
             <h3>Delivery Service</h3>
+            <div class="coming-soon">Coming Soon</div>
           </div>
         </div>
         <div class="services-card-back">
