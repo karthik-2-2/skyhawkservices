@@ -74,12 +74,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_review'])) {
         $stmt = $conn->prepare("UPDATE userordersuccess SET rating = ?, review = ? WHERE id = ? AND phone = ?");
         if ($stmt->execute([$rating, $review, $order_id, $phone_session])) {
             $message = "Thank you for your feedback!";
+            // Redirect to remove the popup
+            header("Location: my_bookings.php?review_submitted=1");
+            exit();
         } else {
             $message = "Error submitting review.";
             $message_type = "error";
         }
     }
 }
+
+// Check for completed orders that need reviews (for popup)
+$stmt_pending_reviews = $conn->prepare("SELECT id, service_type, booking_date, total_price FROM userordersuccess WHERE phone = ? AND (rating IS NULL OR rating = 0) ORDER BY created_at DESC LIMIT 1");
+$stmt_pending_reviews->execute([$phone_session]);
+$pending_review = $stmt_pending_reviews->fetch();
 
 // --- DATA FETCHING (Now guaranteed to work for a valid user) ---
 // Fetch active bookings
@@ -201,6 +209,268 @@ function getStatusDetails($status) {
 
 
         @keyframes slideUpFadeIn { to { opacity: 1; transform: translateY(0); } }
+
+        /* Modern Rating Popup Styles */
+        .rating-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .rating-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .rating-popup {
+            background: linear-gradient(145deg, #2a3441, #3a4b5c);
+            border-radius: 24px;
+            padding: 40px;
+            max-width: 480px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            transform: scale(0.7) translateY(50px);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(62, 180, 137, 0.2);
+        }
+
+        .rating-overlay.show .rating-popup {
+            transform: scale(1) translateY(0);
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--mint-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            animation: bounceIn 0.6s ease;
+        }
+
+        .success-icon i {
+            font-size: 36px;
+            color: #000;
+        }
+
+        .rating-popup h2 {
+            color: var(--mint-green);
+            font-size: 28px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .rating-popup .subtitle {
+            color: #B0B0B0;
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        .rating-popup .experience-text {
+            color: #FFF;
+            font-size: 22px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .rating-popup .rating-label {
+            color: var(--mint-green);
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .emoji-rating {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .emoji-rating .emoji {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            position: relative;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid transparent;
+        }
+
+        .emoji-rating .emoji:hover {
+            transform: scale(1.2);
+            background: rgba(62, 180, 137, 0.2);
+            border-color: var(--mint-green);
+        }
+
+        .emoji-rating .emoji.selected {
+            transform: scale(1.3);
+            background: var(--mint-green);
+            border-color: var(--mint-green);
+            box-shadow: 0 0 20px rgba(62, 180, 137, 0.5);
+        }
+
+        .emoji-rating .emoji.selected::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 20px;
+            height: 20px;
+            background: #000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .emoji-rating .emoji.selected::before {
+            content: '✓';
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 20px;
+            height: 20px;
+            color: var(--mint-green);
+            font-size: 12px;
+            font-weight: bold;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .review-textarea {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 15px;
+            color: #FFF;
+            font-size: 14px;
+            font-family: 'Outfit', sans-serif;
+            resize: vertical;
+            min-height: 100px;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .review-textarea:focus {
+            outline: none;
+            border-color: var(--mint-green);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .review-textarea::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .popup-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .popup-btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .popup-btn.skip {
+            background: rgba(255, 255, 255, 0.1);
+            color: #B0B0B0;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .popup-btn.skip:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: #FFF;
+        }
+
+        .popup-btn.submit {
+            background: var(--mint-green);
+            color: #000;
+            border: 2px solid var(--mint-green);
+        }
+
+        .popup-btn.submit:hover {
+            background: transparent;
+            color: var(--mint-green);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(62, 180, 137, 0.3);
+        }
+
+        .popup-btn.submit:disabled {
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0.3);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            70% {
+                transform: scale(0.9);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .rating-popup {
+                padding: 30px 20px;
+                margin: 20px;
+            }
+            
+            .emoji-rating .emoji {
+                width: 50px;
+                height: 50px;
+                font-size: 28px;
+            }
+            
+            .popup-buttons {
+                flex-direction: column;
+            }
+            
+            .popup-btn {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -359,6 +629,116 @@ function getStatusDetails($status) {
             closeReviewModal();
         }
     }
+
+    // Modern rating popup functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const ratingOverlay = document.getElementById('ratingOverlay');
+        const emojis = document.querySelectorAll('.emoji');
+        const selectedRatingInput = document.getElementById('selectedRating');
+        const submitBtn = document.getElementById('submitReviewBtn');
+        const ratingLabel = document.querySelector('.rating-label');
+        
+        const ratingLabels = {
+            1: 'Very Poor',
+            2: 'Poor', 
+            3: 'Average',
+            4: 'Good',
+            5: 'Excellent'
+        };
+
+        // Show popup if there's a pending review
+        if (ratingOverlay) {
+            setTimeout(() => {
+                ratingOverlay.classList.add('show');
+            }, 1000);
+        }
+
+        // Handle emoji selection
+        emojis.forEach(emoji => {
+            emoji.addEventListener('click', function() {
+                // Remove selected class from all emojis
+                emojis.forEach(e => e.classList.remove('selected'));
+                
+                // Add selected class to clicked emoji
+                this.classList.add('selected');
+                
+                // Update rating value and enable submit button
+                const rating = this.dataset.rating;
+                selectedRatingInput.value = rating;
+                submitBtn.disabled = false;
+                
+                // Update rating label
+                ratingLabel.textContent = ratingLabels[rating];
+                
+                // Add bounce animation
+                this.style.animation = 'bounceIn 0.6s ease';
+                setTimeout(() => {
+                    this.style.animation = '';
+                }, 600);
+            });
+        });
+
+        // Handle form submission
+        if (document.getElementById('modernRatingForm')) {
+            document.getElementById('modernRatingForm').addEventListener('submit', function(e) {
+                if (!selectedRatingInput.value) {
+                    e.preventDefault();
+                    alert('Please select a rating before submitting!');
+                }
+            });
+        }
+    });
+
+    function skipReview() {
+        document.getElementById('ratingOverlay').classList.remove('show');
+        // Mark as reviewed to prevent showing again
+        window.location.href = 'my_bookings.php?review_submitted=1';
+    }
+
+    // Close popup when clicking outside
+    document.addEventListener('click', function(e) {
+        const ratingOverlay = document.getElementById('ratingOverlay');
+        const ratingPopup = document.querySelector('.rating-popup');
+        
+        if (ratingOverlay && e.target === ratingOverlay) {
+            skipReview();
+        }
+    });
 </script>
+
+<!-- Modern Rating Popup -->
+<?php if ($pending_review && !isset($_GET['review_submitted'])): ?>
+<div class="rating-overlay" id="ratingOverlay">
+    <div class="rating-popup">
+        <div class="success-icon">
+            <i class="fas fa-check"></i>
+        </div>
+        <h2>Congratulations!</h2>
+        <p class="subtitle">Your order was successful!</p>
+        <p class="experience-text">How was your experience?</p>
+        <p class="rating-label">Excellent</p>
+        
+        <form method="POST" id="modernRatingForm">
+            <input type="hidden" name="order_id" value="<?php echo $pending_review['id']; ?>">
+            <input type="hidden" name="rating" id="selectedRating" value="">
+            
+            <div class="emoji-rating">
+                <div class="emoji" data-rating="1" title="Very Poor">😞</div>
+                <div class="emoji" data-rating="2" title="Poor">😕</div>
+                <div class="emoji" data-rating="3" title="Average">😐</div>
+                <div class="emoji" data-rating="4" title="Good">😊</div>
+                <div class="emoji" data-rating="5" title="Excellent">😍</div>
+            </div>
+            
+            <textarea name="review" class="review-textarea" placeholder="Tell us about your experience... (optional)"></textarea>
+            
+            <div class="popup-buttons">
+                <button type="button" class="popup-btn skip" onclick="skipReview()">Skip</button>
+                <button type="submit" name="submit_review" class="popup-btn submit" id="submitReviewBtn" disabled>Submit Review</button>
+            </div>
+        </form>
+    </div>
+</div>
+<?php endif; ?>
 </body>
 </html>
