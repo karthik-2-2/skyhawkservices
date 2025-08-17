@@ -21,42 +21,71 @@ if (!$user) {
 }
 
 // Fetch user statistics
-// Total bookings
-$stmt = $conn->prepare("SELECT COUNT(*) as total_bookings FROM orders WHERE phone = ?");
-$stmt->execute([$user['phone']]);
+// Total bookings from all tables
+$stmt = $conn->prepare("
+    SELECT 
+        (SELECT COUNT(*) FROM orders WHERE phone = ?) +
+        (SELECT COUNT(*) FROM userordersuccess WHERE phone = ?) +
+        (SELECT COUNT(*) FROM userordercancel WHERE phone = ?) as total_bookings
+");
+$stmt->execute([$user['phone'], $user['phone'], $user['phone']]);
 $total_bookings = $stmt->fetchColumn();
 
-// Completed bookings
-$stmt = $conn->prepare("SELECT COUNT(*) as completed_bookings FROM orders WHERE phone = ? AND order_status = 'completed'");
+// Completed bookings (from userordersuccess table)
+$stmt = $conn->prepare("SELECT COUNT(*) as completed_bookings FROM userordersuccess WHERE phone = ?");
 $stmt->execute([$user['phone']]);
 $completed_bookings = $stmt->fetchColumn();
 
-// Pending bookings
+// Pending bookings (from orders table with pending status)
 $stmt = $conn->prepare("SELECT COUNT(*) as pending_bookings FROM orders WHERE phone = ? AND order_status LIKE '%Pending%'");
 $stmt->execute([$user['phone']]);
 $pending_bookings = $stmt->fetchColumn();
+
+// Cancelled bookings
+$stmt = $conn->prepare("SELECT COUNT(*) as cancelled_bookings FROM userordercancel WHERE phone = ?");
+$stmt->execute([$user['phone']]);
+$cancelled_bookings = $stmt->fetchColumn();
 
 // In progress bookings
 $stmt = $conn->prepare("SELECT COUNT(*) as inprogress_bookings FROM orders WHERE phone = ? AND order_status = 'in_progress'");
 $stmt->execute([$user['phone']]);
 $inprogress_bookings = $stmt->fetchColumn();
 
-// Total amount spent
-$stmt = $conn->prepare("SELECT COALESCE(SUM(total_price), 0) as total_spent FROM orders WHERE phone = ? AND order_status = 'completed'");
+// Total amount spent (from completed orders)
+$stmt = $conn->prepare("SELECT COALESCE(SUM(total_price), 0) as total_spent FROM userordersuccess WHERE phone = ?");
 $stmt->execute([$user['phone']]);
 $total_spent = $stmt->fetchColumn();
 
 // Average booking amount
 $average_booking = $completed_bookings > 0 ? $total_spent / $completed_bookings : 0;
 
-// Recent bookings
-$stmt = $conn->prepare("SELECT * FROM orders WHERE phone = ? ORDER BY created_at DESC LIMIT 5");
-$stmt->execute([$user['phone']]);
-$recent_bookings = $stmt->fetchAll();
+// Recent bookings from all tables
+$recent_bookings = [];
 
-// Wallet balance (if wallet table exists)
+// Get from orders table
+$stmt = $conn->prepare("SELECT 'pending' as table_source, service_type, created_at, total_price, order_status as status FROM orders WHERE phone = ? ORDER BY created_at DESC LIMIT 3");
+$stmt->execute([$user['phone']]);
+$recent_bookings = array_merge($recent_bookings, $stmt->fetchAll());
+
+// Get from userordersuccess table
+$stmt = $conn->prepare("SELECT 'completed' as table_source, service_type, created_at, total_price, 'Completed' as status FROM userordersuccess WHERE phone = ? ORDER BY created_at DESC LIMIT 2");
+$stmt->execute([$user['phone']]);
+$recent_bookings = array_merge($recent_bookings, $stmt->fetchAll());
+
+// Get from userordercancel table
+$stmt = $conn->prepare("SELECT 'cancelled' as table_source, service_type, created_at, total_price, 'Cancelled' as status FROM userordercancel WHERE phone = ? ORDER BY created_at DESC LIMIT 2");
+$stmt->execute([$user['phone']]);
+$recent_bookings = array_merge($recent_bookings, $stmt->fetchAll());
+
+// Sort by date
+usort($recent_bookings, function($a, $b) {
+    return strtotime($b['created_at']) - strtotime($a['created_at']);
+});
+$recent_bookings = array_slice($recent_bookings, 0, 5);
+
+// Wallet balance (from userwallet table)
 try {
-    $stmt = $conn->prepare("SELECT COALESCE(balance, 0) as wallet_balance FROM user_wallet WHERE user_phone = ?");
+    $stmt = $conn->prepare("SELECT COALESCE(balance, 0) as wallet_balance FROM userwallet WHERE phone = ?");
     $stmt->execute([$user['phone']]);
     $wallet_balance = $stmt->fetchColumn() ?? 0;
 } catch (Exception $e) {
@@ -373,6 +402,12 @@ $completion_rate = $total_bookings > 0 ? ($completed_bookings / $total_bookings)
             </div>
 
             <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-times-circle"></i></div>
+                <div class="stat-number"><?php echo $cancelled_bookings; ?></div>
+                <div class="stat-label">Cancelled Orders</div>
+            </div>
+
+            <div class="stat-card">
                 <div class="stat-icon"><i class="fas fa-rupee-sign"></i></div>
                 <div class="stat-number">₹<?php echo number_format($total_spent, 2); ?></div>
                 <div class="stat-label">Total Spent</div>
@@ -409,8 +444,8 @@ $completion_rate = $total_bookings > 0 ? ($completed_bookings / $total_bookings)
                             <div class="booking-service"><?php echo htmlspecialchars($booking['service_type']); ?></div>
                             <div class="booking-date"><?php echo date('M d, Y', strtotime($booking['created_at'])); ?></div>
                         </div>
-                        <div class="booking-status status-<?php echo strtolower(str_replace(' ', '_', $booking['order_status'])); ?>">
-                            <?php echo htmlspecialchars($booking['order_status']); ?>
+                        <div class="booking-status status-<?php echo strtolower(str_replace(' ', '_', $booking['status'])); ?>">
+                            <?php echo htmlspecialchars($booking['status']); ?>
                         </div>
                         <div class="booking-amount">₹<?php echo number_format($booking['total_price'], 2); ?></div>
                     </div>

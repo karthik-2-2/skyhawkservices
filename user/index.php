@@ -265,10 +265,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       }
     }
 
-      .signup-text {
-        font-size: 12px;
-        white-space: nowrap;
-      }
+    .signup-text {
+      font-size: 12px;
+      white-space: nowrap;
     }
   </style>
 </head>

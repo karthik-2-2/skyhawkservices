@@ -106,7 +106,7 @@ while ($row = $stmt_past->fetch()) {
 
 // Fetch cancelled bookings
 $cancelled_bookings = [];
-$stmt_cancel = $conn->prepare("SELECT id, service_type, booking_date, hours, start_time, end_time, total_price, refund_status, created_at FROM userordercancel WHERE phone = ? ORDER BY created_at DESC");
+$stmt_cancel = $conn->prepare("SELECT id, service_type, booking_date, hours, start_time, end_time, total_price, refund_status, refund_utr, created_at FROM userordercancel WHERE phone = ? ORDER BY created_at DESC");
 $stmt_cancel->execute([$phone_session]);
 while ($row = $stmt_cancel->fetch()) {
     $cancelled_bookings[] = $row;
@@ -315,8 +315,8 @@ function getStatusDetails($status) {
                         <?php endif; ?>
                         <div class="detail-row"><i class="fas fa-times-circle"></i> <span class="status cancelled">Cancelled</span></div>
                         <div class="detail-row"><i class="fas fa-wallet"></i> <span>Amount: ₹<?php echo number_format($booking['total_price']); ?></span></div>
-                        <div class="detail-row"><i class="fas fa-undo-alt"></i> <span>Refund: <?php echo htmlspecialchars($booking['refund_status']); ?></span></div>
-                        <?php if($booking['refund_utr']): ?>
+                        <div class="detail-row"><i class="fas fa-undo-alt"></i> <span>Refund: <?php echo isset($booking['refund_status']) ? htmlspecialchars($booking['refund_status']) : 'Pending'; ?></span></div>
+                        <?php if(isset($booking['refund_utr']) && $booking['refund_utr']): ?>
                             <div class="detail-row"><i class="fas fa-receipt"></i> <span>UTR: <?php echo htmlspecialchars($booking['refund_utr']); ?></span></div>
                         <?php endif; ?>
                     </div>
