@@ -9,18 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $sql = "SELECT * FROM pilot WHERE phone = ?";
     $stmt = $conn->prepare($sql);
-                      <div class="input-box">
-                        <input type="password" name="password" placeholder="Password" required />
-                        <i class="fas fa-lock"></i>
-                    </div>
-                    <p style="text-align: right; margin: 10px 0; font-size: 14px;">
-                        <a href="forgot_password.php" style="color: #39ff14; text-decoration: none;">Forgot Password?</a>
-                    </p>
-                    <button type="submit">Login</button>
-                    <p class="signup-text">
-                        Don't have an account?
-                        <a href="register.php">Register</a>
-                    </p>execute([$phone]);
+    $stmt->execute([$phone]);
     $pilot = $stmt->fetch();
 
     if ($pilot && password_verify($password, $pilot['password'])) {
@@ -295,6 +284,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <input type="password" name="password" placeholder="Password" required />
                         <i class="fas fa-lock"></i>
                     </div>
+                    <p style="text-align: right; margin: 10px 0; font-size: 14px;">
+                      <a href="forgot_password.php" style="color: #39ff14; text-decoration: none;">Forgot Password?</a>
+                    </p>
                     <button type="submit">Login</button>
                     <p class="signup-text">
                         Don’t have an account?
