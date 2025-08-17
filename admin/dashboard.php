@@ -1,11 +1,35 @@
 <?php
 session_start();
+require_once '../config/db.php';
+
 // FIX: Changed the session check and the redirect location
 if (!isset($_SESSION['admin_phone'])) {
     header('Location: index.php'); // Changed from login.php
     exit();
 }
 $adminPhone = $_SESSION['admin_phone'];
+
+// Check for notifications
+try {
+    // Check for pending orders (Payment Verification Pending)
+    $pending_orders_stmt = $conn->prepare("SELECT COUNT(*) as count FROM orders WHERE order_status = 'Pending Admin Approval' OR order_status = 'Payment Verification Pending'");
+    $pending_orders_stmt->execute();
+    $pending_orders_result = $pending_orders_stmt->fetch(PDO::FETCH_ASSOC);
+    $pending_orders_count = $pending_orders_result['count'];
+
+    // Check for completed orders awaiting admin finalization
+    $completed_orders_stmt = $conn->prepare("SELECT COUNT(*) as count FROM orders WHERE order_status = 'Order Completed'");
+    $completed_orders_stmt->execute();
+    $completed_orders_result = $completed_orders_stmt->fetch(PDO::FETCH_ASSOC);
+    $completed_orders_count = $completed_orders_result['count'];
+    
+    // Total notifications count
+    $total_notifications = $pending_orders_count + $completed_orders_count;
+} catch (Exception $e) {
+    $pending_orders_count = 0;
+    $completed_orders_count = 0;
+    $total_notifications = 0;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -616,17 +640,209 @@ $adminPhone = $_SESSION['admin_phone'];
       visibility: visible !important;
     }
     
-    .error-message {
-      background: rgba(220, 53, 69, 0.1);
-      border: 1px solid var(--danger);
-      color: var(--danger);
-      padding: 15px;
-      border-radius: 10px;
-      margin: 20px 0;
-      text-align: center;
-    }
-    
-    @media (max-width: 1200px) {
+        .error-message {
+            background: rgba(220, 53, 69, 0.1);
+            border: 1px solid var(--danger);
+            color: var(--danger);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        /* Admin Notification Popup Styles */
+        .admin-notification-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .admin-notification-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .admin-notification-popup {
+            background: linear-gradient(145deg, #2a3441, #3a4b5c);
+            border-radius: 24px;
+            padding: 40px;
+            max-width: 520px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            transform: scale(0.7) translateY(50px);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(62, 180, 137, 0.3);
+        }
+
+        .admin-notification-overlay.show .admin-notification-popup {
+            transform: scale(1) translateY(0);
+        }
+
+        .admin-notification-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--mint-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            animation: pulse-admin-notification 2s infinite;
+        }
+
+        .admin-notification-icon i {
+            font-size: 36px;
+            color: #000;
+        }
+
+        @keyframes pulse-admin-notification {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(62, 180, 137, 0.7);
+            }
+            50% {
+                transform: scale(1.1);
+                box-shadow: 0 0 0 20px rgba(62, 180, 137, 0);
+            }
+        }
+
+        .admin-notification-popup h2 {
+            color: var(--mint-green);
+            font-size: 28px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .admin-notification-popup .subtitle {
+            color: #B0B0B0;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .admin-notification-popup .main-text {
+            color: #FFF;
+            font-size: 18px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .notification-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .notification-stat-card {
+            background: rgba(62, 180, 137, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid rgba(62, 180, 137, 0.3);
+        }
+
+        .notification-stat-card .count {
+            display: block;
+            font-size: 32px;
+            font-weight: bold;
+            color: var(--mint-green);
+            margin-bottom: 5px;
+        }
+
+        .notification-stat-card .label {
+            font-size: 14px;
+            color: #B0B0B0;
+            font-weight: 500;
+        }
+
+        .admin-notification-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .admin-notification-btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Outfit', sans-serif;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .admin-notification-btn.primary {
+            background: var(--mint-green);
+            color: #000;
+        }
+
+        .admin-notification-btn.primary:hover {
+            background: #35a074;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(62, 180, 137, 0.3);
+        }
+
+        .admin-notification-btn.secondary {
+            background: rgba(255, 193, 7, 0.9);
+            color: #000;
+        }
+
+        .admin-notification-btn.secondary:hover {
+            background: rgba(255, 193, 7, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 193, 7, 0.3);
+        }
+
+        .admin-notification-btn.dismiss {
+            background: rgba(255, 255, 255, 0.1);
+            color: #B0B0B0;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .admin-notification-btn.dismiss:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: #FFF;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .admin-notification-popup {
+                padding: 30px 20px;
+                margin: 20px;
+            }
+            
+            .notification-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .admin-notification-buttons {
+                flex-direction: column;
+            }
+            
+            .admin-notification-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }    @media (max-width: 1200px) {
       .grid-container {
         grid-template-columns: 1fr;
         grid-template-areas:
@@ -826,6 +1042,56 @@ $adminPhone = $_SESSION['admin_phone'];
         </main>
     </div>
 
+    <!-- Admin Notification Popup -->
+    <?php if ($total_notifications > 0): ?>
+    <div class="admin-notification-overlay" id="adminNotificationOverlay">
+        <div class="admin-notification-popup">
+            <div class="admin-notification-icon">
+                <i class="fas fa-exclamation-circle"></i>
+            </div>
+            <h2>Admin Action Required!</h2>
+            <p class="subtitle">Important tasks are waiting for your attention</p>
+            <p class="main-text">
+                You have pending administrative tasks that require immediate review and approval.
+            </p>
+            
+            <div class="notification-stats">
+                <?php if ($pending_orders_count > 0): ?>
+                <div class="notification-stat-card">
+                    <span class="count"><?php echo $pending_orders_count; ?></span>
+                    <span class="label">Pending Orders</span>
+                </div>
+                <?php endif; ?>
+                
+                <?php if ($completed_orders_count > 0): ?>
+                <div class="notification-stat-card">
+                    <span class="count"><?php echo $completed_orders_count; ?></span>
+                    <span class="label">Orders to Finalize</span>
+                </div>
+                <?php endif; ?>
+            </div>
+            
+            <div class="admin-notification-buttons">
+                <?php if ($pending_orders_count > 0): ?>
+                <a href="pending_orders.php" class="admin-notification-btn primary">
+                    <i class="fas fa-hourglass-half"></i> Review Pending
+                </a>
+                <?php endif; ?>
+                
+                <?php if ($completed_orders_count > 0): ?>
+                <a href="inprogress_orders.php" class="admin-notification-btn secondary">
+                    <i class="fas fa-check-circle"></i> Finalize Orders
+                </a>
+                <?php endif; ?>
+                
+                <button type="button" class="admin-notification-btn dismiss" onclick="dismissAdminNotification()">
+                    <i class="fas fa-times"></i> Later
+                </button>
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     // Check if Chart.js is loaded
@@ -843,6 +1109,16 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Show loading state initially
     loadingState.style.display = 'block';
+
+    // Admin notification popup logic
+    const adminNotificationOverlay = document.getElementById('adminNotificationOverlay');
+    
+    // Show admin notification if there are pending tasks
+    if (adminNotificationOverlay) {
+        setTimeout(() => {
+            adminNotificationOverlay.classList.add('show');
+        }, 2000); // Show after page loads and animations complete
+    }
     
     fetch('admin_data.php')
         .then(response => {
@@ -1165,6 +1441,46 @@ function populateRecentActivity(pendingActions) {
         `;
     }
 }
+
+// Admin notification popup functions
+function dismissAdminNotification() {
+    const overlay = document.getElementById('adminNotificationOverlay');
+    overlay.style.animation = 'fadeOut 0.5s ease';
+    setTimeout(() => {
+        overlay.style.display = 'none';
+    }, 500);
+    
+    // Store dismissal in session storage
+    sessionStorage.setItem('adminNotificationDismissed', 'true');
+}
+
+// Auto-refresh notification data every 2 minutes
+setInterval(function() {
+    if (!sessionStorage.getItem('adminNotificationDismissed')) {
+        location.reload();
+    }
+}, 120000); // 2 minutes
+
+// Handle escape key to close notification
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        const overlay = document.getElementById('adminNotificationOverlay');
+        if (overlay && overlay.style.display !== 'none') {
+            dismissAdminNotification();
+        }
+    }
+});
+
+// Auto-show notification popup after page load
+document.addEventListener('DOMContentLoaded', function() {
+    const overlay = document.getElementById('adminNotificationOverlay');
+    if (overlay && !sessionStorage.getItem('adminNotificationDismissed')) {
+        setTimeout(() => {
+            overlay.style.display = 'flex';
+            overlay.style.animation = 'fadeIn 0.5s ease';
+        }, 1000); // Show after 1 second
+    }
+});
 </script>
 
 </body>
