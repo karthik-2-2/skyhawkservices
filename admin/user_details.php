@@ -22,42 +22,46 @@ if (!$user) {
 
 // Fetch user statistics
 // Total bookings
-$stmt = $conn->prepare("SELECT COUNT(*) as total_bookings FROM bookings WHERE user_phone = ?");
+$stmt = $conn->prepare("SELECT COUNT(*) as total_bookings FROM orders WHERE phone = ?");
 $stmt->execute([$user['phone']]);
 $total_bookings = $stmt->fetchColumn();
 
 // Completed bookings
-$stmt = $conn->prepare("SELECT COUNT(*) as completed_bookings FROM bookings WHERE user_phone = ? AND status = 'completed'");
+$stmt = $conn->prepare("SELECT COUNT(*) as completed_bookings FROM orders WHERE phone = ? AND order_status = 'completed'");
 $stmt->execute([$user['phone']]);
 $completed_bookings = $stmt->fetchColumn();
 
 // Pending bookings
-$stmt = $conn->prepare("SELECT COUNT(*) as pending_bookings FROM bookings WHERE user_phone = ? AND status = 'pending'");
+$stmt = $conn->prepare("SELECT COUNT(*) as pending_bookings FROM orders WHERE phone = ? AND order_status LIKE '%Pending%'");
 $stmt->execute([$user['phone']]);
 $pending_bookings = $stmt->fetchColumn();
 
 // In progress bookings
-$stmt = $conn->prepare("SELECT COUNT(*) as inprogress_bookings FROM bookings WHERE user_phone = ? AND status = 'in_progress'");
+$stmt = $conn->prepare("SELECT COUNT(*) as inprogress_bookings FROM orders WHERE phone = ? AND order_status = 'in_progress'");
 $stmt->execute([$user['phone']]);
 $inprogress_bookings = $stmt->fetchColumn();
 
 // Total amount spent
-$stmt = $conn->prepare("SELECT COALESCE(SUM(amount), 0) as total_spent FROM bookings WHERE user_phone = ? AND status = 'completed'");
+$stmt = $conn->prepare("SELECT COALESCE(SUM(total_price), 0) as total_spent FROM orders WHERE phone = ? AND order_status = 'completed'");
 $stmt->execute([$user['phone']]);
 $total_spent = $stmt->fetchColumn();
 
 // Average booking amount
-$average_booking = $total_bookings > 0 ? $total_spent / $completed_bookings : 0;
+$average_booking = $completed_bookings > 0 ? $total_spent / $completed_bookings : 0;
 
 // Recent bookings
-$stmt = $conn->prepare("SELECT * FROM bookings WHERE user_phone = ? ORDER BY created_at DESC LIMIT 5");
+$stmt = $conn->prepare("SELECT * FROM orders WHERE phone = ? ORDER BY created_at DESC LIMIT 5");
 $stmt->execute([$user['phone']]);
 $recent_bookings = $stmt->fetchAll();
 
-// Wallet balance
-$stmt = $conn->prepare("SELECT COALESCE(balance, 0) as wallet_balance FROM user_wallet WHERE user_phone = ?");
-$stmt->execute([$user['phone']]);
-$wallet_balance = $stmt->fetchColumn() ?? 0;
+// Wallet balance (if wallet table exists)
+try {
+    $stmt = $conn->prepare("SELECT COALESCE(balance, 0) as wallet_balance FROM user_wallet WHERE user_phone = ?");
+    $stmt->execute([$user['phone']]);
+    $wallet_balance = $stmt->fetchColumn() ?? 0;
+} catch (Exception $e) {
+    $wallet_balance = 0; // Default if wallet table doesn't exist
+}
 
 // Calculate completion rate
 $completion_rate = $total_bookings > 0 ? ($completed_bookings / $total_bookings) * 100 : 0;
@@ -405,10 +409,10 @@ $completion_rate = $total_bookings > 0 ? ($completed_bookings / $total_bookings)
                             <div class="booking-service"><?php echo htmlspecialchars($booking['service_type']); ?></div>
                             <div class="booking-date"><?php echo date('M d, Y', strtotime($booking['created_at'])); ?></div>
                         </div>
-                        <div class="booking-status status-<?php echo $booking['status']; ?>">
-                            <?php echo ucwords(str_replace('_', ' ', $booking['status'])); ?>
+                        <div class="booking-status status-<?php echo strtolower(str_replace(' ', '_', $booking['order_status'])); ?>">
+                            <?php echo htmlspecialchars($booking['order_status']); ?>
                         </div>
-                        <div class="booking-amount">₹<?php echo number_format($booking['amount'], 2); ?></div>
+                        <div class="booking-amount">₹<?php echo number_format($booking['total_price'], 2); ?></div>
                     </div>
                 <?php endforeach; ?>
             <?php else: ?>
