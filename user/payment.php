@@ -108,6 +108,7 @@ $user_address = $user_result['address'];
         }
 
         .form-group { margin-bottom: 20px; }
+        .form-group:last-of-type { margin-bottom: 10px; } /* Reduce bottom margin for last form group */
         .form-group label { display: block; margin-bottom: 8px; font-weight: 600; }
         .form-group input, .form-group textarea {
             width: 100%;
@@ -149,7 +150,7 @@ $user_address = $user_result['address'];
             padding: 15px; border: none; border-radius: 8px;
             width: 100%; font-weight: bold; cursor: pointer; font-size: 16px;
             transition: background-color 0.3s, transform 0.2s;
-            margin-top: auto; 
+            margin-top: 15px; /* Reduced from auto to fixed small margin */
         }
         .submit-btn:hover { background-color: #2c7a68; transform: scale(1.02); }
         

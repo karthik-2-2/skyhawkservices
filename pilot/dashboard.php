@@ -30,6 +30,12 @@ $earnings_result = $earnings_stmt->fetch(PDO::FETCH_ASSOC);
 
 $total_earned = $earnings_result['total_earned'];
 $completed_orders_count = $earnings_result['completed_orders'];
+
+// Check for new available orders
+$new_orders_stmt = $conn->prepare("SELECT COUNT(*) as new_orders_count FROM orders WHERE pilot_phone IS NULL AND order_status = 'Waiting for Pilot'");
+$new_orders_stmt->execute();
+$new_orders_result = $new_orders_stmt->fetch(PDO::FETCH_ASSOC);
+$new_orders_count = $new_orders_result['new_orders_count'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -283,6 +289,168 @@ $completed_orders_count = $earnings_result['completed_orders'];
                 gap: 20px;
             }
         }
+
+        /* Order Notification Popup Styles */
+        .order-notification-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .order-notification-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .order-notification-popup {
+            background: linear-gradient(145deg, #2a3441, #3a4b5c);
+            border-radius: 24px;
+            padding: 40px;
+            max-width: 480px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            transform: scale(0.7) translateY(50px);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(62, 180, 137, 0.3);
+        }
+
+        .order-notification-overlay.show .order-notification-popup {
+            transform: scale(1) translateY(0);
+        }
+
+        .notification-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--mint-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            animation: pulse-notification 2s infinite;
+        }
+
+        .notification-icon i {
+            font-size: 36px;
+            color: #000;
+        }
+
+        @keyframes pulse-notification {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(62, 180, 137, 0.7);
+            }
+            50% {
+                transform: scale(1.1);
+                box-shadow: 0 0 0 20px rgba(62, 180, 137, 0);
+            }
+        }
+
+        .order-notification-popup h2 {
+            color: var(--mint-green);
+            font-size: 28px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .order-notification-popup .subtitle {
+            color: #B0B0B0;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .order-notification-popup .main-text {
+            color: #FFF;
+            font-size: 20px;
+            margin-bottom: 30px;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .order-count {
+            display: inline-block;
+            background: var(--mint-green);
+            color: #000;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 18px;
+            margin: 0 5px;
+        }
+
+        .notification-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .notification-btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Outfit', sans-serif;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .notification-btn.primary {
+            background: var(--mint-green);
+            color: #000;
+        }
+
+        .notification-btn.primary:hover {
+            background: #35a074;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(62, 180, 137, 0.3);
+        }
+
+        .notification-btn.secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #B0B0B0;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .notification-btn.secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: #FFF;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .order-notification-popup {
+                padding: 30px 20px;
+                margin: 20px;
+            }
+            
+            .notification-buttons {
+                flex-direction: column;
+            }
+            
+            .notification-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
     </style>
 </head>
 <body>
@@ -331,5 +499,89 @@ $completed_orders_count = $earnings_result['completed_orders'];
             </a>
         </div>
     </div>
+
+    <!-- Order Notification Popup -->
+    <?php if ($new_orders_count > 0): ?>
+    <div class="order-notification-overlay" id="orderNotificationOverlay">
+        <div class="order-notification-popup">
+            <div class="notification-icon">
+                <i class="fas fa-bell"></i>
+            </div>
+            <h2>Hey! New Order Available!</h2>
+            <p class="subtitle">Great opportunity waiting for you</p>
+            <p class="main-text">
+                <?php if ($new_orders_count == 1): ?>
+                    There is <span class="order-count">1</span> new order available for pickup!
+                <?php else: ?>
+                    There are <span class="order-count"><?php echo $new_orders_count; ?></span> new orders available for pickup!
+                <?php endif; ?>
+            </p>
+            <p class="subtitle">Don't miss out - orders are assigned on first-come, first-served basis!</p>
+            
+            <div class="notification-buttons">
+                <a href="orders.php" class="notification-btn primary">
+                    <i class="fas fa-eye"></i> Check Orders
+                </a>
+                <button type="button" class="notification-btn secondary" onclick="dismissNotification()">
+                    <i class="fas fa-times"></i> Maybe Later
+                </button>
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const notificationOverlay = document.getElementById('orderNotificationOverlay');
+            
+            // Show notification if there are new orders
+            if (notificationOverlay) {
+                setTimeout(() => {
+                    notificationOverlay.classList.add('show');
+                }, 1500); // Show after page loads and animations complete
+            }
+        });
+
+        function dismissNotification() {
+            const notificationOverlay = document.getElementById('orderNotificationOverlay');
+            if (notificationOverlay) {
+                notificationOverlay.classList.remove('show');
+                
+                // Store dismissal in sessionStorage to prevent showing again during this session
+                sessionStorage.setItem('orderNotificationDismissed', 'true');
+            }
+        }
+
+        // Close popup when clicking outside
+        document.addEventListener('click', function(e) {
+            const notificationOverlay = document.getElementById('orderNotificationOverlay');
+            const notificationPopup = document.querySelector('.order-notification-popup');
+            
+            if (notificationOverlay && e.target === notificationOverlay) {
+                dismissNotification();
+            }
+        });
+
+        // Check if notification was dismissed in this session
+        document.addEventListener('DOMContentLoaded', function() {
+            if (sessionStorage.getItem('orderNotificationDismissed') === 'true') {
+                const notificationOverlay = document.getElementById('orderNotificationOverlay');
+                if (notificationOverlay) {
+                    notificationOverlay.style.display = 'none';
+                }
+            }
+        });
+
+        // Auto-refresh page every 30 seconds to check for new orders (optional)
+        setInterval(function() {
+            // Only refresh if notification is not currently shown and not dismissed
+            const notificationOverlay = document.getElementById('orderNotificationOverlay');
+            const isDismissed = sessionStorage.getItem('orderNotificationDismissed') === 'true';
+            
+            if (!notificationOverlay && !isDismissed) {
+                location.reload();
+            }
+        }, 30000); // 30 seconds
+    </script>
 </body>
 </html>
