@@ -85,7 +85,7 @@ $recent_bookings = array_slice($recent_bookings, 0, 5);
 
 // Wallet balance (from userwallet table)
 try {
-    $stmt = $conn->prepare("SELECT COALESCE(balance, 0) as wallet_balance FROM userwallet WHERE phone = ?");
+    $stmt = $conn->prepare("SELECT COALESCE(SUM(amount), 0) as wallet_balance FROM userwallet WHERE phone = ?");
     $stmt->execute([$user['phone']]);
     $wallet_balance = $stmt->fetchColumn() ?? 0;
 } catch (Exception $e) {
@@ -308,6 +308,11 @@ $completion_rate = $total_bookings > 0 ? ($completed_bookings / $total_bookings)
         .status-in_progress {
             background: rgba(0, 123, 255, 0.2);
             color: #007bff;
+        }
+
+        .status-cancelled {
+            background: rgba(231, 76, 60, 0.2);
+            color: #e74c3c;
         }
 
         .booking-amount {
