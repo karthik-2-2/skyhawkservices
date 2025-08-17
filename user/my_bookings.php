@@ -617,13 +617,21 @@ function getStatusDetails($status) {
 
 <script>
     function openReviewModal(orderId, serviceName) {
+        // Set the order details for the modern popup
         document.getElementById('review-order-id').value = orderId;
         document.getElementById('review-service-name').innerText = serviceName;
-        document.getElementById('reviewModal').style.display = 'flex';
+        
+        // Show the modern rating popup
+        const ratingOverlay = document.getElementById('ratingOverlay');
+        if (ratingOverlay) {
+            ratingOverlay.classList.add('show');
+        }
     }
+    
     function closeReviewModal() {
         document.getElementById('reviewModal').style.display = 'none';
     }
+    
     window.onclick = function(event) {
         if (event.target == document.getElementById('reviewModal')) {
             closeReviewModal();

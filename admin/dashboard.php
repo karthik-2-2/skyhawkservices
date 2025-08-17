@@ -634,6 +634,24 @@ try {
       }
     }
     
+    /* Loading Indicator Styles */
+    .loading-indicator {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
+    
+    .loading-spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid var(--border-color);
+      border-top: 4px solid var(--mint-green);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    
     .stat-card.urgent {
       animation: pulse 2s ease-in-out infinite;
       display: block !important;
@@ -935,7 +953,10 @@ try {
             <!-- Loading State -->
             <div id="loading-state" style="text-align: center; padding: 40px;">
                 <div class="loading-spinner"></div>
-                <p style="margin-top: 15px; color: var(--text-secondary);">Loading dashboard data...</p>
+                <div class="loading-indicator">
+                    <div class="loading-spinner"></div>
+                    <p style="margin-top: 15px; color: var(--text-secondary);">Loading dashboard data...</p>
+                </div>
             </div>
 
             <!-- Error State -->
@@ -1120,10 +1141,24 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 2000); // Show after page loads and animations complete
     }
     
-    fetch('admin_data.php')
+    
+    // Optimize fetch with timeout and better error handling
+    const fetchTimeout = new Promise((_, reject) =>
+        setTimeout(() => reject(new Error('Request timeout')), 10000) // 10 second timeout
+    );
+    
+    Promise.race([
+        fetch('admin_data.php', {
+            method: 'GET',
+            headers: {
+                'Cache-Control': 'no-cache'
+            }
+        }),
+        fetchTimeout
+    ])
         .then(response => {
             if (!response.ok) {
-                throw new Error('Network response was not ok');
+                throw new Error(`HTTP error! status: ${response.status}`);
             }
             return response.json();
         })
@@ -1450,13 +1485,19 @@ function dismissAdminNotification() {
         overlay.style.display = 'none';
     }, 500);
     
-    // Store dismissal in session storage
-    sessionStorage.setItem('adminNotificationDismissed', 'true');
+    // Store current timestamp for temporary dismissal (5 minutes)
+    const dismissTime = Date.now();
+    sessionStorage.setItem('adminNotificationDismissedAt', dismissTime.toString());
 }
 
 // Auto-refresh notification data every 2 minutes
 setInterval(function() {
-    if (!sessionStorage.getItem('adminNotificationDismissed')) {
+    const dismissedAt = sessionStorage.getItem('adminNotificationDismissedAt');
+    const currentTime = Date.now();
+    const fiveMinutes = 5 * 60 * 1000;
+    
+    // Only refresh if not dismissed recently
+    if (!dismissedAt || (currentTime - parseInt(dismissedAt)) >= fiveMinutes) {
         location.reload();
     }
 }, 120000); // 2 minutes
@@ -1474,7 +1515,14 @@ document.addEventListener('keydown', function(e) {
 // Auto-show notification popup after page load
 document.addEventListener('DOMContentLoaded', function() {
     const overlay = document.getElementById('adminNotificationOverlay');
-    if (overlay && !sessionStorage.getItem('adminNotificationDismissed')) {
+    const dismissedAt = sessionStorage.getItem('adminNotificationDismissedAt');
+    const currentTime = Date.now();
+    const fiveMinutes = 5 * 60 * 1000;
+    
+    // Show popup if not dismissed recently
+    if (overlay && (!dismissedAt || (currentTime - parseInt(dismissedAt)) >= fiveMinutes)) {
+        // Clear old dismissal timestamp
+        sessionStorage.removeItem('adminNotificationDismissedAt');
         setTimeout(() => {
             overlay.style.display = 'flex';
             overlay.style.animation = 'fadeIn 0.5s ease';

@@ -547,8 +547,9 @@ $new_orders_count = $new_orders_result['new_orders_count'];
             if (notificationOverlay) {
                 notificationOverlay.classList.remove('show');
                 
-                // Store dismissal in sessionStorage to prevent showing again during this session
-                sessionStorage.setItem('orderNotificationDismissed', 'true');
+                // Store current timestamp for temporary dismissal (5 minutes)
+                const dismissTime = Date.now();
+                sessionStorage.setItem('orderNotificationDismissedAt', dismissTime.toString());
             }
         }
 
@@ -562,26 +563,35 @@ $new_orders_count = $new_orders_result['new_orders_count'];
             }
         });
 
-        // Check if notification was dismissed in this session
+        // Check if notification should be shown (not dismissed recently)
         document.addEventListener('DOMContentLoaded', function() {
-            if (sessionStorage.getItem('orderNotificationDismissed') === 'true') {
+            const dismissedAt = sessionStorage.getItem('orderNotificationDismissedAt');
+            const currentTime = Date.now();
+            const fiveMinutes = 5 * 60 * 1000; // 5 minutes in milliseconds
+            
+            // If dismissed less than 5 minutes ago, hide the notification
+            if (dismissedAt && (currentTime - parseInt(dismissedAt)) < fiveMinutes) {
                 const notificationOverlay = document.getElementById('orderNotificationOverlay');
                 if (notificationOverlay) {
                     notificationOverlay.style.display = 'none';
                 }
+            } else {
+                // Clear old dismissal timestamp
+                sessionStorage.removeItem('orderNotificationDismissedAt');
             }
         });
 
-        // Auto-refresh page every 30 seconds to check for new orders (optional)
+        // Auto-refresh page every 2 minutes to check for new orders
         setInterval(function() {
-            // Only refresh if notification is not currently shown and not dismissed
-            const notificationOverlay = document.getElementById('orderNotificationOverlay');
-            const isDismissed = sessionStorage.getItem('orderNotificationDismissed') === 'true';
+            const dismissedAt = sessionStorage.getItem('orderNotificationDismissedAt');
+            const currentTime = Date.now();
+            const fiveMinutes = 5 * 60 * 1000;
             
-            if (!notificationOverlay && !isDismissed) {
+            // Only refresh if not dismissed recently
+            if (!dismissedAt || (currentTime - parseInt(dismissedAt)) >= fiveMinutes) {
                 location.reload();
             }
-        }, 30000); // 30 seconds
+        }, 120000); // 2 minutes
     </script>
 </body>
 </html>
