@@ -44,6 +44,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_profile'])) {
     }
 }
 
+// Handle change password
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['change_password'])) {
+    $current_password = $_POST['current_password'];
+    $new_password = $_POST['new_password'];
+    $confirm_password = $_POST['confirm_password'];
+
+    // Verify current password
+    $stmt = $conn->prepare("SELECT password FROM \"user\" WHERE phone = ?");
+    $stmt->execute([$phone_session]);
+    $user_data = $stmt->fetch();
+
+    if (!password_verify($current_password, $user_data['password'])) {
+        $message = "Current password is incorrect!";
+        $message_type = "error";
+    } elseif ($new_password !== $confirm_password) {
+        $message = "New passwords do not match!";
+        $message_type = "error";
+    } elseif (strlen($new_password) < 6) {
+        $message = "New password must be at least 6 characters long!";
+        $message_type = "error";
+    } else {
+        $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
+        $stmt = $conn->prepare("UPDATE \"user\" SET password = ? WHERE phone = ?");
+        if ($stmt->execute([$hashed_password, $phone_session])) {
+            $message = "Password changed successfully!";
+            $message_type = "success";
+        } else {
+            $message = "Error changing password. Please try again.";
+            $message_type = "error";
+        }
+    }
+}
+
 // Fetch current user details
 $stmt = $conn->prepare("SELECT name, email, address FROM \"user\" WHERE phone = ?");
 $stmt->execute([$phone_session]);
@@ -297,6 +330,26 @@ $initial = !empty($user['name']) ? strtoupper(substr($user['name'], 0, 1)) : '?'
                     </div>
                     <button type="submit" name="update_profile">Update Profile</button>
                 </form>
+                
+                <!-- Change Password Section -->
+                <div style="margin-top: 30px; padding-top: 30px; border-top: 1px solid var(--light-gray);">
+                    <h3 style="color: var(--mint-green); margin-bottom: 20px;">Change Password</h3>
+                    <form method="POST">
+                        <div class="form-group">
+                            <label><i class="fas fa-lock"></i>Current Password</label>
+                            <input type="password" name="current_password" required>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-key"></i>New Password</label>
+                            <input type="password" name="new_password" required minlength="6">
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-check-circle"></i>Confirm New Password</label>
+                            <input type="password" name="confirm_password" required minlength="6">
+                        </div>
+                        <button type="submit" name="change_password">Change Password</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

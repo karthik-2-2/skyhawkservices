@@ -11,7 +11,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $phone = $_POST['phone'];
     $password = $_POST['password'];
 
-    $sql = "SELECT * FROM \"user\" WHERE phone = ?";
+    $sql = "SELECT * FROM \"user\          <div class="input-box">
+            <input type="password" name="password" placeholder="Password" required />
+            <i class="fas fa-lock"></i>
+          </div>
+          <p style="text-align: right; margin: 10px 0; font-size: 14px;">
+            <a href="forgot_password.php" style="color: #39ff14; text-decoration: none;">Forgot Password?</a>
+          </p>
+          <button type="submit">Login</button>
+          <p class="signup-text">
+            Don't have an account?
+            <a href="register.php">Register</a>
+          </p>
+          <p class="signup-text" style="margin-top: 15px;">
+            Are you a pilot? 
+            <a href="../pilot/index.php" style="color: #39ff14; text-decoration: none; font-weight: bold;">Pilot Login →</a>
+          </p>hone = ?";
     $stmt = $conn->prepare($sql);
     $stmt->execute([$phone]);
     $user = $stmt->fetch();

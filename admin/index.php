@@ -218,6 +218,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         padding: 20px;
         width: 100%;
       }
+      .left-panel {
+      margin-left:5px;
+    }
 
       /* Welcome panel on top, remove clip-path for mobile */
       .right-panel {
@@ -245,7 +248,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     @media (max-width: 480px) {
       .login-box {
         flex-direction: column;
-        margin: 10px;
+        /* margin: 10px; */
       }
 
       .left-panel, .right-panel {

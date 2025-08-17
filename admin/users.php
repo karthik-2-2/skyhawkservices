@@ -49,6 +49,22 @@ $users = $stmt->fetchAll();
     tr:hover {
       background-color: #333;
     }
+    .view-btn {
+      background-color: #39ff14;
+      color: #000;
+      padding: 6px 12px;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 12px;
+      transition: all 0.3s ease;
+    }
+    .view-btn:hover {
+      background-color: #2ce600;
+      transform: scale(1.05);
+    }
     a.back {
       display: inline-block;
       margin-bottom: 15px;
@@ -73,7 +89,8 @@ $users = $stmt->fetchAll();
         <th>Name</th>
         <th>Email</th>
         <th>Phone</th>
-        <th>Address</th> <!-- Added address column -->
+        <th>Address</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -84,6 +101,9 @@ $users = $stmt->fetchAll();
           <td><?php echo htmlspecialchars($user['email']); ?></td>
           <td><?php echo htmlspecialchars($user['phone']); ?></td>
           <td><?php echo nl2br(htmlspecialchars($user['address'])); ?></td>
+          <td>
+            <a href="user_details.php?user_id=<?php echo $user['id']; ?>" class="view-btn">View Details</a>
+          </td>
         </tr>
       <?php endforeach; ?>
     </tbody>
