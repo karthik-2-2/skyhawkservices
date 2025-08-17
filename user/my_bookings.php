@@ -595,7 +595,8 @@ function getStatusDetails($status) {
         </div>
     </div>
 
-    <div id="reviewModal" class="modal">
+    <!-- Old modal - keeping for backward compatibility but hidden -->
+    <div id="reviewModal" class="modal" style="display: none;">
         <div class="modal-content">
             <span class="close-btn" onclick="closeReviewModal()">&times;</span>
             <h2>Rate Your Service</h2>
@@ -617,14 +618,35 @@ function getStatusDetails($status) {
 
 <script>
     function openReviewModal(orderId, serviceName) {
-        // Set the order details for the modern popup
-        document.getElementById('review-order-id').value = orderId;
-        document.getElementById('review-service-name').innerText = serviceName;
+        // Set the order details for the manual rating popup
+        document.getElementById('manual-order-id').value = orderId;
+        document.getElementById('manual-service-name').innerText = serviceName;
         
-        // Show the modern rating popup
-        const ratingOverlay = document.getElementById('ratingOverlay');
-        if (ratingOverlay) {
-            ratingOverlay.classList.add('show');
+        // Reset the rating
+        document.getElementById('manualSelectedRating').value = '';
+        document.getElementById('manual-rating-label').innerText = 'Select Rating';
+        document.getElementById('manualSubmitBtn').disabled = true;
+        
+        // Clear previous selections
+        document.querySelectorAll('#manualEmojiRating .emoji').forEach(emoji => {
+            emoji.classList.remove('selected');
+        });
+        
+        // Show the manual rating popup
+        const manualRatingOverlay = document.getElementById('manualRatingOverlay');
+        if (manualRatingOverlay) {
+            manualRatingOverlay.style.display = 'flex';
+            manualRatingOverlay.classList.add('show');
+        }
+    }
+    
+    function closeManualRating() {
+        const manualRatingOverlay = document.getElementById('manualRatingOverlay');
+        if (manualRatingOverlay) {
+            manualRatingOverlay.classList.remove('show');
+            setTimeout(() => {
+                manualRatingOverlay.style.display = 'none';
+            }, 300);
         }
     }
     
@@ -635,6 +657,9 @@ function getStatusDetails($status) {
     window.onclick = function(event) {
         if (event.target == document.getElementById('reviewModal')) {
             closeReviewModal();
+        }
+        if (event.target == document.getElementById('manualRatingOverlay')) {
+            closeManualRating();
         }
     }
 
@@ -712,9 +737,59 @@ function getStatusDetails($status) {
             skipReview();
         }
     });
+
+    // Manual rating popup functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const manualEmojis = document.querySelectorAll('#manualEmojiRating .emoji');
+        const manualSelectedRatingInput = document.getElementById('manualSelectedRating');
+        const manualSubmitBtn = document.getElementById('manualSubmitBtn');
+        const manualRatingLabel = document.getElementById('manual-rating-label');
+        
+        const manualRatingLabels = {
+            1: 'Very Poor',
+            2: 'Poor', 
+            3: 'Average',
+            4: 'Good',
+            5: 'Excellent'
+        };
+
+        manualEmojis.forEach(emoji => {
+            emoji.addEventListener('click', function() {
+                // Remove selected class from all emojis
+                manualEmojis.forEach(e => e.classList.remove('selected'));
+                
+                // Add selected class to clicked emoji
+                this.classList.add('selected');
+                
+                // Update rating value and enable submit button
+                const rating = this.dataset.rating;
+                manualSelectedRatingInput.value = rating;
+                manualSubmitBtn.disabled = false;
+                
+                // Update rating label
+                manualRatingLabel.textContent = manualRatingLabels[rating];
+                
+                // Add bounce animation
+                this.style.animation = 'bounceIn 0.6s ease';
+                setTimeout(() => {
+                    this.style.animation = '';
+                }, 600);
+            });
+        });
+
+        // Handle manual form submission
+        if (document.getElementById('manualRatingForm')) {
+            document.getElementById('manualRatingForm').addEventListener('submit', function(e) {
+                if (!manualSelectedRatingInput.value) {
+                    e.preventDefault();
+                    alert('Please select a rating before submitting!');
+                }
+            });
+        }
+    });
 </script>
 
-<!-- Modern Rating Popup -->
+<!-- Modern Rating Popup for Auto-display -->
 <?php if ($pending_review && !isset($_GET['review_submitted'])): ?>
 <div class="rating-overlay" id="ratingOverlay">
     <div class="rating-popup">
@@ -748,5 +823,44 @@ function getStatusDetails($status) {
     </div>
 </div>
 <?php endif; ?>
+
+<!-- Universal Rating Popup for Manual Reviews -->
+<div class="rating-overlay" id="manualRatingOverlay" style="display: none;">
+    <div class="rating-popup">
+        <div class="close-btn" onclick="closeManualRating()" style="position: absolute; top: 15px; right: 20px; cursor: pointer; font-size: 24px; color: var(--metallic-silver);">&times;</div>
+        <div class="success-icon">
+            <i class="fas fa-star"></i>
+        </div>
+        <h2>Rate Your Service</h2>
+        <p class="subtitle" id="manual-service-name">Service Name</p>
+        <p class="experience-text">How was your experience?</p>
+        <p class="rating-label" id="manual-rating-label">Excellent</p>
+        
+        <form method="POST" id="manualRatingForm">
+            <input type="hidden" name="order_id" id="manual-order-id" value="">
+            <input type="hidden" name="rating" id="manualSelectedRating" value="">
+            
+            <div class="emoji-rating" id="manualEmojiRating">
+                <div class="emoji" data-rating="1" title="Very Poor">😞</div>
+                <div class="emoji" data-rating="2" title="Poor">😕</div>
+                <div class="emoji" data-rating="3" title="Average">😐</div>
+                <div class="emoji" data-rating="4" title="Good">😊</div>
+                <div class="emoji" data-rating="5" title="Excellent">😍</div>
+            </div>
+            
+            <textarea 
+                name="review" 
+                placeholder="Write an optional review..."
+                style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; background: var(--card-color); color: var(--text-color); font-family: 'Outfit', sans-serif; resize: vertical; min-height: 80px; margin: 20px 0;"
+            ></textarea>
+            
+            <div style="display: flex; gap: 10px; justify-content: center;">
+                <button type="button" class="popup-btn skip" onclick="closeManualRating()">Cancel</button>
+                <button type="submit" name="submit_review" class="popup-btn" id="manualSubmitBtn" disabled>Submit Review</button>
+            </div>
+        </form>
+    </div>
+</div>
+
 </body>
 </html>

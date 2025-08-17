@@ -952,7 +952,6 @@ try {
 
             <!-- Loading State -->
             <div id="loading-state" style="text-align: center; padding: 40px;">
-                <div class="loading-spinner"></div>
                 <div class="loading-indicator">
                     <div class="loading-spinner"></div>
                     <p style="margin-top: 15px; color: var(--text-secondary);">Loading dashboard data...</p>
