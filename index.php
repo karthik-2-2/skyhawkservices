@@ -17,10 +17,12 @@
       --text-grey: #666666;
       --text-light-grey: #999999;
       --white: #FFFFFF;
-      --animated-gradient: linear-gradient(-45deg, #34d19d, #38c1f2, #f5f5f5, #34d19d);
-      --card-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      --animated-gradient: linear-gradient(-45deg, #34d19d, #38c1f2, #34d19d, #38c1f2);
+      --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
       --button-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      --hover-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      --hover-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+      --section-bg: rgba(255, 255, 255, 0.95);
+      --section-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     }
 
     * {
@@ -48,6 +50,16 @@
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
+    }
+
+    /* Universal Button Hover Effect */
+    button, .button, input[type="submit"] {
+      transition: all 0.3s ease;
+    }
+
+    button:hover, .button:hover, input[type="submit"]:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--hover-shadow);
     }
 
     .navbar {
@@ -316,25 +328,21 @@
       text-align: center;
       background: transparent;
       color: var(--text-black);
-      padding: 1rem;
+      padding: 2rem;
       position: relative;
       margin-top: 70px;
     }
 
-    .hero-section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(1px);
-      opacity: 0.5;
-    }
-
     .hero-content {
-      /* This is already a flex container */
+      background: var(--section-bg);
+      backdrop-filter: blur(10px);
+      border-radius: 25px;
+      padding: 3rem 2rem;
+      box-shadow: var(--section-shadow);
+      max-width: 900px;
+      width: 90%;
+      position: relative;
+      z-index: 2;
     }
 
     /* --- Flip Animation Styles (COMMENTED OUT) --- */
@@ -424,12 +432,21 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      text-shadow: 0 0 20px rgba(52, 209, 157, 0.3);
+      filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
+    }
     }
 
     /* The blinking cursor is now handled by a simple class */
     .blinking-cursor {
-        border-right: 4px solid var(--text-black);
+        border-right: 2px solid var(--text-black);
         animation: blink 1s step-end infinite;
+    }
+
+    @media (max-width: 768px) {
+      .blinking-cursor {
+        border-right: 1px solid var(--text-black);
+      }
     }
 
     @keyframes blink {
@@ -476,20 +493,18 @@
     }
 
     .services-section {
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(10px);
       padding: 5rem 2rem;
       position: relative;
     }
 
-    .services-section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 100px;
-      background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.9));
+    .services-container {
+      background: var(--section-bg);
+      backdrop-filter: blur(10px);
+      border-radius: 25px;
+      padding: 3rem 2rem;
+      box-shadow: var(--section-shadow);
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
     .services-section h2 {
@@ -520,7 +535,7 @@
       display: inline-block;
       margin: 1rem;
       cursor: pointer;
-      border: 2px solid var(--light-grey);
+      border: none;
       box-shadow: var(--card-shadow);
       vertical-align: top;
       color: var(--text-black);
@@ -531,6 +546,7 @@
     .card:hover {
       transform: translateY(-10px);
       box-shadow: var(--hover-shadow);
+    }
     }
     
     .card .services-card-front, .card .services-card-back {
@@ -700,17 +716,22 @@
     }
 
     .about-section {
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(10px);
       padding: 5rem 2rem;
-      max-width: 1000px;
       margin: 0 auto 4rem auto;
-      border-radius: 25px;
-      color: var(--text-black);
-      box-shadow: var(--card-shadow);
     }
 
-    .about-section h2 {
+    .about-container {
+      background: var(--section-bg);
+      backdrop-filter: blur(10px);
+      padding: 3rem 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      border-radius: 25px;
+      color: var(--text-black);
+      box-shadow: var(--section-shadow);
+    }
+
+    .about-container h2 {
       text-align: center;
       margin-bottom: 1.5rem;
       color: var(--text-black);
@@ -718,7 +739,7 @@
       animation: fadeInDown 1s ease forwards;
     }
 
-    .about-section p {
+    .about-container p {
       font-size: 1.2rem;
       line-height: 1.6;
       text-align: center;
@@ -728,36 +749,37 @@
     }
 
     .cta-section {
-      background: linear-gradient(135deg, var(--primary-green), var(--primary-blue));
-      color: var(--white);
       padding: 5rem 2rem;
       text-align: center;
       position: relative;
     }
 
-    .cta-section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 100px;
-      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.9), transparent);
+    .contact-container {
+      background: var(--section-bg);
+      backdrop-filter: blur(10px);
+      border-radius: 25px;
+      padding: 3rem 2rem;
+      box-shadow: var(--section-shadow);
+      max-width: 800px;
+      margin: 0 auto;
+      color: var(--text-black);
     }
 
-    .cta-section h2 {
+    .contact-container h2 {
       margin-bottom: 1.5rem;
       animation: fadeInDown 1s ease forwards;
-      color: var(--white);
+      color: var(--text-black);
       font-size: 2.5rem;
       position: relative;
       z-index: 1;
     }
 
-    .cta-section p {
+    .contact-container p {
       animation: fadeInUp 1s ease forwards 0.3s;
-      color: var(--white);
+      color: var(--text-black);
       position: relative;
+      z-index: 1;
+    }
       z-index: 1;
     }
 
@@ -799,7 +821,7 @@
       display: block;
       margin-bottom: 0.5rem;
       font-weight: bold; 
-      color: var(--white);
+      color: var(--text-black);
     }
 
     .contact-form input,
@@ -867,7 +889,7 @@
     
     .contact-section-label{
       font-weight: bold;
-      color: var(--primary-green);
+      color: var(--text-black);
       font-size:clamp(14px, 4vw, 20px);
     }
 
@@ -1028,8 +1050,9 @@
   </header>
 
   <section id="services" class="services-section" data-aos="fade-right" data-aos-delay="300">
-    <h2>Our Drone Services</h2>
-    <div class="services">
+    <div class="services-container">
+      <h2>Our Drone Services</h2>
+      <div class="services">
       <div class="card" data-aos="fade-right" data-aos-delay="400">
         <div class="services-card-front">
           <div class="service-image-frame">
@@ -1110,15 +1133,18 @@
   </section>
 
   <section class="about-section" id="about" data-aos="fade-right" data-aos-delay="300">
-    <h2>About Us</h2>
-    <p>
-      At Skyhawk, we believe that advanced drone technology should be accessible to everyone. Our mission is to empower individuals and communities by offering versatile aerial solutions that cater to a wide range of needs—from capturing breathtaking moments and providing detailed surveys to enhancing security and supporting innovative projects. With our state-of-the-art drones and a team of dedicated experts, we ensure that every customer receives personalized service, enabling you to leverage the power of aerial perspectives for any purpose you envision. Join us as we redefine what's possible with drone technology for all.
-    </p>
+    <div class="about-container">
+      <h2>About Us</h2>
+      <p>
+        At Skyhawk, we believe that advanced drone technology should be accessible to everyone. Our mission is to empower individuals and communities by offering versatile aerial solutions that cater to a wide range of needs—from capturing breathtaking moments and providing detailed surveys to enhancing security and supporting innovative projects. With our state-of-the-art drones and a team of dedicated experts, we ensure that every customer receives personalized service, enabling you to leverage the power of aerial perspectives for any purpose you envision. Join us as we redefine what's possible with drone technology for all.
+      </p>
+    </div>
   </section>
 
   <section class="cta-section" id="contact" data-aos="fade-right" data-aos-delay="300">
-    <h2>Get a Custom Drone Service Quote</h2>
-    <p><b>Contact Us</b></p>
+    <div class="contact-container">
+      <h2>Get a Custom Drone Service Quote</h2>
+      <p><b>Contact Us</b></p>
     <form class="contact-form" action="submit_contact.php" method="POST">
       <label for="contact-name" data-aos="fade-right" data-aos-delay="350" class="contact-section-label">Name</label>
       <input type="text" id="contact-name" name="name" placeholder="Your Name" required data-aos="fade-right" data-aos-delay="400">
@@ -1134,6 +1160,7 @@
       
       <button type="submit" data-aos="fade-right" data-aos-delay="750">Send Message</button>
     </form>
+    </div>
   </section>
 
   <footer class="footer">
