@@ -144,56 +144,120 @@ function getStatusDetails($status) {
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
     <style>
-        :root { --black: #000; --mint-green: #3EB489; --metallic-silver: #B0B0B0; --dark-gray: #1a1a1a; }
-        body { font-family: 'Outfit', sans-serif; background-color: var(--black); color: var(--metallic-silver); padding: 20px; }
+        :root { 
+            --primary-mint: #4ECDC4; 
+            --secondary-mint: #45C0B7; 
+            --light-mint: #E8FAF9; 
+            --dark-mint: #3BA99E; 
+            --text-dark: #2C3E50; 
+            --text-light: #7F8C8D; 
+            --white: #FFFFFF; 
+            --gradient-bg: linear-gradient(135deg, #4ECDC4 0%, #45C0B7 100%);
+            --card-shadow: 0 10px 30px rgba(78, 205, 196, 0.2);
+        }
+        body { 
+            font-family: 'Outfit', sans-serif; 
+            background: var(--gradient-bg); 
+            color: var(--text-dark); 
+            padding: 20px; 
+            margin: 0;
+        }
         .container { max-width: 1200px; margin: auto; }
-        h2 { color: var(--mint-green); border-bottom: 2px solid var(--mint-green); padding-bottom: 10px; margin-bottom: 30px; }
+        h2 { 
+            color: var(--white); 
+            border-bottom: 3px solid var(--white); 
+            padding-bottom: 15px; 
+            margin-bottom: 30px; 
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
         .bookings-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 25px; }
 
         .booking-card {
-            background-color: var(--dark-gray);
-            border-radius: 15px;
+            background: var(--white);
+            border-radius: 20px;
             overflow: hidden;
-            border-left: 5px solid var(--mint-green);
+            border-left: 5px solid var(--primary-mint);
             opacity: 0;
             transform: translateY(30px);
             animation: slideUpFadeIn 0.5s ease forwards;
             display: flex;
             flex-direction: column;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+        }
+
+        .booking-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(78, 205, 196, 0.3);
         }
         .booking-card-header { position: relative; }
         .booking-card-img { width: 100%; height: 180px; object-fit: cover; }
-        .service-name { position: absolute; bottom: 0; left: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); color: #fff; padding: 15px; width: 100%; font-size: 1.2rem; font-weight: 600; }
+        .service-name { 
+            position: absolute; 
+            bottom: 0; 
+            left: 0; 
+            background: linear-gradient(to top, rgba(78, 205, 196, 0.9), transparent); 
+            color: var(--white); 
+            padding: 15px; 
+            width: 100%; 
+            font-size: 1.2rem; 
+            font-weight: 600; 
+        }
 
         .booking-card-body { padding: 20px; flex-grow: 1; }
         .detail-row { display: flex; align-items: flex-start; margin-bottom: 12px; font-size: 0.95rem; }
-        .detail-row i { color: var(--mint-green); width: 25px; margin-top: 2px; }
+        .detail-row i { 
+            color: var(--primary-mint); 
+            width: 25px; 
+            margin-top: 2px; 
+        }
         .status { padding: 5px 10px; border-radius: 50px; font-size: 0.8rem; font-weight: 600; }
         .status.pending { background-color: #f39c12; color: #000; }
         .status.approved { background-color: #2980b9; color: #fff; }
         .status.assigned { background-color: #3498db; color: #fff; }
-        .status.completed { background-color: var(--mint-green); color: #000; }
+        .status.completed { 
+            background-color: var(--primary-mint); 
+            color: var(--white); 
+        }
         .status.cancelled { background-color: #e74c3c; color: #fff; }
 
-        .booking-card-footer { background-color: #111; padding: 15px 20px; text-align: center; margin-top: auto; }
+        .booking-card-footer { 
+            background: var(--light-mint); 
+            padding: 15px 20px; 
+            text-align: center; 
+            margin-top: auto; 
+        }
         .btn { padding: 8px 15px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; text-decoration: none; }
         .btn-cancel { background-color: #c0392b; color: #fff; width: 100%; font-size: 14px; }
-        .btn-review { background-color: var(--mint-green); color: var(--black); }
+        .btn-review { 
+            background-color: var(--primary-mint); 
+            color: var(--white); 
+        }
 
         .placeholder-text {
             grid-column: 1 / -1;
             text-align: center;
             padding: 40px;
             font-style: italic;
-            color: var(--metallic-silver);
+            color: var(--white);
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
         }
-        .placeholder-text a { color: var(--mint-green); }
+        .placeholder-text a { 
+            color: var(--white); 
+            font-weight: bold;
+        }
 
         .pilot-info {
-            background-color: rgba(59, 255, 20, 0.1);
-            padding: 10px;
-            border-radius: 8px;
+            background: rgba(78, 205, 196, 0.2);
+            padding: 15px;
+            border-radius: 12px;
             margin-top: 10px;
+            border: 1px solid var(--primary-mint);
         }
 
         .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.7); justify-content: center; align-items: center; }
@@ -203,7 +267,9 @@ function getStatusDetails($status) {
         .rating { display: flex; flex-direction: row-reverse; justify-content: center; padding: 15px 0; }
         .rating input { display: none; }
         .rating label { font-size: 35px; color: #444; cursor: pointer; transition: color 0.2s; padding: 0 5px;}
-        .rating input:checked ~ label, .rating label:hover, .rating label:hover ~ label { color: var(--mint-green); }
+        .rating input:checked ~ label, .rating label:hover, .rating label:hover ~ label { 
+            color: var(--primary-mint); 
+        }
         .modal-content textarea { width: calc(100% - 20px); background-color: #222; color: #fff; border: 1px solid #555; border-radius: 5px; padding: 10px; min-height: 80px; margin-top: 10px; }
         .modal-content button { margin-top: 15px; }
 
@@ -254,7 +320,7 @@ function getStatusDetails($status) {
         .success-icon {
             width: 80px;
             height: 80px;
-            background: var(--mint-green);
+            background: var(--primary-mint);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -265,11 +331,11 @@ function getStatusDetails($status) {
 
         .success-icon i {
             font-size: 36px;
-            color: #000;
+            color: var(--white);
         }
 
         .rating-popup h2 {
-            color: var(--mint-green);
+            color: var(--primary-mint);
             font-size: 28px;
             margin-bottom: 10px;
             font-weight: 700;
@@ -289,7 +355,7 @@ function getStatusDetails($status) {
         }
 
         .rating-popup .rating-label {
-            color: var(--mint-green);
+            color: var(--primary-mint);
             font-size: 18px;
             font-weight: 600;
             margin-bottom: 20px;
@@ -319,15 +385,15 @@ function getStatusDetails($status) {
 
         .emoji-rating .emoji:hover {
             transform: scale(1.2);
-            background: rgba(62, 180, 137, 0.2);
-            border-color: var(--mint-green);
+            background: rgba(78, 205, 196, 0.2);
+            border-color: var(--primary-mint);
         }
 
         .emoji-rating .emoji.selected {
             transform: scale(1.3);
-            background: var(--mint-green);
-            border-color: var(--mint-green);
-            box-shadow: 0 0 20px rgba(62, 180, 137, 0.5);
+            background: var(--primary-mint);
+            border-color: var(--primary-mint);
+            box-shadow: 0 0 20px rgba(78, 205, 196, 0.5);
         }
 
         .emoji-rating .emoji.selected::after {
@@ -351,7 +417,7 @@ function getStatusDetails($status) {
             right: -5px;
             width: 20px;
             height: 20px;
-            color: var(--mint-green);
+            color: var(--primary-mint);
             font-size: 12px;
             font-weight: bold;
             z-index: 1;
@@ -377,7 +443,7 @@ function getStatusDetails($status) {
 
         .review-textarea:focus {
             outline: none;
-            border-color: var(--mint-green);
+            border-color: var(--primary-mint);
             background: rgba(255, 255, 255, 0.15);
         }
 
@@ -414,16 +480,16 @@ function getStatusDetails($status) {
         }
 
         .popup-btn.submit {
-            background: var(--mint-green);
-            color: #000;
-            border: 2px solid var(--mint-green);
+            background: var(--primary-mint);
+            color: var(--white);
+            border: 2px solid var(--primary-mint);
         }
 
         .popup-btn.submit:hover {
             background: transparent;
-            color: var(--mint-green);
+            color: var(--primary-mint);
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(62, 180, 137, 0.3);
+            box-shadow: 0 5px 15px rgba(78, 205, 196, 0.3);
         }
 
         .popup-btn.submit:disabled {
@@ -475,7 +541,7 @@ function getStatusDetails($status) {
 </head>
 <body>
     <div class="container">
-        <a href="dashboard.php" style="color: var(--mint-green); text-decoration: none; font-weight: 600; margin-bottom: 30px; display: inline-block;">&larr; Back to Dashboard</a>
+        <a href="dashboard.php" style="color: var(--white); text-decoration: none; font-weight: 600; margin-bottom: 30px; display: inline-block; background: rgba(255,255,255,0.1); padding: 10px 20px; border-radius: 25px; backdrop-filter: blur(10px);">&larr; Back to Dashboard</a>
         <?php if ($message): ?>
             <p style="color: <?php echo $message_type === 'success' ? '#2ecc71' : '#e74c3c'; ?>; background-color: rgba(<?php echo $message_type === 'success' ? '46, 204, 113, 0.2' : '231, 76, 60, 0.2'; ?>); padding: 10px; border-radius: 8px; text-align: center; margin-bottom: 20px;"><?php echo htmlspecialchars($message); ?></p>
         <?php endif; ?>

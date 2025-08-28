@@ -44,10 +44,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_review'])) {
 
   <style>
     :root {
-      --black: #000;
-      --mint-green: #3EB489;
-      --metallic-silver: #B0B0B0;
-      --dark-gray: #1a1a1a;
+      --primary-mint: #4ECDC4;
+      --secondary-mint: #45C0B7;
+      --light-mint: #E8FAF9;
+      --dark-mint: #3BA99E;
+      --text-dark: #2C3E50;
+      --text-light: #7F8C8D;
+      --white: #FFFFFF;
+      --gradient-bg: linear-gradient(135deg, #4ECDC4 0%, #45C0B7 100%);
+      --card-shadow: 0 10px 30px rgba(78, 205, 196, 0.2);
     }
 
     * {
@@ -62,9 +67,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_review'])) {
 
     body {
       font-family: 'Outfit', sans-serif;
-      background-color: var(--black);
-      color: var(--metallic-silver);
-      overflow-x: hidden; /* Prevents horizontal scrollbar during animations */
+      background: var(--gradient-bg);
+      color: var(--text-dark);
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
     }
 
     .navbar {
