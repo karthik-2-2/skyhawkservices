@@ -555,17 +555,17 @@
     }
 
     .card {
-      background: var(--white);
-      border-radius: 25px;
-      width: 300px;
-      height: 460px;
+      background-color: var(--white);
+      border-radius: 20px;
+      width: 270px;
+      height: 440px;
       perspective: 1000px;
       position: relative;
       display: inline-block;
       margin: 1rem;
       cursor: pointer;
-      border: none;
-      box-shadow: var(--card-shadow);
+      border: 1px solid var(--primary-green);
+      box-shadow: 5px 5px 10px rgba(52, 209, 157, 0.3), -5px -5px 10px rgba(52, 209, 157, 0.3);
       vertical-align: top;
       color: var(--text-black);
       overflow: hidden;
@@ -573,34 +573,32 @@
     }
 
     .card:hover {
-      transform: translateY(-10px);
-      box-shadow: var(--hover-shadow);
+      transform: translateY(-5px);
+      box-shadow: 8px 8px 15px rgba(52, 209, 157, 0.4), -8px -8px 15px rgba(52, 209, 157, 0.4);
     }
-    }
-    
     .card .services-card-front, .card .services-card-back {
       width: 100%;
       height: 100%;
       position: absolute;
       top: 0;
       left: 0;
-      border-radius: 25px;
+      border-radius: 20px;
       backface-visibility: hidden;
       transition: transform 1.5s cubic-bezier(0.23, 1, 0.32, 1);
       display: flex;
       flex-direction: column;
       overflow: hidden;
     }
-    
+
     .card .services-card-front {
       background-size: cover;
       background-position: center;
       z-index: 2;
       transform: rotateY(0deg);
       box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-      justify-content: space-between; /* Changed to distribute space between top and bottom */
+      justify-content: space-between;
     }
-    
+
     .card .services-card-back {
       background: linear-gradient(135deg, var(--primary-green), var(--primary-blue));
       color: var(--white);
@@ -612,33 +610,33 @@
       flex-direction: column;
       padding: 2rem;
     }
-    
+
     .card:hover .services-card-front {
       transform: rotateY(180deg);
     }
-    
+
     .card:hover .services-card-back {
       transform: rotateY(0deg);
     }
 
-    /* NEW: Top image section */
+    /* Top image section */
     .service-image-frame {
       height: 65%;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 20px;
-      background: var(--light-grey);
-      border-radius: 25px 25px 0 0;
+      background: var(--white);
+      border-radius: 20px 20px 0 0;
     }
 
     .service-image-frame img {
       width: 80%;
       height: 80%;
       object-fit: cover;
-      border-radius: 20px;
+      border-radius: 15px;
       border: none;
-      background: rgba(255,255,255,0.8);
+      background: rgba(0,0,0,0.05);
       padding: 10px;
       transition: transform 0.3s ease;
     }
@@ -647,12 +645,12 @@
       transform: scale(1.05);
     }
 
-    /* MODIFIED: Bottom info section */
+    /* Bottom info section */
     .service-card-info {
       height: 35%;
       background: var(--white);
-      border-radius: 0 0 25px 25px;
-      padding: 1.5rem;
+      border-radius: 0 0 20px 20px;
+      padding: 1rem;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -660,10 +658,11 @@
     
     .service-card-info h3 {
       margin: 0 0 10px 0;
-      font-size: 1.3rem;
+      font-size: 1.1rem;
       font-weight: bold;
-      color: var(--text-black);
+      color: var(--primary-green);
       text-align: center;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.1);
     }
 
     .coming-soon {
@@ -706,33 +705,54 @@
       height: 100%;
       text-align: center;
     }
+
+    .service-card-content p {
+      margin-bottom: 1.5rem;
+      color: var(--text-black);
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+      font-size: 0.9rem;
+      line-height: 1.6;
+      text-align: left;
+    }
+
+    .service-card-info .specs strong {
+      color: var(--text-black);
+      font-weight: bold;
+    }
+
+    .service-card-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      text-align: center;
+    }
     
     .service-card-content p {
       margin-bottom: 1.5rem;
       color: var(--white);
     }
-    
-    /* Removed old service-card-info h3 styles - already defined above */
 
     .book-btn {
       display: inline-block;
       margin-top: 1rem;
-      padding: 0.9rem 2rem;
-      background: var(--primary-green);
+      padding: 0.75rem 1.5rem;
+      background-color: var(--primary-green);
       color: var(--white);
       border-radius: 30px;
-      font-weight: 700;
+      font-weight: 600;
       text-decoration: none;
       transition: all 0.3s ease;
       border: none;
       cursor: pointer;
-      box-shadow: var(--button-shadow);
     }
 
     .book-btn:hover {
-      background: var(--primary-blue);
-      transform: scale(1.05) translateY(-3px);
-      box-shadow: var(--hover-shadow);
+      background-color: var(--primary-blue);
+      transform: scale(1.1) translateY(-3px);
     }
 
     /* Alternating button colors for different services */
