@@ -145,20 +145,23 @@ function getStatusDetails($status) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
     <style>
         :root { 
-            --primary-mint: #4ECDC4; 
-            --secondary-mint: #45C0B7; 
-            --light-mint: #E8FAF9; 
-            --dark-mint: #3BA99E; 
-            --text-dark: #2C3E50; 
-            --text-light: #7F8C8D; 
-            --white: #FFFFFF; 
-            --gradient-bg: linear-gradient(135deg, #4ECDC4 0%, #45C0B7 100%);
-            --card-shadow: 0 10px 30px rgba(78, 205, 196, 0.2);
+            --primary-green: #34d19d; 
+            --primary-blue: #38c1f2; 
+            --light-grey: #f5f5f5; 
+            --text-black: #2c2c2c; 
+            --text-grey: #6c6c6c; 
+            --white: #ffffff; 
+            --gradient-bg: linear-gradient(135deg, #34d19d 0%, #38c1f2 100%);
+            --card-shadow: 0 10px 30px rgba(52, 209, 157, 0.2);
+            --button-shadow: 0 4px 15px rgba(52, 209, 157, 0.3);
+            --hover-shadow: 0 8px 25px rgba(56, 193, 242, 0.4);
         }
         body { 
             font-family: 'Outfit', sans-serif; 
-            background: var(--gradient-bg); 
-            color: var(--text-dark); 
+            background: var(--gradient-bg);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite; 
+            color: var(--text-black); 
             padding: 20px; 
             margin: 0;
         }
@@ -179,7 +182,7 @@ function getStatusDetails($status) {
             background: var(--white);
             border-radius: 20px;
             overflow: hidden;
-            border-left: 5px solid var(--primary-mint);
+            border-left: 5px solid var(--primary-green);
             opacity: 0;
             transform: translateY(30px);
             animation: slideUpFadeIn 0.5s ease forwards;
@@ -191,7 +194,7 @@ function getStatusDetails($status) {
 
         .booking-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(78, 205, 196, 0.3);
+            box-shadow: var(--hover-shadow);
         }
         .booking-card-header { position: relative; }
         .booking-card-img { width: 100%; height: 180px; object-fit: cover; }
@@ -199,7 +202,7 @@ function getStatusDetails($status) {
             position: absolute; 
             bottom: 0; 
             left: 0; 
-            background: linear-gradient(to top, rgba(78, 205, 196, 0.9), transparent); 
+            background: linear-gradient(to top, rgba(52, 209, 157, 0.9), transparent); 
             color: var(--white); 
             padding: 15px; 
             width: 100%; 
@@ -210,7 +213,7 @@ function getStatusDetails($status) {
         .booking-card-body { padding: 20px; flex-grow: 1; }
         .detail-row { display: flex; align-items: flex-start; margin-bottom: 12px; font-size: 0.95rem; }
         .detail-row i { 
-            color: var(--primary-mint); 
+            color: var(--primary-green); 
             width: 25px; 
             margin-top: 2px; 
         }
@@ -219,13 +222,13 @@ function getStatusDetails($status) {
         .status.approved { background-color: #2980b9; color: #fff; }
         .status.assigned { background-color: #3498db; color: #fff; }
         .status.completed { 
-            background-color: var(--primary-mint); 
+            background-color: var(--primary-green); 
             color: var(--white); 
         }
         .status.cancelled { background-color: #e74c3c; color: #fff; }
 
         .booking-card-footer { 
-            background: var(--light-mint); 
+            background: var(--light-grey); 
             padding: 15px 20px; 
             text-align: center; 
             margin-top: auto; 
@@ -233,7 +236,7 @@ function getStatusDetails($status) {
         .btn { padding: 8px 15px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; text-decoration: none; }
         .btn-cancel { background-color: #c0392b; color: #fff; width: 100%; font-size: 14px; }
         .btn-review { 
-            background-color: var(--primary-mint); 
+            background-color: var(--primary-green); 
             color: var(--white); 
         }
 
@@ -257,7 +260,7 @@ function getStatusDetails($status) {
             padding: 15px;
             border-radius: 12px;
             margin-top: 10px;
-            border: 1px solid var(--primary-mint);
+            border: 1px solid var(--primary-green);
         }
 
         .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.7); justify-content: center; align-items: center; }
@@ -268,13 +271,19 @@ function getStatusDetails($status) {
         .rating input { display: none; }
         .rating label { font-size: 35px; color: #444; cursor: pointer; transition: color 0.2s; padding: 0 5px;}
         .rating input:checked ~ label, .rating label:hover, .rating label:hover ~ label { 
-            color: var(--primary-mint); 
+            color: var(--primary-green); 
         }
         .modal-content textarea { width: calc(100% - 20px); background-color: #222; color: #fff; border: 1px solid #555; border-radius: 5px; padding: 10px; min-height: 80px; margin-top: 10px; }
         .modal-content button { margin-top: 15px; }
 
 
         @keyframes slideUpFadeIn { to { opacity: 1; transform: translateY(0); } }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
         /* Modern Rating Popup Styles */
         .rating-overlay {
@@ -320,7 +329,7 @@ function getStatusDetails($status) {
         .success-icon {
             width: 80px;
             height: 80px;
-            background: var(--primary-mint);
+            background: var(--primary-green);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -335,7 +344,7 @@ function getStatusDetails($status) {
         }
 
         .rating-popup h2 {
-            color: var(--primary-mint);
+            color: var(--primary-green);
             font-size: 28px;
             margin-bottom: 10px;
             font-weight: 700;
@@ -355,7 +364,7 @@ function getStatusDetails($status) {
         }
 
         .rating-popup .rating-label {
-            color: var(--primary-mint);
+            color: var(--primary-green);
             font-size: 18px;
             font-weight: 600;
             margin-bottom: 20px;
@@ -386,13 +395,13 @@ function getStatusDetails($status) {
         .emoji-rating .emoji:hover {
             transform: scale(1.2);
             background: rgba(78, 205, 196, 0.2);
-            border-color: var(--primary-mint);
+            border-color: var(--primary-green);
         }
 
         .emoji-rating .emoji.selected {
             transform: scale(1.3);
-            background: var(--primary-mint);
-            border-color: var(--primary-mint);
+            background: var(--primary-green);
+            border-color: var(--primary-green);
             box-shadow: 0 0 20px rgba(78, 205, 196, 0.5);
         }
 
@@ -417,7 +426,7 @@ function getStatusDetails($status) {
             right: -5px;
             width: 20px;
             height: 20px;
-            color: var(--primary-mint);
+            color: var(--primary-green);
             font-size: 12px;
             font-weight: bold;
             z-index: 1;
@@ -443,7 +452,7 @@ function getStatusDetails($status) {
 
         .review-textarea:focus {
             outline: none;
-            border-color: var(--primary-mint);
+            border-color: var(--primary-green);
             background: rgba(255, 255, 255, 0.15);
         }
 
@@ -480,14 +489,14 @@ function getStatusDetails($status) {
         }
 
         .popup-btn.submit {
-            background: var(--primary-mint);
+            background: var(--primary-green);
             color: var(--white);
-            border: 2px solid var(--primary-mint);
+            border: 2px solid var(--primary-green);
         }
 
         .popup-btn.submit:hover {
             background: transparent;
-            color: var(--primary-mint);
+            color: var(--primary-green);
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(78, 205, 196, 0.3);
         }
