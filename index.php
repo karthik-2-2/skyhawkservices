@@ -334,13 +334,15 @@
     }
 
     .hero-content {
-      background: var(--section-bg);
-      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 25px;
       padding: 3rem 2rem;
       box-shadow: var(--section-shadow);
-      max-width: 900px;
-      width: 90%;
+      width: calc(70vw + 20vw);
+      max-width: 1200px;
+      min-height: 400px;
       position: relative;
       z-index: 2;
     }
@@ -418,16 +420,29 @@
       z-index: 1;
     }
 
+    .hero-text-wrapper {
+      min-height: 200px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
     #hero-line1 {
       font-size: clamp(24px, 8vw, 64px);
       font-weight: 600;
-      min-height: 48px;
+      min-height: 60px;
+      height: 60px;
+      display: block;
     }
 
     #hero-line2 {
       font-size: clamp(48px, 14vw, 120px);
       font-weight: 700;
-      min-height: 96px;
+      min-height: 120px;
+      height: 120px;
+      display: block;
       background: linear-gradient(45deg, var(--primary-green), var(--primary-blue));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -446,6 +461,18 @@
     @media (max-width: 768px) {
       .blinking-cursor {
         border-right: 1px solid var(--text-black);
+      }
+      
+      .hero-content,
+      .services-container,
+      .about-container,
+      .contact-container {
+        width: 95vw;
+        padding: 2rem 1rem;
+      }
+      
+      .contact-content {
+        grid-template-columns: 1fr;
       }
     }
 
@@ -498,11 +525,13 @@
     }
 
     .services-container {
-      background: var(--section-bg);
-      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 25px;
       padding: 3rem 2rem;
       box-shadow: var(--section-shadow);
+      width: calc(70vw + 20vw);
       max-width: 1200px;
       margin: 0 auto;
     }
@@ -721,10 +750,12 @@
     }
 
     .about-container {
-      background: var(--section-bg);
-      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       padding: 3rem 2rem;
-      max-width: 1000px;
+      width: calc(70vw + 20vw);
+      max-width: 1200px;
       margin: 0 auto;
       border-radius: 25px;
       color: var(--text-black);
@@ -755,14 +786,60 @@
     }
 
     .contact-container {
-      background: var(--section-bg);
-      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 25px;
       padding: 3rem 2rem;
       box-shadow: var(--section-shadow);
-      max-width: 800px;
+      width: calc(70vw + 20vw);
+      max-width: 1200px;
       margin: 0 auto;
       color: var(--text-black);
+    }
+
+    .contact-content {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    @media (min-width: 992px) {
+      .contact-content {
+        grid-template-columns: 1fr 1fr;
+      }
+      
+      .contact-info {
+        padding-right: 1rem;
+      }
+      
+      .contact-form {
+        padding-left: 1rem;
+      }
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-details {
+      margin-top: 2rem;
+    }
+
+    .contact-details p {
+      margin: 1rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .contact-details i {
+      color: var(--primary-green);
+      font-size: 1.2rem;
+      width: 20px;
     }
 
     .contact-container h2 {
@@ -810,8 +887,8 @@
     }
 
     .contact-form {
-      max-width: 600px;
-      margin: 2rem auto 0 auto;
+      max-width: 100%;
+      margin: 0;
       text-align: left;
       position: relative;
       z-index: 1;
@@ -1144,22 +1221,34 @@
   <section class="cta-section" id="contact" data-aos="fade-right" data-aos-delay="300">
     <div class="contact-container">
       <h2>Get a Custom Drone Service Quote</h2>
-      <p><b>Contact Us</b></p>
-    <form class="contact-form" action="submit_contact.php" method="POST">
-      <label for="contact-name" data-aos="fade-right" data-aos-delay="350" class="contact-section-label">Name</label>
-      <input type="text" id="contact-name" name="name" placeholder="Your Name" required data-aos="fade-right" data-aos-delay="400">
-      
-      <label for="contact-phone" data-aos="fade-right" data-aos-delay="450" class="contact-section-label">Phone Number</label>
-      <input type="tel" id="contact-phone" name="phone" placeholder="Your Phone Number" required data-aos="fade-right" data-aos-delay="500">
-      
-      <label for="contact-email" data-aos="fade-right" data-aos-delay="550" class="contact-section-label">Email</label>
-      <input type="email" id="contact-email" name="email" placeholder="Your Email" required data-aos="fade-right" data-aos-delay="600">
-      
-      <label for="contact-message" data-aos="fade-right" data-aos-delay="650" class="contact-section-label">Message</label>
-      <textarea id="contact-message" name="message" placeholder="Your Message" rows="5" data-aos="fade-right" data-aos-delay="700"></textarea>
-      
-      <button type="submit" data-aos="fade-right" data-aos-delay="750">Send Message</button>
-    </form>
+      <div class="contact-content">
+        <div class="contact-info">
+          <p><b>Contact Us</b></p>
+          <p>Ready to elevate your project with our professional drone services? Get in touch with us today for a personalized quote and consultation.</p>
+          <div class="contact-details">
+            <p><i class="fas fa-phone"></i> +91 1234567890</p>
+            <p><i class="fas fa-envelope"></i> info@skyhawkservices.com</p>
+            <p><i class="fas fa-map-marker-alt"></i> Available across multiple locations</p>
+          </div>
+        </div>
+        <div class="contact-form-wrapper">
+          <form class="contact-form" action="submit_contact.php" method="POST">
+            <label for="contact-name" data-aos="fade-right" data-aos-delay="350" class="contact-section-label">Name</label>
+            <input type="text" id="contact-name" name="name" placeholder="Your Name" required data-aos="fade-right" data-aos-delay="400">
+            
+            <label for="contact-phone" data-aos="fade-right" data-aos-delay="450" class="contact-section-label">Phone Number</label>
+            <input type="tel" id="contact-phone" name="phone" placeholder="Your Phone Number" required data-aos="fade-right" data-aos-delay="500">
+            
+            <label for="contact-email" data-aos="fade-right" data-aos-delay="550" class="contact-section-label">Email</label>
+            <input type="email" id="contact-email" name="email" placeholder="Your Email" required data-aos="fade-right" data-aos-delay="600">
+            
+            <label for="contact-message" data-aos="fade-right" data-aos-delay="650" class="contact-section-label">Message</label>
+            <textarea id="contact-message" name="message" placeholder="Your Message" rows="5" data-aos="fade-right" data-aos-delay="700"></textarea>
+            
+            <button type="submit" data-aos="fade-right" data-aos-delay="750">Send Message</button>
+          </form>
+        </div>
+      </div>
     </div>
   </section>
 
