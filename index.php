@@ -216,11 +216,22 @@
       #hero-line2 {
         font-size: clamp(30px, 10vw, 80px);
         min-height: 80px;
-        background: linear-gradient(to bottom, #34d19d 0%, #34d19d 50%, #38c1f2 50%, #38c1f2 100%);
+        background: linear-gradient(180deg, #34d19d 0%, #34d19d 45%, #38c1f2 55%, #38c1f2 100%);
+        background-size: 100% 200%;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
         font-weight: bold;
+        animation: gradientShift 4s ease-in-out infinite;
+      }
+
+      @keyframes gradientShift {
+        0%, 100% {
+          background-position: 0% 0%;
+        }
+        50% {
+          background-position: 0% 100%;
+        }
       }
 
       .hero-content p {
@@ -461,7 +472,8 @@
       min-height: 140px;
       height: 140px;
       display: block;
-      background: linear-gradient(to bottom, #34d19d 0%, #34d19d 50%, #38c1f2 50%, #38c1f2 100%);
+      background: linear-gradient(180deg, #34d19d 0%, #34d19d 45%, #38c1f2 55%, #38c1f2 100%);
+      background-size: 100% 200%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -469,24 +481,32 @@
       filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
       line-height: 1.2;
       padding-bottom: 10px;
+      animation: gradientShift 4s ease-in-out infinite;
     }
 
     /* The blinking cursor is now handled by a simple class */
     .blinking-cursor {
-        border-right: 3px solid var(--text-black);
-        animation: blink 1s step-end infinite;
+        position: relative;
     }
 
     .blinking-cursor::after {
-        content: '';
-        border-right: 3px solid var(--text-black);
+        content: '|';
+        position: absolute;
+        right: -5px;
+        top: 0;
+        color: var(--text-black);
+        font-weight: bold;
         animation: blink 1s step-end infinite;
-        font-size: 0.7em;
+        font-size: 0.9em;
+        height: 100%;
+        display: flex;
+        align-items: center;
     }
 
     @media (max-width: 768px) {
-      .blinking-cursor {
-        border-right: 2px solid var(--text-black);
+      .blinking-cursor::after {
+        font-size: 0.8em;
+        right: -3px;
       }
       
       .hero-content,
