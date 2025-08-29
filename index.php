@@ -532,8 +532,8 @@
       
       #hero-line1.blinking-cursor::after {
         width: 1px;
-        right: -1px;
-        height: 60%;
+        right: -1.5px;
+        height: 65%;
       }
       
       #hero-line2.blinking-cursor::after {
