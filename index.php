@@ -492,21 +492,37 @@
     .blinking-cursor::after {
         content: '|';
         position: absolute;
-        right: -5px;
+        right: -8px;
         top: 0;
         color: var(--text-black);
         font-weight: bold;
         animation: blink 1s step-end infinite;
-        font-size: 0.9em;
+        font-size: 1em;
         height: 100%;
         display: flex;
         align-items: center;
+        z-index: 10;
+        text-shadow: 0 0 2px rgba(0,0,0,0.5);
+    }
+
+    /* Special cursor styling for gradient text elements */
+    #hero-line2.blinking-cursor::after {
+        color: #333;
+        font-weight: 900;
+        text-shadow: 0 0 3px rgba(255,255,255,0.8), 0 0 6px rgba(0,0,0,0.5);
+        font-size: 0.9em;
+        right: -10px;
     }
 
     @media (max-width: 768px) {
       .blinking-cursor::after {
         font-size: 0.8em;
-        right: -3px;
+        right: -6px;
+      }
+      
+      #hero-line2.blinking-cursor::after {
+        font-size: 0.7em;
+        right: -8px;
       }
       
       .hero-content,
@@ -1453,11 +1469,20 @@
           // Typing phase
           await type(line1, "Welcome to");
           if (!isAnimating) break;
+          
+          // Show cursor on line1 during small pause
+          line1.classList.add('blinking-cursor');
           await delay(300); // Small pause between lines
+          line1.classList.remove('blinking-cursor');
+          if (!isAnimating) break;
+          
           await type(line2, "Skyhawk");
           if (!isAnimating) break;
           
+          // Show cursor on line2 during the pause
+          line2.classList.add('blinking-cursor');
           await delay(1500); // Longer pause when text is fully displayed
+          line2.classList.remove('blinking-cursor');
           if (!isAnimating) break;
 
           // Deleting phase
