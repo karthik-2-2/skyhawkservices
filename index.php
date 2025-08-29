@@ -493,9 +493,10 @@
         content: '';
         position: absolute;
         right: -2px;
-        top: 0;
-        bottom: 0;
+        top: 50%;
+        transform: translateY(-50%);
         width: 2px;
+        height: 70%;
         background-color: var(--text-black);
         animation: blink 1s step-end infinite;
         z-index: 10;
@@ -505,6 +506,7 @@
     #hero-line1.blinking-cursor::after {
         width: 1.5px;
         right: -1.5px;
+        height: 65%;
     }
 
     /* Special cursor styling for gradient text elements (hero-line2) */
@@ -512,6 +514,7 @@
         background-color: #2c3e50;
         width: 2px;
         right: -2px;
+        height: 70%;
         box-shadow: 0 0 3px rgba(255,255,255,0.8);
     }
 
@@ -524,16 +527,19 @@
       .blinking-cursor::after {
         width: 1.5px;
         right: -1.5px;
+        height: 65%;
       }
       
       #hero-line1.blinking-cursor::after {
         width: 1px;
         right: -1px;
+        height: 60%;
       }
       
       #hero-line2.blinking-cursor::after {
         width: 1.5px;
         right: -1.5px;
+        height: 65%;
       }
       
       .hero-content,
