@@ -354,7 +354,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255, 255, 255, 0.12);
       border-radius: 25px;
       pointer-events: none;
       z-index: -1;
@@ -469,19 +469,20 @@
 
     /* The blinking cursor is now handled by a simple class */
     .blinking-cursor {
-        border-right: 2px solid var(--text-black);
+        border-right: 3px solid var(--text-black);
         animation: blink 1s step-end infinite;
     }
 
     .blinking-cursor::after {
         content: '';
-        border-right: 2px solid var(--text-black);
+        border-right: 3px solid var(--text-black);
         animation: blink 1s step-end infinite;
+        font-size: 0.9em;
     }
 
     @media (max-width: 768px) {
       .blinking-cursor {
-        border-right: 1px solid var(--text-black);
+        border-right: 2px solid var(--text-black);
       }
       
       .hero-content,
@@ -1410,7 +1411,7 @@
       }
 
       // Delete text character by character
-      async function deleteText(element, speed = 100) {
+      async function deleteText(element, speed = 200) {
         element.classList.add('blinking-cursor');
         let text = element.textContent;
         while (text.length > 0) {
