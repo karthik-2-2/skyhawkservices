@@ -486,36 +486,56 @@
 
     /* The blinking cursor is now handled by a simple class */
     .blinking-cursor {
-        border-right: 2px solid var(--text-black);
+        position: relative;
+    }
+
+    .blinking-cursor::after {
+        content: '|';
+        position: absolute;
+        right: -3px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--text-black);
+        font-weight: 400;
         animation: blink 1s step-end infinite;
+        font-size: clamp(16px, 5vw, 40px);
+        line-height: 1;
+        z-index: 10;
     }
 
     /* Specific cursor styling for hero-line1 */
-    #hero-line1.blinking-cursor {
-        border-right-width: clamp(1.5px, 0.3vw, 2.5px);
+    #hero-line1.blinking-cursor::after {
+        font-size: clamp(14px, 4vw, 32px);
+        right: -2px;
     }
 
     /* Special cursor styling for gradient text elements (hero-line2) */
-    #hero-line2.blinking-cursor {
-        border-right: clamp(2px, 0.4vw, 3px) solid #333;
-        text-shadow: 0 0 3px rgba(255,255,255,0.8);
+    #hero-line2.blinking-cursor::after {
+        color: #2c3e50;
+        font-weight: 600;
+        font-size: clamp(24px, 8vw, 64px);
+        text-shadow: 0 0 2px rgba(255,255,255,0.9), 0 0 4px rgba(0,0,0,0.3);
+        right: -4px;
     }
 
     @keyframes blink {
-      50% { border-color: transparent; }
+      50% { opacity: 0; }
     }
 
     @media (max-width: 768px) {
-      .blinking-cursor {
-        border-right-width: 2px;
+      .blinking-cursor::after {
+        font-size: clamp(12px, 4vw, 28px);
+        right: -2px;
       }
       
-      #hero-line1.blinking-cursor {
-        border-right-width: clamp(1px, 0.25vw, 2px);
+      #hero-line1.blinking-cursor::after {
+        font-size: clamp(10px, 3vw, 24px);
+        right: -1.5px;
       }
       
-      #hero-line2.blinking-cursor {
-        border-right-width: clamp(1.5px, 0.35vw, 2.5px);
+      #hero-line2.blinking-cursor::after {
+        font-size: clamp(18px, 6vw, 48px);
+        right: -3px;
       }
       
       .hero-content,
