@@ -347,6 +347,19 @@
       z-index: 2;
     }
 
+    .hero-content::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 25px;
+      pointer-events: none;
+      z-index: -1;
+    }
+
     /* --- Flip Animation Styles (COMMENTED OUT) --- */
     /*
     .hero-title-container {
@@ -421,7 +434,7 @@
     }
 
     .hero-text-wrapper {
-      min-height: 200px;
+      min-height: 220px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -440,8 +453,8 @@
     #hero-line2 {
       font-size: clamp(48px, 14vw, 120px);
       font-weight: 700;
-      min-height: 120px;
-      height: 120px;
+      min-height: 140px;
+      height: 140px;
       display: block;
       background: linear-gradient(45deg, var(--primary-green), var(--primary-blue));
       -webkit-background-clip: text;
@@ -449,11 +462,19 @@
       background-clip: text;
       text-shadow: 0 0 20px rgba(52, 209, 157, 0.3);
       filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
+      line-height: 1.2;
+      padding-bottom: 10px;
     }
     }
 
     /* The blinking cursor is now handled by a simple class */
     .blinking-cursor {
+        border-right: 2px solid var(--text-black);
+        animation: blink 1s step-end infinite;
+    }
+
+    .blinking-cursor::after {
+        content: '';
         border-right: 2px solid var(--text-black);
         animation: blink 1s step-end infinite;
     }
@@ -1378,7 +1399,7 @@
       const delay = ms => new Promise(res => setTimeout(res, ms));
 
       // Type out a string character by character
-      async function type(element, text, speed = 150) {
+      async function type(element, text, speed = 200) {
         element.classList.add('blinking-cursor');
         for (const char of text) {
           if (!isAnimating) return; // Exit if animation was stopped
@@ -1389,7 +1410,7 @@
       }
 
       // Delete text character by character
-      async function deleteText(element, speed = 160) {
+      async function deleteText(element, speed = 100) {
         element.classList.add('blinking-cursor');
         let text = element.textContent;
         while (text.length > 0) {
@@ -1407,10 +1428,11 @@
           // Typing phase
           await type(line1, "Welcome to");
           if (!isAnimating) break;
+          await delay(300); // Small pause between lines
           await type(line2, "Skyhawk");
           if (!isAnimating) break;
           
-          await delay(800); // Pause when text is fully displayed
+          await delay(1500); // Longer pause when text is fully displayed
           if (!isAnimating) break;
 
           // Deleting phase
@@ -1419,7 +1441,7 @@
           await deleteText(line1);
           if (!isAnimating) break;
 
-          await delay(200); // Pause before restarting
+          await delay(500); // Pause before restarting
         }
       }
 
