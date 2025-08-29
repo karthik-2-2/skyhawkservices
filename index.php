@@ -216,6 +216,11 @@
       #hero-line2 {
         font-size: clamp(30px, 10vw, 80px);
         min-height: 80px;
+        background: linear-gradient(to bottom, #34d19d 0%, #34d19d 50%, #38c1f2 50%, #38c1f2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-weight: bold;
       }
 
       .hero-content p {
@@ -354,7 +359,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.2);
       border-radius: 25px;
       pointer-events: none;
       z-index: -1;
@@ -456,7 +461,7 @@
       min-height: 140px;
       height: 140px;
       display: block;
-      background: linear-gradient(45deg, var(--primary-green), var(--primary-blue));
+      background: linear-gradient(to bottom, #34d19d 0%, #34d19d 50%, #38c1f2 50%, #38c1f2 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -464,7 +469,6 @@
       filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
       line-height: 1.2;
       padding-bottom: 10px;
-    }
     }
 
     /* The blinking cursor is now handled by a simple class */
@@ -504,7 +508,7 @@
 
 
     .hero-content p {
-      font-size: clamp(24px, 3vw, 36px);
+      font-size: clamp(18px, 3vw, 26px);
       margin-bottom: 2.5rem;
       animation: fadeInUp 1.5s forwards 0.5s;
       color: var(--text-grey);
