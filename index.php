@@ -334,7 +334,7 @@
     }
 
     .hero-content {
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.2);
       backdrop-filter: blur(15px);
       border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 25px;
@@ -443,7 +443,7 @@
     }
 
     #hero-line1 {
-      font-size: clamp(24px, 8vw, 64px);
+      font-size: clamp(32px, 10vw, 64px);
       font-weight: 600;
       min-height: 60px;
       height: 60px;
@@ -477,7 +477,7 @@
         content: '';
         border-right: 3px solid var(--text-black);
         animation: blink 1s step-end infinite;
-        font-size: 0.9em;
+        font-size: 0.7em;
     }
 
     @media (max-width: 768px) {
@@ -504,7 +504,7 @@
 
 
     .hero-content p {
-      font-size: clamp(16px, 2.5vw, 24px);
+      font-size: clamp(24px, 3vw, 36px);
       margin-bottom: 2.5rem;
       animation: fadeInUp 1.5s forwards 0.5s;
       color: var(--text-grey);
