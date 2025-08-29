@@ -490,52 +490,50 @@
     }
 
     .blinking-cursor::after {
-        content: '|';
+        content: '';
         position: absolute;
-        right: -3px;
-        top: 50%;
-        transform: translateY(-50%);
-        color: var(--text-black);
-        font-weight: 400;
+        right: -2px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background-color: var(--text-black);
         animation: blink 1s step-end infinite;
-        font-size: clamp(16px, 5vw, 40px);
-        line-height: 1;
         z-index: 10;
     }
 
     /* Specific cursor styling for hero-line1 */
     #hero-line1.blinking-cursor::after {
-        font-size: clamp(14px, 4vw, 32px);
-        right: -2px;
+        width: 1.5px;
+        right: -1.5px;
     }
 
     /* Special cursor styling for gradient text elements (hero-line2) */
     #hero-line2.blinking-cursor::after {
-        color: #2c3e50;
-        font-weight: 600;
-        font-size: clamp(24px, 8vw, 64px);
-        text-shadow: 0 0 2px rgba(255,255,255,0.9), 0 0 4px rgba(0,0,0,0.3);
-        right: -4px;
+        background-color: #2c3e50;
+        width: 2px;
+        right: -2px;
+        box-shadow: 0 0 3px rgba(255,255,255,0.8);
     }
 
     @keyframes blink {
-      50% { opacity: 0; }
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
     }
 
     @media (max-width: 768px) {
       .blinking-cursor::after {
-        font-size: clamp(12px, 4vw, 28px);
-        right: -2px;
-      }
-      
-      #hero-line1.blinking-cursor::after {
-        font-size: clamp(10px, 3vw, 24px);
+        width: 1.5px;
         right: -1.5px;
       }
       
+      #hero-line1.blinking-cursor::after {
+        width: 1px;
+        right: -1px;
+      }
+      
       #hero-line2.blinking-cursor::after {
-        font-size: clamp(18px, 6vw, 48px);
-        right: -3px;
+        width: 1.5px;
+        right: -1.5px;
       }
       
       .hero-content,
