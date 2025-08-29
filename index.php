@@ -486,43 +486,36 @@
 
     /* The blinking cursor is now handled by a simple class */
     .blinking-cursor {
-        position: relative;
-    }
-
-    .blinking-cursor::after {
-        content: '|';
-        position: absolute;
-        right: -8px;
-        top: 0;
-        color: var(--text-black);
-        font-weight: bold;
+        border-right: 2px solid var(--text-black);
         animation: blink 1s step-end infinite;
-        font-size: 1em;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        z-index: 10;
-        text-shadow: 0 0 2px rgba(0,0,0,0.5);
     }
 
-    /* Special cursor styling for gradient text elements */
-    #hero-line2.blinking-cursor::after {
-        color: #333;
-        font-weight: 900;
-        text-shadow: 0 0 3px rgba(255,255,255,0.8), 0 0 6px rgba(0,0,0,0.5);
-        font-size: 0.9em;
-        right: -10px;
+    /* Specific cursor styling for hero-line1 */
+    #hero-line1.blinking-cursor {
+        border-right-width: clamp(1.5px, 0.3vw, 2.5px);
+    }
+
+    /* Special cursor styling for gradient text elements (hero-line2) */
+    #hero-line2.blinking-cursor {
+        border-right: clamp(2px, 0.4vw, 3px) solid #333;
+        text-shadow: 0 0 3px rgba(255,255,255,0.8);
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
     }
 
     @media (max-width: 768px) {
-      .blinking-cursor::after {
-        font-size: 0.8em;
-        right: -6px;
+      .blinking-cursor {
+        border-right-width: 2px;
       }
       
-      #hero-line2.blinking-cursor::after {
-        font-size: 0.7em;
-        right: -8px;
+      #hero-line1.blinking-cursor {
+        border-right-width: clamp(1px, 0.25vw, 2px);
+      }
+      
+      #hero-line2.blinking-cursor {
+        border-right-width: clamp(1.5px, 0.35vw, 2.5px);
       }
       
       .hero-content,
