@@ -485,6 +485,7 @@
     }
 
     /* The blinking cursor is now handled by a simple class */
+    /*
     .blinking-cursor {
         position: relative;
     }
@@ -503,6 +504,7 @@
     }
 
     /* Specific cursor styling for hero-line1 */
+    /*
     #hero-line1.blinking-cursor::after {
         width: 1.5px;
         right: -1.5px;
@@ -510,6 +512,7 @@
     }
 
     /* Special cursor styling for gradient text elements (hero-line2) */
+    /*
     #hero-line2.blinking-cursor::after {
         background-color: #2c3e50;
         width: 2px;
@@ -522,8 +525,10 @@
       0%, 50% { opacity: 1; }
       51%, 100% { opacity: 0; }
     }
+    */
 
     @media (max-width: 768px) {
+      /*
       .blinking-cursor::after {
         width: 1.5px;
         right: -1.5px;
@@ -541,6 +546,7 @@
         right: -1.5px;
         height: 65%;
       }
+      */
       
       .hero-content,
       .services-container,
