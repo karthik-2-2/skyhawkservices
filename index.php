@@ -354,7 +354,7 @@
       backdrop-filter: blur(15px);
       border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 25px;
-      padding: 2rem 1.5rem;
+      padding: 4rem 3rem;
       box-shadow: var(--section-shadow);
       width: calc(70vw + 20vw);
       max-width: 1200px;
