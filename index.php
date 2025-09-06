@@ -354,7 +354,7 @@
       backdrop-filter: blur(15px);
       border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 25px;
-      padding: 3rem 2rem;
+      padding: 2rem 1.5rem;
       box-shadow: var(--section-shadow);
       width: calc(70vw + 20vw);
       max-width: 1200px;
@@ -374,6 +374,43 @@
       border-radius: 25px;
       pointer-events: none;
       z-index: -1;
+    }
+
+    /* Inner hero card for double glass effect */
+    .hero-inner-card {
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        0 4px 16px rgba(0, 0, 0, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+      position: relative;
+      z-index: 3;
+      transition: all 0.3s ease;
+    }
+
+    .hero-inner-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .hero-inner-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.15),
+        0 6px 20px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
     }
 
     /* --- Flip Animation Styles (COMMENTED OUT) --- */
@@ -553,7 +590,16 @@
       .about-container,
       .contact-container {
         width: 95vw;
-        padding: 2rem 1rem;
+        padding: 1.5rem 1rem;
+      }
+      
+      .hero-inner-card {
+        padding: 2rem 1.5rem;
+        border-radius: 15px;
+      }
+      
+      .hero-inner-card::before {
+        border-radius: 15px;
       }
       
       .contact-content {
@@ -1213,21 +1259,23 @@
 
     <header class="hero-section" data-aos="fade-right" data-aos-delay="200">
     <div class="hero-content">
-      <div class="hero-title-container">
-        <!-- <div class="hero-flipper">
-          <div class="flip-front"> -->
-            <div class="hero-text-wrapper">
-                <span id="hero-line1"></span>
-                <span id="hero-line2"></span>
+      <div class="hero-inner-card">
+        <div class="hero-title-container">
+          <!-- <div class="hero-flipper">
+            <div class="flip-front"> -->
+              <div class="hero-text-wrapper">
+                  <span id="hero-line1"></span>
+                  <span id="hero-line2"></span>
+              </div>
+            <!-- </div>
+            <div class="flip-back">
+              <img src="logo.png" alt="Skyhawk Logo" id="hero-logo">
             </div>
-          <!-- </div>
-          <div class="flip-back">
-            <img src="logo.png" alt="Skyhawk Logo" id="hero-logo">
-          </div>
-        </div> -->
+          </div> -->
+        </div>
+        <p>"Experience precision, reliability, and speed with Skyhawk's advanced drone services.<br>From aerial photography to surveying, we deliver top-notch solutions for all your needs."</p>
+        <a href="#services" class="cta-btn">Explore Services</a>
       </div>
-      <p>"Experience precision, reliability, and speed with Skyhawk's advanced drone services.<br>From aerial photography to surveying, we deliver top-notch solutions for all your needs."</p>
-      <a href="#services" class="cta-btn">Explore Services</a>
     </div>
   </header>
 
