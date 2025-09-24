@@ -18,11 +18,14 @@
       --text-light-grey: #999999;
       --white: #FFFFFF;
       --animated-gradient: linear-gradient(-45deg, #34d19d, #38c1f2, #34d19d, #38c1f2);
-      --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-      --button-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      --hover-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+      --card-shadow: 0 8px 24px rgba(52, 209, 157, 0.15);
+      --button-shadow: 0 4px 12px rgba(52, 209, 157, 0.15);
+      --hover-shadow: 0 12px 32px rgba(52, 209, 157, 0.25);
       --section-bg: rgba(255, 255, 255, 0.95);
-      --section-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      --section-shadow: 0 8px 32px rgba(52, 209, 157, 0.1);
+      --card-bg: rgba(255, 255, 255, 0.2);
+      --inner-card-bg: rgba(255, 255, 255, 0.25);
+      --glass-border: rgba(255, 255, 255, 0.3);
     }
 
     * {
@@ -282,17 +285,63 @@
         animation-delay: calc(0.1s * var(--i));
       }
 
-      .cta-section {
+      .services-section {
+        padding: 3rem 1rem;
+      }
+
+      .services-container {
+        width: 95vw;
         padding: 2rem 1rem;
       }
 
-      .services-section {
-        padding: 3rem 1rem;
+      .services-wrapper {
+        padding: 1rem;
+      }
+
+      .services {
+        gap: 1rem;
+        padding: 0.5rem 0;
+      }
+
+      .card {
+        width: 280px;
+        height: 420px;
+        flex-shrink: 0;
+      }
+
+      .service-image-frame {
+        padding: 15px;
+      }
+
+      .service-card-info {
+        padding: 0.8rem;
       }
 
       .about-section {
         padding: 3rem 1rem;
         margin: 0 1rem 2rem 1rem;
+      }
+
+      .about-container {
+        width: 95vw;
+        padding: 2rem 1rem;
+      }
+
+      .about-inner-card {
+        padding: 2rem 1.5rem;
+      }
+
+      .cta-section {
+        padding: 2rem 1rem;
+      }
+
+      .contact-container {
+        width: 95vw;
+        padding: 2rem 1rem;
+      }
+
+      .contact-inner-card {
+        padding: 2rem 1.5rem;
       }
 
       .cta-section h2 {
@@ -656,15 +705,29 @@
     }
 
     .services-container {
-      background: rgba(255, 255, 255, 0.1);
+      background: var(--card-bg);
       backdrop-filter: blur(15px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      border: 1px solid var(--glass-border);
       border-radius: 25px;
-      padding: 3rem 2rem;
+      padding: 4rem 2rem;
       box-shadow: var(--section-shadow);
       width: calc(70vw + 20vw);
-      max-width: 1200px;
+      max-width: 1400px;
       margin: 0 auto;
+      position: relative;
+    }
+
+    .services-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--card-bg);
+      border-radius: 25px;
+      pointer-events: none;
+      z-index: -1;
     }
 
     .services-section h2 {
@@ -677,35 +740,101 @@
       z-index: 1;
     }
 
-    .services {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      justify-content: center;
-      perspective: 3000px;
+    .services-wrapper {
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      background: var(--inner-card-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      padding: 2rem;
+      box-shadow: 
+        0 8px 32px rgba(52, 209, 157, 0.1),
+        0 4px 16px rgba(52, 209, 157, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
     }
 
-    .card {
-      background-color: var(--white);
+    .services-wrapper::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--inner-card-bg);
       border-radius: 20px;
-      width: 270px;
-      height: 440px;
-      perspective: 1000px;
-      position: relative;
-      display: inline-block;
-      margin: 1rem;
-      cursor: pointer;
-      border: 1px solid var(--primary-green);
-      box-shadow: 5px 5px 10px rgba(52, 209, 157, 0.3), -5px -5px 10px rgba(52, 209, 157, 0.3);
-      vertical-align: top;
-      color: var(--text-black);
-      overflow: hidden;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .services {
+      display: flex;
+      gap: 2rem;
+      overflow-x: auto;
+      padding: 1rem 0;
+      scroll-behavior: smooth;
+      scrollbar-width: thin;
+      scrollbar-color: var(--primary-green) transparent;
+    }
+
+    .services::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .services::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+    }
+
+    .services::-webkit-scrollbar-thumb {
+      background: linear-gradient(90deg, var(--primary-green), var(--primary-blue));
+      border-radius: 10px;
       transition: all 0.3s ease;
     }
 
+    .services::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(90deg, var(--primary-blue), var(--primary-green));
+    }
+
+    .card {
+      background: var(--card-bg);
+      backdrop-filter: blur(15px);
+      border-radius: 20px;
+      width: 300px;
+      height: 460px;
+      perspective: 1000px;
+      position: relative;
+      flex-shrink: 0;
+      cursor: pointer;
+      border: 1px solid var(--glass-border);
+      box-shadow: 
+        0 8px 32px rgba(52, 209, 157, 0.2),
+        0 4px 16px rgba(52, 209, 157, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      color: var(--text-black);
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--card-bg);
+      border-radius: 20px;
+      pointer-events: none;
+      z-index: -1;
+    }
+
     .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 8px 8px 15px rgba(52, 209, 157, 0.4), -8px -8px 15px rgba(52, 209, 157, 0.4);
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 
+        0 16px 48px rgba(52, 209, 157, 0.3),
+        0 8px 24px rgba(52, 209, 157, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
     }
     .card .services-card-front, .card .services-card-back {
       width: 100%;
@@ -722,16 +851,34 @@
     }
 
     .card .services-card-front {
-      background-size: cover;
-      background-position: center;
+      background: var(--inner-card-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
       z-index: 2;
       transform: rotateY(0deg);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      box-shadow: 
+        0 4px 20px rgba(52, 209, 157, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
       justify-content: space-between;
+    }
+
+    .card .services-card-front::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--inner-card-bg);
+      border-radius: 20px;
+      pointer-events: none;
+      z-index: -1;
     }
 
     .card .services-card-back {
       background: linear-gradient(135deg, var(--primary-green), var(--primary-blue));
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       color: var(--white);
       transform: rotateY(180deg);
       z-index: 3;
@@ -740,6 +887,9 @@
       justify-content: center;
       flex-direction: column;
       padding: 2rem;
+      box-shadow: 
+        0 8px 32px rgba(52, 209, 157, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
     }
 
     .card:hover .services-card-front {
@@ -757,8 +907,10 @@
       align-items: center;
       justify-content: center;
       padding: 20px;
-      background: var(--white);
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
       border-radius: 20px 20px 0 0;
+      border-bottom: 1px solid var(--glass-border);
     }
 
     .service-image-frame img {
@@ -766,25 +918,30 @@
       height: 80%;
       object-fit: cover;
       border-radius: 15px;
-      border: none;
-      background: rgba(0,0,0,0.05);
+      border: 2px solid var(--primary-green);
+      background: rgba(52, 209, 157, 0.05);
       padding: 10px;
-      transition: transform 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      box-shadow: 0 4px 20px rgba(52, 209, 157, 0.2);
     }
 
     .card:hover .service-image-frame img {
-      transform: scale(1.05);
+      transform: scale(1.08) rotate(2deg);
+      border-color: var(--primary-blue);
+      box-shadow: 0 8px 30px rgba(56, 193, 242, 0.3);
     }
 
     /* Bottom info section */
     .service-card-info {
       height: 35%;
-      background: var(--white);
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(15px);
       border-radius: 0 0 20px 20px;
       padding: 1rem;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      border-top: 1px solid var(--glass-border);
     }
     
     .service-card-info h3 {
@@ -901,16 +1058,65 @@
     }
 
     .about-container {
-      background: rgba(255, 255, 255, 0.1);
+      background: var(--card-bg);
       backdrop-filter: blur(15px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      padding: 3rem 2rem;
+      border: 1px solid var(--glass-border);
+      padding: 4rem 3rem;
       width: calc(70vw + 20vw);
       max-width: 1200px;
       margin: 0 auto;
       border-radius: 25px;
       color: var(--text-black);
       box-shadow: var(--section-shadow);
+      position: relative;
+    }
+
+    .about-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--card-bg);
+      border-radius: 25px;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .about-inner-card {
+      background: var(--inner-card-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      box-shadow: 
+        0 8px 32px rgba(52, 209, 157, 0.1),
+        0 4px 16px rgba(52, 209, 157, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .about-inner-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--inner-card-bg);
+      border-radius: 20px;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .about-inner-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 
+        0 12px 40px rgba(52, 209, 157, 0.15),
+        0 6px 20px rgba(52, 209, 157, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
     }
 
     .about-container h2 {
@@ -937,16 +1143,65 @@
     }
 
     .contact-container {
-      background: rgba(255, 255, 255, 0.1);
+      background: var(--card-bg);
       backdrop-filter: blur(15px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      border: 1px solid var(--glass-border);
       border-radius: 25px;
-      padding: 3rem 2rem;
+      padding: 4rem 3rem;
       box-shadow: var(--section-shadow);
       width: calc(70vw + 20vw);
       max-width: 1200px;
       margin: 0 auto;
       color: var(--text-black);
+      position: relative;
+    }
+
+    .contact-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--card-bg);
+      border-radius: 25px;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .contact-inner-card {
+      background: var(--inner-card-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      box-shadow: 
+        0 8px 32px rgba(52, 209, 157, 0.1),
+        0 4px 16px rgba(52, 209, 157, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .contact-inner-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--inner-card-bg);
+      border-radius: 20px;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .contact-inner-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 
+        0 12px 40px rgba(52, 209, 157, 0.15),
+        0 6px 20px rgba(52, 209, 157, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
     }
 
     .contact-content {
@@ -1282,7 +1537,8 @@
   <section id="services" class="services-section" data-aos="fade-right" data-aos-delay="300">
     <div class="services-container">
       <h2>Our Drone Services</h2>
-      <div class="services">
+      <div class="services-wrapper">
+        <div class="services">
       <div class="card" data-aos="fade-right" data-aos-delay="400">
         <div class="services-card-front">
           <div class="service-image-frame">
@@ -1359,47 +1615,52 @@
           </div>
         </div>
       </div>
+      </div>
     </div>
   </section>
 
   <section class="about-section" id="about" data-aos="fade-right" data-aos-delay="300">
     <div class="about-container">
-      <h2>About Us</h2>
-      <p>
-        At Skyhawk, we believe that advanced drone technology should be accessible to everyone. Our mission is to empower individuals and communities by offering versatile aerial solutions that cater to a wide range of needs—from capturing breathtaking moments and providing detailed surveys to enhancing security and supporting innovative projects. With our state-of-the-art drones and a team of dedicated experts, we ensure that every customer receives personalized service, enabling you to leverage the power of aerial perspectives for any purpose you envision. Join us as we redefine what's possible with drone technology for all.
-      </p>
+      <div class="about-inner-card">
+        <h2>About Us</h2>
+        <p>
+          At Skyhawk, we believe that advanced drone technology should be accessible to everyone. Our mission is to empower individuals and communities by offering versatile aerial solutions that cater to a wide range of needs—from capturing breathtaking moments and providing detailed surveys to enhancing security and supporting innovative projects. With our state-of-the-art drones and a team of dedicated experts, we ensure that every customer receives personalized service, enabling you to leverage the power of aerial perspectives for any purpose you envision. Join us as we redefine what's possible with drone technology for all.
+        </p>
+      </div>
     </div>
   </section>
 
   <section class="cta-section" id="contact" data-aos="fade-right" data-aos-delay="300">
     <div class="contact-container">
-      <h2>Get a Custom Drone Service Quote</h2>
-      <div class="contact-content">
-        <div class="contact-info">
-          <p><b>Contact Us</b></p>
-          <p>Ready to elevate your project with our professional drone services? Get in touch with us today for a personalized quote and consultation.</p>
-          <div class="contact-details">
-            <p><i class="fas fa-phone"></i> +91 1234567890</p>
-            <p><i class="fas fa-envelope"></i> info@skyhawkservices.com</p>
-            <p><i class="fas fa-map-marker-alt"></i> Available across multiple locations</p>
+      <div class="contact-inner-card">
+        <h2>Get a Custom Drone Service Quote</h2>
+        <div class="contact-content">
+          <div class="contact-info">
+            <p><b>Contact Us</b></p>
+            <p>Ready to elevate your project with our professional drone services? Get in touch with us today for a personalized quote and consultation.</p>
+            <div class="contact-details">
+              <p><i class="fas fa-phone"></i> +91 1234567890</p>
+              <p><i class="fas fa-envelope"></i> info@skyhawkservices.com</p>
+              <p><i class="fas fa-map-marker-alt"></i> Available across multiple locations</p>
+            </div>
           </div>
-        </div>
-        <div class="contact-form-wrapper">
-          <form class="contact-form" action="submit_contact.php" method="POST">
-            <label for="contact-name" data-aos="fade-right" data-aos-delay="350" class="contact-section-label">Name</label>
-            <input type="text" id="contact-name" name="name" placeholder="Your Name" required data-aos="fade-right" data-aos-delay="400">
-            
-            <label for="contact-phone" data-aos="fade-right" data-aos-delay="450" class="contact-section-label">Phone Number</label>
-            <input type="tel" id="contact-phone" name="phone" placeholder="Your Phone Number" required data-aos="fade-right" data-aos-delay="500">
-            
-            <label for="contact-email" data-aos="fade-right" data-aos-delay="550" class="contact-section-label">Email</label>
-            <input type="email" id="contact-email" name="email" placeholder="Your Email" required data-aos="fade-right" data-aos-delay="600">
-            
-            <label for="contact-message" data-aos="fade-right" data-aos-delay="650" class="contact-section-label">Message</label>
-            <textarea id="contact-message" name="message" placeholder="Your Message" rows="5" data-aos="fade-right" data-aos-delay="700"></textarea>
-            
-            <button type="submit" data-aos="fade-right" data-aos-delay="750">Send Message</button>
-          </form>
+          <div class="contact-form-wrapper">
+            <form class="contact-form" action="submit_contact.php" method="POST">
+              <label for="contact-name" data-aos="fade-right" data-aos-delay="350" class="contact-section-label">Name</label>
+              <input type="text" id="contact-name" name="name" placeholder="Your Name" required data-aos="fade-right" data-aos-delay="400">
+              
+              <label for="contact-phone" data-aos="fade-right" data-aos-delay="450" class="contact-section-label">Phone Number</label>
+              <input type="tel" id="contact-phone" name="phone" placeholder="Your Phone Number" required data-aos="fade-right" data-aos-delay="500">
+              
+              <label for="contact-email" data-aos="fade-right" data-aos-delay="550" class="contact-section-label">Email</label>
+              <input type="email" id="contact-email" name="email" placeholder="Your Email" required data-aos="fade-right" data-aos-delay="600">
+              
+              <label for="contact-message" data-aos="fade-right" data-aos-delay="650" class="contact-section-label">Message</label>
+              <textarea id="contact-message" name="message" placeholder="Your Message" rows="5" data-aos="fade-right" data-aos-delay="700"></textarea>
+              
+              <button type="submit" data-aos="fade-right" data-aos-delay="750">Send Message</button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
