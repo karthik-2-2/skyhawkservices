@@ -1,0 +1,67 @@
+# Sensitive Configuration Files
+config/db.php
+config/database.php
+*.env
+.env
+
+# Uploaded Files and User Data
+pilot/uploads/*
+user/payment_screenshots/*
+uploads/*
+!uploads/.gitkeep
+
+# Log Files
+*.log
+logs/
+error.log
+access.log
+
+# Temporary Files
+*.tmp
+*.temp
+temp/
+
+# IDE and Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS Generated Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# PHP Specific
+*.cache
+vendor/
+composer.lock
+
+# Backup Files
+*.bak
+*.backup
+*.sql
+
+# Local Development Files
+local_config.php
+test_*.php
+debug.php
+
+# Server Configuration
+.htaccess
+web.config
+
+# Session Files
+sessions/
+
+# Cache Directories
+cache/
+tmp/
+
+# Documentation Build Files
+docs/_build/
