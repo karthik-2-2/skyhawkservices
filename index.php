@@ -398,16 +398,6 @@
         padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1rem, 4vw, 2rem);
       }
 
-      .about-container h2 {
-        font-size: clamp(1.8rem, 6vw, 2.5rem);
-        margin-bottom: clamp(1rem, 3vw, 1.5rem);
-      }
-
-      .about-container p {
-        font-size: clamp(0.9rem, 3.5vw, 1.1rem);
-        line-height: 1.5;
-      }
-
       .cta-section {
         padding: 1rem;
       }
@@ -1424,8 +1414,6 @@
       z-index: 1;
       font-size: clamp(0.9rem, 3vw, 1.1rem);
     }
-      z-index: 1;
-    }
 
     .contact-info {
       display: flex;
@@ -1677,7 +1665,7 @@
     </div>
   </nav>
 
-    <header class="hero-section" data-aos="fade-right" data-aos-delay="200">
+  <header class="hero-section" data-aos="fade-right" data-aos-delay="200">
     <div class="hero-content">
       <div class="hero-inner-card">
         <div class="hero-title-container">
@@ -2065,54 +2053,54 @@
     });
 
     // Contact form clearing functionality
-document.addEventListener('DOMContentLoaded', function() {
-    const contactForm = document.querySelector('.contact-form');
-    
-    if (contactForm) {
-        // Clear form when page loads if coming from WhatsApp redirect
-        if (document.referrer.includes('wa.me') || window.location.search.includes('cleared=1')) {
+    document.addEventListener('DOMContentLoaded', function() {
+      const contactForm = document.querySelector('.contact-form');
+      
+      if (contactForm) {
+          // Clear form when page loads if coming from WhatsApp redirect
+          if (document.referrer.includes('wa.me') || window.location.search.includes('cleared=1')) {
+              contactForm.reset();
+              // Remove any URL parameters
+              if (window.history.replaceState) {
+                  window.history.replaceState({}, document.title, window.location.pathname);
+              }
+          }
+
+          // Clear form data when form is submitted
+          contactForm.addEventListener('submit', function() {
+              // Small delay to ensure form submission completes
+              setTimeout(() => {
+                  this.reset();
+                  // Clear any stored form data
+                  localStorage.removeItem('contactFormData');
+                  sessionStorage.removeItem('contactFormData');
+              }, 100);
+          });
+
+          // Store form data on input (for recovery if needed)
+          const formInputs = contactForm.querySelectorAll('input, textarea');
+          formInputs.forEach(input => {
+              input.addEventListener('input', function() {
+                  const formData = new FormData(contactForm);
+                  const formObject = {};
+                  formData.forEach((value, key) => {
+                      formObject[key] = value;
+                  });
+                  localStorage.setItem('contactFormData', JSON.stringify(formObject));
+              });
+          });
+      }
+    });
+
+    // Clear form when navigating back from WhatsApp
+    window.addEventListener('pageshow', function(event) {
+        const contactForm = document.querySelector('.contact-form');
+        if (contactForm && (event.persisted || document.referrer.includes('wa.me'))) {
             contactForm.reset();
-            // Remove any URL parameters
-            if (window.history.replaceState) {
-                window.history.replaceState({}, document.title, window.location.pathname);
-            }
+            localStorage.removeItem('contactFormData');
+            sessionStorage.removeItem('contactFormData');
         }
-
-        // Clear form data when form is submitted
-        contactForm.addEventListener('submit', function() {
-            // Small delay to ensure form submission completes
-            setTimeout(() => {
-                this.reset();
-                // Clear any stored form data
-                localStorage.removeItem('contactFormData');
-                sessionStorage.removeItem('contactFormData');
-            }, 100);
-        });
-
-        // Store form data on input (for recovery if needed)
-        const formInputs = contactForm.querySelectorAll('input, textarea');
-        formInputs.forEach(input => {
-            input.addEventListener('input', function() {
-                const formData = new FormData(contactForm);
-                const formObject = {};
-                formData.forEach((value, key) => {
-                    formObject[key] = value;
-                });
-                localStorage.setItem('contactFormData', JSON.stringify(formObject));
-            });
-        });
-    }
-});
-
-// Clear form when navigating back from WhatsApp
-window.addEventListener('pageshow', function(event) {
-    const contactForm = document.querySelector('.contact-form');
-    if (contactForm && (event.persisted || document.referrer.includes('wa.me'))) {
-        contactForm.reset();
-        localStorage.removeItem('contactFormData');
-        sessionStorage.removeItem('contactFormData');
-    }
-});
+    });
   </script>
 </body>
 </html>
