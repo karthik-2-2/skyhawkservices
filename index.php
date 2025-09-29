@@ -528,9 +528,9 @@
       backdrop-filter: blur(15px);
       border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 25px;
-      padding: 4rem 4rem;
+      padding: clamp(2rem, 6vw, 4rem) clamp(1rem, 4vw, 4rem);
       box-shadow: var(--section-shadow);
-      width: calc(70vw + 20vw);
+      width: clamp(95vw, 90vw, calc(70vw + 20vw));
       max-width: 1200px;
       min-height: 400px;
       position: relative;
@@ -556,7 +556,7 @@
       backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.3);
       border-radius: 20px;
-      padding: 2.5rem 2rem;
+      padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1rem, 4vw, 2rem);
       box-shadow: 
         0 8px 32px rgba(0, 0, 0, 0.1),
         0 4px 16px rgba(0, 0, 0, 0.05),
@@ -839,9 +839,9 @@
       backdrop-filter: blur(15px);
       border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 25px;
-      padding: 4rem 4rem;
+      padding: clamp(2rem, 6vw, 4rem) clamp(1rem, 4vw, 4rem);
       box-shadow: var(--section-shadow);
-      width: calc(70vw + 20vw);
+      width: clamp(95vw, 90vw, calc(70vw + 20vw));
       max-width: 1200px;
       position: relative;
       z-index: 2;
@@ -875,7 +875,7 @@
       backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.3);
       border-radius: 20px;
-      padding: 2.5rem 2rem;
+      padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1rem, 4vw, 2rem);
       box-shadow: 
         0 8px 32px rgba(0, 0, 0, 0.1),
         0 4px 16px rgba(0, 0, 0, 0.05),
@@ -1206,9 +1206,9 @@
       backdrop-filter: blur(15px);
       border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 25px;
-      padding: 4rem 4rem;
+      padding: clamp(2rem, 6vw, 4rem) clamp(1rem, 4vw, 4rem);
       box-shadow: var(--section-shadow);
-      width: calc(70vw + 20vw);
+      width: clamp(95vw, 90vw, calc(70vw + 20vw));
       max-width: 1200px;
       position: relative;
       z-index: 2;
@@ -1233,7 +1233,7 @@
       backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.3);
       border-radius: 20px;
-      padding: 2.5rem 2rem;
+      padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1rem, 4vw, 2rem);
       box-shadow: 
         0 8px 32px rgba(0, 0, 0, 0.1),
         0 4px 16px rgba(0, 0, 0, 0.05),
@@ -1295,9 +1295,9 @@
       backdrop-filter: blur(15px);
       border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 25px;
-      padding: 4rem 4rem;
+      padding: clamp(2rem, 6vw, 4rem) clamp(1rem, 4vw, 4rem);
       box-shadow: var(--section-shadow);
-      width: calc(70vw + 20vw);
+      width: clamp(95vw, 90vw, calc(70vw + 20vw));
       max-width: 1200px;
       position: relative;
       z-index: 2;
@@ -1322,7 +1322,7 @@
       backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.3);
       border-radius: 20px;
-      padding: 2.5rem 2rem;
+      padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1rem, 4vw, 2rem);
       box-shadow: 
         0 8px 32px rgba(0, 0, 0, 0.1),
         0 4px 16px rgba(0, 0, 0, 0.05),
