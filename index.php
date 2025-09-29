@@ -211,14 +211,20 @@
         margin-bottom: 1rem;
       }
 
+      .hero-text-wrapper {
+        min-height: clamp(120px, 20vh, 180px);
+      }
+
       #hero-line1 {
         font-size: clamp(18px, 6vw, 50px);
-        min-height: 40px;
+        min-height: clamp(25px, 6vh, 40px);
+        height: clamp(25px, 6vh, 40px);
       }
 
       #hero-line2 {
         font-size: clamp(30px, 10vw, 80px);
-        min-height: 80px;
+        min-height: clamp(60px, 12vh, 80px);
+        height: clamp(60px, 12vh, 80px);
         background: linear-gradient(180deg, #34d19d 0%, #34d19d 45%, #38c1f2 55%, #38c1f2 100%);
         background-size: 100% 200%;
         -webkit-background-clip: text;
@@ -237,10 +243,25 @@
         }
       }
 
+      .hero-content {
+        width: 98vw;
+        max-width: none;
+        padding: clamp(2rem, 6vw, 3rem) clamp(1rem, 4vw, 2rem);
+      }
+
+      .hero-inner-card {
+        padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1rem, 4vw, 2rem);
+      }
+
       .hero-content p {
         font-size: clamp(14px, 4vw, 18px);
         margin-bottom: 1.5rem;
-        padding: 0 1rem;
+        padding: 0;
+      }
+
+      .cta-btn {
+        padding: clamp(0.8rem, 3vw, 1.2rem) clamp(1.8rem, 6vw, 2.5rem);
+        font-size: clamp(0.9rem, 3.5vw, 1.1rem);
       }
 
       .menu-toggle {
@@ -286,62 +307,120 @@
       }
 
       .services-section {
-        padding: 3rem 1rem;
+        padding: 2rem 0.5rem;
       }
 
       .services-container {
-        width: 95vw;
-        padding: 2rem 1rem;
+        width: 98vw;
+        max-width: none;
+        padding: 1.5rem 0.5rem;
       }
 
       .services-wrapper {
-        padding: 1rem;
-      }
-
-      .services {
-        gap: 1rem;
-        padding: 0.5rem 0;
-      }
-
-      .card {
-        width: 280px;
-        height: 420px;
-        flex-shrink: 0;
-      }
-
-      .service-image-frame {
-        padding: 15px;
-      }
-
-      .service-card-info {
         padding: 0.8rem;
       }
 
+      .services {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 0.8rem;
+        padding: 0;
+        overflow: visible;
+        justify-items: center;
+      }
+
+      .card {
+        width: clamp(140px, 45vw, 180px);
+        height: clamp(200px, 50vw, 260px);
+        flex-shrink: 0;
+        margin: 0;
+      }
+
+      .service-image-frame {
+        padding: clamp(8px, 3vw, 12px);
+        height: 60%;
+      }
+
+      .service-image-frame img {
+        width: 85%;
+        height: 85%;
+        padding: clamp(4px, 2vw, 8px);
+      }
+
+      .service-card-info {
+        padding: clamp(0.4rem, 2vw, 0.6rem);
+        height: 40%;
+      }
+
+      .service-card-info h3 {
+        font-size: clamp(0.7rem, 3vw, 0.9rem);
+        margin: 0 0 clamp(4px, 1vw, 8px) 0;
+      }
+
+      .service-card-info .specs {
+        font-size: clamp(0.6rem, 2.5vw, 0.75rem);
+        line-height: 1.3;
+      }
+
+      .coming-soon {
+        font-size: clamp(0.65rem, 2.5vw, 0.8rem);
+        margin-top: clamp(2px, 1vw, 4px);
+      }
+
+      .services-card-back {
+        padding: clamp(1rem, 4vw, 1.5rem);
+      }
+
+      .service-card-content p {
+        font-size: clamp(0.7rem, 3vw, 0.9rem);
+        margin-bottom: clamp(0.8rem, 3vw, 1rem);
+        line-height: 1.4;
+      }
+
+      .book-btn {
+        padding: clamp(0.4rem, 2vw, 0.6rem) clamp(0.8rem, 3vw, 1.2rem);
+        font-size: clamp(0.7rem, 2.5vw, 0.85rem);
+        border-radius: 20px;
+      }
+
       .about-section {
-        padding: 3rem 1rem;
-        margin: 0 1rem 2rem 1rem;
+        padding: 2rem 0.5rem;
+        margin: 0 0.5rem 1.5rem 0.5rem;
       }
 
       .about-container {
-        width: 95vw;
-        padding: 2rem 1rem;
+        width: 98vw;
+        max-width: none;
+        padding: 1.5rem 0.8rem;
       }
 
       .about-inner-card {
-        padding: 2rem 1.5rem;
+        padding: clamp(1.2rem, 4vw, 1.8rem) clamp(1rem, 3vw, 1.5rem);
+      }
+
+      .about-container h2 {
+        font-size: clamp(1.8rem, 6vw, 2.5rem);
+        margin-bottom: clamp(1rem, 3vw, 1.5rem);
+      }
+
+      .about-container p {
+        font-size: clamp(0.9rem, 3.5vw, 1.1rem);
+        line-height: 1.5;
       }
 
       .cta-section {
-        padding: 2rem 1rem;
+        padding: 2rem 0.5rem;
       }
 
       .contact-container {
-        width: 95vw;
-        padding: 2rem 1rem;
+        width: 98vw;
+        max-width: none;
+        padding: 1.5rem 0.8rem;
       }
 
       .contact-inner-card {
-        padding: 2rem 1.5rem;
+        padding: clamp(1.2rem, 4vw, 1.8rem) clamp(1rem, 3vw, 1.5rem);
       }
 
       .cta-section h2 {
@@ -381,6 +460,63 @@
       .contact-form button {
         padding: 0.8rem 1.5rem;
         font-size: 0.9rem;
+      }
+    }
+
+    /* Extra small screens (phones) */
+    @media (max-width: 480px) {
+      .services-container {
+        width: 99vw;
+        padding: 1rem 0.3rem;
+      }
+
+      .services-wrapper {
+        padding: 0.5rem;
+      }
+
+      .services {
+        gap: 0.6rem;
+      }
+
+      .card {
+        width: clamp(130px, 42vw, 160px);
+        height: clamp(180px, 45vw, 220px);
+      }
+
+      .service-image-frame {
+        padding: clamp(6px, 2vw, 10px);
+      }
+
+      .service-card-info {
+        padding: clamp(0.3rem, 1.5vw, 0.5rem);
+      }
+
+      .service-card-info h3 {
+        font-size: clamp(0.6rem, 2.5vw, 0.8rem);
+      }
+
+      .service-card-info .specs {
+        font-size: clamp(0.55rem, 2vw, 0.7rem);
+      }
+
+      .hero-content {
+        width: 99vw;
+        padding: clamp(1.5rem, 5vw, 2.5rem) clamp(0.8rem, 3vw, 1.5rem);
+      }
+
+      .hero-inner-card {
+        padding: clamp(1.2rem, 4vw, 2rem) clamp(0.8rem, 3vw, 1.5rem);
+      }
+
+      .about-container,
+      .contact-container {
+        width: 99vw;
+        padding: 1.2rem 0.5rem;
+      }
+
+      .about-inner-card,
+      .contact-inner-card {
+        padding: clamp(1rem, 3vw, 1.5rem) clamp(0.8rem, 2.5vw, 1.2rem);
       }
     }
 
@@ -536,7 +672,7 @@
     }
 
     .hero-text-wrapper {
-      min-height: 220px;
+      min-height: clamp(180px, 25vh, 220px);
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -545,18 +681,18 @@
     }
 
     #hero-line1 {
-      font-size: clamp(32px, 10vw, 64px);
+      font-size: clamp(24px, 8vw, 64px);
       font-weight: 600;
-      min-height: 60px;
-      height: 60px;
+      min-height: clamp(35px, 8vh, 60px);
+      height: clamp(35px, 8vh, 60px);
       display: block;
     }
 
     #hero-line2 {
-      font-size: clamp(48px, 14vw, 120px);
+      font-size: clamp(32px, 12vw, 120px);
       font-weight: 700;
-      min-height: 140px;
-      height: 140px;
+      min-height: clamp(80px, 15vh, 140px);
+      height: clamp(80px, 15vh, 140px);
       display: block;
       background: linear-gradient(180deg, #34d19d 0%, #34d19d 45%, #38c1f2 55%, #38c1f2 100%);
       background-size: 100% 200%;
@@ -733,7 +869,7 @@
     .services-section h2 {
       text-align: center;
       margin-bottom: 3rem;
-      font-size: 3rem;
+      font-size: clamp(2rem, 6vw, 3rem);
       color: var(--text-black);
       animation: fadeInDown 1s ease forwards;
       position: relative;
@@ -771,10 +907,11 @@
       display: flex;
       gap: 2rem;
       overflow-x: auto;
-      padding: 1rem 0;
+      padding: 1rem 2rem;
       scroll-behavior: smooth;
       scrollbar-width: thin;
       scrollbar-color: var(--primary-green) transparent;
+      justify-content: center;
     }
 
     .services::-webkit-scrollbar {
