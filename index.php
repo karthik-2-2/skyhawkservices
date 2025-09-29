@@ -1355,21 +1355,45 @@
     .contact-content {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 2rem;
-      align-items: start;
+      gap: 3rem;
+      align-items: center;
+      min-height: 500px;
     }
 
     @media (min-width: 992px) {
       .contact-content {
         grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+      }
+      
+      .contact-form-wrapper {
+        order: 1;
       }
       
       .contact-info {
-        padding-right: 1rem;
+        order: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+      }
+    }
+
+    @media (max-width: 991px) {
+      .contact-content {
+        grid-template-columns: 1fr;
+        text-align: center;
       }
       
-      .contact-form {
-        padding-left: 1rem;
+      .contact-form-wrapper {
+        order: 2;
+      }
+      
+      .contact-info {
+        order: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
     }
 
@@ -1379,24 +1403,141 @@
       gap: 1rem;
     }
 
-    .contact-details {
-      margin-top: 2rem;
+    .contact-hero-content {
+      text-align: left;
     }
 
-    .contact-details p {
-      margin: 1rem 0;
+    .contact-hero-content h2 {
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      font-weight: 700;
+      color: var(--text-black);
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, var(--primary-green), var(--primary-blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.2;
+    }
+
+    .contact-subtitle {
+      font-size: clamp(1rem, 3vw, 1.3rem);
+      color: var(--text-grey);
+      line-height: 1.6;
+      margin-bottom: 2rem;
+      font-weight: 500;
+    }
+
+    .contact-details-modern {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .contact-item {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      font-size: clamp(0.9rem, 3vw, 1.1rem);
+      gap: 1rem;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
     }
 
-    .contact-details i {
-      color: var(--primary-green);
-      font-size: clamp(1rem, 3vw, 1.2rem);
-      width: clamp(16px, 4vw, 20px);
+    .contact-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(52, 209, 157, 0.2);
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .contact-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--primary-green), var(--primary-blue));
+      border-radius: 50%;
+      color: white;
+      font-size: 1.2rem;
       flex-shrink: 0;
     }
+
+    .contact-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .contact-label {
+      font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+      font-weight: 600;
+      color: var(--text-black);
+    }
+
+    .contact-value {
+      font-size: clamp(0.85rem, 2.5vw, 1rem);
+      color: var(--text-grey);
+      font-weight: 500;
+    }
+
+    .contact-cta {
+      margin-top: 1rem;
+    }
+
+    .cta-highlight {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.5rem;
+      background: linear-gradient(135deg, var(--primary-green), var(--primary-blue));
+      border-radius: 20px;
+      color: white;
+      font-weight: 700;
+      font-size: clamp(1rem, 3vw, 1.2rem);
+      text-align: center;
+      box-shadow: 0 8px 25px rgba(52, 209, 157, 0.3);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .cta-highlight:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 12px 35px rgba(52, 209, 157, 0.4);
+    }
+
+    .cta-highlight i {
+      font-size: 1.5rem;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .cta-text {
+      flex: 1;
+    }
+
+    @media (max-width: 991px) {
+      .contact-hero-content {
+        text-align: center;
+      }
+      
+      .contact-details-modern {
+        align-items: center;
+      }
+      
+      .contact-item {
+        max-width: 400px;
+        width: 100%;
+      }
+      
+      .cta-highlight {
+        max-width: 300px;
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+
 
     .contact-inner-card h2 {
       margin-bottom: 1.5rem;
@@ -1428,18 +1569,7 @@
       z-index: 1;
     }
 
-    .contact-info p {
-      margin: 0;
-      animation: slideInLeft 1s ease forwards;
-      animation-delay: calc(0.2s * var(--i));
-    }
 
-    .contact-info i {
-      margin-right: 0.5rem;
-      color: var(--white);
-      animation: bounceIn 1s ease forwards;
-      animation-delay: calc(0.2s * var(--i));
-    }
 
     .contact-form {
       max-width: 100%;
@@ -1786,17 +1916,7 @@
   <section class="cta-section" id="contact" data-aos="fade-right" data-aos-delay="300">
     <div class="contact-container">
       <div class="contact-inner-card">
-        <h2>Get a Custom Drone Service Quote</h2>
         <div class="contact-content">
-          <div class="contact-info">
-            <p><b>Contact Us</b></p>
-            <p>Ready to elevate your project with our professional drone services? Get in touch with us today for a personalized quote and consultation.</p>
-            <div class="contact-details">
-              <p><i class="fas fa-phone"></i> +91 1234567890</p>
-              <p><i class="fas fa-envelope"></i> info@skyhawkservices.com</p>
-              <p><i class="fas fa-map-marker-alt"></i> Available across multiple locations</p>
-            </div>
-          </div>
           <div class="contact-form-wrapper">
             <form class="contact-form" action="submit_contact.php" method="POST">
               <label for="contact-name" data-aos="fade-right" data-aos-delay="350" class="contact-section-label">Name</label>
@@ -1813,6 +1933,43 @@
               
               <button type="submit" data-aos="fade-right" data-aos-delay="750">Send Message</button>
             </form>
+          </div>
+          <div class="contact-info">
+            <div class="contact-hero-content">
+              <h2 data-aos="fade-left" data-aos-delay="200">🚀 Let's Elevate Your Project</h2>
+              <p class="contact-subtitle" data-aos="fade-left" data-aos-delay="300">
+                Our expert drone services are tailored to bring your vision to life. Whether you need aerial photography, surveying, or custom solutions — we're here to help.
+              </p>
+              
+              <div class="contact-details-modern">
+                <div class="contact-item" data-aos="fade-left" data-aos-delay="400">
+                  <div class="contact-icon">
+                    <i class="fas fa-envelope"></i>
+                  </div>
+                  <div class="contact-text">
+                    <span class="contact-label">📩 Email Us:</span>
+                    <span class="contact-value">skyhawkservice@gmail.com</span>
+                  </div>
+                </div>
+                
+                <div class="contact-item" data-aos="fade-left" data-aos-delay="500">
+                  <div class="contact-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                  </div>
+                  <div class="contact-text">
+                    <span class="contact-label">📍 Available Nationwide:</span>
+                    <span class="contact-value">Multiple Locations</span>
+                  </div>
+                </div>
+                
+                <div class="contact-cta" data-aos="fade-left" data-aos-delay="600">
+                  <div class="cta-highlight">
+                    <i class="fas fa-check-circle"></i>
+                    <span class="cta-text">✅ Request a Free Quote</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
