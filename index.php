@@ -307,17 +307,17 @@
       }
 
       .services-section {
-        padding: 2rem 0.5rem;
+        padding: 1rem;
       }
 
       .services-container {
         width: 98vw;
         max-width: none;
-        padding: 1.5rem 0.5rem;
+        padding: clamp(2rem, 6vw, 3rem) clamp(1rem, 4vw, 2rem);
       }
 
       .services-wrapper {
-        padding: 0.8rem;
+        padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1rem, 4vw, 2rem);
       }
 
       .services {
@@ -385,18 +385,17 @@
       }
 
       .about-section {
-        padding: 2rem 0.5rem;
-        margin: 0 0.5rem 1.5rem 0.5rem;
+        padding: 1rem;
       }
 
       .about-container {
         width: 98vw;
         max-width: none;
-        padding: 1.5rem 0.8rem;
+        padding: clamp(2rem, 6vw, 3rem) clamp(1rem, 4vw, 2rem);
       }
 
       .about-inner-card {
-        padding: clamp(1.2rem, 4vw, 1.8rem) clamp(1rem, 3vw, 1.5rem);
+        padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1rem, 4vw, 2rem);
       }
 
       .about-container h2 {
@@ -410,17 +409,17 @@
       }
 
       .cta-section {
-        padding: 2rem 0.5rem;
+        padding: 1rem;
       }
 
       .contact-container {
         width: 98vw;
         max-width: none;
-        padding: 1.5rem 0.8rem;
+        padding: clamp(2rem, 6vw, 3rem) clamp(1rem, 4vw, 2rem);
       }
 
       .contact-inner-card {
-        padding: clamp(1.2rem, 4vw, 1.8rem) clamp(1rem, 3vw, 1.5rem);
+        padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1rem, 4vw, 2rem);
       }
 
       .cta-section h2 {
@@ -467,11 +466,11 @@
     @media (max-width: 480px) {
       .services-container {
         width: 99vw;
-        padding: 1rem 0.3rem;
+        padding: clamp(1.5rem, 5vw, 2.5rem) clamp(0.8rem, 3vw, 1.5rem);
       }
 
       .services-wrapper {
-        padding: 0.5rem;
+        padding: clamp(1.2rem, 4vw, 2rem) clamp(0.8rem, 3vw, 1.5rem);
       }
 
       .services {
@@ -511,12 +510,12 @@
       .about-container,
       .contact-container {
         width: 99vw;
-        padding: 1.2rem 0.5rem;
+        padding: clamp(1.5rem, 5vw, 2.5rem) clamp(0.8rem, 3vw, 1.5rem);
       }
 
       .about-inner-card,
       .contact-inner-card {
-        padding: clamp(1rem, 3vw, 1.5rem) clamp(0.8rem, 2.5vw, 1.2rem);
+        padding: clamp(1.2rem, 4vw, 2rem) clamp(0.8rem, 3vw, 1.5rem);
       }
     }
 
@@ -836,21 +835,26 @@
     }
 
     .services-section {
-      padding: 5rem 2rem;
+      padding: 2rem;
       position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
     }
 
     .services-container {
-      background: var(--card-bg);
+      background: rgba(255, 255, 255, 0.2);
       backdrop-filter: blur(15px);
-      border: 1px solid var(--glass-border);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 25px;
-      padding: 4rem 2rem;
+      padding: 4rem 4rem;
       box-shadow: var(--section-shadow);
       width: calc(70vw + 20vw);
-      max-width: 1400px;
-      margin: 0 auto;
+      max-width: 1200px;
       position: relative;
+      z-index: 2;
     }
 
     .services-container::before {
@@ -860,7 +864,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: var(--card-bg);
+      background: rgba(255, 255, 255, 0.2);
       border-radius: 25px;
       pointer-events: none;
       z-index: -1;
@@ -877,17 +881,17 @@
     }
 
     .services-wrapper {
-      position: relative;
-      overflow: hidden;
-      border-radius: 20px;
-      background: var(--inner-card-bg);
+      background: rgba(255, 255, 255, 0.25);
       backdrop-filter: blur(20px);
-      border: 1px solid var(--glass-border);
-      padding: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
       box-shadow: 
-        0 8px 32px rgba(52, 209, 157, 0.1),
-        0 4px 16px rgba(52, 209, 157, 0.05),
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        0 4px 16px rgba(0, 0, 0, 0.05),
         inset 0 1px 0 rgba(255, 255, 255, 0.4);
+      position: relative;
+      transition: all 0.3s ease;
     }
 
     .services-wrapper::before {
@@ -897,10 +901,18 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: var(--inner-card-bg);
+      background: rgba(255, 255, 255, 0.15);
       border-radius: 20px;
       pointer-events: none;
       z-index: -1;
+    }
+
+    .services-wrapper:hover {
+      transform: translateY(-2px);
+      box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.15),
+        0 6px 20px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
     }
 
     .services {
@@ -1190,22 +1202,27 @@
     }
 
     .about-section {
-      padding: 5rem 2rem;
-      margin: 0 auto 4rem auto;
+      padding: 2rem;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
     }
 
     .about-container {
-      background: var(--card-bg);
+      background: rgba(255, 255, 255, 0.2);
       backdrop-filter: blur(15px);
-      border: 1px solid var(--glass-border);
-      padding: 4rem 3rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 25px;
+      padding: 4rem 4rem;
+      box-shadow: var(--section-shadow);
       width: calc(70vw + 20vw);
       max-width: 1200px;
-      margin: 0 auto;
-      border-radius: 25px;
-      color: var(--text-black);
-      box-shadow: var(--section-shadow);
       position: relative;
+      z-index: 2;
+      color: var(--text-black);
     }
 
     .about-container::before {
@@ -1215,21 +1232,21 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: var(--card-bg);
+      background: rgba(255, 255, 255, 0.2);
       border-radius: 25px;
       pointer-events: none;
       z-index: -1;
     }
 
     .about-inner-card {
-      background: var(--inner-card-bg);
+      background: rgba(255, 255, 255, 0.25);
       backdrop-filter: blur(20px);
-      border: 1px solid var(--glass-border);
+      border: 1px solid rgba(255, 255, 255, 0.3);
       border-radius: 20px;
       padding: 2.5rem 2rem;
       box-shadow: 
-        0 8px 32px rgba(52, 209, 157, 0.1),
-        0 4px 16px rgba(52, 209, 157, 0.05),
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        0 4px 16px rgba(0, 0, 0, 0.05),
         inset 0 1px 0 rgba(255, 255, 255, 0.4);
       position: relative;
       transition: all 0.3s ease;
@@ -1242,7 +1259,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: var(--inner-card-bg);
+      background: rgba(255, 255, 255, 0.15);
       border-radius: 20px;
       pointer-events: none;
       z-index: -1;
@@ -1251,8 +1268,8 @@
     .about-inner-card:hover {
       transform: translateY(-2px);
       box-shadow: 
-        0 12px 40px rgba(52, 209, 157, 0.15),
-        0 6px 20px rgba(52, 209, 157, 0.1),
+        0 12px 40px rgba(0, 0, 0, 0.15),
+        0 6px 20px rgba(0, 0, 0, 0.1),
         inset 0 1px 0 rgba(255, 255, 255, 0.5);
     }
 
@@ -1274,23 +1291,27 @@
     }
 
     .cta-section {
-      padding: 5rem 2rem;
+      padding: 2rem;
       text-align: center;
       position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
 
     .contact-container {
-      background: var(--card-bg);
+      background: rgba(255, 255, 255, 0.2);
       backdrop-filter: blur(15px);
-      border: 1px solid var(--glass-border);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 25px;
-      padding: 4rem 3rem;
+      padding: 4rem 4rem;
       box-shadow: var(--section-shadow);
       width: calc(70vw + 20vw);
       max-width: 1200px;
-      margin: 0 auto;
-      color: var(--text-black);
       position: relative;
+      z-index: 2;
+      color: var(--text-black);
     }
 
     .contact-container::before {
@@ -1300,21 +1321,21 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: var(--card-bg);
+      background: rgba(255, 255, 255, 0.2);
       border-radius: 25px;
       pointer-events: none;
       z-index: -1;
     }
 
     .contact-inner-card {
-      background: var(--inner-card-bg);
+      background: rgba(255, 255, 255, 0.25);
       backdrop-filter: blur(20px);
-      border: 1px solid var(--glass-border);
+      border: 1px solid rgba(255, 255, 255, 0.3);
       border-radius: 20px;
       padding: 2.5rem 2rem;
       box-shadow: 
-        0 8px 32px rgba(52, 209, 157, 0.1),
-        0 4px 16px rgba(52, 209, 157, 0.05),
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        0 4px 16px rgba(0, 0, 0, 0.05),
         inset 0 1px 0 rgba(255, 255, 255, 0.4);
       position: relative;
       transition: all 0.3s ease;
@@ -1327,7 +1348,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: var(--inner-card-bg);
+      background: rgba(255, 255, 255, 0.15);
       border-radius: 20px;
       pointer-events: none;
       z-index: -1;
@@ -1336,8 +1357,8 @@
     .contact-inner-card:hover {
       transform: translateY(-2px);
       box-shadow: 
-        0 12px 40px rgba(52, 209, 157, 0.15),
-        0 6px 20px rgba(52, 209, 157, 0.1),
+        0 12px 40px rgba(0, 0, 0, 0.15),
+        0 6px 20px rgba(0, 0, 0, 0.1),
         inset 0 1px 0 rgba(255, 255, 255, 0.5);
     }
 
