@@ -1273,19 +1273,19 @@
         inset 0 1px 0 rgba(255, 255, 255, 0.5);
     }
 
-    .about-container h2 {
+    .about-inner-card h2 {
       text-align: center;
       margin-bottom: 1.5rem;
       color: var(--text-black);
-      font-size: 3rem;
+      font-size: clamp(2rem, 6vw, 3rem);
       animation: fadeInDown 1s ease forwards;
     }
 
-    .about-container p {
-      font-size: 1.2rem;
+    .about-inner-card p {
+      font-size: clamp(1rem, 3vw, 1.2rem);
       line-height: 1.6;
       text-align: center;
-      max-width: 700px;
+      max-width: 100%;
       margin: 0 auto;
       animation: fadeInUp 1s ease forwards 0.3s;
     }
@@ -1398,28 +1398,31 @@
       display: flex;
       align-items: center;
       gap: 0.5rem;
+      font-size: clamp(0.9rem, 3vw, 1.1rem);
     }
 
     .contact-details i {
       color: var(--primary-green);
-      font-size: 1.2rem;
-      width: 20px;
+      font-size: clamp(1rem, 3vw, 1.2rem);
+      width: clamp(16px, 4vw, 20px);
+      flex-shrink: 0;
     }
 
-    .contact-container h2 {
+    .contact-inner-card h2 {
       margin-bottom: 1.5rem;
       animation: fadeInDown 1s ease forwards;
       color: var(--text-black);
-      font-size: 2.5rem;
+      font-size: clamp(1.8rem, 5vw, 2.5rem);
       position: relative;
       z-index: 1;
     }
 
-    .contact-container p {
+    .contact-inner-card p {
       animation: fadeInUp 1s ease forwards 0.3s;
       color: var(--text-black);
       position: relative;
       z-index: 1;
+      font-size: clamp(0.9rem, 3vw, 1.1rem);
     }
       z-index: 1;
     }
@@ -1463,20 +1466,22 @@
       margin-bottom: 0.5rem;
       font-weight: bold; 
       color: var(--text-black);
+      font-size: clamp(0.9rem, 3vw, 1rem);
     }
 
     .contact-form input,
     .contact-form textarea {
       width: 100%;
-      padding: 1rem;
+      padding: clamp(0.8rem, 3vw, 1rem);
       margin-bottom: 1rem;
       border: 2px solid rgba(102,102,102,0.3);
       border-radius: 15px;
       background: rgba(255,255,255,0.9);
       color: var(--text-black);
-      font-size: 1rem;
+      font-size: clamp(0.9rem, 3vw, 1rem);
       resize: vertical;
       transition: all 0.3s ease;
+      box-sizing: border-box;
     }
 
     .contact-form input:focus,
@@ -1501,14 +1506,16 @@
     .contact-form button {
       background: var(--white);
       color: var(--text-black);
-      padding: 1rem 2rem;
+      padding: clamp(0.8rem, 3vw, 1rem) clamp(1.5rem, 5vw, 2rem);
       border: none;
       border-radius: 25px;
       font-weight: 700;
-      font-size: 1.1rem;
+      font-size: clamp(1rem, 3vw, 1.1rem);
       cursor: pointer;
       transition: all 0.3s ease;
       box-shadow: var(--button-shadow);
+      width: 100%;
+      max-width: 200px;
     }
 
     .contact-form button:hover {
@@ -1694,8 +1701,8 @@
 
   <section id="services" class="services-section" data-aos="fade-right" data-aos-delay="300">
     <div class="services-container">
-      <h2>Our Drone Services</h2>
       <div class="services-wrapper">
+        <h2>Our Drone Services</h2>
         <div class="services">
       <div class="card" data-aos="fade-right" data-aos-delay="400">
         <div class="services-card-front">
