@@ -467,12 +467,22 @@
       }
 
       .services {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
         gap: 0.6rem;
+        padding: 0;
+        overflow: visible;
+        justify-items: center;
+        align-items: start;
+        width: 95%;
+        margin: 0 auto;
       }
 
       .card {
         width: clamp(130px, 42vw, 160px);
         height: clamp(180px, 45vw, 220px);
+        margin: 0;
       }
 
       .service-image-frame {
