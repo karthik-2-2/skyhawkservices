@@ -320,71 +320,76 @@
         padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1rem, 4vw, 2rem);
       }
 
+      .services-wrapper h2 {
+        font-size: clamp(1.5rem, 5vw, 2.2rem) !important;
+        margin-bottom: clamp(1.5rem, 4vw, 2rem) !important;
+      }
+
       .services {
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr 1fr;
-        gap: clamp(0.6rem, 2.5vw, 1rem);
+        gap: clamp(0.8rem, 3vw, 1.2rem);
         padding: 0;
         overflow: visible;
         justify-items: center;
         align-items: start;
-        width: 95%;
+        width: 100%;
         margin: 0 auto;
       }
 
       .card {
-        width: clamp(135px, 40vw, 165px);
-        height: clamp(170px, 42vw, 210px);
+        width: clamp(140px, 43vw, 170px);
+        height: clamp(180px, 45vw, 220px);
         margin: 0;
       }
 
       .service-image-frame {
-        padding: clamp(6px, 2vw, 10px);
-        height: 58%;
+        padding: 8px;
+        height: 60%;
       }
 
       .service-image-frame img {
-        width: clamp(80%, 18vw, 90%);
-        height: clamp(80%, 18vw, 90%);
-        padding: clamp(3px, 1.2vw, 6px);
+        width: 85%;
+        height: 85%;
+        padding: 6px;
       }
 
       .service-card-info {
-        padding: clamp(0.3rem, 1.5vw, 0.5rem);
-        height: 42%;
+        padding: 0.4rem;
+        height: 40%;
       }
 
       .service-card-info h3 {
-        font-size: clamp(0.6rem, 2.4vw, 0.8rem);
-        margin: 0 0 clamp(2px, 0.5vw, 3px) 0;
-        line-height: 1.2;
+        font-size: 0.75rem;
+        margin: 0 0 3px 0;
+        line-height: 1.1;
       }
 
       .service-card-info .specs {
-        font-size: clamp(0.5rem, 2vw, 0.65rem);
+        font-size: 0.6rem;
         line-height: 1.2;
       }
 
       .coming-soon {
-        font-size: clamp(0.55rem, 2vw, 0.7rem);
-        margin-top: clamp(2px, 0.5vw, 3px);
+        font-size: 0.65rem;
+        margin-top: 3px;
       }
 
       .services-card-back {
-        padding: clamp(0.8rem, 3vw, 1.2rem);
+        padding: 1rem;
       }
 
       .service-card-content p {
-        font-size: clamp(0.6rem, 2.5vw, 0.8rem);
-        margin-bottom: clamp(0.6rem, 2.5vw, 0.8rem);
+        font-size: 0.7rem;
+        margin-bottom: 0.8rem;
         line-height: 1.3;
       }
 
       .book-btn {
-        padding: clamp(0.3rem, 1.5vw, 0.5rem) clamp(0.6rem, 2.5vw, 1rem);
-        font-size: clamp(0.6rem, 2vw, 0.75rem);
-        border-radius: 15px;
+        padding: 0.4rem 0.8rem;
+        font-size: 0.65rem;
+        border-radius: 12px;
       }
 
       .about-section {
@@ -466,47 +471,68 @@
         padding: clamp(1.2rem, 4vw, 2rem) clamp(0.8rem, 3vw, 1.5rem);
       }
 
+      .services-wrapper h2 {
+        font-size: clamp(1.3rem, 4.5vw, 2rem) !important;
+        margin-bottom: clamp(1.2rem, 3.5vw, 1.8rem) !important;
+      }
+
       .services {
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr 1fr;
-        gap: 0.6rem;
+        gap: 0.7rem;
         padding: 0;
         overflow: visible;
         justify-items: center;
         align-items: start;
-        width: 95%;
+        width: 100%;
         margin: 0 auto;
       }
 
       .card {
-        width: clamp(125px, 38vw, 155px);
-        height: clamp(165px, 40vw, 200px);
+        width: clamp(130px, 40vw, 160px);
+        height: clamp(170px, 42vw, 210px);
         margin: 0;
       }
 
       .service-image-frame {
-        padding: clamp(5px, 1.8vw, 8px);
-        height: 58%;
+        padding: 6px !important;
+        height: 60% !important;
       }
 
       .service-image-frame img {
-        width: clamp(80%, 16vw, 88%);
-        height: clamp(80%, 16vw, 88%);
-        padding: clamp(2px, 1vw, 4px);
+        width: 85% !important;
+        height: 85% !important;
+        padding: 3px !important;
       }
 
       .service-card-info {
-        padding: clamp(0.25rem, 1.2vw, 0.4rem);
-        height: 42%;
+        padding: 0.3rem !important;
+        height: 40% !important;
       }
 
       .service-card-info h3 {
-        font-size: clamp(0.6rem, 2.5vw, 0.8rem);
+        font-size: 0.65rem !important;
       }
 
       .service-card-info .specs {
-        font-size: clamp(0.55rem, 2vw, 0.7rem);
+        font-size: 0.6rem !important;
+      }
+
+      .services-card-back {
+        padding: 0.8rem !important;
+      }
+
+      .service-card-content p {
+        font-size: 0.65rem !important;
+        margin-bottom: 0.7rem !important;
+        line-height: 1.2 !important;
+      }
+
+      .book-btn {
+        padding: 0.35rem 0.7rem !important;
+        font-size: 0.6rem !important;
+        border-radius: 10px !important;
       }
 
       .hero-content {
@@ -781,55 +807,76 @@
       */
       
       /* Force mobile services layout - override desktop styles */
+      .services-wrapper h2 {
+        font-size: clamp(1.5rem, 5vw, 2.2rem) !important;
+        margin-bottom: clamp(1.5rem, 4vw, 2rem) !important;
+      }
+
       .services {
         display: grid !important;
         grid-template-columns: 1fr 1fr !important;
         grid-template-rows: 1fr 1fr !important;
-        gap: clamp(0.6rem, 2.5vw, 1rem) !important;
+        gap: clamp(0.8rem, 3vw, 1.2rem) !important;
         padding: 0 !important;
         overflow: visible !important;
         justify-items: center !important;
         align-items: start !important;
-        width: 95% !important;
+        width: 100% !important;
         margin: 0 auto !important;
       }
 
       .card {
-        width: clamp(135px, 40vw, 165px) !important;
-        height: clamp(170px, 42vw, 210px) !important;
+        width: clamp(140px, 43vw, 170px) !important;
+        height: clamp(180px, 45vw, 220px) !important;
         margin: 0 !important;
       }
 
       .service-image-frame {
-        padding: clamp(6px, 2vw, 10px) !important;
-        height: 58% !important;
+        padding: 8px !important;
+        height: 60% !important;
       }
 
       .service-image-frame img {
-        width: clamp(80%, 18vw, 90%) !important;
-        height: clamp(80%, 18vw, 90%) !important;
-        padding: clamp(3px, 1.2vw, 6px) !important;
+        width: 85% !important;
+        height: 85% !important;
+        padding: 6px !important;
       }
 
       .service-card-info {
-        padding: clamp(0.3rem, 1.5vw, 0.5rem) !important;
-        height: 42% !important;
+        padding: 0.4rem !important;
+        height: 40% !important;
       }
 
       .service-card-info h3 {
-        font-size: clamp(0.6rem, 2.4vw, 0.8rem) !important;
-        margin: 0 0 clamp(2px, 0.5vw, 3px) 0 !important;
-        line-height: 1.2 !important;
+        font-size: 0.75rem !important;
+        margin: 0 0 3px 0 !important;
+        line-height: 1.1 !important;
       }
 
       .service-card-info .specs {
-        font-size: clamp(0.5rem, 2vw, 0.65rem) !important;
+        font-size: 0.6rem !important;
         line-height: 1.2 !important;
       }
 
       .coming-soon {
-        font-size: clamp(0.55rem, 2vw, 0.7rem) !important;
-        margin-top: clamp(2px, 0.5vw, 3px) !important;
+        font-size: 0.65rem !important;
+        margin-top: 3px !important;
+      }
+
+      .services-card-back {
+        padding: 1rem !important;
+      }
+
+      .service-card-content p {
+        font-size: 0.7rem !important;
+        margin-bottom: 0.8rem !important;
+        line-height: 1.3 !important;
+      }
+
+      .book-btn {
+        padding: 0.4rem 0.8rem !important;
+        font-size: 0.65rem !important;
+        border-radius: 12px !important;
       }
       
       .hero-content,
@@ -1959,6 +2006,10 @@
     <div class="contact-container">
       <div class="contact-inner-card">
         <div class="contact-content">
+          <h2 data-aos="fade-left" data-aos-delay="200">🚀 Let's Elevate Your Project</h2>
+          <p class="contact-subtitle" data-aos="fade-left" data-aos-delay="300">
+            Our expert drone services are tailored to bring your vision to life. Whether you need aerial photography, surveying, or custom solutions — we're here to help.
+          </p>
           <div class="contact-form-wrapper">
             <form class="contact-form" action="submit_contact.php" method="POST">
               <label for="contact-name" data-aos="fade-right" data-aos-delay="350" class="contact-section-label">Name</label>
@@ -1978,11 +2029,6 @@
           </div>
           <div class="contact-info">
             <div class="contact-hero-content">
-              <h2 data-aos="fade-left" data-aos-delay="200">🚀 Let's Elevate Your Project</h2>
-              <p class="contact-subtitle" data-aos="fade-left" data-aos-delay="300">
-                Our expert drone services are tailored to bring your vision to life. Whether you need aerial photography, surveying, or custom solutions — we're here to help.
-              </p>
-              
               <div class="contact-details-modern">
                 <div class="contact-item" data-aos="fade-left" data-aos-delay="400">
                   <div class="contact-icon">
