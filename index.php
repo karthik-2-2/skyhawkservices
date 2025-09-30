@@ -322,53 +322,53 @@
 
       .services {
         display: grid;
-        grid-template-columns: 45% 45%;
+        grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr 1fr;
-        gap: clamp(0.5rem, 3vw, 1rem);
+        gap: clamp(0.6rem, 2.5vw, 1rem);
         padding: 0;
         overflow: visible;
-        justify-content: space-between;
+        justify-items: center;
         align-items: start;
-        width: 90%;
+        width: 95%;
         margin: 0 auto;
       }
 
       .card {
-        width: 100%;
-        height: clamp(180px, 45vw, 240px);
+        width: clamp(140px, 42vw, 170px);
+        height: clamp(160px, 40vw, 200px);
         margin: 0;
       }
 
       .service-image-frame {
-        padding: clamp(6px, 2vw, 10px);
-        height: 65%;
+        padding: clamp(4px, 1.5vw, 8px);
+        height: 60%;
       }
 
       .service-image-frame img {
-        width: 90%;
-        height: 90%;
-        padding: clamp(3px, 1.5vw, 6px);
+        width: 85%;
+        height: 85%;
+        padding: clamp(2px, 1vw, 4px);
       }
 
       .service-card-info {
-        padding: clamp(0.3rem, 1.5vw, 0.5rem);
-        height: 35%;
+        padding: clamp(0.25rem, 1.2vw, 0.4rem);
+        height: 40%;
       }
 
       .service-card-info h3 {
-        font-size: clamp(0.6rem, 2.5vw, 0.8rem);
-        margin: 0 0 clamp(2px, 0.5vw, 4px) 0;
-        line-height: 1.2;
+        font-size: clamp(0.55rem, 2.2vw, 0.75rem);
+        margin: 0 0 clamp(1px, 0.3vw, 2px) 0;
+        line-height: 1.1;
       }
 
       .service-card-info .specs {
-        font-size: clamp(0.5rem, 2vw, 0.65rem);
-        line-height: 1.2;
+        font-size: clamp(0.45rem, 1.8vw, 0.6rem);
+        line-height: 1.1;
       }
 
       .coming-soon {
-        font-size: clamp(0.55rem, 2vw, 0.7rem);
-        margin-top: clamp(1px, 0.5vw, 2px);
+        font-size: clamp(0.5rem, 1.8vw, 0.65rem);
+        margin-top: clamp(1px, 0.3vw, 2px);
       }
 
       .services-card-back {
@@ -911,8 +911,8 @@
     .services {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: clamp(1rem, 2vw, 2rem);
-      padding: clamp(1rem, 2vw, 2rem);
+      gap: clamp(0.8rem, 1.5vw, 1.5rem);
+      padding: clamp(1rem, 1.5vw, 2rem);
       justify-items: center;
       align-items: start;
     }
@@ -921,8 +921,8 @@
       background: var(--card-bg);
       backdrop-filter: blur(15px);
       border-radius: 20px;
-      width: clamp(200px, 20vw, 280px);
-      height: clamp(320px, 35vw, 420px);
+      width: clamp(180px, 18vw, 250px);
+      height: clamp(280px, 30vw, 380px);
       perspective: 1000px;
       position: relative;
       cursor: pointer;
@@ -1022,11 +1022,11 @@
 
     /* Top image section */
     .service-image-frame {
-      height: 65%;
+      height: 62%;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: clamp(12px, 2vw, 20px);
+      padding: clamp(10px, 1.5vw, 16px);
       background: rgba(255, 255, 255, 0.8);
       backdrop-filter: blur(10px);
       border-radius: 20px 20px 0 0;
@@ -1053,11 +1053,11 @@
 
     /* Bottom info section */
     .service-card-info {
-      height: 35%;
+      height: 38%;
       background: rgba(255, 255, 255, 0.9);
       backdrop-filter: blur(15px);
       border-radius: 0 0 20px 20px;
-      padding: clamp(0.8rem, 1.5vw, 1rem);
+      padding: clamp(0.6rem, 1.2vw, 0.8rem);
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -1065,21 +1065,21 @@
     }
     
     .service-card-info h3 {
-      margin: 0 0 clamp(6px, 1vw, 10px) 0;
-      font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+      margin: 0 0 clamp(4px, 0.8vw, 6px) 0;
+      font-size: clamp(0.8rem, 1.4vw, 1rem);
       font-weight: bold;
       color: var(--primary-green);
       text-align: center;
       text-shadow: 2px 2px 6px rgba(0,0,0,0.1);
-      line-height: 1.2;
+      line-height: 1.1;
     }
 
     .coming-soon {
-      font-size: clamp(0.8rem, 1.5vw, 0.95rem);
+      font-size: clamp(0.7rem, 1.2vw, 0.85rem);
       color: var(--primary-blue);
       text-align: center;
       animation: pulse-glow 2s ease-in-out infinite;
-      margin-top: clamp(3px, 0.8vw, 5px);
+      margin-top: clamp(2px, 0.5vw, 3px);
       font-weight: bold;
     }
 
@@ -1096,8 +1096,8 @@
 
     .service-card-info .specs {
       color: var(--text-grey);
-      font-size: clamp(0.7rem, 1.4vw, 0.9rem);
-      line-height: 1.4;
+      font-size: clamp(0.6rem, 1.1vw, 0.75rem);
+      line-height: 1.2;
       text-align: left;
     }
 
