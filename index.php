@@ -322,66 +322,69 @@
 
       .services {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 45% 45%;
         grid-template-rows: 1fr 1fr;
-        gap: 0.8rem;
+        gap: clamp(0.5rem, 3vw, 1rem);
         padding: 0;
         overflow: visible;
-        justify-items: center;
+        justify-content: space-between;
+        align-items: start;
+        width: 90%;
+        margin: 0 auto;
       }
 
       .card {
-        width: clamp(140px, 45vw, 180px);
-        height: clamp(200px, 50vw, 260px);
-        flex-shrink: 0;
+        width: 100%;
+        height: clamp(180px, 45vw, 240px);
         margin: 0;
       }
 
       .service-image-frame {
-        padding: clamp(8px, 3vw, 12px);
-        height: 60%;
+        padding: clamp(6px, 2vw, 10px);
+        height: 65%;
       }
 
       .service-image-frame img {
-        width: 85%;
-        height: 85%;
-        padding: clamp(4px, 2vw, 8px);
+        width: 90%;
+        height: 90%;
+        padding: clamp(3px, 1.5vw, 6px);
       }
 
       .service-card-info {
-        padding: clamp(0.4rem, 2vw, 0.6rem);
-        height: 40%;
+        padding: clamp(0.3rem, 1.5vw, 0.5rem);
+        height: 35%;
       }
 
       .service-card-info h3 {
-        font-size: clamp(0.7rem, 3vw, 0.9rem);
-        margin: 0 0 clamp(4px, 1vw, 8px) 0;
+        font-size: clamp(0.6rem, 2.5vw, 0.8rem);
+        margin: 0 0 clamp(2px, 0.5vw, 4px) 0;
+        line-height: 1.2;
       }
 
       .service-card-info .specs {
-        font-size: clamp(0.6rem, 2.5vw, 0.75rem);
-        line-height: 1.3;
+        font-size: clamp(0.5rem, 2vw, 0.65rem);
+        line-height: 1.2;
       }
 
       .coming-soon {
-        font-size: clamp(0.65rem, 2.5vw, 0.8rem);
-        margin-top: clamp(2px, 1vw, 4px);
+        font-size: clamp(0.55rem, 2vw, 0.7rem);
+        margin-top: clamp(1px, 0.5vw, 2px);
       }
 
       .services-card-back {
-        padding: clamp(1rem, 4vw, 1.5rem);
+        padding: clamp(0.8rem, 3vw, 1.2rem);
       }
 
       .service-card-content p {
-        font-size: clamp(0.7rem, 3vw, 0.9rem);
-        margin-bottom: clamp(0.8rem, 3vw, 1rem);
-        line-height: 1.4;
+        font-size: clamp(0.6rem, 2.5vw, 0.8rem);
+        margin-bottom: clamp(0.6rem, 2.5vw, 0.8rem);
+        line-height: 1.3;
       }
 
       .book-btn {
-        padding: clamp(0.4rem, 2vw, 0.6rem) clamp(0.8rem, 3vw, 1.2rem);
-        font-size: clamp(0.7rem, 2.5vw, 0.85rem);
-        border-radius: 20px;
+        padding: clamp(0.3rem, 1.5vw, 0.5rem) clamp(0.6rem, 2.5vw, 1rem);
+        font-size: clamp(0.6rem, 2vw, 0.75rem);
+        border-radius: 15px;
       }
 
       .about-section {
@@ -906,44 +909,22 @@
     }
 
     .services {
-      display: flex;
-      gap: 2rem;
-      overflow-x: auto;
-      padding: 1rem 2rem;
-      scroll-behavior: smooth;
-      scrollbar-width: thin;
-      scrollbar-color: var(--primary-green) transparent;
-      justify-content: center;
-    }
-
-    .services::-webkit-scrollbar {
-      height: 8px;
-    }
-
-    .services::-webkit-scrollbar-track {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 10px;
-    }
-
-    .services::-webkit-scrollbar-thumb {
-      background: linear-gradient(90deg, var(--primary-green), var(--primary-blue));
-      border-radius: 10px;
-      transition: all 0.3s ease;
-    }
-
-    .services::-webkit-scrollbar-thumb:hover {
-      background: linear-gradient(90deg, var(--primary-blue), var(--primary-green));
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: clamp(1rem, 2vw, 2rem);
+      padding: clamp(1rem, 2vw, 2rem);
+      justify-items: center;
+      align-items: start;
     }
 
     .card {
       background: var(--card-bg);
       backdrop-filter: blur(15px);
       border-radius: 20px;
-      width: 300px;
-      height: 460px;
+      width: clamp(200px, 20vw, 280px);
+      height: clamp(320px, 35vw, 420px);
       perspective: 1000px;
       position: relative;
-      flex-shrink: 0;
       cursor: pointer;
       border: 1px solid var(--glass-border);
       box-shadow: 
@@ -1045,7 +1026,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 20px;
+      padding: clamp(12px, 2vw, 20px);
       background: rgba(255, 255, 255, 0.8);
       backdrop-filter: blur(10px);
       border-radius: 20px 20px 0 0;
@@ -1059,7 +1040,7 @@
       border-radius: 15px;
       border: 2px solid var(--primary-green);
       background: rgba(52, 209, 157, 0.05);
-      padding: 10px;
+      padding: clamp(6px, 1.5vw, 10px);
       transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
       box-shadow: 0 4px 20px rgba(52, 209, 157, 0.2);
     }
@@ -1076,7 +1057,7 @@
       background: rgba(255, 255, 255, 0.9);
       backdrop-filter: blur(15px);
       border-radius: 0 0 20px 20px;
-      padding: 1rem;
+      padding: clamp(0.8rem, 1.5vw, 1rem);
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -1084,20 +1065,21 @@
     }
     
     .service-card-info h3 {
-      margin: 0 0 10px 0;
-      font-size: 1.1rem;
+      margin: 0 0 clamp(6px, 1vw, 10px) 0;
+      font-size: clamp(0.9rem, 1.8vw, 1.1rem);
       font-weight: bold;
       color: var(--primary-green);
       text-align: center;
       text-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+      line-height: 1.2;
     }
 
     .coming-soon {
-      font-size: 0.95rem;
+      font-size: clamp(0.8rem, 1.5vw, 0.95rem);
       color: var(--primary-blue);
       text-align: center;
       animation: pulse-glow 2s ease-in-out infinite;
-      margin-top: 5px;
+      margin-top: clamp(3px, 0.8vw, 5px);
       font-weight: bold;
     }
 
@@ -1114,8 +1096,8 @@
 
     .service-card-info .specs {
       color: var(--text-grey);
-      font-size: 0.9rem;
-      line-height: 1.6;
+      font-size: clamp(0.7rem, 1.4vw, 0.9rem);
+      line-height: 1.4;
       text-align: left;
     }
 
@@ -1133,21 +1115,7 @@
       text-align: center;
     }
 
-    .service-card-content p {
-      margin-bottom: 1.5rem;
-      color: var(--text-black);
-      font-size: 1.1rem;
-      line-height: 1.6;
-    }
-      font-size: 0.9rem;
-      line-height: 1.6;
-      text-align: left;
-    }
 
-    .service-card-info .specs strong {
-      color: var(--text-black);
-      font-weight: bold;
-    }
 
     .service-card-content {
       display: flex;
@@ -1159,18 +1127,21 @@
     }
     
     .service-card-content p {
-      margin-bottom: 1.5rem;
+      margin-bottom: clamp(1rem, 2vw, 1.5rem);
       color: var(--white);
+      font-size: clamp(0.9rem, 1.6vw, 1.1rem);
+      line-height: 1.5;
     }
 
     .book-btn {
       display: inline-block;
-      margin-top: 1rem;
-      padding: 0.75rem 1.5rem;
+      margin-top: clamp(0.8rem, 1.5vw, 1rem);
+      padding: clamp(0.6rem, 1.2vw, 0.75rem) clamp(1.2rem, 2.2vw, 1.5rem);
       background-color: var(--primary-green);
       color: var(--white);
       border-radius: 30px;
       font-weight: 600;
+      font-size: clamp(0.8rem, 1.4vw, 1rem);
       text-decoration: none;
       transition: all 0.3s ease;
       border: none;
