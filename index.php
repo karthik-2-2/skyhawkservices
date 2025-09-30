@@ -480,7 +480,7 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr 1fr;
-        gap: 0.7rem;
+        gap: 1rem;
         padding: 0;
         overflow: visible;
         justify-items: center;
@@ -490,49 +490,94 @@
       }
 
       .card {
-        width: clamp(130px, 40vw, 160px);
-        height: clamp(170px, 42vw, 210px);
+        width: clamp(110px, 35vw, 140px);
+        height: clamp(150px, 38vw, 180px);
         margin: 0;
       }
 
       .service-image-frame {
-        padding: 6px !important;
-        height: 60% !important;
+        padding: 5px !important;
+        height: 62% !important;
       }
 
       .service-image-frame img {
-        width: 85% !important;
-        height: 85% !important;
-        padding: 3px !important;
+        width: 88% !important;
+        height: 88% !important;
+        padding: 2px !important;
       }
 
       .service-card-info {
-        padding: 0.3rem !important;
-        height: 40% !important;
+        padding: 0.25rem !important;
+        height: 38% !important;
       }
 
       .service-card-info h3 {
-        font-size: 0.65rem !important;
+        font-size: 0.6rem !important;
       }
 
       .service-card-info .specs {
-        font-size: 0.6rem !important;
+        font-size: 0.55rem !important;
       }
 
       .services-card-back {
-        padding: 0.8rem !important;
+        padding: 0.6rem !important;
       }
 
       .service-card-content p {
-        font-size: 0.65rem !important;
-        margin-bottom: 0.7rem !important;
-        line-height: 1.2 !important;
+        font-size: 0.6rem !important;
+        margin-bottom: 0.6rem !important;
+        line-height: 1.15 !important;
       }
 
       .book-btn {
-        padding: 0.35rem 0.7rem !important;
-        font-size: 0.6rem !important;
-        border-radius: 10px !important;
+        padding: 0.3rem 0.6rem !important;
+        font-size: 0.55rem !important;
+        border-radius: 8px !important;
+      }
+    }
+
+    /* Extra small screens (very small phones) */
+    @media (max-width: 360px) {
+      .services {
+        gap: 0.8rem !important;
+      }
+
+      .card {
+        width: clamp(100px, 32vw, 120px) !important;
+        height: clamp(135px, 35vw, 155px) !important;
+      }
+
+      .service-image-frame {
+        padding: 4px !important;
+        height: 65% !important;
+      }
+
+      .service-card-info {
+        padding: 0.2rem !important;
+        height: 35% !important;
+      }
+
+      .service-card-info h3 {
+        font-size: 0.55rem !important;
+      }
+
+      .service-card-info .specs {
+        font-size: 0.5rem !important;
+      }
+
+      .services-card-back {
+        padding: 0.5rem !important;
+      }
+
+      .service-card-content p {
+        font-size: 0.55rem !important;
+        margin-bottom: 0.5rem !important;
+      }
+
+      .book-btn {
+        padding: 0.25rem 0.5rem !important;
+        font-size: 0.5rem !important;
+        border-radius: 6px !important;
       }
 
       .hero-content {
@@ -816,7 +861,7 @@
         display: grid !important;
         grid-template-columns: 1fr 1fr !important;
         grid-template-rows: 1fr 1fr !important;
-        gap: clamp(0.8rem, 3vw, 1.2rem) !important;
+        gap: 1rem !important;
         padding: 0 !important;
         overflow: visible !important;
         justify-items: center !important;
@@ -826,57 +871,57 @@
       }
 
       .card {
-        width: clamp(140px, 43vw, 170px) !important;
-        height: clamp(180px, 45vw, 220px) !important;
+        width: clamp(110px, 35vw, 140px) !important;
+        height: clamp(150px, 38vw, 180px) !important;
         margin: 0 !important;
       }
 
       .service-image-frame {
-        padding: 8px !important;
-        height: 60% !important;
+        padding: 5px !important;
+        height: 62% !important;
       }
 
       .service-image-frame img {
-        width: 85% !important;
-        height: 85% !important;
-        padding: 6px !important;
+        width: 88% !important;
+        height: 88% !important;
+        padding: 2px !important;
       }
 
       .service-card-info {
-        padding: 0.4rem !important;
-        height: 40% !important;
+        padding: 0.25rem !important;
+        height: 38% !important;
       }
 
       .service-card-info h3 {
-        font-size: 0.75rem !important;
+        font-size: 0.6rem !important;
         margin: 0 0 3px 0 !important;
         line-height: 1.1 !important;
       }
 
       .service-card-info .specs {
-        font-size: 0.6rem !important;
+        font-size: 0.55rem !important;
         line-height: 1.2 !important;
       }
 
       .coming-soon {
-        font-size: 0.65rem !important;
+        font-size: 0.6rem !important;
         margin-top: 3px !important;
       }
 
       .services-card-back {
-        padding: 1rem !important;
+        padding: 0.6rem !important;
       }
 
       .service-card-content p {
-        font-size: 0.7rem !important;
-        margin-bottom: 0.8rem !important;
-        line-height: 1.3 !important;
+        font-size: 0.6rem !important;
+        margin-bottom: 0.6rem !important;
+        line-height: 1.15 !important;
       }
 
       .book-btn {
-        padding: 0.4rem 0.8rem !important;
-        font-size: 0.65rem !important;
-        border-radius: 12px !important;
+        padding: 0.3rem 0.6rem !important;
+        font-size: 0.55rem !important;
+        border-radius: 8px !important;
       }
       
       .hero-content,
