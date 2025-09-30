@@ -762,6 +762,58 @@
       }
       */
       
+      /* Force mobile services layout - override desktop styles */
+      .services {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        grid-template-rows: 1fr 1fr !important;
+        gap: clamp(0.6rem, 2.5vw, 1rem) !important;
+        padding: 0 !important;
+        overflow: visible !important;
+        justify-items: center !important;
+        align-items: start !important;
+        width: 95% !important;
+        margin: 0 auto !important;
+      }
+
+      .card {
+        width: clamp(140px, 42vw, 170px) !important;
+        height: clamp(160px, 40vw, 200px) !important;
+        margin: 0 !important;
+      }
+
+      .service-image-frame {
+        padding: clamp(4px, 1.5vw, 8px) !important;
+        height: 60% !important;
+      }
+
+      .service-image-frame img {
+        width: 85% !important;
+        height: 85% !important;
+        padding: clamp(2px, 1vw, 4px) !important;
+      }
+
+      .service-card-info {
+        padding: clamp(0.25rem, 1.2vw, 0.4rem) !important;
+        height: 40% !important;
+      }
+
+      .service-card-info h3 {
+        font-size: clamp(0.55rem, 2.2vw, 0.75rem) !important;
+        margin: 0 0 clamp(1px, 0.3vw, 2px) 0 !important;
+        line-height: 1.1 !important;
+      }
+
+      .service-card-info .specs {
+        font-size: clamp(0.45rem, 1.8vw, 0.6rem) !important;
+        line-height: 1.1 !important;
+      }
+
+      .coming-soon {
+        font-size: clamp(0.5rem, 1.8vw, 0.65rem) !important;
+        margin-top: clamp(1px, 0.3vw, 2px) !important;
+      }
+      
       .hero-content,
       .services-container,
       .about-container,
@@ -1793,82 +1845,83 @@
       <div class="services-wrapper">
         <h2>Our Drone Services</h2>
         <div class="services">
-      <div class="card" data-aos="fade-right" data-aos-delay="400">
-        <div class="services-card-front">
-          <div class="service-image-frame">
-            <img src="./drone2.png" alt="Videography Drone">
+          <div class="card" data-aos="fade-right" data-aos-delay="400">
+            <div class="services-card-front">
+              <div class="service-image-frame">
+                <img src="./drone2.png" alt="Videography Drone">
+              </div>
+              <div class="service-card-info">
+                <h3>Videography & Photography</h3>
+                <div class="specs">
+                  <strong>Model:</strong> DJI Mini 3<br>
+                  <strong>Fly Time:</strong> 25 min per Battery<br>
+                  <strong>Experience:</strong> 4 yrs
+                </div>
+              </div>
+            </div>
+            <div class="services-card-back">
+              <div class="service-card-content">
+                <p>Capture stunning aerial footage for events, marketing, and real estate.</p>
+                <a href="user/index.php" class="book-btn">Book Now</a>
+              </div>
+            </div>
           </div>
-          <div class="service-card-info">
-            <h3>Videography & Photography</h3>
-            <div class="specs">
-              <strong>Model:</strong> DJI Mini 3<br>
-              <strong>Fly Time:</strong> 25 min per Battery<br>
-              <strong>Experience:</strong> 4 yrs
+          <div class="card" data-aos="fade-right" data-aos-delay="500">
+            <div class="services-card-front">
+              <div class="service-image-frame">
+                <img src="./drone1.png" alt="Inspection Drone">
+              </div>
+              <div class="service-card-info">
+                <h3>Inspection</h3>
+                <div class="specs">
+                  <strong>Model:</strong> DJI Mini 3<br>
+                  <strong>Fly Time:</strong> 25 min per Battery<br>
+                  <strong>Experience:</strong> 4 yrs
+                </div>
+              </div>
+            </div>
+            <div class="services-card-back">
+              <div class="service-card-content">
+                <p>Perform structural and utility inspections with precision and safety.</p>
+                <a href="user/index.php" class="book-btn">Book Now</a>
+              </div>
+            </div>
+          </div>
+          <div class="card" data-aos="fade-right" data-aos-delay="600">
+            <div class="services-card-front">
+              <div class="service-image-frame">
+                <img src="./spray.png" alt="Agriculture Spraying Drone">
+              </div>
+              <div class="service-card-info">
+                <h3>Agriculture Spraying</h3>
+                <div class="coming-soon">Coming Soon</div>
+              </div>
+            </div>
+            <div class="services-card-back">
+              <div class="service-card-content">
+                <p>Efficient and eco-friendly crop spraying with smart drone technology.</p>
+                <button class="book-btn" onclick="openComingSoonModal()">Book Now</button>
+              </div>
+            </div>
+          </div>
+          <div class="card" data-aos="fade-right" data-aos-delay="700">
+            <div class="services-card-front">
+              <div class="service-image-frame">
+                <img src="./dheli.png" alt="Delivery Drone">
+              </div>
+              <div class="service-card-info">
+                <h3>Delivery Service</h3>
+                <div class="coming-soon">Coming Soon</div>
+              </div>
+            </div>
+            <div class="services-card-back">
+              <div class="service-card-content">
+                <p>Fast and reliable drone delivery, bringing your packages swiftly and safely to your doorstep.</p>
+                <button class="book-btn" onclick="openComingSoonModal()">Book Now</button>
+              </div>
             </div>
           </div>
         </div>
-        <div class="services-card-back">
-          <div class="service-card-content">
-            <p>Capture stunning aerial footage for events, marketing, and real estate.</p>
-            <a href="user/index.php" class="book-btn">Book Now</a>
-          </div>
-        </div>
-      </div>
-      <div class="card" data-aos="fade-right" data-aos-delay="500">
-        <div class="services-card-front">
-          <div class="service-image-frame">
-            <img src="./drone1.png" alt="Inspection Drone">
-          </div>
-          <div class="service-card-info">
-            <h3>Inspection</h3>
-            <div class="specs">
-              <strong>Model:</strong> DJI Mini 3<br>
-              <strong>Fly Time:</strong> 25 min per Battery<br>
-              <strong>Experience:</strong> 4 yrs
-            </div>
-          </div>
-        </div>
-        <div class="services-card-back">
-          <div class="service-card-content">
-            <p>Perform structural and utility inspections with precision and safety.</p>
-            <a href="user/index.php" class="book-btn">Book Now</a>
-          </div>
-        </div>
-      </div>
-      <div class="card" data-aos="fade-right" data-aos-delay="600">
-        <div class="services-card-front">
-          <div class="service-image-frame">
-            <img src="./spray.png" alt="Agriculture Spraying Drone">
-          </div>
-          <div class="service-card-info">
-            <h3>Agriculture Spraying</h3>
-            <div class="coming-soon">Coming Soon</div>
-          </div>
-        </div>
-        <div class="services-card-back">
-          <div class="service-card-content">
-            <p>Efficient and eco-friendly crop spraying with smart drone technology.</p>
-            <button class="book-btn" onclick="openComingSoonModal()">Book Now</button>
-          </div>
-        </div>
-      </div>
-      <div class="card" data-aos="fade-right" data-aos-delay="700">
-        <div class="services-card-front">
-          <div class="service-image-frame">
-            <img src="./dheli.png" alt="Delivery Drone">
-          </div>
-          <div class="service-card-info">
-            <h3>Delivery Service</h3>
-            <div class="coming-soon">Coming Soon</div>
-          </div>
-        </div>
-        <div class="services-card-back">
-          <div class="service-card-content">
-            <p>Fast and reliable drone delivery, bringing your packages swiftly and safely to your doorstep.</p>
-            <button class="book-btn" onclick="openComingSoonModal()">Book Now</button>
-          </div>
-        </div>
-      </div>
       </div>
     </div>
   </section>
