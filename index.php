@@ -334,41 +334,41 @@
       }
 
       .card {
-        width: clamp(140px, 42vw, 170px);
-        height: clamp(160px, 40vw, 200px);
+        width: clamp(135px, 40vw, 165px);
+        height: clamp(170px, 42vw, 210px);
         margin: 0;
       }
 
       .service-image-frame {
-        padding: clamp(4px, 1.5vw, 8px);
-        height: 60%;
+        padding: clamp(6px, 2vw, 10px);
+        height: 58%;
       }
 
       .service-image-frame img {
-        width: 85%;
-        height: 85%;
-        padding: clamp(2px, 1vw, 4px);
+        width: clamp(80%, 18vw, 90%);
+        height: clamp(80%, 18vw, 90%);
+        padding: clamp(3px, 1.2vw, 6px);
       }
 
       .service-card-info {
-        padding: clamp(0.25rem, 1.2vw, 0.4rem);
-        height: 40%;
+        padding: clamp(0.3rem, 1.5vw, 0.5rem);
+        height: 42%;
       }
 
       .service-card-info h3 {
-        font-size: clamp(0.55rem, 2.2vw, 0.75rem);
-        margin: 0 0 clamp(1px, 0.3vw, 2px) 0;
-        line-height: 1.1;
+        font-size: clamp(0.6rem, 2.4vw, 0.8rem);
+        margin: 0 0 clamp(2px, 0.5vw, 3px) 0;
+        line-height: 1.2;
       }
 
       .service-card-info .specs {
-        font-size: clamp(0.45rem, 1.8vw, 0.6rem);
-        line-height: 1.1;
+        font-size: clamp(0.5rem, 2vw, 0.65rem);
+        line-height: 1.2;
       }
 
       .coming-soon {
-        font-size: clamp(0.5rem, 1.8vw, 0.65rem);
-        margin-top: clamp(1px, 0.3vw, 2px);
+        font-size: clamp(0.55rem, 2vw, 0.7rem);
+        margin-top: clamp(2px, 0.5vw, 3px);
       }
 
       .services-card-back {
@@ -480,17 +480,25 @@
       }
 
       .card {
-        width: clamp(130px, 42vw, 160px);
-        height: clamp(180px, 45vw, 220px);
+        width: clamp(125px, 38vw, 155px);
+        height: clamp(165px, 40vw, 200px);
         margin: 0;
       }
 
       .service-image-frame {
-        padding: clamp(6px, 2vw, 10px);
+        padding: clamp(5px, 1.8vw, 8px);
+        height: 58%;
+      }
+
+      .service-image-frame img {
+        width: clamp(80%, 16vw, 88%);
+        height: clamp(80%, 16vw, 88%);
+        padding: clamp(2px, 1vw, 4px);
       }
 
       .service-card-info {
-        padding: clamp(0.3rem, 1.5vw, 0.5rem);
+        padding: clamp(0.25rem, 1.2vw, 0.4rem);
+        height: 42%;
       }
 
       .service-card-info h3 {
@@ -787,41 +795,41 @@
       }
 
       .card {
-        width: clamp(140px, 42vw, 170px) !important;
-        height: clamp(160px, 40vw, 200px) !important;
+        width: clamp(135px, 40vw, 165px) !important;
+        height: clamp(170px, 42vw, 210px) !important;
         margin: 0 !important;
       }
 
       .service-image-frame {
-        padding: clamp(4px, 1.5vw, 8px) !important;
-        height: 60% !important;
+        padding: clamp(6px, 2vw, 10px) !important;
+        height: 58% !important;
       }
 
       .service-image-frame img {
-        width: 85% !important;
-        height: 85% !important;
-        padding: clamp(2px, 1vw, 4px) !important;
+        width: clamp(80%, 18vw, 90%) !important;
+        height: clamp(80%, 18vw, 90%) !important;
+        padding: clamp(3px, 1.2vw, 6px) !important;
       }
 
       .service-card-info {
-        padding: clamp(0.25rem, 1.2vw, 0.4rem) !important;
-        height: 40% !important;
+        padding: clamp(0.3rem, 1.5vw, 0.5rem) !important;
+        height: 42% !important;
       }
 
       .service-card-info h3 {
-        font-size: clamp(0.55rem, 2.2vw, 0.75rem) !important;
-        margin: 0 0 clamp(1px, 0.3vw, 2px) 0 !important;
-        line-height: 1.1 !important;
+        font-size: clamp(0.6rem, 2.4vw, 0.8rem) !important;
+        margin: 0 0 clamp(2px, 0.5vw, 3px) 0 !important;
+        line-height: 1.2 !important;
       }
 
       .service-card-info .specs {
-        font-size: clamp(0.45rem, 1.8vw, 0.6rem) !important;
-        line-height: 1.1 !important;
+        font-size: clamp(0.5rem, 2vw, 0.65rem) !important;
+        line-height: 1.2 !important;
       }
 
       .coming-soon {
-        font-size: clamp(0.5rem, 1.8vw, 0.65rem) !important;
-        margin-top: clamp(1px, 0.3vw, 2px) !important;
+        font-size: clamp(0.55rem, 2vw, 0.7rem) !important;
+        margin-top: clamp(2px, 0.5vw, 3px) !important;
       }
       
       .hero-content,
