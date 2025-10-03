@@ -1050,10 +1050,10 @@
       backdrop-filter: blur(15px);
       border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 25px;
-      padding: clamp(2rem, 6vw, 4rem) clamp(1rem, 4vw, 4rem);
+      padding: clamp(1.5rem, 3vw, 3rem) clamp(1rem, 2vw, 2rem); /* Reduced padding */
       box-shadow: var(--section-shadow);
-      width: clamp(95vw, 90vw, calc(70vw + 20vw));
-      max-width: 1200px;
+      width: clamp(95vw, 95vw, 1400px); /* Increased max-width */
+      max-width: 1400px; /* Larger container for better card fit */
       position: relative;
       z-index: 2;
     }
@@ -1073,12 +1073,45 @@
 
     .services-section h2 {
       text-align: center;
-      margin-bottom: 3rem;
-      font-size: clamp(2rem, 6vw, 3rem);
+      margin-bottom: clamp(1.5rem, 3vw, 2.5rem); /* Reduced margin */
+      font-size: clamp(2rem, 5vw, 2.8rem); /* Slightly smaller heading */
       color: var(--text-black);
       animation: fadeInDown 1s ease forwards;
       position: relative;
       z-index: 1;
+    }
+
+    /* Large screen adjustments */
+    @media (min-width: 1200px) {
+      .services {
+        gap: clamp(0.8rem, 1.2vw, 1.2rem);
+        padding: clamp(1rem, 1.5vw, 1.8rem);
+      }
+      
+      .card {
+        width: clamp(200px, 20vw, 300px);
+        height: clamp(280px, 25vw, 380px);
+        max-width: calc(23vw - 0.5rem);
+      }
+      
+      .services-container {
+        max-width: 1600px;
+        width: 98vw;
+      }
+    }
+
+    /* Extra large screen adjustments */
+    @media (min-width: 1400px) {
+      .services {
+        gap: clamp(1rem, 1.5vw, 1.5rem);
+        padding: clamp(1.2rem, 2vw, 2rem);
+      }
+      
+      .card {
+        width: clamp(220px, 18vw, 320px);
+        height: clamp(300px, 24vw, 400px);
+        max-width: calc(22vw - 0.5rem);
+      }
     }
 
     .services-wrapper {
@@ -1086,13 +1119,15 @@
       backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.3);
       border-radius: 20px;
-      padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1rem, 4vw, 2rem);
+      padding: clamp(1rem, 2.5vw, 2rem) clamp(0.5rem, 1.5vw, 1.5rem); /* Reduced padding */
       box-shadow: 
         0 8px 32px rgba(0, 0, 0, 0.1),
         0 4px 16px rgba(0, 0, 0, 0.05),
         inset 0 1px 0 rgba(255, 255, 255, 0.4);
       position: relative;
       transition: all 0.3s ease;
+      width: 100%;
+      overflow: hidden; /* Prevent overflow */
     }
 
     .services-wrapper::before {
@@ -1119,18 +1154,22 @@
     .services {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: clamp(0.8rem, 1.5vw, 1.5rem);
-      padding: clamp(1rem, 1.5vw, 2rem);
+      gap: clamp(0.5rem, 1vw, 1rem); /* Reduced gap for better fit */
+      padding: clamp(0.5rem, 1vw, 1.5rem); /* Reduced padding */
       justify-items: center;
       align-items: start;
+      width: 100%;
+      max-width: 100%;
+      overflow: hidden; /* Prevent overflow */
     }
 
     .card {
       background: var(--card-bg);
       backdrop-filter: blur(15px);
       border-radius: 20px;
-      width: clamp(180px, 18vw, 250px);
-      height: clamp(280px, 30vw, 380px);
+      width: clamp(160px, 22vw, 280px); /* More flexible width range */
+      height: clamp(240px, 28vw, 360px); /* Proportional height */
+      max-width: calc(25vw - 1rem); /* Ensure cards don't exceed container */
       perspective: 1000px;
       position: relative;
       cursor: pointer;
