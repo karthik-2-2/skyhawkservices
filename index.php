@@ -201,10 +201,9 @@
       }
 
       .hero-section {
+        min-height: 100vh; /* Full screen height on mobile too */
         padding: 1rem;
-        max-height: 100vh; /* Ensure max height constraint */
-        min-height: 60vh; /* Reduced for mobile */
-        margin-top: 40px; /* Reduced space between navbar and card */
+        padding-top: calc(60px + 1rem); /* Account for mobile navbar height */
       }
 
       .hero-title-container {
@@ -220,7 +219,7 @@
         font-size: clamp(18px, 6vw, 40px);
         min-height: clamp(18px, 4vh, 30px); /* Further reduced height */
         height: clamp(18px, 4vh, 30px);
-        margin-bottom: 0.1rem; /* Reduced gap between lines on mobile */
+        margin-bottom: 0.5rem; /* Increased gap between lines on mobile */
       }
 
       #hero-line2 {
@@ -316,6 +315,7 @@
       }
 
       .services-section {
+        min-height: 100vh; /* Full screen height on mobile */
         padding: 1rem;
       }
 
@@ -402,6 +402,7 @@
       }
 
       .about-section {
+        min-height: 100vh; /* Full screen height on mobile */
         padding: 1rem;
       }
 
@@ -416,6 +417,7 @@
       }
 
       .cta-section {
+        min-height: 100vh; /* Full screen height on mobile */
         padding: 1rem;
       }
 
@@ -611,8 +613,7 @@
     }
 
     .hero-section {
-      max-height: 100vh; /* Changed from height to max-height */
-      min-height: 80vh; /* Added min-height for desktop */
+      min-height: 100vh; /* Full screen height for hero section */
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -622,7 +623,8 @@
       color: var(--text-black);
       padding: 2rem;
       position: relative;
-      margin-top: 70px;
+      padding-top: calc(70px + 2rem); /* Account for navbar height */
+      box-sizing: border-box;
     }
 
     .hero-content {
@@ -777,7 +779,7 @@
       min-height: clamp(35px, 7vh, 60px); /* Increased for desktop */
       height: clamp(35px, 7vh, 60px);
       display: block;
-      margin-bottom: 0.5rem; /* Increased gap between lines for desktop */
+      margin-bottom: 1rem; /* Increased gap between "Welcome to" and "Skyhawk" */
     }
 
     #hero-line2 {
@@ -960,8 +962,8 @@
     /* Extra small screens adjustments */
     @media (max-width: 480px) {
       .hero-section {
-        margin-top: 30px; /* Further reduced space from navbar */
-        min-height: 55vh; /* Reduced min-height for very small screens */
+        min-height: 100vh; /* Full screen height for very small screens too */
+        padding-top: calc(60px + 1rem); /* Account for navbar */
       }
 
       .hero-text-wrapper {
@@ -972,7 +974,7 @@
       #hero-line1 {
         min-height: clamp(16px, 3.5vh, 25px);
         height: clamp(16px, 3.5vh, 25px);
-        margin-bottom: 0rem; /* Minimal gap between lines */
+        margin-bottom: 0.3rem; /* Small gap between lines */
       }
 
       #hero-line2 {
@@ -1032,6 +1034,7 @@
     }
 
     .services-section {
+      min-height: 100vh; /* Full screen height for services section */
       padding: 2rem;
       position: relative;
       display: flex;
@@ -1039,6 +1042,7 @@
       justify-content: center;
       align-items: center;
       text-align: center;
+      box-sizing: border-box;
     }
 
     .services-container {
@@ -1367,6 +1371,7 @@
     }
 
     .about-section {
+      min-height: 100vh; /* Full screen height for about section */
       padding: 2rem;
       position: relative;
       display: flex;
@@ -1374,6 +1379,7 @@
       justify-content: center;
       align-items: center;
       text-align: center;
+      box-sizing: border-box;
     }
 
     .about-container {
@@ -1456,6 +1462,7 @@
     }
 
     .cta-section {
+      min-height: 100vh; /* Full screen height for contact section */
       padding: 2rem;
       text-align: center;
       position: relative;
@@ -1463,6 +1470,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      box-sizing: border-box;
     }
 
     .contact-container {
