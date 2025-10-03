@@ -636,9 +636,10 @@
       box-shadow: var(--section-shadow);
       width: clamp(95vw, 90vw, calc(70vw + 20vw));
       max-width: 1200px;
-      min-height: 400px;
+      min-height: 450px; /* Increased min-height */
       position: relative;
       z-index: 2;
+      overflow: visible; /* Ensure content is not clipped */
     }
 
     .hero-content::before {
@@ -660,7 +661,7 @@
       backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.3);
       border-radius: 20px;
-      padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1rem, 4vw, 2rem);
+      padding: clamp(2rem, 5vw, 3rem) clamp(1rem, 4vw, 2rem); /* Increased top/bottom padding */
       box-shadow: 
         0 8px 32px rgba(0, 0, 0, 0.1),
         0 4px 16px rgba(0, 0, 0, 0.05),
@@ -668,6 +669,7 @@
       position: relative;
       z-index: 3;
       transition: all 0.3s ease;
+      overflow: visible; /* Ensure content is not clipped */
     }
 
     .hero-inner-card::before {
@@ -769,24 +771,26 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: clamp(160px, 22vh, 240px); /* Increased for desktop to show full text */
+      min-height: clamp(180px, 25vh, 280px); /* Increased height for full text display */
       margin-bottom: 1.5rem;
+      overflow: visible; /* Ensure text is not clipped */
     }
 
     #hero-line1 {
       font-size: clamp(24px, 8vw, 64px);
       font-weight: 600;
-      min-height: clamp(35px, 7vh, 60px); /* Increased for desktop */
-      height: clamp(35px, 7vh, 60px);
+      min-height: clamp(40px, 8vh, 70px); /* Increased height */
+      height: auto; /* Changed to auto to accommodate text */
       display: block;
-      margin-bottom: 1rem; /* Increased gap between "Welcome to" and "Skyhawk" */
+      margin-bottom: 1rem; /* Gap between "Welcome to" and "Skyhawk" */
+      overflow: visible; /* Ensure text is not clipped */
     }
 
     #hero-line2 {
       font-size: clamp(32px, 12vw, 120px);
       font-weight: 700;
-      min-height: clamp(70px, 14vh, 120px); /* Increased for desktop */
-      height: clamp(70px, 14vh, 120px);
+      min-height: clamp(80px, 16vh, 140px); /* Increased height to prevent clipping */
+      height: auto; /* Changed to auto to accommodate text */
       display: block;
       background: linear-gradient(180deg, #34d19d 0%, #34d19d 45%, #38c1f2 55%, #38c1f2 100%);
       background-size: 100% 200%;
@@ -795,9 +799,11 @@
       background-clip: text;
       text-shadow: 0 0 20px rgba(52, 209, 157, 0.3);
       filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
-      line-height: 1.1;
-      padding-bottom: 8px; /* Slightly increased for desktop */
+      line-height: 1.2; /* Slightly increased line height */
+      padding-bottom: 15px; /* Increased padding to prevent 'y' cutoff */
+      margin-bottom: 10px; /* Added margin for extra space */
       animation: gradientShift 4s ease-in-out infinite;
+      overflow: visible; /* Ensure text is not clipped */
     }
 
     /* The blinking cursor is now handled by a simple class */
