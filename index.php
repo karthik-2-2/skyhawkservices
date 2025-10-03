@@ -212,19 +212,22 @@
       }
 
       .hero-text-wrapper {
-        min-height: clamp(120px, 20vh, 180px);
+        min-height: clamp(100px, 18vh, 140px); /* Further reduced for mobile */
+        margin-bottom: 1rem; /* Reduced margin for mobile */
       }
 
       #hero-line1 {
-        font-size: clamp(18px, 6vw, 50px);
-        min-height: clamp(25px, 6vh, 40px);
-        height: clamp(25px, 6vh, 40px);
+        font-size: clamp(18px, 6vw, 40px);
+        min-height: clamp(20px, 5vh, 35px); /* Reduced height for mobile */
+        height: clamp(20px, 5vh, 35px);
       }
 
       #hero-line2 {
-        font-size: clamp(30px, 10vw, 80px);
-        min-height: clamp(60px, 12vh, 80px);
-        height: clamp(60px, 12vh, 80px);
+        font-size: clamp(28px, 10vw, 65px);
+        min-height: clamp(45px, 10vh, 70px); /* Reduced height for mobile */
+        height: clamp(45px, 10vh, 70px);
+        line-height: 1.0; /* Tighter line height for mobile */
+        padding-bottom: 2px; /* Minimal padding */
         background: linear-gradient(180deg, #34d19d 0%, #34d19d 45%, #38c1f2 55%, #38c1f2 100%);
         background-size: 100% 200%;
         -webkit-background-clip: text;
@@ -232,6 +235,10 @@
         background-clip: text;
         font-weight: bold;
         animation: gradientShift 4s ease-in-out infinite;
+      }
+      
+      .hero-content p {
+        margin-bottom: 2rem; /* Reduced margin */
       }
 
       @keyframes gradientShift {
@@ -753,27 +760,28 @@
     }
 
     .hero-text-wrapper {
-      min-height: clamp(180px, 25vh, 220px);
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
-      margin-bottom: 1rem;
+      justify-content: center;
+      min-height: clamp(140px, 20vh, 200px); /* Reduced min-height */
+      margin-bottom: 1.5rem; /* Reduced margin */
     }
 
     #hero-line1 {
       font-size: clamp(24px, 8vw, 64px);
       font-weight: 600;
-      min-height: clamp(35px, 8vh, 60px);
-      height: clamp(35px, 8vh, 60px);
+      min-height: clamp(30px, 6vh, 50px); /* Reduced height */
+      height: clamp(30px, 6vh, 50px);
       display: block;
+      margin-bottom: 0.2rem; /* Added small margin */
     }
 
     #hero-line2 {
       font-size: clamp(32px, 12vw, 120px);
       font-weight: 700;
-      min-height: clamp(80px, 15vh, 140px);
-      height: clamp(80px, 15vh, 140px);
+      min-height: clamp(60px, 12vh, 100px); /* Reduced height */
+      height: clamp(60px, 12vh, 100px);
       display: block;
       background: linear-gradient(180deg, #34d19d 0%, #34d19d 45%, #38c1f2 55%, #38c1f2 100%);
       background-size: 100% 200%;
@@ -782,8 +790,8 @@
       background-clip: text;
       text-shadow: 0 0 20px rgba(52, 209, 157, 0.3);
       filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
-      line-height: 1.2;
-      padding-bottom: 10px;
+      line-height: 1.1; /* Tightened line height */
+      padding-bottom: 5px; /* Reduced padding */
       animation: gradientShift 4s ease-in-out infinite;
     }
 
@@ -943,6 +951,26 @@
       
       .contact-content {
         grid-template-columns: 1fr;
+      }
+    }
+
+    /* Extra small screens adjustments */
+    @media (max-width: 480px) {
+      .hero-text-wrapper {
+        min-height: clamp(85px, 16vh, 120px); /* Even smaller for very small screens */
+        margin-bottom: 0.8rem;
+      }
+
+      #hero-line1 {
+        min-height: clamp(18px, 4vh, 28px);
+        height: clamp(18px, 4vh, 28px);
+      }
+
+      #hero-line2 {
+        min-height: clamp(38px, 8vh, 55px);
+        height: clamp(38px, 8vh, 55px);
+        line-height: 0.95;
+        padding-bottom: 1px;
       }
     }
 
@@ -1488,27 +1516,88 @@
     .contact-content {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 3rem;
-      align-items: center;
-      min-height: 500px;
+      gap: 2rem; /* Reduced gap */
+      align-items: start; /* Changed from center to start */
+      min-height: 400px; /* Reduced min-height */
+    }
+
+    .contact-inner-card h2 {
+      margin-bottom: 1rem; /* Reduced margin */
+      animation: fadeInDown 1s ease forwards;
+      color: var(--text-black);
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      position: relative;
+      z-index: 1;
+      text-align: center; /* Center the main heading */
+      grid-column: 1 / -1; /* Span full width */
+      order: -1; /* Move to top */
+    }
+
+    .contact-subtitle {
+      font-size: clamp(1rem, 3vw, 1.3rem);
+      color: var(--text-grey);
+      line-height: 1.6;
+      margin-bottom: 1.5rem; /* Reduced margin */
+      font-weight: 500;
+      text-align: center; /* Center the subtitle */
+      grid-column: 1 / -1; /* Span full width */
+      order: 0; /* After heading */
+    }
+
+    .contact-form-wrapper {
+      order: 1;
+    }
+
+    .contact-info {
+      order: 2;
+    }
+
+    /* Hide "Request a Free Quote" section on large screens */
+    .contact-cta {
+      display: none;
     }
 
     @media (min-width: 992px) {
       .contact-content {
         grid-template-columns: 1fr 1fr;
-        gap: 4rem;
+        gap: 3rem;
+      }
+      
+      .contact-inner-card h2 {
+        grid-column: 1 / -1; /* Span both columns */
+        white-space: nowrap; /* Keep in single line */
+        font-size: clamp(2.2rem, 4vw, 3.2rem); /* Larger on desktop */
+      }
+      
+      .contact-subtitle {
+        grid-column: 1 / -1; /* Span both columns */
+        margin-bottom: 2rem;
       }
       
       .contact-form-wrapper {
         order: 1;
+        grid-column: 1;
       }
       
       .contact-info {
         order: 2;
+        grid-column: 2;
         display: flex;
-        align-items: center;
+        align-items: flex-start; /* Changed to flex-start */
         justify-content: center;
-        height: 100%;
+        padding-top: 1rem; /* Added top padding */
+      }
+
+      /* Keep only email and location items on desktop */
+      .contact-details-modern {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      
+      /* Hide the "Request a Free Quote" on desktop */
+      .contact-cta {
+        display: none !important;
       }
     }
 
@@ -1516,6 +1605,16 @@
       .contact-content {
         grid-template-columns: 1fr;
         text-align: center;
+        gap: 1.5rem; /* Reduced gap for mobile */
+      }
+      
+      .contact-inner-card h2 {
+        margin-bottom: 0.8rem; /* Reduced margin for mobile */
+        font-size: clamp(1.6rem, 6vw, 2.2rem); /* Adjusted for mobile */
+      }
+      
+      .contact-subtitle {
+        margin-bottom: 1.2rem; /* Reduced margin for mobile */
       }
       
       .contact-form-wrapper {
@@ -1527,6 +1626,12 @@
         display: flex;
         align-items: center;
         justify-content: center;
+      }
+
+      /* Show "Request a Free Quote" on mobile */
+      .contact-cta {
+        display: block;
+        margin-top: 1rem;
       }
     }
 
@@ -1672,14 +1777,7 @@
 
 
 
-    .contact-inner-card h2 {
-      margin-bottom: 1.5rem;
-      animation: fadeInDown 1s ease forwards;
-      color: var(--text-black);
-      font-size: clamp(1.8rem, 5vw, 2.5rem);
-      position: relative;
-      z-index: 1;
-    }
+
 
     .contact-inner-card p {
       animation: fadeInUp 1s ease forwards 0.3s;
