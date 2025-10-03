@@ -613,7 +613,8 @@
     }
 
     .hero-section {
-      min-height: 100vh; /* Full screen height for hero section */
+      height: 100vh; /* Fixed height to exactly 100vh */
+      max-height: 100vh; /* Ensure it doesn't exceed 100vh */
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -621,9 +622,9 @@
       text-align: center;
       background: transparent;
       color: var(--text-black);
-      padding: 2rem;
+      padding: 1rem; /* Reduced padding */
       position: relative;
-      padding-top: calc(70px + 2rem); /* Account for navbar height */
+      padding-top: calc(70px + 1rem); /* Reduced top padding */
       box-sizing: border-box;
     }
 
@@ -632,11 +633,11 @@
       backdrop-filter: blur(15px);
       border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 25px;
-      padding: clamp(2rem, 6vw, 4rem) clamp(1rem, 4vw, 4rem);
+      padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1rem, 3vw, 2rem); /* Reduced padding */
       box-shadow: var(--section-shadow);
       width: clamp(95vw, 90vw, calc(70vw + 20vw));
       max-width: 1200px;
-      min-height: 450px; /* Increased min-height */
+      min-height: 350px; /* Reduced min-height to fit in 100vh */
       position: relative;
       z-index: 2;
       overflow: visible; /* Ensure content is not clipped */
@@ -661,7 +662,7 @@
       backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.3);
       border-radius: 20px;
-      padding: clamp(2rem, 5vw, 3rem) clamp(1rem, 4vw, 2rem); /* Increased top/bottom padding */
+      padding: clamp(1.5rem, 3vw, 2rem) clamp(1rem, 2vw, 1.5rem); /* Reduced padding */
       box-shadow: 
         0 8px 32px rgba(0, 0, 0, 0.1),
         0 4px 16px rgba(0, 0, 0, 0.05),
@@ -771,25 +772,25 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: clamp(180px, 25vh, 280px); /* Increased height for full text display */
-      margin-bottom: 1.5rem;
+      min-height: clamp(140px, 18vh, 200px); /* Reduced height to fit in 100vh */
+      margin-bottom: 1rem; /* Reduced margin */
       overflow: visible; /* Ensure text is not clipped */
     }
 
     #hero-line1 {
       font-size: clamp(24px, 8vw, 64px);
       font-weight: 600;
-      min-height: clamp(40px, 8vh, 70px); /* Increased height */
+      min-height: clamp(30px, 6vh, 50px); /* Reduced height */
       height: auto; /* Changed to auto to accommodate text */
       display: block;
-      margin-bottom: 1rem; /* Gap between "Welcome to" and "Skyhawk" */
+      margin-bottom: 0.8rem; /* Reduced gap */
       overflow: visible; /* Ensure text is not clipped */
     }
 
     #hero-line2 {
       font-size: clamp(32px, 12vw, 120px);
       font-weight: 700;
-      min-height: clamp(80px, 16vh, 140px); /* Increased height to prevent clipping */
+      min-height: clamp(60px, 12vh, 100px); /* Reduced height while keeping text visible */
       height: auto; /* Changed to auto to accommodate text */
       display: block;
       background: linear-gradient(180deg, #34d19d 0%, #34d19d 45%, #38c1f2 55%, #38c1f2 100%);
@@ -799,9 +800,9 @@
       background-clip: text;
       text-shadow: 0 0 20px rgba(52, 209, 157, 0.3);
       filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
-      line-height: 1.2; /* Slightly increased line height */
-      padding-bottom: 15px; /* Increased padding to prevent 'y' cutoff */
-      margin-bottom: 10px; /* Added margin for extra space */
+      line-height: 1.1; /* Optimized line height */
+      padding-bottom: 8px; /* Reduced padding */
+      margin-bottom: 5px; /* Reduced margin */
       animation: gradientShift 4s ease-in-out infinite;
       overflow: visible; /* Ensure text is not clipped */
     }
@@ -1002,8 +1003,8 @@
 
 
     .hero-content p {
-      font-size: clamp(18px, 3vw, 26px);
-      margin-bottom: 2.5rem;
+      font-size: clamp(16px, 2.5vw, 22px); /* Reduced font size */
+      margin-bottom: 1.5rem; /* Reduced margin */
       animation: fadeInUp 1.5s forwards 0.5s;
       color: var(--text-grey);
       text-shadow: 1px 1px 2px rgba(255,255,255,0.3);
