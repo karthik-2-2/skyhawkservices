@@ -202,9 +202,9 @@
 
       .hero-section {
         padding: 1rem;
-        height: auto;
-        min-height: 70vh;
-        margin-top: 60px;
+        max-height: 100vh; /* Ensure max height constraint */
+        min-height: 60vh; /* Reduced for mobile */
+        margin-top: 40px; /* Reduced space between navbar and card */
       }
 
       .hero-title-container {
@@ -212,22 +212,23 @@
       }
 
       .hero-text-wrapper {
-        min-height: clamp(100px, 18vh, 140px); /* Further reduced for mobile */
-        margin-bottom: 1rem; /* Reduced margin for mobile */
+        min-height: clamp(80px, 15vh, 120px); /* Further reduced for mobile */
+        margin-bottom: 0.8rem; /* Further reduced margin */
       }
 
       #hero-line1 {
         font-size: clamp(18px, 6vw, 40px);
-        min-height: clamp(20px, 5vh, 35px); /* Reduced height for mobile */
-        height: clamp(20px, 5vh, 35px);
+        min-height: clamp(18px, 4vh, 30px); /* Further reduced height */
+        height: clamp(18px, 4vh, 30px);
+        margin-bottom: 0.1rem; /* Reduced gap between lines on mobile */
       }
 
       #hero-line2 {
         font-size: clamp(28px, 10vw, 65px);
-        min-height: clamp(45px, 10vh, 70px); /* Reduced height for mobile */
-        height: clamp(45px, 10vh, 70px);
-        line-height: 1.0; /* Tighter line height for mobile */
-        padding-bottom: 2px; /* Minimal padding */
+        min-height: clamp(35px, 8vh, 55px); /* Further reduced height */
+        height: clamp(35px, 8vh, 55px);
+        line-height: 0.95; /* Even tighter line height for mobile */
+        padding-bottom: 0px; /* No padding after Skyhawk text */
         background: linear-gradient(180deg, #34d19d 0%, #34d19d 45%, #38c1f2 55%, #38c1f2 100%);
         background-size: 100% 200%;
         -webkit-background-clip: text;
@@ -238,7 +239,8 @@
       }
       
       .hero-content p {
-        margin-bottom: 2rem; /* Reduced margin */
+        margin-bottom: 1.5rem; /* Further reduced margin */
+        margin-top: 0.5rem; /* Reduced top margin */
       }
 
       @keyframes gradientShift {
@@ -609,7 +611,8 @@
     }
 
     .hero-section {
-      height: 100vh;
+      max-height: 100vh; /* Changed from height to max-height */
+      min-height: 80vh; /* Added min-height for desktop */
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -764,24 +767,24 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: clamp(140px, 20vh, 200px); /* Reduced min-height */
-      margin-bottom: 1.5rem; /* Reduced margin */
+      min-height: clamp(160px, 22vh, 240px); /* Increased for desktop to show full text */
+      margin-bottom: 1.5rem;
     }
 
     #hero-line1 {
       font-size: clamp(24px, 8vw, 64px);
       font-weight: 600;
-      min-height: clamp(30px, 6vh, 50px); /* Reduced height */
-      height: clamp(30px, 6vh, 50px);
+      min-height: clamp(35px, 7vh, 60px); /* Increased for desktop */
+      height: clamp(35px, 7vh, 60px);
       display: block;
-      margin-bottom: 0.2rem; /* Added small margin */
+      margin-bottom: 0.5rem; /* Increased gap between lines for desktop */
     }
 
     #hero-line2 {
       font-size: clamp(32px, 12vw, 120px);
       font-weight: 700;
-      min-height: clamp(60px, 12vh, 100px); /* Reduced height */
-      height: clamp(60px, 12vh, 100px);
+      min-height: clamp(70px, 14vh, 120px); /* Increased for desktop */
+      height: clamp(70px, 14vh, 120px);
       display: block;
       background: linear-gradient(180deg, #34d19d 0%, #34d19d 45%, #38c1f2 55%, #38c1f2 100%);
       background-size: 100% 200%;
@@ -790,8 +793,8 @@
       background-clip: text;
       text-shadow: 0 0 20px rgba(52, 209, 157, 0.3);
       filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
-      line-height: 1.1; /* Tightened line height */
-      padding-bottom: 5px; /* Reduced padding */
+      line-height: 1.1;
+      padding-bottom: 8px; /* Slightly increased for desktop */
       animation: gradientShift 4s ease-in-out infinite;
     }
 
@@ -956,21 +959,32 @@
 
     /* Extra small screens adjustments */
     @media (max-width: 480px) {
+      .hero-section {
+        margin-top: 30px; /* Further reduced space from navbar */
+        min-height: 55vh; /* Reduced min-height for very small screens */
+      }
+
       .hero-text-wrapper {
-        min-height: clamp(85px, 16vh, 120px); /* Even smaller for very small screens */
-        margin-bottom: 0.8rem;
+        min-height: clamp(70px, 14vh, 100px); /* Even smaller for very small screens */
+        margin-bottom: 0.6rem;
       }
 
       #hero-line1 {
-        min-height: clamp(18px, 4vh, 28px);
-        height: clamp(18px, 4vh, 28px);
+        min-height: clamp(16px, 3.5vh, 25px);
+        height: clamp(16px, 3.5vh, 25px);
+        margin-bottom: 0rem; /* Minimal gap between lines */
       }
 
       #hero-line2 {
-        min-height: clamp(38px, 8vh, 55px);
-        height: clamp(38px, 8vh, 55px);
-        line-height: 0.95;
-        padding-bottom: 1px;
+        min-height: clamp(30px, 7vh, 45px);
+        height: clamp(30px, 7vh, 45px);
+        line-height: 0.9;
+        padding-bottom: 0px; /* No padding after text */
+      }
+      
+      .hero-content p {
+        margin-top: 0.3rem; /* Minimal top margin */
+        margin-bottom: 1.2rem;
       }
     }
 
