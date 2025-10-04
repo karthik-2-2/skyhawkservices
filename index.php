@@ -201,9 +201,22 @@
       }
 
       .hero-section {
-        min-height: 100vh; /* Full screen height on mobile too */
+        height: 100vh; /* Fixed height on mobile */
+        max-height: 100vh;
         padding: 1rem;
         padding-top: calc(60px + 1rem); /* Account for mobile navbar height */
+      }
+      
+      .hero-content {
+        height: 400px; /* Fixed height for mobile */
+      }
+      
+      .hero-inner-card {
+        height: 300px; /* Fixed height for mobile inner card */
+      }
+      
+      .hero-text-wrapper {
+        height: 120px; /* Fixed height for mobile text wrapper */
       }
 
       .hero-title-container {
@@ -637,7 +650,7 @@
       box-shadow: var(--section-shadow);
       width: clamp(95vw, 90vw, calc(70vw + 20vw));
       max-width: 1200px;
-      min-height: 350px; /* Reduced min-height to fit in 100vh */
+      height: 450px; /* Fixed height instead of min-height */
       position: relative;
       z-index: 2;
       overflow: visible; /* Ensure content is not clipped */
@@ -671,6 +684,10 @@
       z-index: 3;
       transition: all 0.3s ease;
       overflow: visible; /* Ensure content is not clipped */
+      height: 350px; /* Fixed height for inner card */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .hero-inner-card::before {
@@ -772,7 +789,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: clamp(140px, 18vh, 200px); /* Reduced height to fit in 100vh */
+      height: 160px; /* Fixed height instead of min-height */
       margin-bottom: 1rem; /* Reduced margin */
       overflow: visible; /* Ensure text is not clipped */
     }
@@ -780,9 +797,10 @@
     #hero-line1 {
       font-size: clamp(24px, 8vw, 64px);
       font-weight: 600;
-      min-height: clamp(30px, 6vh, 50px); /* Reduced height */
-      height: auto; /* Changed to auto to accommodate text */
-      display: block;
+      height: clamp(30px, 6vh, 50px); /* Fixed height */
+      display: flex;
+      align-items: center;
+      justify-content: center;
       margin-bottom: 0.8rem; /* Reduced gap */
       overflow: visible; /* Ensure text is not clipped */
     }
@@ -790,9 +808,10 @@
     #hero-line2 {
       font-size: clamp(32px, 12vw, 120px);
       font-weight: 700;
-      min-height: clamp(60px, 12vh, 100px); /* Reduced height while keeping text visible */
-      height: auto; /* Changed to auto to accommodate text */
-      display: block;
+      height: clamp(70px, 12vh, 100px); /* Fixed height */
+      display: flex;
+      align-items: center;
+      justify-content: center;
       background: linear-gradient(180deg, #34d19d 0%, #34d19d 45%, #38c1f2 55%, #38c1f2 100%);
       background-size: 100% 200%;
       -webkit-background-clip: text;
@@ -801,7 +820,6 @@
       text-shadow: 0 0 20px rgba(52, 209, 157, 0.3);
       filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
       line-height: 1.1; /* Optimized line height */
-      padding-bottom: 8px; /* Reduced padding */
       margin-bottom: 5px; /* Reduced margin */
       animation: gradientShift 4s ease-in-out infinite;
       overflow: visible; /* Ensure text is not clipped */
@@ -969,31 +987,45 @@
     /* Extra small screens adjustments */
     @media (max-width: 480px) {
       .hero-section {
-        min-height: 100vh; /* Full screen height for very small screens too */
+        height: 100vh; /* Fixed height for very small screens */
+        max-height: 100vh;
         padding-top: calc(60px + 1rem); /* Account for navbar */
       }
 
+      .hero-content {
+        height: 350px; /* Fixed height for extra small screens */
+      }
+      
+      .hero-inner-card {
+        height: 250px; /* Fixed height for extra small inner card */
+      }
+
       .hero-text-wrapper {
-        min-height: clamp(70px, 14vh, 100px); /* Even smaller for very small screens */
+        height: 100px; /* Fixed height for extra small text wrapper */
         margin-bottom: 0.6rem;
       }
 
       #hero-line1 {
-        min-height: clamp(16px, 3.5vh, 25px);
-        height: clamp(16px, 3.5vh, 25px);
+        height: clamp(16px, 3.5vh, 25px); /* Fixed height */
         margin-bottom: 0.3rem; /* Small gap between lines */
       }
 
       #hero-line2 {
-        min-height: clamp(30px, 7vh, 45px);
-        height: clamp(30px, 7vh, 45px);
+        height: clamp(30px, 7vh, 45px); /* Fixed height */
         line-height: 0.9;
-        padding-bottom: 0px; /* No padding after text */
       }
       
       .hero-content p {
+        height: 50px; /* Fixed height for extra small paragraph */
         margin-top: 0.3rem; /* Minimal top margin */
         margin-bottom: 1.2rem;
+      }
+      
+      .cta-btn {
+        height: 40px; /* Smaller button for extra small screens */
+        width: 160px;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
       }
     }
 
@@ -1010,6 +1042,11 @@
       text-shadow: 1px 1px 2px rgba(255,255,255,0.3);
       z-index: 1;
       position: relative;
+      height: 60px; /* Fixed height for paragraph area */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
     }
 
     .cta-btn,
@@ -1019,7 +1056,9 @@
     }
 
     .cta-btn {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       padding: 1.2rem 2.5rem;
       background: var(--primary-green);
       color: var(--white);
@@ -1032,6 +1071,8 @@
       box-shadow: var(--button-shadow);
       z-index: 1;
       position: relative;
+      height: 50px; /* Fixed height for button */
+      width: 200px; /* Fixed width for button */
     }
 
     .cta-btn:hover {
