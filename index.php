@@ -241,10 +241,10 @@
       }
 
       #hero-line1 {
-        font-size: clamp(18px, 6vw, 40px);
+        font-size: clamp(20px, 7vw, 40px);
         height: clamp(22px, 6vh, 40px); /* Fixed height matches font-size for mobile */
         min-height: clamp(22px, 6vh, 40px);
-        margin-bottom: 0.4rem; /* Gap between lines on mobile */
+        margin-bottom: 0.6rem; /* Gap between lines on mobile */
       }
 
       #hero-line2 {
@@ -266,9 +266,9 @@
         height: auto;
         max-height: none; /* Remove max height restriction for mobile */
         margin-top: 0.3rem;
-        margin-bottom: 0.8rem;
+        margin-bottom: 0.6rem;
         padding: 0 0.5rem;
-        font-size: clamp(0.9rem, 2.5vw, 1.1rem); /* Increased font for mobile to match About */
+        font-size: clamp(1.0rem, 2.7vw, 1.2rem); /* Increased font for mobile to match About */
         line-height: 1.5; /* Better line height */
       }
       
@@ -297,11 +297,11 @@
         padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1rem, 4vw, 2rem);
       }
 
-      .hero-content p {
+      /* .hero-content p {
         font-size: clamp(14px, 4vw, 18px);
         margin-bottom: 1.5rem;
         padding: 0;
-      }
+      } */
 
       .cta-btn {
         padding: clamp(0.8rem, 3vw, 1.2rem) clamp(1.8rem, 6vw, 2.5rem);
@@ -801,6 +801,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      gap: 0.5rem;
     }
 
     #hero-line1, #hero-line2 {
@@ -833,7 +834,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 0.5rem; /* Gap between lines */
+      margin-bottom: 1.5rem; /* Gap between lines */
       overflow: visible; /* Ensure text is not clipped */
       flex-shrink: 0; /* Don't shrink */
     }
@@ -1059,7 +1060,7 @@
       #hero-line1 {
         height: clamp(20px, 5vh, 30px); /* Fixed height for extra small */
         min-height: clamp(20px, 5vh, 30px);
-        margin-bottom: 0.3rem; /* Small gap between lines */
+        margin-bottom: 1.3rem; /* Small gap between lines */
       }
 
       #hero-line2 {
