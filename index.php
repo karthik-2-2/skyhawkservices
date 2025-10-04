@@ -213,6 +213,7 @@
       
       .hero-inner-card {
         height: 300px; /* Fixed height for mobile inner card */
+        padding: clamp(1.5rem, 4vw, 2rem) clamp(1rem, 3vw, 1.5rem); /* Adjusted mobile padding */
       }
       
       .hero-text-wrapper {
@@ -675,7 +676,7 @@
       backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.3);
       border-radius: 20px;
-      padding: clamp(1.5rem, 3vw, 2rem) clamp(1rem, 2vw, 1.5rem); /* Reduced padding */
+      padding: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 3vw, 2.5rem); /* Increased padding */
       box-shadow: 
         0 8px 32px rgba(0, 0, 0, 0.1),
         0 4px 16px rgba(0, 0, 0, 0.05),
@@ -688,6 +689,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+      align-items: center; /* Center align all content */
     }
 
     .hero-inner-card::before {
@@ -790,8 +792,9 @@
       align-items: center;
       justify-content: center;
       height: 160px; /* Fixed height instead of min-height */
-      margin-bottom: 1rem; /* Reduced margin */
+      margin-bottom: 1.5rem; /* Increased margin for spacing */
       overflow: visible; /* Ensure text is not clipped */
+      width: 100%; /* Ensure full width */
     }
 
     #hero-line1 {
@@ -998,6 +1001,7 @@
       
       .hero-inner-card {
         height: 250px; /* Fixed height for extra small inner card */
+        padding: clamp(1rem, 3vw, 1.5rem) clamp(0.8rem, 2vw, 1rem); /* Reduced padding for small screens */
       }
 
       .hero-text-wrapper {
@@ -1019,6 +1023,7 @@
         height: 50px; /* Fixed height for extra small paragraph */
         margin-top: 0.3rem; /* Minimal top margin */
         margin-bottom: 1.2rem;
+        padding: 0 0.5rem; /* Add horizontal padding for small screens */
       }
       
       .cta-btn {
@@ -1036,7 +1041,7 @@
 
     .hero-content p {
       font-size: clamp(16px, 2.5vw, 22px); /* Reduced font size */
-      margin-bottom: 1.5rem; /* Reduced margin */
+      margin-bottom: 2rem; /* Increased margin for spacing */
       animation: fadeInUp 1.5s forwards 0.5s;
       color: var(--text-grey);
       text-shadow: 1px 1px 2px rgba(255,255,255,0.3);
@@ -1047,6 +1052,8 @@
       align-items: center;
       justify-content: center;
       text-align: center;
+      width: 100%; /* Ensure full width */
+      padding: 0 1rem; /* Add horizontal padding */
     }
 
     .cta-btn,
@@ -1073,6 +1080,8 @@
       position: relative;
       height: 50px; /* Fixed height for button */
       width: 200px; /* Fixed width for button */
+      margin: 0 auto; /* Center the button */
+      align-self: center; /* Ensure centered in flex container */
     }
 
     .cta-btn:hover {
