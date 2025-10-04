@@ -213,7 +213,17 @@
       
       .hero-inner-card {
         height: 300px; /* Fixed height for mobile inner card */
-        padding: clamp(1.5rem, 4vw, 2rem) clamp(1rem, 3vw, 1.5rem); /* Adjusted mobile padding */
+        padding: clamp(2rem, 5vw, 2.5rem) clamp(1.5rem, 4vw, 2rem); /* Increased mobile padding */
+      }
+      
+      .about-container,
+      .contact-container {
+        padding: clamp(1.5rem, 4vw, 2rem) clamp(1rem, 3vw, 1.5rem); /* Mobile padding for other sections */
+      }
+      
+      .about-inner-card,
+      .contact-inner-card {
+        padding: clamp(2rem, 5vw, 2.5rem) clamp(1.5rem, 4vw, 2rem); /* Mobile padding for inner cards */
       }
       
       .hero-text-wrapper {
@@ -676,7 +686,7 @@
       backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.3);
       border-radius: 20px;
-      padding: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 3vw, 2.5rem); /* Increased padding */
+      padding: clamp(2.5rem, 5vw, 3.5rem) clamp(2rem, 4vw, 3rem); /* Increased padding more */
       box-shadow: 
         0 8px 32px rgba(0, 0, 0, 0.1),
         0 4px 16px rgba(0, 0, 0, 0.05),
@@ -688,7 +698,7 @@
       height: 350px; /* Fixed height for inner card */
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: space-between; /* Changed to space-between for better distribution */
       align-items: center; /* Center align all content */
     }
 
@@ -792,7 +802,7 @@
       align-items: center;
       justify-content: center;
       height: 160px; /* Fixed height instead of min-height */
-      margin-top: 1rem; /* Added top margin for Welcome to text */
+      margin-top: 0; /* Reset top margin */
       margin-bottom: 1.5rem; /* Increased margin for spacing */
       overflow: visible; /* Ensure text is not clipped */
       width: 100%; /* Ensure full width */
@@ -1002,7 +1012,17 @@
       
       .hero-inner-card {
         height: 250px; /* Fixed height for extra small inner card */
-        padding: clamp(1rem, 3vw, 1.5rem) clamp(0.8rem, 2vw, 1rem); /* Reduced padding for small screens */
+        padding: clamp(1.5rem, 4vw, 2rem) clamp(1rem, 3vw, 1.5rem); /* Increased padding for small screens */
+      }
+      
+      .about-container,
+      .contact-container {
+        padding: clamp(1rem, 3vw, 1.5rem) clamp(0.8rem, 2vw, 1rem); /* Extra small screen padding */
+      }
+      
+      .about-inner-card,
+      .contact-inner-card {
+        padding: clamp(1.5rem, 4vw, 2rem) clamp(1rem, 3vw, 1.5rem); /* Extra small screen inner padding */
       }
 
       .hero-text-wrapper {
@@ -1032,7 +1052,7 @@
         width: 160px;
         padding: 0.8rem 1.5rem;
         font-size: 0.9rem;
-        margin: 0 auto 0.8rem auto; /* Adjusted margin for small screens */
+        margin: 0 auto; /* Removed bottom margin for small screens */
       }
     }
 
@@ -1082,8 +1102,9 @@
       position: relative;
       height: 50px; /* Fixed height for button */
       width: 200px; /* Fixed width for button */
-      margin: 0 auto 1rem auto; /* Center the button with bottom margin */
+      margin: 0 auto; /* Center the button without bottom margin */
       align-self: center; /* Ensure centered in flex container */
+      flex-shrink: 0; /* Prevent button from shrinking */
     }
 
     .cta-btn:hover {
@@ -1446,7 +1467,7 @@
       backdrop-filter: blur(15px);
       border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 25px;
-      padding: clamp(2rem, 6vw, 4rem) clamp(1rem, 4vw, 4rem);
+      padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1rem, 3vw, 2rem); /* Same as hero content */
       box-shadow: var(--section-shadow);
       width: clamp(95vw, 90vw, calc(70vw + 20vw));
       max-width: 1200px;
@@ -1473,7 +1494,7 @@
       backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.3);
       border-radius: 20px;
-      padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1rem, 4vw, 2rem);
+      padding: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 3vw, 2.5rem); /* Same as hero inner card */
       box-shadow: 
         0 8px 32px rgba(0, 0, 0, 0.1),
         0 4px 16px rgba(0, 0, 0, 0.05),
@@ -1537,7 +1558,7 @@
       backdrop-filter: blur(15px);
       border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 25px;
-      padding: clamp(2rem, 6vw, 4rem) clamp(1rem, 4vw, 4rem);
+      padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1rem, 3vw, 2rem); /* Same as hero content */
       box-shadow: var(--section-shadow);
       width: clamp(95vw, 90vw, calc(70vw + 20vw));
       max-width: 1200px;
@@ -1564,7 +1585,7 @@
       backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.3);
       border-radius: 20px;
-      padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1rem, 4vw, 2rem);
+      padding: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 3vw, 2.5rem); /* Same as hero inner card */
       box-shadow: 
         0 8px 32px rgba(0, 0, 0, 0.1),
         0 4px 16px rgba(0, 0, 0, 0.05),
