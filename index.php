@@ -226,28 +226,24 @@
         padding: clamp(2rem, 5vw, 2.5rem) clamp(1.5rem, 4vw, 2rem); /* Mobile padding for inner cards */
       }
       
-      .hero-text-wrapper {
-        min-height: auto; /* Changed from fixed height to auto */
-      }
-
       .hero-title-container {
         margin-bottom: 1rem;
       }
 
       .hero-text-wrapper {
-        min-height: auto; /* Changed from min-height clamp to auto */
+        min-height: clamp(80px, 15vh, 120px); /* Using clamp for mobile responsive height */
         margin-bottom: 0.8rem; /* Further reduced margin */
       }
 
       #hero-line1 {
         font-size: clamp(18px, 6vw, 40px);
-        min-height: auto; /* Changed from fixed height to auto */
+        min-height: clamp(20px, 6vh, 40px); /* Match font-size clamp for mobile */
         margin-bottom: 0.5rem; /* Increased gap between lines on mobile */
       }
 
       #hero-line2 {
         font-size: clamp(28px, 10vw, 65px);
-        min-height: auto; /* Changed from fixed height to auto */
+        min-height: clamp(32px, 10vh, 65px); /* Match font-size clamp for mobile */
         line-height: 1; /* Tighter line height for mobile */
         padding-bottom: 0px; /* No padding after Skyhawk text */
         background: linear-gradient(180deg, #34d19d 0%, #34d19d 45%, #38c1f2 55%, #38c1f2 100%);
@@ -799,7 +795,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: auto; /* Changed from fixed height to auto */
+      min-height: clamp(120px, 20vh, 180px); /* Using clamp for responsive height */
       margin-top: -0.5rem; /* Reduced top space */
       margin-bottom: 2rem; /* Increased bottom margin */
       overflow: visible; /* Ensure text is not clipped */
@@ -809,7 +805,7 @@
     #hero-line1 {
       font-size: clamp(24px, 8vw, 64px);
       font-weight: 600;
-      min-height: auto; /* Changed from fixed height to auto */
+      min-height: clamp(30px, 6vh, 64px); /* Match font-size clamp for proper spacing */
       display: flex;
       align-items: center;
       justify-content: center;
@@ -820,7 +816,7 @@
     #hero-line2 {
       font-size: clamp(32px, 12vw, 120px);
       font-weight: 700;
-      min-height: auto; /* Changed from fixed height to auto */
+      min-height: clamp(40px, 12vh, 120px); /* Match font-size clamp for proper spacing */
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1024,17 +1020,17 @@
       }
 
       .hero-text-wrapper {
-        min-height: auto; /* Changed from fixed height to auto */
+        min-height: clamp(70px, 12vh, 100px); /* Using clamp for extra small responsive height */
         margin-bottom: 0.6rem;
       }
 
       #hero-line1 {
-        min-height: auto; /* Changed from fixed height to auto */
+        min-height: clamp(18px, 5vh, 30px); /* Match font-size clamp for extra small */
         margin-bottom: 0.3rem; /* Small gap between lines */
       }
 
       #hero-line2 {
-        min-height: auto; /* Changed from fixed height to auto */
+        min-height: clamp(28px, 9vh, 50px); /* Match font-size clamp for extra small */
         line-height: 1;
       }
       
