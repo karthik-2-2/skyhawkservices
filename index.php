@@ -208,12 +208,12 @@
       }
       
       .hero-content {
-        height: 400px; /* Fixed height for mobile */
+        height: 420px; /* Increased height for mobile */
       }
       
       .hero-inner-card {
-        height: 300px; /* Fixed height for mobile inner card */
-        padding: clamp(2rem, 5vw, 2.5rem) clamp(1.5rem, 4vw, 2rem); /* Increased mobile padding */
+        height: 320px; /* Increased height for mobile inner card */
+        padding: clamp(1.5rem, 4vw, 2rem) clamp(1.5rem, 4vw, 2rem); /* Adjusted mobile padding */
       }
       
       .about-container,
@@ -661,7 +661,7 @@
       box-shadow: var(--section-shadow);
       width: clamp(95vw, 90vw, calc(70vw + 20vw));
       max-width: 1200px;
-      height: 450px; /* Fixed height instead of min-height */
+      height: 480px; /* Increased height to accommodate larger inner card */
       position: relative;
       z-index: 2;
       overflow: visible; /* Ensure content is not clipped */
@@ -686,7 +686,7 @@
       backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.3);
       border-radius: 20px;
-      padding: clamp(2.5rem, 5vw, 3.5rem) clamp(2rem, 4vw, 3rem); /* Increased padding more */
+      padding: clamp(1.5rem, 3vw, 2rem) clamp(1.5rem, 3vw, 2rem); /* Reduced padding to keep button inside */
       box-shadow: 
         0 8px 32px rgba(0, 0, 0, 0.1),
         0 4px 16px rgba(0, 0, 0, 0.05),
@@ -695,10 +695,10 @@
       z-index: 3;
       transition: all 0.3s ease;
       overflow: visible; /* Ensure content is not clipped */
-      height: 350px; /* Fixed height for inner card */
+      height: 380px; /* Increased height to accommodate button inside */
       display: flex;
       flex-direction: column;
-      justify-content: space-between; /* Changed to space-between for better distribution */
+      justify-content: center; /* Changed back to center */
       align-items: center; /* Center align all content */
     }
 
@@ -802,8 +802,8 @@
       align-items: center;
       justify-content: center;
       height: 160px; /* Fixed height instead of min-height */
-      margin-top: 0; /* Reset top margin */
-      margin-bottom: 1.5rem; /* Increased margin for spacing */
+      margin-top: -0.5rem; /* Reduced top space */
+      margin-bottom: 2rem; /* Increased bottom margin */
       overflow: visible; /* Ensure text is not clipped */
       width: 100%; /* Ensure full width */
     }
@@ -1007,12 +1007,12 @@
       }
 
       .hero-content {
-        height: 350px; /* Fixed height for extra small screens */
+        height: 380px; /* Increased height for extra small screens */
       }
       
       .hero-inner-card {
-        height: 250px; /* Fixed height for extra small inner card */
-        padding: clamp(1.5rem, 4vw, 2rem) clamp(1rem, 3vw, 1.5rem); /* Increased padding for small screens */
+        height: 280px; /* Increased height for extra small inner card */
+        padding: clamp(1.2rem, 3vw, 1.5rem) clamp(1.2rem, 3vw, 1.5rem); /* Adjusted padding for small screens */
       }
       
       .about-container,
@@ -1063,7 +1063,7 @@
 
     .hero-content p {
       font-size: clamp(16px, 2.5vw, 22px); /* Reduced font size */
-      margin-bottom: 2rem; /* Increased margin for spacing */
+      margin-bottom: 1.5rem; /* Reduced margin to make room for button */
       animation: fadeInUp 1.5s forwards 0.5s;
       color: var(--text-grey);
       text-shadow: 1px 1px 2px rgba(255,255,255,0.3);
