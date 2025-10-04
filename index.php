@@ -212,8 +212,10 @@
       }
       
       .hero-inner-card {
-        height: 320px; /* Increased height for mobile inner card */
-        padding: clamp(1.5rem, 4vw, 2rem) clamp(1.5rem, 4vw, 2rem); /* Adjusted mobile padding */
+        min-height: 320px; /* Fixed minimum height for mobile */
+        max-height: 320px; /* Fixed maximum height */
+        height: 320px; /* Fixed height for mobile */
+        padding: clamp(1rem, 3vw, 1.5rem) clamp(1.2rem, 3vw, 1.5rem); /* Adjusted padding for mobile */
       }
       
       .about-container,
@@ -225,25 +227,29 @@
       .contact-inner-card {
         padding: clamp(2rem, 5vw, 2.5rem) clamp(1.5rem, 4vw, 2rem); /* Mobile padding for inner cards */
       }
-      
+
       .hero-title-container {
-        margin-bottom: 1rem;
+        margin-bottom: 0.8rem;
       }
 
       .hero-text-wrapper {
-        min-height: clamp(80px, 15vh, 120px); /* Using clamp for mobile responsive height */
-        margin-bottom: 0.8rem; /* Further reduced margin */
+        height: clamp(90px, 15vh, 120px); /* Fixed height for mobile */
+        min-height: clamp(90px, 15vh, 120px);
+        max-height: clamp(90px, 15vh, 120px);
+        margin-bottom: 0.6rem; /* Reduced margin */
       }
 
       #hero-line1 {
         font-size: clamp(18px, 6vw, 40px);
-        min-height: clamp(20px, 6vh, 40px); /* Match font-size clamp for mobile */
-        margin-bottom: 0.5rem; /* Increased gap between lines on mobile */
+        height: clamp(22px, 6vh, 40px); /* Fixed height matches font-size for mobile */
+        min-height: clamp(22px, 6vh, 40px);
+        margin-bottom: 0.4rem; /* Gap between lines on mobile */
       }
 
       #hero-line2 {
         font-size: clamp(28px, 10vw, 65px);
-        min-height: clamp(32px, 10vh, 65px); /* Match font-size clamp for mobile */
+        height: clamp(32px, 10vh, 65px); /* Fixed height matches font-size for mobile */
+        min-height: clamp(32px, 10vh, 65px);
         line-height: 1; /* Tighter line height for mobile */
         padding-bottom: 0px; /* No padding after Skyhawk text */
         background: linear-gradient(180deg, #34d19d 0%, #34d19d 45%, #38c1f2 55%, #38c1f2 100%);
@@ -256,11 +262,22 @@
       }
       
       .hero-content p {
-        margin-bottom: 1.5rem; /* Further reduced margin */
-        margin-top: 0.5rem; /* Reduced top margin */
+        height: auto;
+        max-height: 45px; /* Smaller max height for mobile */
+        margin-top: 0.3rem;
+        margin-bottom: 0.8rem;
+        padding: 0 0.5rem;
+        font-size: clamp(12px, 2vw, 16px); /* Smaller font for mobile */
+        line-height: 1.3;
       }
-
-      @keyframes gradientShift {
+      
+      .cta-btn {
+        height: 38px; /* Smaller button for mobile */
+        width: 160px;
+        padding: 0.6rem 1.5rem;
+        font-size: 0.9rem;
+        margin: 0 auto;
+      }      @keyframes gradientShift {
         0%, 100% {
           background-position: 0% 0%;
         }
@@ -680,7 +697,7 @@
       backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.3);
       border-radius: 20px;
-      padding: clamp(1.5rem, 3vw, 2rem) clamp(1.5rem, 3vw, 2rem); /* Reduced padding to keep button inside */
+      padding: clamp(1.2rem, 2.5vw, 1.8rem) clamp(1.5rem, 3vw, 2rem); /* Adjusted padding */
       box-shadow: 
         0 8px 32px rgba(0, 0, 0, 0.1),
         0 4px 16px rgba(0, 0, 0, 0.05),
@@ -688,11 +705,13 @@
       position: relative;
       z-index: 3;
       transition: all 0.3s ease;
-      overflow: visible; /* Ensure content is not clipped */
-      height: 380px; /* Increased height to accommodate button inside */
+      overflow: hidden; /* Keep content inside */
+      min-height: 380px; /* Fixed minimum height that won't change */
+      max-height: 380px; /* Fixed maximum height */
+      height: 380px; /* Fixed height */
       display: flex;
       flex-direction: column;
-      justify-content: center; /* Changed back to center */
+      justify-content: space-between; /* Space between elements */
       align-items: center; /* Center align all content */
     }
 
@@ -795,28 +814,34 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: clamp(120px, 20vh, 180px); /* Using clamp for responsive height */
-      margin-top: -0.5rem; /* Reduced top space */
-      margin-bottom: 2rem; /* Increased bottom margin */
+      height: clamp(140px, 20vh, 180px); /* Fixed height using clamp - won't change */
+      min-height: clamp(140px, 20vh, 180px); /* Same as height for consistency */
+      max-height: clamp(140px, 20vh, 180px); /* Same as height for consistency */
+      margin-top: 0; /* Removed negative margin */
+      margin-bottom: 1rem; /* Reduced bottom margin */
       overflow: visible; /* Ensure text is not clipped */
       width: 100%; /* Ensure full width */
+      flex-shrink: 0; /* Don't shrink */
     }
 
     #hero-line1 {
       font-size: clamp(24px, 8vw, 64px);
       font-weight: 600;
-      min-height: clamp(30px, 6vh, 64px); /* Match font-size clamp for proper spacing */
+      height: clamp(30px, 6vh, 64px); /* Fixed height matches font-size */
+      min-height: clamp(30px, 6vh, 64px);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 0.8rem; /* Reduced gap */
+      margin-bottom: 0.5rem; /* Gap between lines */
       overflow: visible; /* Ensure text is not clipped */
+      flex-shrink: 0; /* Don't shrink */
     }
 
     #hero-line2 {
       font-size: clamp(32px, 12vw, 120px);
       font-weight: 700;
-      min-height: clamp(40px, 12vh, 120px); /* Match font-size clamp for proper spacing */
+      height: clamp(40px, 12vh, 120px); /* Fixed height matches font-size */
+      min-height: clamp(40px, 12vh, 120px);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -828,9 +853,10 @@
       text-shadow: 0 0 20px rgba(52, 209, 157, 0.3);
       filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
       line-height: 1; /* Tighter line height to reduce space */
-      margin-bottom: 5px; /* Reduced margin */
+      margin-bottom: 0; /* No bottom margin */
       animation: gradientShift 4s ease-in-out infinite;
       overflow: visible; /* Ensure text is not clipped */
+      flex-shrink: 0; /* Don't shrink */
     }
 
     /* The blinking cursor is now handled by a simple class */
@@ -1005,8 +1031,10 @@
       }
       
       .hero-inner-card {
-        height: 280px; /* Increased height for extra small inner card */
-        padding: clamp(1.2rem, 3vw, 1.5rem) clamp(1.2rem, 3vw, 1.5rem); /* Adjusted padding for small screens */
+        min-height: 280px; /* Fixed minimum height for extra small */
+        max-height: 280px; /* Fixed maximum height */
+        height: 280px; /* Fixed height for extra small screens */
+        padding: clamp(0.8rem, 2.5vw, 1.2rem) clamp(1rem, 3vw, 1.5rem); /* Adjusted padding for small screens */
       }
       
       .about-container,
@@ -1020,33 +1048,40 @@
       }
 
       .hero-text-wrapper {
-        min-height: clamp(70px, 12vh, 100px); /* Using clamp for extra small responsive height */
-        margin-bottom: 0.6rem;
+        height: clamp(75px, 12vh, 100px); /* Fixed height for extra small */
+        min-height: clamp(75px, 12vh, 100px);
+        max-height: clamp(75px, 12vh, 100px);
+        margin-bottom: 0.5rem;
       }
 
       #hero-line1 {
-        min-height: clamp(18px, 5vh, 30px); /* Match font-size clamp for extra small */
+        height: clamp(20px, 5vh, 30px); /* Fixed height for extra small */
+        min-height: clamp(20px, 5vh, 30px);
         margin-bottom: 0.3rem; /* Small gap between lines */
       }
 
       #hero-line2 {
-        min-height: clamp(28px, 9vh, 50px); /* Match font-size clamp for extra small */
+        height: clamp(28px, 9vh, 50px); /* Fixed height for extra small */
+        min-height: clamp(28px, 9vh, 50px);
         line-height: 1;
       }
       
       .hero-content p {
-        height: 50px; /* Fixed height for extra small paragraph */
-        margin-top: 0.3rem; /* Minimal top margin */
-        margin-bottom: 1.2rem;
-        padding: 0 0.5rem; /* Add horizontal padding for small screens */
+        height: auto;
+        max-height: 40px; /* Fixed max height for extra small paragraph */
+        margin-top: 0.2rem; /* Minimal top margin */
+        margin-bottom: 0.6rem;
+        padding: 0 0.5rem;
+        font-size: clamp(11px, 1.8vw, 14px); /* Even smaller font for extra small */
+        line-height: 1.2;
       }
       
       .cta-btn {
-        height: 40px; /* Smaller button for extra small screens */
-        width: 160px;
-        padding: 0.8rem 1.5rem;
-        font-size: 0.9rem;
-        margin: 0 auto; /* Removed bottom margin for small screens */
+        height: 35px; /* Smaller button for extra small screens */
+        width: 150px;
+        padding: 0.5rem 1.2rem;
+        font-size: 0.8rem;
+        margin: 0 auto;
       }
     }
 
@@ -1056,20 +1091,23 @@
 
 
     .hero-content p {
-      font-size: clamp(16px, 2.5vw, 22px); /* Reduced font size */
-      margin-bottom: 1.5rem; /* Reduced margin to make room for button */
+      font-size: clamp(14px, 2vw, 18px); /* Slightly smaller font size */
+      margin-bottom: 0.8rem; /* Reduced margin */
       animation: fadeInUp 1.5s forwards 0.5s;
       color: var(--text-grey);
       text-shadow: 1px 1px 2px rgba(255,255,255,0.3);
       z-index: 1;
       position: relative;
-      height: 60px; /* Fixed height for paragraph area */
+      height: auto; /* Auto height instead of fixed */
+      max-height: 55px; /* Max height to prevent overflow */
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       width: 100%; /* Ensure full width */
       padding: 0 1rem; /* Add horizontal padding */
+      line-height: 1.4; /* Better line height */
+      flex-shrink: 0; /* Don't shrink */
     }
 
     .cta-btn,
@@ -1082,20 +1120,20 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 1.2rem 2.5rem;
+      padding: 0.8rem 2rem; /* Reduced padding */
       background: var(--primary-green);
       color: var(--white);
       border-radius: 50px;
       text-decoration: none;
       font-weight: 700;
-      font-size: 1.1rem;
+      font-size: 1rem; /* Slightly smaller font */
       transition: all 0.3s ease;
       animation: bounceIn 1s ease forwards 1s;
       box-shadow: var(--button-shadow);
       z-index: 1;
       position: relative;
-      height: 50px; /* Fixed height for button */
-      width: 200px; /* Fixed width for button */
+      height: 45px; /* Smaller fixed height for button */
+      width: 180px; /* Smaller fixed width for button */
       margin: 0 auto; /* Center the button without bottom margin */
       align-self: center; /* Ensure centered in flex container */
       flex-shrink: 0; /* Prevent button from shrinking */
