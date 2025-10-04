@@ -9,6 +9,20 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
   <style>
+    /* ============================================
+       CSS ORGANIZATION STRUCTURE:
+       1. Root Variables & Resets
+       2. Base Styles (body, animations)
+       3. Desktop/Large Screen Styles (Default)
+       4. Tablet/Medium Screens (@media max-width: 768px)
+       5. Small Screens (@media max-width: 480px)
+       6. Extra Small Screens (@media max-width: 360px)
+       7. Keyframe Animations
+       ============================================ */
+
+    /* ============================================
+       1. ROOT VARIABLES & RESETS
+       ============================================ */
     :root {
       --primary-green: #34d19d;
       --primary-blue: #38c1f2;
@@ -49,6 +63,9 @@
       padding: 0;
     }
 
+    /* ============================================
+       2. BASE STYLES & UNIVERSAL CLASSES
+       ============================================ */
     @keyframes gradientShift {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
@@ -65,6 +82,11 @@
       box-shadow: var(--hover-shadow);
     }
 
+    /* ============================================
+       3. DESKTOP/LARGE SCREEN STYLES (DEFAULT)
+       ============================================ */
+
+    /* --- Navigation --- */
     .navbar {
       display: flex;
       align-items: center;
@@ -194,6 +216,9 @@
       animation: bounceIn 1s ease forwards;
     }
 
+    /* ============================================
+       4. TABLET/MEDIUM SCREENS (@media max-width: 768px)
+       ============================================ */
     @media (max-width: 768px) {
       .navbar {
         padding: 1rem;
@@ -296,12 +321,6 @@
       .hero-inner-card {
         padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1rem, 4vw, 2rem);
       }
-
-      /* .hero-content p {
-        font-size: clamp(14px, 4vw, 18px);
-        margin-bottom: 1.5rem;
-        padding: 0;
-      } */
 
       .cta-btn {
         padding: clamp(0.8rem, 3vw, 1.2rem) clamp(1.8rem, 6vw, 2.5rem);
@@ -505,9 +524,33 @@
         padding: 0.8rem 1.5rem;
         font-size: 0.9rem;
       }
+
+      /* Additional mobile overrides for desktop styles */
+      .hero-content,
+      .services-container,
+      .about-container,
+      .contact-container {
+        width: 95vw;
+        padding: 1.5rem 1rem;
+      }
+      
+      .hero-inner-card {
+        padding: 2rem 1.5rem;
+        border-radius: 15px;
+      }
+      
+      .hero-inner-card::before {
+        border-radius: 15px;
+      }
+      
+      .contact-content {
+        grid-template-columns: 1fr;
+      }
     }
 
-    /* Extra small screens (phones) */
+    /* ============================================
+       5. SMALL SCREENS (@media max-width: 480px)
+       ============================================ */
     @media (max-width: 480px) {
       .services-container {
         width: 99vw;
@@ -583,7 +626,9 @@
       }
     }
 
-    /* Extra small screens (very small phones) */
+    /* ============================================
+       6. EXTRA SMALL SCREENS (@media max-width: 360px)
+       ============================================ */
     @media (max-width: 360px) {
       .services {
         gap: 0.8rem !important;
@@ -646,8 +691,65 @@
       .contact-inner-card {
         padding: clamp(1.2rem, 4vw, 2rem) clamp(0.8rem, 3vw, 1.5rem);
       }
+
+      /* Hero section adjustments for extra small screens */
+      .hero-section {
+        height: 100vh;
+        max-height: 100vh;
+        padding-top: calc(60px + 1rem);
+      }
+
+      .hero-content {
+        height: 440px;
+      }
+      
+      .hero-inner-card {
+        min-height: 340px;
+        max-height: 340px;
+        height: 340px;
+        padding: clamp(0.8rem, 2.5vw, 1.2rem) clamp(1rem, 3vw, 1.5rem);
+        overflow: visible;
+      }
+
+      .hero-text-wrapper {
+        height: clamp(75px, 12vh, 100px);
+        min-height: clamp(75px, 12vh, 100px);
+        max-height: clamp(75px, 12vh, 100px);
+        margin-bottom: 0.5rem;
+      }
+
+      #hero-line1 {
+        height: clamp(20px, 5vh, 30px);
+        min-height: clamp(20px, 5vh, 30px);
+        margin-bottom: 0.3rem;
+      }
+
+      #hero-line2 {
+        height: clamp(28px, 9vh, 50px);
+        min-height: clamp(28px, 9vh, 50px);
+        line-height: 1;
+      }
+      
+      .hero-content p {
+        height: auto;
+        max-height: none;
+        margin-top: 0.2rem;
+        margin-bottom: 0.6rem;
+        padding: 0 0.5rem;
+        font-size: clamp(0.8rem, 2.2vw, 1rem);
+        line-height: 1.4;
+      }
+      
+      .cta-btn {
+        height: 35px;
+        width: 150px;
+        padding: 0.5rem 1.2rem;
+        font-size: 0.8rem;
+        margin: 0 auto;
+      }
     }
 
+    /* --- Hero Section (Desktop) --- */
     .hero-section {
       height: 100vh; /* Fixed height to exactly 100vh */
       max-height: 100vh; /* Ensure it doesn't exceed 100vh */
@@ -796,14 +898,6 @@
     }
 
     /* === HERO TYPING ANIMATION STYLES === */
-    .hero-text-wrapper {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-    }
-
     #hero-line1, #hero-line2 {
       color: var(--text-black);
       position: relative;
@@ -903,190 +997,6 @@
       51%, 100% { opacity: 0; }
     }
     */
-
-    @media (max-width: 768px) {
-      /*
-      .blinking-cursor::after {
-        width: 1.5px;
-        right: -1.5px;
-        height: 65%;
-      }
-      
-      #hero-line1.blinking-cursor::after {
-        width: 1px;
-        right: -1.5px;
-        height: 65%;
-      }
-      
-      #hero-line2.blinking-cursor::after {
-        width: 1.5px;
-        right: -1.5px;
-        height: 65%;
-      }
-      */
-      
-      /* Force mobile services layout - override desktop styles */
-      .services-wrapper h2 {
-        font-size: clamp(1.5rem, 5vw, 2.2rem) !important;
-        margin-bottom: clamp(1.5rem, 4vw, 2rem) !important;
-      }
-
-      .services {
-        display: grid !important;
-        grid-template-columns: 1fr 1fr !important;
-        grid-template-rows: 1fr 1fr !important;
-        gap: 1rem !important;
-        padding: 0 !important;
-        overflow: visible !important;
-        justify-items: center !important;
-        align-items: start !important;
-        width: 100% !important;
-        margin: 0 auto !important;
-      }
-
-      .card {
-        width: clamp(110px, 35vw, 140px) !important;
-        height: clamp(150px, 38vw, 180px) !important;
-        margin: 0 !important;
-      }
-
-      .service-image-frame {
-        padding: 5px !important;
-        height: 62% !important;
-      }
-
-      .service-image-frame img {
-        width: 88% !important;
-        height: 88% !important;
-        padding: 2px !important;
-      }
-
-      .service-card-info {
-        padding: 0.25rem !important;
-        height: 38% !important;
-      }
-
-      .service-card-info h3 {
-        font-size: 0.6rem !important;
-        margin: 0 0 3px 0 !important;
-        line-height: 1.1 !important;
-      }
-
-      .service-card-info .specs {
-        font-size: 0.55rem !important;
-        line-height: 1.2 !important;
-      }
-
-      .coming-soon {
-        font-size: 0.6rem !important;
-        margin-top: 3px !important;
-      }
-
-      .services-card-back {
-        padding: 0.6rem !important;
-      }
-
-      .service-card-content p {
-        font-size: 0.6rem !important;
-        margin-bottom: 0.6rem !important;
-        line-height: 1.15 !important;
-      }
-
-      .book-btn {
-        padding: 0.3rem 0.6rem !important;
-        font-size: 0.55rem !important;
-        border-radius: 8px !important;
-      }
-      
-      .hero-content,
-      .services-container,
-      .about-container,
-      .contact-container {
-        width: 95vw;
-        padding: 1.5rem 1rem;
-      }
-      
-      .hero-inner-card {
-        padding: 2rem 1.5rem;
-        border-radius: 15px;
-      }
-      
-      .hero-inner-card::before {
-        border-radius: 15px;
-      }
-      
-      .contact-content {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* Extra small screens adjustments */
-    @media (max-width: 480px) {
-      .hero-section {
-        height: 100vh; /* Fixed height for very small screens */
-        max-height: 100vh;
-        padding-top: calc(60px + 1rem); /* Account for navbar */
-      }
-
-      .hero-content {
-        height: 440px; /* Increased height for extra small screens */
-      }
-      
-      .hero-inner-card {
-        min-height: 340px; /* Increased fixed minimum height for extra small */
-        max-height: 340px; /* Increased fixed maximum height */
-        height: 340px; /* Increased fixed height for extra small screens */
-        padding: clamp(0.8rem, 2.5vw, 1.2rem) clamp(1rem, 3vw, 1.5rem); /* Adjusted padding for small screens */
-        overflow: visible; /* Allow text to show */
-      }
-      
-      .about-container,
-      .contact-container {
-        padding: clamp(1rem, 3vw, 1.5rem) clamp(0.8rem, 2vw, 1rem); /* Extra small screen padding */
-      }
-      
-      .about-inner-card,
-      .contact-inner-card {
-        padding: clamp(1.5rem, 4vw, 2rem) clamp(1rem, 3vw, 1.5rem); /* Extra small screen inner padding */
-      }
-
-      .hero-text-wrapper {
-        height: clamp(75px, 12vh, 100px); /* Fixed height for extra small */
-        min-height: clamp(75px, 12vh, 100px);
-        max-height: clamp(75px, 12vh, 100px);
-        margin-bottom: 0.5rem;
-      }
-
-      #hero-line1 {
-        height: clamp(20px, 5vh, 30px); /* Fixed height for extra small */
-        min-height: clamp(20px, 5vh, 30px);
-        margin-bottom: 1.3rem; /* Small gap between lines */
-      }
-
-      #hero-line2 {
-        height: clamp(28px, 9vh, 50px); /* Fixed height for extra small */
-        min-height: clamp(28px, 9vh, 50px);
-        line-height: 1;
-      }
-      
-      .hero-content p {
-        height: auto;
-        max-height: none; /* Remove max height restriction for extra small */
-        margin-top: 0.2rem; /* Minimal top margin */
-        margin-bottom: 0.6rem;
-        padding: 0 0.5rem;
-        font-size: clamp(0.8rem, 2.2vw, 1rem); /* Increased font for extra small to match About */
-        line-height: 1.4;
-      }
-      
-      .cta-btn {
-        height: 35px; /* Smaller button for extra small screens */
-        width: 150px;
-        padding: 0.5rem 1.2rem;
-        font-size: 0.8rem;
-        margin: 0 auto;
-      }
-    }
 
     @keyframes blink {
       50% { border-color: transparent; }
