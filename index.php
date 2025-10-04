@@ -792,6 +792,7 @@
       align-items: center;
       justify-content: center;
       height: 160px; /* Fixed height instead of min-height */
+      margin-top: 1rem; /* Added top margin for Welcome to text */
       margin-bottom: 1.5rem; /* Increased margin for spacing */
       overflow: visible; /* Ensure text is not clipped */
       width: 100%; /* Ensure full width */
@@ -1031,6 +1032,7 @@
         width: 160px;
         padding: 0.8rem 1.5rem;
         font-size: 0.9rem;
+        margin: 0 auto 0.8rem auto; /* Adjusted margin for small screens */
       }
     }
 
@@ -1080,7 +1082,7 @@
       position: relative;
       height: 50px; /* Fixed height for button */
       width: 200px; /* Fixed width for button */
-      margin: 0 auto; /* Center the button */
+      margin: 0 auto 1rem auto; /* Center the button with bottom margin */
       align-self: center; /* Ensure centered in flex container */
     }
 
