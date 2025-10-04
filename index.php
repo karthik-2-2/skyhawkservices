@@ -227,7 +227,7 @@
       }
       
       .hero-text-wrapper {
-        height: 120px; /* Fixed height for mobile text wrapper */
+        min-height: auto; /* Changed from fixed height to auto */
       }
 
       .hero-title-container {
@@ -235,22 +235,20 @@
       }
 
       .hero-text-wrapper {
-        min-height: clamp(80px, 15vh, 120px); /* Further reduced for mobile */
+        min-height: auto; /* Changed from min-height clamp to auto */
         margin-bottom: 0.8rem; /* Further reduced margin */
       }
 
       #hero-line1 {
         font-size: clamp(18px, 6vw, 40px);
-        min-height: clamp(18px, 4vh, 30px); /* Further reduced height */
-        height: clamp(18px, 4vh, 30px);
+        min-height: auto; /* Changed from fixed height to auto */
         margin-bottom: 0.5rem; /* Increased gap between lines on mobile */
       }
 
       #hero-line2 {
         font-size: clamp(28px, 10vw, 65px);
-        min-height: clamp(35px, 8vh, 55px); /* Further reduced height */
-        height: clamp(35px, 8vh, 55px);
-        line-height: 0.95; /* Even tighter line height for mobile */
+        min-height: auto; /* Changed from fixed height to auto */
+        line-height: 1; /* Tighter line height for mobile */
         padding-bottom: 0px; /* No padding after Skyhawk text */
         background: linear-gradient(180deg, #34d19d 0%, #34d19d 45%, #38c1f2 55%, #38c1f2 100%);
         background-size: 100% 200%;
@@ -801,7 +799,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 160px; /* Fixed height instead of min-height */
+      min-height: auto; /* Changed from fixed height to auto */
       margin-top: -0.5rem; /* Reduced top space */
       margin-bottom: 2rem; /* Increased bottom margin */
       overflow: visible; /* Ensure text is not clipped */
@@ -811,7 +809,7 @@
     #hero-line1 {
       font-size: clamp(24px, 8vw, 64px);
       font-weight: 600;
-      height: clamp(30px, 6vh, 50px); /* Fixed height */
+      min-height: auto; /* Changed from fixed height to auto */
       display: flex;
       align-items: center;
       justify-content: center;
@@ -822,7 +820,7 @@
     #hero-line2 {
       font-size: clamp(32px, 12vw, 120px);
       font-weight: 700;
-      height: clamp(70px, 12vh, 100px); /* Fixed height */
+      min-height: auto; /* Changed from fixed height to auto */
       display: flex;
       align-items: center;
       justify-content: center;
@@ -833,7 +831,7 @@
       background-clip: text;
       text-shadow: 0 0 20px rgba(52, 209, 157, 0.3);
       filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
-      line-height: 1.1; /* Optimized line height */
+      line-height: 1; /* Tighter line height to reduce space */
       margin-bottom: 5px; /* Reduced margin */
       animation: gradientShift 4s ease-in-out infinite;
       overflow: visible; /* Ensure text is not clipped */
@@ -1026,18 +1024,18 @@
       }
 
       .hero-text-wrapper {
-        height: 100px; /* Fixed height for extra small text wrapper */
+        min-height: auto; /* Changed from fixed height to auto */
         margin-bottom: 0.6rem;
       }
 
       #hero-line1 {
-        height: clamp(16px, 3.5vh, 25px); /* Fixed height */
+        min-height: auto; /* Changed from fixed height to auto */
         margin-bottom: 0.3rem; /* Small gap between lines */
       }
 
       #hero-line2 {
-        height: clamp(30px, 7vh, 45px); /* Fixed height */
-        line-height: 0.9;
+        min-height: auto; /* Changed from fixed height to auto */
+        line-height: 1;
       }
       
       .hero-content p {
