@@ -208,14 +208,15 @@
       }
       
       .hero-content {
-        height: 420px; /* Increased height for mobile */
+        height: 480px; /* Increased height for mobile */
       }
       
       .hero-inner-card {
-        min-height: 320px; /* Fixed minimum height for mobile */
-        max-height: 320px; /* Fixed maximum height */
-        height: 320px; /* Fixed height for mobile */
+        min-height: 380px; /* Increased fixed minimum height for mobile */
+        max-height: 380px; /* Increased fixed maximum height */
+        height: 380px; /* Increased fixed height for mobile */
         padding: clamp(1rem, 3vw, 1.5rem) clamp(1.2rem, 3vw, 1.5rem); /* Adjusted padding for mobile */
+        overflow: visible; /* Allow text to show */
       }
       
       .about-container,
@@ -263,12 +264,12 @@
       
       .hero-content p {
         height: auto;
-        max-height: 45px; /* Smaller max height for mobile */
+        max-height: none; /* Remove max height restriction for mobile */
         margin-top: 0.3rem;
         margin-bottom: 0.8rem;
         padding: 0 0.5rem;
-        font-size: clamp(12px, 2vw, 16px); /* Smaller font for mobile */
-        line-height: 1.3;
+        font-size: clamp(0.9rem, 2.5vw, 1.1rem); /* Increased font for mobile to match About */
+        line-height: 1.5; /* Better line height */
       }
       
       .cta-btn {
@@ -672,7 +673,7 @@
       box-shadow: var(--section-shadow);
       width: clamp(95vw, 90vw, calc(70vw + 20vw));
       max-width: 1200px;
-      height: 480px; /* Increased height to accommodate larger inner card */
+      height: 540px; /* Increased height to accommodate larger text */
       position: relative;
       z-index: 2;
       overflow: visible; /* Ensure content is not clipped */
@@ -705,10 +706,10 @@
       position: relative;
       z-index: 3;
       transition: all 0.3s ease;
-      overflow: hidden; /* Keep content inside */
-      min-height: 380px; /* Fixed minimum height that won't change */
-      max-height: 380px; /* Fixed maximum height */
-      height: 380px; /* Fixed height */
+      overflow: visible; /* Changed to visible so text doesn't get cut */
+      min-height: 440px; /* Increased fixed height for larger text */
+      max-height: 440px; /* Increased fixed maximum height */
+      height: 440px; /* Increased fixed height */
       display: flex;
       flex-direction: column;
       justify-content: space-between; /* Space between elements */
@@ -1027,14 +1028,15 @@
       }
 
       .hero-content {
-        height: 380px; /* Increased height for extra small screens */
+        height: 440px; /* Increased height for extra small screens */
       }
       
       .hero-inner-card {
-        min-height: 280px; /* Fixed minimum height for extra small */
-        max-height: 280px; /* Fixed maximum height */
-        height: 280px; /* Fixed height for extra small screens */
+        min-height: 340px; /* Increased fixed minimum height for extra small */
+        max-height: 340px; /* Increased fixed maximum height */
+        height: 340px; /* Increased fixed height for extra small screens */
         padding: clamp(0.8rem, 2.5vw, 1.2rem) clamp(1rem, 3vw, 1.5rem); /* Adjusted padding for small screens */
+        overflow: visible; /* Allow text to show */
       }
       
       .about-container,
@@ -1068,12 +1070,12 @@
       
       .hero-content p {
         height: auto;
-        max-height: 40px; /* Fixed max height for extra small paragraph */
+        max-height: none; /* Remove max height restriction for extra small */
         margin-top: 0.2rem; /* Minimal top margin */
         margin-bottom: 0.6rem;
         padding: 0 0.5rem;
-        font-size: clamp(11px, 1.8vw, 14px); /* Even smaller font for extra small */
-        line-height: 1.2;
+        font-size: clamp(0.8rem, 2.2vw, 1rem); /* Increased font for extra small to match About */
+        line-height: 1.4;
       }
       
       .cta-btn {
@@ -1091,7 +1093,7 @@
 
 
     .hero-content p {
-      font-size: clamp(14px, 2vw, 18px); /* Slightly smaller font size */
+      font-size: clamp(1rem, 3vw, 1.2rem); /* Match About section font size */
       margin-bottom: 0.8rem; /* Reduced margin */
       animation: fadeInUp 1.5s forwards 0.5s;
       color: var(--text-grey);
@@ -1099,14 +1101,14 @@
       z-index: 1;
       position: relative;
       height: auto; /* Auto height instead of fixed */
-      max-height: 55px; /* Max height to prevent overflow */
+      max-height: none; /* Remove max height restriction */
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       width: 100%; /* Ensure full width */
       padding: 0 1rem; /* Add horizontal padding */
-      line-height: 1.4; /* Better line height */
+      line-height: 1.6; /* Match About section line height */
       flex-shrink: 0; /* Don't shrink */
     }
 
