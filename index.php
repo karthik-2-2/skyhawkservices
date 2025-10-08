@@ -947,7 +947,7 @@
       background-clip: text;
       text-shadow: 0 0 20px rgba(52, 209, 157, 0.3);
       filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
-      line-height: 1; /* Tighter line height to reduce space */
+      line-height: 1.2; /* Increased line height for large screens to prevent text cutoff */
       margin-bottom: 0; /* No bottom margin */
       animation: gradientShift 4s ease-in-out infinite;
       overflow: visible; /* Ensure text is not clipped */
