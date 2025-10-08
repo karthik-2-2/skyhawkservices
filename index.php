@@ -768,7 +768,7 @@
       box-shadow: var(--section-shadow);
       width: clamp(95vw, 90vw, calc(70vw + 20vw));
       max-width: 1200px;
-      height: 540px; /* Increased height to accommodate larger text */
+      height: 580px; /* Increased height to accommodate larger inner card */
       position: relative;
       z-index: 2;
       overflow: visible; /* Ensure content is not clipped */
@@ -802,9 +802,9 @@
       z-index: 3;
       transition: all 0.3s ease;
       overflow: visible; /* Changed to visible so text doesn't get cut */
-      min-height: 440px; /* Increased fixed height for larger text */
-      max-height: 440px; /* Increased fixed maximum height */
-      height: 440px; /* Increased fixed height */
+      min-height: 480px; /* Increased to accommodate larger text wrapper */
+      max-height: 480px; /* Increased fixed maximum height */
+      height: 480px; /* Increased fixed height */
       display: flex;
       flex-direction: column;
       justify-content: space-between; /* Space between elements */
@@ -903,8 +903,8 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: clamp(200px, 30vh, 260px); /* Fixed height using clamp - won't change */
-      min-height: clamp(120px, 24vh, 200px); /* Same as height for consistency */
+      height: clamp(220px, 32vh, 280px); /* Increased to accommodate larger line2 height */
+      min-height: clamp(220px, 32vh, 280px);
       margin-top: 0; /* Removed negative margin */
       margin-bottom: 1rem; /* Reduced bottom margin */
       overflow: visible; /* Ensure text is not clipped */
@@ -928,16 +928,18 @@
     #hero-line2 {
       font-size: clamp(32px, 12vw, 120px);
       font-weight: 700;
-      padding: clamp(12px, 3vh, 24px) 0; /* Use padding instead of fixed height for better text rendering */
-      display: block; /* Changed from flex to block for proper line-height rendering */
-      text-align: center; /* Center the text */
+      height: clamp(50px, 15vh, 160px); /* Increased height to prevent cutoff */
+      min-height: clamp(50px, 15vh, 160px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       background: linear-gradient(135deg, #34d19d 0%, #38c1f2 100%);
       background-size: 200% 200%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
-      line-height: 1.3; /* Increased for better rendering */
+      line-height: 1.3; /* Better rendering */
       margin-bottom: 0; /* No bottom margin */
       animation: gradientShift 4s ease-in-out infinite;
       overflow: visible; /* Ensure text is not clipped */
