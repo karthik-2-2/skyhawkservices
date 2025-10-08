@@ -293,7 +293,7 @@
         margin-top: 0.3rem;
         margin-bottom: 0.6rem;
         padding: 0 0.5rem;
-        font-size: clamp(1.0rem, 2.7vw, 1.2rem); /* Increased font for mobile to match About */
+        font-size: clamp(1.05rem, 3vw, 1.3rem); /* Increased from 1.0rem to 1.05rem min, 1.2rem to 1.3rem max */
         line-height: 1.5; /* Better line height */
       }
       
@@ -736,7 +736,7 @@
         margin-top: 0.2rem;
         margin-bottom: 0.6rem;
         padding: 0 0.5rem;
-        font-size: clamp(0.8rem, 2.2vw, 1rem);
+        font-size: clamp(0.95rem, 2.5vw, 1.15rem); /* Increased from 0.8rem to 0.95rem min, 1rem to 1.15rem max */
         line-height: 1.4;
       }
       
@@ -1004,7 +1004,7 @@
 
 
     .hero-content p {
-      font-size: clamp(1rem, 3vw, 1.2rem); /* Match About section font size */
+      font-size: clamp(1.1rem, 3.5vw, 1.4rem); /* Increased from 1rem to 1.1rem min, 1.2rem to 1.4rem max */
       margin-bottom: 0.8rem; /* Reduced margin */
       animation: fadeInUp 1.5s forwards 0.5s;
       color: var(--text-grey);
