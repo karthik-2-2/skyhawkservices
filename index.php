@@ -928,19 +928,16 @@
     #hero-line2 {
       font-size: clamp(32px, 12vw, 120px);
       font-weight: 700;
-      height: clamp(48px, 14vh, 144px); /* Increased to accommodate line-height 1.2 (120px * 1.2 = 144px) */
-      min-height: clamp(48px, 14vh, 144px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      padding: clamp(12px, 3vh, 24px) 0; /* Use padding instead of fixed height for better text rendering */
+      display: block; /* Changed from flex to block for proper line-height rendering */
+      text-align: center; /* Center the text */
       background: linear-gradient(135deg, #34d19d 0%, #38c1f2 100%);
       background-size: 200% 200%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      text-shadow: 0 0 20px rgba(52, 209, 157, 0.3);
       filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
-      line-height: 1.2; /* Increased line height for large screens to prevent text cutoff */
+      line-height: 1.3; /* Increased for better rendering */
       margin-bottom: 0; /* No bottom margin */
       animation: gradientShift 4s ease-in-out infinite;
       overflow: visible; /* Ensure text is not clipped */
