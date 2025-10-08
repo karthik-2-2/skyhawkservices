@@ -743,7 +743,7 @@
     }
 
     /* ============================================
-       DESKTOP/LARGE SCREEN HERO STYLES (min-width: 769px)
+       DESKTOP HERO SECTION (@media min-width: 769px)
        ============================================ */
     @media (min-width: 769px) {
       /* --- Hero Section (Desktop) --- */
@@ -793,154 +793,48 @@
 
       /* Inner hero card for double glass effect */
       .hero-inner-card {
-        background: rgba(255, 255, 255, 0.25);
-        backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        border-radius: 20px;
-        padding: clamp(1.2rem, 2.5vw, 1.8rem) clamp(1.5rem, 3vw, 2rem); /* Adjusted padding */
-        box-shadow: 
-          0 8px 32px rgba(0, 0, 0, 0.1),
-          0 4px 16px rgba(0, 0, 0, 0.05),
-          inset 0 1px 0 rgba(255, 255, 255, 0.4);
-        position: relative;
-        z-index: 3;
-        transition: all 0.3s ease;
-        overflow: visible; /* Changed to visible so text doesn't get cut */
-        min-height: 460px; /* Adjusted to accommodate text wrapper */
-        max-height: 460px; /* Adjusted fixed maximum height */
-        height: 460px; /* Adjusted fixed height */
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between; /* Space between elements */
-        align-items: center; /* Center align all content */
-      }
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 20px;
+      padding: clamp(1.2rem, 2.5vw, 1.8rem) clamp(1.5rem, 3vw, 2rem); /* Adjusted padding */
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        0 4px 16px rgba(0, 0, 0, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+      position: relative;
+      z-index: 3;
+      transition: all 0.3s ease;
+      overflow: visible; /* Changed to visible so text doesn't get cut */
+      min-height: 460px; /* Adjusted to accommodate text wrapper */
+      max-height: 460px; /* Adjusted fixed maximum height */
+      height: 460px; /* Adjusted fixed height */
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between; /* Space between elements */
+      align-items: center; /* Center align all content */
+    }
 
-      .hero-inner-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(255, 255, 255, 0.15);
-        border-radius: 20px;
-        pointer-events: none;
-        z-index: -1;
-      }
+    .hero-inner-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      pointer-events: none;
+      z-index: -1;
+    }
 
-      .hero-inner-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 
-          0 12px 40px rgba(0, 0, 0, 0.15),
-          0 6px 20px rgba(0, 0, 0, 0.1),
-          inset 0 1px 0 rgba(255, 255, 255, 0.5);
-      }
-
-      /* Simplified hero title without flip animation */
-      .hero-title-container {
-        position: relative;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 2rem;
-        z-index: 1;
-      }
-
-      /* === HERO TYPING ANIMATION STYLES === */
-      #hero-line1, #hero-line2 {
-        color: var(--text-black);
-        position: relative;
-        text-shadow: 2px 2px 4px rgba(255,255,255,0.3);
-        z-index: 1;
-      }
-
-      .hero-text-wrapper {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: clamp(210px, 31vh, 270px); /* Adjusted to fit new line2 height */
-        min-height: clamp(210px, 31vh, 270px);
-        margin-top: 0; /* Removed negative margin */
-        margin-bottom: 1rem; /* Reduced bottom margin */
-        overflow: visible; /* Ensure text is not clipped */
-        width: 100%; /* Ensure full width */
-        flex-shrink: 0; /* Don't shrink */
-      }
-
-      #hero-line1 {
-        font-size: clamp(24px, 8vw, 64px);
-        font-weight: 600;
-        height: clamp(30px, 6vh, 64px); /* Fixed height matches font-size */
-        min-height: clamp(30px, 6vh, 64px);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 1.5rem; /* Gap between lines */
-        overflow: visible; /* Ensure text is not clipped */
-        flex-shrink: 0; /* Don't shrink */
-      }
-
-      #hero-line2 {
-        font-size: clamp(32px, 12vw, 120px);
-        font-weight: 700;
-        height: clamp(48px, 14vh, 150px); /* Slightly increased from 120px to 150px for text rendering */
-        min-height: clamp(48px, 14vh, 150px);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: linear-gradient(180deg, #2eb589 0%, #2eb589 45%, #2ba5d9 55%, #2ba5d9 100%);
-        background-size: 100% 200%;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
-        line-height: 1.25; /* Slightly increased for proper rendering */
-        margin-bottom: 0; /* No bottom margin */
-        animation: gradientShift 4s ease-in-out infinite;
-        overflow: visible; /* Ensure text is not clipped */
-        flex-shrink: 0; /* Don't shrink */
-      }
-
-      .hero-content p {
-        font-size: clamp(1.1rem, 3.5vw, 1.4rem); /* Increased from 1rem to 1.1rem min, 1.2rem to 1.4rem max */
-        margin-bottom: 0.8rem; /* Reduced margin */
-        animation: fadeInUp 1.5s forwards 0.5s;
-        color: var(--text-grey);
-        text-shadow: 1px 1px 2px rgba(255,255,255,0.3);
-        z-index: 1;
-        position: relative;
-        height: auto; /* Auto height instead of fixed */
-        max-height: none; /* Remove max height restriction */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        width: 100%; /* Ensure full width */
-        padding: 0 1rem; /* Add horizontal padding */
-        line-height: 1.6; /* Match About section line height */
-        flex-shrink: 0; /* Don't shrink */
-      }
-
-      .cta-btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0.8rem 2rem; /* Reduced padding */
-        background: var(--primary-green);
-        color: var(--white);
-        border-radius: 50px;
-        text-decoration: none;
-        font-weight: 700;
-        font-size: 1rem; /* Slightly smaller font */
-        transition: all 0.3s ease;
-        animation: bounceIn 1s ease forwards 1s;
-        box-shadow: var(--button-shadow);
-        z-index: 1;
-        position: relative;
-      }
-    } /* End of desktop media query */
+    .hero-inner-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.15),
+        0 6px 20px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    }
 
     /* --- Flip Animation Styles (COMMENTED OUT) --- */
     /*
@@ -989,14 +883,180 @@
     }
     */
 
-    /* === COMMON BUTTON ANIMATION === */
+    /* Simplified hero title without flip animation */
+    .hero-title-container {
+      position: relative;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 2rem;
+      z-index: 1;
+    }
+
+    /* === HERO TYPING ANIMATION STYLES === */
+    #hero-line1, #hero-line2 {
+      color: var(--text-black);
+      position: relative;
+      text-shadow: 2px 2px 4px rgba(255,255,255,0.3);
+      z-index: 1;
+    }
+
+    .hero-text-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: clamp(210px, 31vh, 270px); /* Adjusted to fit new line2 height */
+      min-height: clamp(210px, 31vh, 270px);
+      margin-top: 0; /* Removed negative margin */
+      margin-bottom: 1rem; /* Reduced bottom margin */
+      overflow: visible; /* Ensure text is not clipped */
+      width: 100%; /* Ensure full width */
+      flex-shrink: 0; /* Don't shrink */
+    }
+
+    #hero-line1 {
+      font-size: clamp(24px, 8vw, 64px);
+      font-weight: 600;
+      height: clamp(30px, 6vh, 64px); /* Fixed height matches font-size */
+      min-height: clamp(30px, 6vh, 64px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem; /* Gap between lines */
+      overflow: visible; /* Ensure text is not clipped */
+      flex-shrink: 0; /* Don't shrink */
+    }
+
+    #hero-line2 {
+      font-size: clamp(32px, 12vw, 120px);
+      font-weight: 700;
+      height: clamp(48px, 14vh, 150px); /* Slightly increased from 120px to 150px for text rendering */
+      min-height: clamp(48px, 14vh, 150px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg, #2eb589 0%, #2eb589 45%, #2ba5d9 55%, #2ba5d9 100%);
+      background-size: 100% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
+      line-height: 1.25; /* Slightly increased for proper rendering */
+      margin-bottom: 0; /* No bottom margin */
+      animation: gradientShift 4s ease-in-out infinite;
+      overflow: visible; /* Ensure text is not clipped */
+      flex-shrink: 0; /* Don't shrink */
+    }
+
+    /* The blinking cursor is now handled by a simple class */
+    /*
+    .blinking-cursor {
+        position: relative;
+    }
+
+    .blinking-cursor::after {
+        content: '';
+        position: absolute;
+        right: -2px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 2px;
+        height: 70%;
+        background-color: var(--text-black);
+        animation: blink 1s step-end infinite;
+        z-index: 10;
+    }
+
+    /* Specific cursor styling for hero-line1 */
+    /*
+    #hero-line1.blinking-cursor::after {
+        width: 1.5px;
+        right: -1.5px;
+        height: 65%;
+    }
+
+    /* Special cursor styling for gradient text elements (hero-line2) */
+    /*
+    #hero-line2.blinking-cursor::after {
+        background-color: #2c3e50;
+        width: 2px;
+        right: -2px;
+        height: 70%;
+        box-shadow: 0 0 3px rgba(255,255,255,0.8);
+    }
+
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+    */
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+
+    .hero-content p {
+      font-size: clamp(1.1rem, 3.5vw, 1.4rem); /* Increased from 1rem to 1.1rem min, 1.2rem to 1.4rem max */
+      margin-bottom: 0.8rem; /* Reduced margin */
+      animation: fadeInUp 1.5s forwards 0.5s;
+      color: var(--text-grey);
+      text-shadow: 1px 1px 2px rgba(255,255,255,0.3);
+      z-index: 1;
+      position: relative;
+      height: auto; /* Auto height instead of fixed */
+      max-height: none; /* Remove max height restriction */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      width: 100%; /* Ensure full width */
+      padding: 0 1rem; /* Add horizontal padding */
+      line-height: 1.6; /* Match About section line height */
+      flex-shrink: 0; /* Don't shrink */
+    }
+
     .cta-btn,
     .book-btn,
     .contact-form button {
       animation: pulse 1.5s ease-in-out infinite;
     }
 
-    /* --- Services Section (Desktop) --- */
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.8rem 2rem; /* Reduced padding */
+      background: var(--primary-green);
+      color: var(--white);
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem; /* Slightly smaller font */
+      transition: all 0.3s ease;
+      animation: bounceIn 1s ease forwards 1s;
+      box-shadow: var(--button-shadow);
+      z-index: 1;
+      position: relative;
+      height: 45px; /* Smaller fixed height for button */
+      width: 180px; /* Smaller fixed width for button */
+      margin: 0 auto; /* Center the button without bottom margin */
+      align-self: center; /* Ensure centered in flex container */
+      flex-shrink: 0; /* Prevent button from shrinking */
+    }
+
+      .cta-btn:hover {
+        background: var(--primary-blue);
+        transform: scale(1.05) translateY(-3px);
+        box-shadow: var(--hover-shadow);
+      }
+    } /* End of Desktop Hero Media Query */
+
+    /* ============================================
+       SERVICES SECTION (All Screens)
+       ============================================ */
     .services-section {
       min-height: 100vh; /* Full screen height for services section */
       padding: 2rem;
