@@ -278,8 +278,8 @@
         min-height: clamp(32px, 10vh, 65px);
         line-height: 1; /* Tighter line height for mobile */
         padding-bottom: 0px; /* No padding after Skyhawk text */
-        background: linear-gradient(180deg, #34d19d 0%, #34d19d 45%, #38c1f2 55%, #38c1f2 100%);
-        background-size: 100% 200%;
+        background: linear-gradient(135deg, #34d19d 0%, #38c1f2 100%);
+        background-size: 200% 200%;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
@@ -303,13 +303,6 @@
         padding: 0.6rem 1.5rem;
         font-size: 0.9rem;
         margin: 0 auto;
-      }      @keyframes gradientShift {
-        0%, 100% {
-          background-position: 0% 0%;
-        }
-        50% {
-          background-position: 0% 100%;
-        }
       }
 
       .hero-content {
@@ -940,8 +933,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(180deg, #34d19d 0%, #34d19d 45%, #38c1f2 55%, #38c1f2 100%);
-      background-size: 100% 200%;
+      background: linear-gradient(135deg, #34d19d 0%, #38c1f2 100%);
+      background-size: 200% 200%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
