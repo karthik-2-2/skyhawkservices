@@ -911,8 +911,8 @@
       align-items: center;
       justify-content: center;
       height: clamp(140px, 20vh, 180px); /* Fixed height using clamp - won't change */
-      min-height: clamp(120px, 22vh, 200px); /* Same as height for consistency */
-      max-height: clamp(120px, 24vh, 220px); /* Same as height for consistency */
+      min-height: clamp(120px, 24vh, 200px); /* Same as height for consistency */
+      max-height: clamp(120px, 30vh, 220px); /* Same as height for consistency */
       margin-top: 0; /* Removed negative margin */
       margin-bottom: 1rem; /* Reduced bottom margin */
       overflow: visible; /* Ensure text is not clipped */
