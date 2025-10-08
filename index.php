@@ -278,8 +278,8 @@
         min-height: clamp(32px, 10vh, 65px);
         line-height: 1; /* Tighter line height for mobile */
         padding-bottom: 0px; /* No padding after Skyhawk text */
-        background: linear-gradient(135deg, #34d19d 0%, #38c1f2 100%);
-        background-size: 200% 200%;
+        background: linear-gradient(180deg, #2eb589 0%, #2eb589 45%, #2ba5d9 55%, #2ba5d9 100%);
+        background-size: 100% 200%;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
@@ -768,7 +768,7 @@
       box-shadow: var(--section-shadow);
       width: clamp(95vw, 90vw, calc(70vw + 20vw));
       max-width: 1200px;
-      height: 580px; /* Increased height to accommodate larger inner card */
+      height: 560px; /* Adjusted height to accommodate inner card */
       position: relative;
       z-index: 2;
       overflow: visible; /* Ensure content is not clipped */
@@ -802,9 +802,9 @@
       z-index: 3;
       transition: all 0.3s ease;
       overflow: visible; /* Changed to visible so text doesn't get cut */
-      min-height: 480px; /* Increased to accommodate larger text wrapper */
-      max-height: 480px; /* Increased fixed maximum height */
-      height: 480px; /* Increased fixed height */
+      min-height: 460px; /* Adjusted to accommodate text wrapper */
+      max-height: 460px; /* Adjusted fixed maximum height */
+      height: 460px; /* Adjusted fixed height */
       display: flex;
       flex-direction: column;
       justify-content: space-between; /* Space between elements */
@@ -903,8 +903,8 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: clamp(220px, 32vh, 280px); /* Increased to accommodate larger line2 height */
-      min-height: clamp(220px, 32vh, 280px);
+      height: clamp(210px, 31vh, 270px); /* Adjusted to fit new line2 height */
+      min-height: clamp(210px, 31vh, 270px);
       margin-top: 0; /* Removed negative margin */
       margin-bottom: 1rem; /* Reduced bottom margin */
       overflow: visible; /* Ensure text is not clipped */
@@ -928,18 +928,18 @@
     #hero-line2 {
       font-size: clamp(32px, 12vw, 120px);
       font-weight: 700;
-      height: clamp(50px, 15vh, 160px); /* Increased height to prevent cutoff */
-      min-height: clamp(50px, 15vh, 160px);
+      height: clamp(48px, 14vh, 150px); /* Slightly increased from 120px to 150px for text rendering */
+      min-height: clamp(48px, 14vh, 150px);
       display: flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(135deg, #34d19d 0%, #38c1f2 100%);
-      background-size: 200% 200%;
+      background: linear-gradient(180deg, #2eb589 0%, #2eb589 45%, #2ba5d9 55%, #2ba5d9 100%);
+      background-size: 100% 200%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
-      line-height: 1.3; /* Better rendering */
+      line-height: 1.25; /* Slightly increased for proper rendering */
       margin-bottom: 0; /* No bottom margin */
       animation: gradientShift 4s ease-in-out infinite;
       overflow: visible; /* Ensure text is not clipped */
