@@ -935,8 +935,8 @@
     #hero-line2 {
       font-size: clamp(32px, 12vw, 120px);
       font-weight: 700;
-      height: clamp(40px, 12vh, 120px); /* Fixed height matches font-size */
-      min-height: clamp(40px, 12vh, 120px);
+      height: clamp(48px, 14vh, 144px); /* Increased to accommodate line-height 1.2 (120px * 1.2 = 144px) */
+      min-height: clamp(48px, 14vh, 144px);
       display: flex;
       align-items: center;
       justify-content: center;
