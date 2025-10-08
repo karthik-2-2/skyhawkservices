@@ -233,14 +233,14 @@
       }
       
       .hero-content {
-        height: 480px; /* Increased height for mobile */
+        height: 420px; /* Reduced height for mobile */
       }
       
       .hero-inner-card {
-        min-height: 380px; /* Increased fixed minimum height for mobile */
-        max-height: 380px; /* Increased fixed maximum height */
-        height: 380px; /* Increased fixed height for mobile */
-        padding: clamp(1rem, 3vw, 1.5rem) clamp(1.2rem, 3vw, 1.5rem); /* Adjusted padding for mobile */
+        min-height: 340px; /* Reduced fixed minimum height for mobile */
+        max-height: 340px; /* Reduced fixed maximum height */
+        height: 340px; /* Reduced fixed height for mobile */
+        padding: clamp(0.8rem, 2.5vw, 1.2rem) clamp(1rem, 2.5vw, 1.2rem); /* Reduced padding for mobile */
         overflow: visible; /* Allow text to show */
       }
       
@@ -255,27 +255,27 @@
       }
 
       .hero-title-container {
-        margin-bottom: 0.8rem;
+        margin-bottom: 0.5rem;
       }
 
       .hero-text-wrapper {
-        height: clamp(90px, 15vh, 120px); /* Fixed height for mobile */
-        min-height: clamp(90px, 15vh, 120px);
-        max-height: clamp(90px, 15vh, 120px);
-        margin-bottom: 0.6rem; /* Reduced margin */
+        height: clamp(80px, 14vh, 110px); /* Reduced height for mobile */
+        min-height: clamp(80px, 14vh, 110px);
+        max-height: clamp(80px, 14vh, 110px);
+        margin-bottom: 0.5rem; /* Reduced margin */
       }
 
       #hero-line1 {
-        font-size: clamp(20px, 7vw, 40px);
-        height: clamp(22px, 6vh, 40px); /* Fixed height matches font-size for mobile */
-        min-height: clamp(22px, 6vh, 40px);
-        margin-bottom: 0.6rem; /* Gap between lines on mobile */
+        font-size: clamp(18px, 6vw, 36px); /* Reduced font size */
+        height: clamp(20px, 5.5vh, 36px); /* Fixed height matches font-size for mobile */
+        min-height: clamp(20px, 5.5vh, 36px);
+        margin-bottom: 0.5rem; /* Reduced gap between lines on mobile */
       }
 
       #hero-line2 {
-        font-size: clamp(28px, 10vw, 65px);
-        height: clamp(32px, 10vh, 65px); /* Fixed height matches font-size for mobile */
-        min-height: clamp(32px, 10vh, 65px);
+        font-size: clamp(26px, 9vw, 60px); /* Reduced font size */
+        height: clamp(30px, 9vh, 60px); /* Fixed height matches font-size for mobile */
+        min-height: clamp(30px, 9vh, 60px);
         line-height: 1; /* Tighter line height for mobile */
         padding-bottom: 0px; /* No padding after Skyhawk text */
         background: linear-gradient(180deg, #2eb589 0%, #2eb589 45%, #2ba5d9 55%, #2ba5d9 100%);
@@ -291,33 +291,33 @@
         height: auto;
         max-height: none; /* Remove max height restriction for mobile */
         margin-top: 0.3rem;
-        margin-bottom: 0.6rem;
-        padding: 0 0.5rem;
-        font-size: clamp(1.05rem, 3vw, 1.3rem); /* Increased from 1.0rem to 1.05rem min, 1.2rem to 1.3rem max */
-        line-height: 1.5; /* Better line height */
+        margin-bottom: 0.5rem; /* Reduced margin */
+        padding: 0 0.4rem; /* Reduced padding */
+        font-size: clamp(0.9rem, 2.5vw, 1.1rem); /* Reduced font size from 1.05rem to 0.9rem min, 1.3rem to 1.1rem max */
+        line-height: 1.4; /* Tighter line height */
       }
       
       .cta-btn {
-        height: 38px; /* Smaller button for mobile */
-        width: 160px;
-        padding: 0.6rem 1.5rem;
-        font-size: 0.9rem;
+        height: 36px; /* Smaller button for mobile */
+        width: 150px;
+        padding: 0.5rem 1.3rem;
+        font-size: 0.85rem;
         margin: 0 auto;
       }
 
       .hero-content {
         width: 98vw;
         max-width: none;
-        padding: clamp(2rem, 6vw, 3rem) clamp(1rem, 4vw, 2rem);
+        padding: clamp(1.5rem, 5vw, 2.5rem) clamp(0.8rem, 3vw, 1.5rem); /* Reduced padding */
       }
 
       .hero-inner-card {
-        padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1rem, 4vw, 2rem);
+        padding: clamp(1.2rem, 4vw, 2rem) clamp(0.8rem, 3vw, 1.5rem); /* Reduced padding */
       }
 
       .cta-btn {
-        padding: clamp(0.8rem, 3vw, 1.2rem) clamp(1.8rem, 6vw, 2.5rem);
-        font-size: clamp(0.9rem, 3.5vw, 1.1rem);
+        padding: clamp(0.6rem, 2.5vw, 1rem) clamp(1.5rem, 5vw, 2rem); /* Reduced padding */
+        font-size: clamp(0.85rem, 3vw, 1rem); /* Reduced font size */
       }
 
       .menu-toggle {
@@ -384,8 +384,8 @@
 
       .services {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr;
+        grid-template-columns: 1fr 1fr; /* 2 cards per row on mobile */
+        grid-template-rows: auto;
         gap: clamp(0.8rem, 3vw, 1.2rem);
         padding: 0;
         overflow: visible;
@@ -396,8 +396,8 @@
       }
 
       .card {
-        width: clamp(140px, 43vw, 170px);
-        height: clamp(180px, 45vw, 220px);
+        width: clamp(150px, 45vw, 180px); /* Slightly larger cards for mobile */
+        height: clamp(190px, 47vw, 230px);
         margin: 0;
       }
 
