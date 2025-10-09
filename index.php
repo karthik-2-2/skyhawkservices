@@ -185,523 +185,16 @@
       animation: bounceIn 1s ease forwards;
     }
 
-    /* ============================================
-       4. TABLET/MEDIUM SCREENS (@media max-width: 768px)
-       ============================================ */
-
-
-    /* ============================================
-       5. SMALL SCREENS (@media max-width: 480px)
-       ============================================ */
-    @media (max-width: 480px) {
-      .services-container {
-        width: 99vw;
-        padding: clamp(1.5rem, 5vw, 2.5rem) clamp(0.8rem, 3vw, 1.5rem);
-      }
-
-      .services-wrapper {
-        padding: clamp(1.2rem, 4vw, 2rem) clamp(0.8rem, 3vw, 1.5rem);
-      }
-
-      .services-wrapper h2 {
-        font-size: clamp(1.3rem, 4.5vw, 2rem) !important;
-        margin-bottom: clamp(1.2rem, 3.5vw, 1.8rem) !important;
-      }
-
-      .services {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr;
-        gap: 1rem;
-        padding: 0;
-        overflow: visible;
-        justify-items: center;
-        align-items: start;
-        width: 100%;
-        margin: 0 auto;
-      }
-
-      .card {
-        width: clamp(110px, 35vw, 140px);
-        height: clamp(150px, 38vw, 180px);
-        margin: 0;
-      }
-
-      .service-image-frame {
-        padding: 5px !important;
-        height: 62% !important;
-      }
-
-      .service-image-frame img {
-        width: 88% !important;
-        height: 88% !important;
-        padding: 2px !important;
-      }
-
-      .service-card-info {
-        padding: 0.25rem !important;
-        height: 38% !important;
-      }
-
-      .service-card-info h3 {
-        font-size: 0.6rem !important;
-      }
-
-      .service-card-info .specs {
-        font-size: 0.55rem !important;
-      }
-
-      .services-card-back {
-        padding: 0.6rem !important;
-      }
-
-      .service-card-content p {
-        font-size: 0.6rem !important;
-        margin-bottom: 0.6rem !important;
-        line-height: 1.15 !important;
-      }
-
-      .book-btn {
-        padding: 0.3rem 0.6rem !important;
-        font-size: 0.55rem !important;
-        border-radius: 8px !important;
-      }
-    }
 
     /* ============================================
        6. EXTRA SMALL SCREENS (@media max-width: 360px)
        ============================================ */
-    @media (max-width: 360px) {
-      .services {
-        gap: 0.8rem !important;
-      }
 
-      .card {
-        width: clamp(100px, 32vw, 120px) !important;
-        height: clamp(135px, 35vw, 155px) !important;
-      }
-
-      .service-image-frame {
-        padding: 4px !important;
-        height: 65% !important;
-      }
-
-      .service-card-info {
-        padding: 0.2rem !important;
-        height: 35% !important;
-      }
-
-      .service-card-info h3 {
-        font-size: 0.55rem !important;
-      }
-
-      .service-card-info .specs {
-        font-size: 0.5rem !important;
-      }
-
-      .services-card-back {
-        padding: 0.5rem !important;
-      }
-
-      .service-card-content p {
-        font-size: 0.55rem !important;
-        margin-bottom: 0.5rem !important;
-      }
-
-      .book-btn {
-        padding: 0.25rem 0.5rem !important;
-        font-size: 0.5rem !important;
-        border-radius: 6px !important;
-      }
-
-      .hero-content {
-        width: 99vw;
-        padding: clamp(1.5rem, 5vw, 2.5rem) clamp(0.8rem, 3vw, 1.5rem);
-      }
-
-      .hero-inner-card {
-        padding: clamp(1.2rem, 4vw, 2rem) clamp(0.8rem, 3vw, 1.5rem);
-      }
-
-      .about-container,
-      .contact-container {
-        width: 99vw;
-        padding: clamp(1.5rem, 5vw, 2.5rem) clamp(0.8rem, 3vw, 1.5rem);
-      }
-
-      .about-inner-card,
-      .contact-inner-card {
-        padding: clamp(1.2rem, 4vw, 2rem) clamp(0.8rem, 3vw, 1.5rem);
-      }
-
-      /* Hero section adjustments for extra small screens */
-      .hero-section {
-        height: 100vh;
-        max-height: 100vh;
-        padding-top: calc(60px + 1rem);
-      }
-
-      .hero-content {
-        height: 440px;
-      }
-      
-      .hero-inner-card {
-        min-height: 340px;
-        max-height: 340px;
-        height: 340px;
-        padding: clamp(0.8rem, 2.5vw, 1.2rem) clamp(1rem, 3vw, 1.5rem);
-        overflow: visible;
-      }
-
-      .hero-text-wrapper {
-        height: clamp(75px, 12vh, 100px);
-        min-height: clamp(75px, 12vh, 100px);
-        max-height: clamp(75px, 12vh, 100px);
-        margin-bottom: 0.5rem;
-      }
-
-      #hero-line1 {
-        height: clamp(20px, 5vh, 30px);
-        min-height: clamp(20px, 5vh, 30px);
-        margin-bottom: 0.3rem;
-      }
-
-      #hero-line2 {
-        height: clamp(28px, 9vh, 50px);
-        min-height: clamp(28px, 9vh, 50px);
-        line-height: 1;
-      }
-      
-      .hero-content p {
-        height: auto;
-        max-height: none;
-        margin-top: 0.2rem;
-        margin-bottom: 0.6rem;
-        padding: 0 0.5rem;
-        font-size: clamp(0.95rem, 2.5vw, 1.15rem); /* Increased from 0.8rem to 0.95rem min, 1rem to 1.15rem max */
-        line-height: 1.4;
-      }
-      
-      .cta-btn {
-        height: 35px;
-        width: 150px;
-        padding: 0.5rem 1.2rem;
-        font-size: 0.8rem;
-        margin: 0 auto;
-      }
-    }
 
     /* ============================================
        DESKTOP HERO SECTION (@media min-width: 769px)
        ============================================ */
-    @media (min-width: 769px) {
-      /* --- Hero Section (Desktop) --- */
-      .hero-section {
-        height: 100vh; /* Fixed height to exactly 100vh */
-        max-height: 100vh; /* Ensure it doesn't exceed 100vh */
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        background: transparent;
-        color: var(--text-black);
-        padding: 1rem; /* Reduced padding */
-        position: relative;
-        padding-top: calc(70px + 1rem); /* Reduced top padding */
-        box-sizing: border-box;
-      }
-
-      .hero-content {
-        background: rgba(255, 255, 255, 0.2);
-        backdrop-filter: blur(15px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 25px;
-        padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1rem, 3vw, 2rem); /* Reduced padding */
-        box-shadow: var(--section-shadow);
-        width: clamp(95vw, 90vw, calc(70vw + 20vw));
-        max-width: 1200px;
-        height: 560px; /* Adjusted height to accommodate inner card */
-        position: relative;
-        z-index: 2;
-        overflow: visible; /* Ensure content is not clipped */
-      }
-
-      .hero-content::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(255, 255, 255, 0.2);
-        border-radius: 25px;
-        pointer-events: none;
-        z-index: -1;
-      }
-
-      /* Inner hero card for double glass effect */
-      .hero-inner-card {
-      background: rgba(255, 255, 255, 0.25);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      border-radius: 20px;
-      padding: clamp(1.2rem, 2.5vw, 1.8rem) clamp(1.5rem, 3vw, 2rem); /* Adjusted padding */
-      box-shadow: 
-        0 8px 32px rgba(0, 0, 0, 0.1),
-        0 4px 16px rgba(0, 0, 0, 0.05),
-        inset 0 1px 0 rgba(255, 255, 255, 0.4);
-      position: relative;
-      z-index: 3;
-      transition: all 0.3s ease;
-      overflow: visible; /* Changed to visible so text doesn't get cut */
-      min-height: 460px; /* Adjusted to accommodate text wrapper */
-      max-height: 460px; /* Adjusted fixed maximum height */
-      height: 460px; /* Adjusted fixed height */
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between; /* Space between elements */
-      align-items: center; /* Center align all content */
-    }
-
-    .hero-inner-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(255, 255, 255, 0.15);
-      border-radius: 20px;
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    .hero-inner-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 
-        0 12px 40px rgba(0, 0, 0, 0.15),
-        0 6px 20px rgba(0, 0, 0, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.5);
-    }
-
-    /* --- Flip Animation Styles (COMMENTED OUT) --- */
-    /*
-    .hero-title-container {
-      position: relative;
-      height: 300px;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 1rem;
-      perspective: 1200px; 
-      cursor: pointer;
-    }
-
-    .hero-flipper {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      transition: transform 1.2s ease-in-out;
-      transform-style: preserve-3d;
-    }
-    
-    .hero-flipper.flipped {
-      transform: rotateY(180deg);
-    }
-    
-    .flip-back, .flip-front {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden; 
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .flip-back {
-      transform: rotateY(180deg);
-    }
-
-    #hero-logo {
-      height: 350px;
-      width: auto;
-      object-fit: contain;
-    }
-    */
-
-    /* Simplified hero title without flip animation */
-    .hero-title-container {
-      position: relative;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 2rem;
-      z-index: 1;
-    }
-
-    /* === HERO TYPING ANIMATION STYLES === */
-    #hero-line1, #hero-line2 {
-      color: var(--text-black);
-      position: relative;
-      text-shadow: 2px 2px 4px rgba(255,255,255,0.3);
-      z-index: 1;
-    }
-
-    .hero-text-wrapper {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: clamp(210px, 31vh, 270px); /* Adjusted to fit new line2 height */
-      min-height: clamp(210px, 31vh, 270px);
-      margin-top: 0; /* Removed negative margin */
-      margin-bottom: 1rem; /* Reduced bottom margin */
-      overflow: visible; /* Ensure text is not clipped */
-      width: 100%; /* Ensure full width */
-      flex-shrink: 0; /* Don't shrink */
-    }
-
-    #hero-line1 {
-      font-size: clamp(24px, 8vw, 64px);
-      font-weight: 600;
-      height: clamp(30px, 6vh, 64px); /* Fixed height matches font-size */
-      min-height: clamp(30px, 6vh, 64px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1.5rem; /* Gap between lines */
-      overflow: visible; /* Ensure text is not clipped */
-      flex-shrink: 0; /* Don't shrink */
-    }
-
-    #hero-line2 {
-      font-size: clamp(32px, 12vw, 120px);
-      font-weight: 700;
-      height: clamp(48px, 14vh, 150px); /* Slightly increased from 120px to 150px for text rendering */
-      min-height: clamp(48px, 14vh, 150px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(180deg, #2eb589 0%, #2eb589 45%, #2ba5d9 55%, #2ba5d9 100%);
-      background-size: 100% 200%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
-      line-height: 1.25; /* Slightly increased for proper rendering */
-      margin-bottom: 0; /* No bottom margin */
-      animation: gradientShift 4s ease-in-out infinite;
-      overflow: visible; /* Ensure text is not clipped */
-      flex-shrink: 0; /* Don't shrink */
-    }
-
-    /* The blinking cursor is now handled by a simple class */
-    /*
-    .blinking-cursor {
-        position: relative;
-    }
-
-    .blinking-cursor::after {
-        content: '';
-        position: absolute;
-        right: -2px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 2px;
-        height: 70%;
-        background-color: var(--text-black);
-        animation: blink 1s step-end infinite;
-        z-index: 10;
-    }
-
-    /* Specific cursor styling for hero-line1 */
-    /*
-    #hero-line1.blinking-cursor::after {
-        width: 1.5px;
-        right: -1.5px;
-        height: 65%;
-    }
-
-    /* Special cursor styling for gradient text elements (hero-line2) */
-    /*
-    #hero-line2.blinking-cursor::after {
-        background-color: #2c3e50;
-        width: 2px;
-        right: -2px;
-        height: 70%;
-        box-shadow: 0 0 3px rgba(255,255,255,0.8);
-    }
-
-    @keyframes blink {
-      0%, 50% { opacity: 1; }
-      51%, 100% { opacity: 0; }
-    }
-    */
-
-    @keyframes blink {
-      50% { border-color: transparent; }
-    }
-
-
-    .hero-content p {
-      font-size: clamp(1.1rem, 3.5vw, 1.4rem); /* Increased from 1rem to 1.1rem min, 1.2rem to 1.4rem max */
-      margin-bottom: 0.8rem; /* Reduced margin */
-      animation: fadeInUp 1.5s forwards 0.5s;
-      color: var(--text-grey);
-      text-shadow: 1px 1px 2px rgba(255,255,255,0.3);
-      z-index: 1;
-      position: relative;
-      height: auto; /* Auto height instead of fixed */
-      max-height: none; /* Remove max height restriction */
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      width: 100%; /* Ensure full width */
-      padding: 0 1rem; /* Add horizontal padding */
-      line-height: 1.6; /* Match About section line height */
-      flex-shrink: 0; /* Don't shrink */
-    }
-
-    .cta-btn,
-    .book-btn,
-    .contact-form button {
-      animation: pulse 1.5s ease-in-out infinite;
-    }
-
-    .cta-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.8rem 2rem; /* Reduced padding */
-      background: var(--primary-green);
-      color: var(--white);
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 1rem; /* Slightly smaller font */
-      transition: all 0.3s ease;
-      animation: bounceIn 1s ease forwards 1s;
-      box-shadow: var(--button-shadow);
-      z-index: 1;
-      position: relative;
-      height: 45px; /* Smaller fixed height for button */
-      width: 180px; /* Smaller fixed width for button */
-      margin: 0 auto; /* Center the button without bottom margin */
-      align-self: center; /* Ensure centered in flex container */
-      flex-shrink: 0; /* Prevent button from shrinking */
-    }
-
-      .cta-btn:hover {
-        background: var(--primary-blue);
-        transform: scale(1.05) translateY(-3px);
-        box-shadow: var(--hover-shadow);
-      }
-    } /* End of Desktop Hero Media Query */
+ /* End of Desktop Hero Media Query */
 
     /* ============================================
        SERVICES SECTION (All Screens)
@@ -1252,84 +745,6 @@
       display: none;
     }
 
-    @media (min-width: 992px) {
-      .contact-content {
-        grid-template-columns: 1fr 1fr;
-        gap: 3rem;
-      }
-      
-      .contact-inner-card h2 {
-        grid-column: 1 / -1; /* Span both columns */
-        white-space: nowrap; /* Keep in single line */
-        font-size: clamp(2.2rem, 4vw, 3.2rem); /* Larger on desktop */
-      }
-      
-      .contact-subtitle {
-        grid-column: 1 / -1; /* Span both columns */
-        margin-bottom: 2rem;
-      }
-      
-      .contact-form-wrapper {
-        order: 1;
-        grid-column: 1;
-      }
-      
-      .contact-info {
-        order: 2;
-        grid-column: 2;
-        display: flex;
-        align-items: flex-start; /* Changed to flex-start */
-        justify-content: center;
-        padding-top: 1rem; /* Added top padding */
-      }
-
-      /* Keep only email and location items on desktop */
-      .contact-details-modern {
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
-      }
-      
-      /* Hide the "Request a Free Quote" on desktop */
-      .contact-cta {
-        display: none !important;
-      }
-    }
-
-    @media (max-width: 991px) {
-      .contact-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 1.5rem; /* Reduced gap for mobile */
-      }
-      
-      .contact-inner-card h2 {
-        margin-bottom: 0.8rem; /* Reduced margin for mobile */
-        font-size: clamp(1.6rem, 6vw, 2.2rem); /* Adjusted for mobile */
-      }
-      
-      .contact-subtitle {
-        margin-bottom: 1.2rem; /* Reduced margin for mobile */
-      }
-      
-      .contact-form-wrapper {
-        order: 2;
-      }
-      
-      .contact-info {
-        order: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      /* Show "Request a Free Quote" on mobile */
-      .contact-cta {
-        display: block;
-        margin-top: 1rem;
-      }
-    }
-
     .contact-info {
       display: flex;
       flex-direction: column;
@@ -1449,31 +864,6 @@
       flex: 1;
     }
 
-    @media (max-width: 991px) {
-      .contact-hero-content {
-        text-align: center;
-      }
-      
-      .contact-details-modern {
-        align-items: center;
-      }
-      
-      .contact-item {
-        max-width: 400px;
-        width: 100%;
-      }
-      
-      .cta-highlight {
-        max-width: 300px;
-        width: 100%;
-        justify-content: center;
-      }
-    }
-
-
-
-
-
     .contact-inner-card p {
       animation: fadeInUp 1s ease forwards 0.3s;
       color: var(--text-black);
@@ -1494,8 +884,6 @@
       position: relative;
       z-index: 1;
     }
-
-
 
     .contact-form {
       max-width: 100%;
@@ -1696,6 +1084,412 @@
     .close-coming-soon:hover {
       color: var(--primary-green);
       transform: scale(1.2);
+    }
+
+    @media (min-width: 992px) {
+      .contact-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+      }
+      
+      .contact-inner-card h2 {
+        grid-column: 1 / -1; /* Span both columns */
+        white-space: nowrap; /* Keep in single line */
+        font-size: clamp(2.2rem, 4vw, 3.2rem); /* Larger on desktop */
+      }
+      
+      .contact-subtitle {
+        grid-column: 1 / -1; /* Span both columns */
+        margin-bottom: 2rem;
+      }
+      
+      .contact-form-wrapper {
+        order: 1;
+        grid-column: 1;
+      }
+      
+      .contact-info {
+        order: 2;
+        grid-column: 2;
+        display: flex;
+        align-items: flex-start; /* Changed to flex-start */
+        justify-content: center;
+        padding-top: 1rem; /* Added top padding */
+      }
+
+      /* Keep only email and location items on desktop */
+      .contact-details-modern {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      
+      /* Hide the "Request a Free Quote" on desktop */
+      .contact-cta {
+        display: none !important;
+      }
+    }
+
+    @media (min-width: 769px) {
+      /* --- Hero Section (Desktop) --- */
+      .hero-section {
+        height: 100vh; /* Fixed height to exactly 100vh */
+        max-height: 100vh; /* Ensure it doesn't exceed 100vh */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        background: transparent;
+        color: var(--text-black);
+        padding: 1rem; /* Reduced padding */
+        position: relative;
+        padding-top: calc(70px + 1rem); /* Reduced top padding */
+        box-sizing: border-box;
+      }
+
+      .hero-content {
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 25px;
+        padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1rem, 3vw, 2rem); /* Reduced padding */
+        box-shadow: var(--section-shadow);
+        width: clamp(95vw, 90vw, calc(70vw + 20vw));
+        max-width: 1200px;
+        height: 560px; /* Adjusted height to accommodate inner card */
+        position: relative;
+        z-index: 2;
+        overflow: visible; /* Ensure content is not clipped */
+      }
+
+      .hero-content::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 25px;
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      /* Inner hero card for double glass effect */
+      .hero-inner-card {
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 20px;
+      padding: clamp(1.2rem, 2.5vw, 1.8rem) clamp(1.5rem, 3vw, 2rem); /* Adjusted padding */
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        0 4px 16px rgba(0, 0, 0, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+      position: relative;
+      z-index: 3;
+      transition: all 0.3s ease;
+      overflow: visible; /* Changed to visible so text doesn't get cut */
+      min-height: 460px; /* Adjusted to accommodate text wrapper */
+      max-height: 460px; /* Adjusted fixed maximum height */
+      height: 460px; /* Adjusted fixed height */
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between; /* Space between elements */
+      align-items: center; /* Center align all content */
+    }
+
+    .hero-inner-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .hero-inner-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.15),
+        0 6px 20px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    }
+
+    /* --- Flip Animation Styles (COMMENTED OUT) --- */
+    /*
+    .hero-title-container {
+      position: relative;
+      height: 300px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 1rem;
+      perspective: 1200px; 
+      cursor: pointer;
+    }
+
+    .hero-flipper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 1.2s ease-in-out;
+      transform-style: preserve-3d;
+    }
+    
+    .hero-flipper.flipped {
+      transform: rotateY(180deg);
+    }
+    
+    .flip-back, .flip-front {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden; 
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .flip-back {
+      transform: rotateY(180deg);
+    }
+
+    #hero-logo {
+      height: 350px;
+      width: auto;
+      object-fit: contain;
+    }
+    */
+
+    /* Simplified hero title without flip animation */
+    .hero-title-container {
+      position: relative;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 2rem;
+      z-index: 1;
+    }
+
+    /* === HERO TYPING ANIMATION STYLES === */
+    #hero-line1, #hero-line2 {
+      color: var(--text-black);
+      position: relative;
+      text-shadow: 2px 2px 4px rgba(255,255,255,0.3);
+      z-index: 1;
+    }
+
+    .hero-text-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: clamp(210px, 31vh, 270px); /* Adjusted to fit new line2 height */
+      min-height: clamp(210px, 31vh, 270px);
+      margin-top: 0; /* Removed negative margin */
+      margin-bottom: 1rem; /* Reduced bottom margin */
+      overflow: visible; /* Ensure text is not clipped */
+      width: 100%; /* Ensure full width */
+      flex-shrink: 0; /* Don't shrink */
+    }
+
+    #hero-line1 {
+      font-size: clamp(24px, 8vw, 64px);
+      font-weight: 600;
+      height: clamp(30px, 6vh, 64px); /* Fixed height matches font-size */
+      min-height: clamp(30px, 6vh, 64px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem; /* Gap between lines */
+      overflow: visible; /* Ensure text is not clipped */
+      flex-shrink: 0; /* Don't shrink */
+    }
+
+    #hero-line2 {
+      font-size: clamp(32px, 12vw, 120px);
+      font-weight: 700;
+      height: clamp(48px, 14vh, 150px); /* Slightly increased from 120px to 150px for text rendering */
+      min-height: clamp(48px, 14vh, 150px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg, #2eb589 0%, #2eb589 45%, #2ba5d9 55%, #2ba5d9 100%);
+      background-size: 100% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
+      line-height: 1.25; /* Slightly increased for proper rendering */
+      margin-bottom: 0; /* No bottom margin */
+      animation: gradientShift 4s ease-in-out infinite;
+      overflow: visible; /* Ensure text is not clipped */
+      flex-shrink: 0; /* Don't shrink */
+    }
+
+    /* The blinking cursor is now handled by a simple class */
+    /*
+    .blinking-cursor {
+        position: relative;
+    }
+
+    .blinking-cursor::after {
+        content: '';
+        position: absolute;
+        right: -2px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 2px;
+        height: 70%;
+        background-color: var(--text-black);
+        animation: blink 1s step-end infinite;
+        z-index: 10;
+    }
+
+    /* Specific cursor styling for hero-line1 */
+    /*
+    #hero-line1.blinking-cursor::after {
+        width: 1.5px;
+        right: -1.5px;
+        height: 65%;
+    }
+
+    /* Special cursor styling for gradient text elements (hero-line2) */
+    /*
+    #hero-line2.blinking-cursor::after {
+        background-color: #2c3e50;
+        width: 2px;
+        right: -2px;
+        height: 70%;
+        box-shadow: 0 0 3px rgba(255,255,255,0.8);
+    }
+
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+    */
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+
+    .hero-content p {
+      font-size: clamp(1.1rem, 3.5vw, 1.4rem); /* Increased from 1rem to 1.1rem min, 1.2rem to 1.4rem max */
+      margin-bottom: 0.8rem; /* Reduced margin */
+      animation: fadeInUp 1.5s forwards 0.5s;
+      color: var(--text-grey);
+      text-shadow: 1px 1px 2px rgba(255,255,255,0.3);
+      z-index: 1;
+      position: relative;
+      height: auto; /* Auto height instead of fixed */
+      max-height: none; /* Remove max height restriction */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      width: 100%; /* Ensure full width */
+      padding: 0 1rem; /* Add horizontal padding */
+      line-height: 1.6; /* Match About section line height */
+      flex-shrink: 0; /* Don't shrink */
+    }
+
+    .cta-btn,
+    .book-btn,
+    .contact-form button {
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.8rem 2rem; /* Reduced padding */
+      background: var(--primary-green);
+      color: var(--white);
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem; /* Slightly smaller font */
+      transition: all 0.3s ease;
+      animation: bounceIn 1s ease forwards 1s;
+      box-shadow: var(--button-shadow);
+      z-index: 1;
+      position: relative;
+      height: 45px; /* Smaller fixed height for button */
+      width: 180px; /* Smaller fixed width for button */
+      margin: 0 auto; /* Center the button without bottom margin */
+      align-self: center; /* Ensure centered in flex container */
+      flex-shrink: 0; /* Prevent button from shrinking */
+    }
+
+      .cta-btn:hover {
+        background: var(--primary-blue);
+        transform: scale(1.05) translateY(-3px);
+        box-shadow: var(--hover-shadow);
+      }
+    }
+
+    @media (max-width: 991px) {
+      .contact-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 1.5rem; /* Reduced gap for mobile */
+      }
+      
+      .contact-inner-card h2 {
+        margin-bottom: 0.8rem; /* Reduced margin for mobile */
+        font-size: clamp(1.6rem, 6vw, 2.2rem); /* Adjusted for mobile */
+      }
+      
+      .contact-subtitle {
+        margin-bottom: 1.2rem; /* Reduced margin for mobile */
+      }
+      
+      .contact-form-wrapper {
+        order: 2;
+      }
+      
+      .contact-info {
+        order: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Show "Request a Free Quote" on mobile */
+      .contact-cta {
+        display: block;
+        margin-top: 1rem;
+      }
+
+      .contact-hero-content {
+        text-align: center;
+      }
+      
+      .contact-details-modern {
+        align-items: center;
+      }
+      
+      .contact-item {
+        max-width: 400px;
+        width: 100%;
+      }
+      
+      .cta-highlight {
+        max-width: 300px;
+        width: 100%;
+        justify-content: center;
+      }
     }
 
     @media (max-width: 768px) {
@@ -2007,6 +1801,202 @@
         grid-template-columns: 1fr;
       }
     }
+
+    @media (max-width: 480px) {
+      .services-container {
+        width: 99vw;
+        padding: clamp(1.5rem, 5vw, 2.5rem) clamp(0.8rem, 3vw, 1.5rem);
+      }
+
+      .services-wrapper {
+        padding: clamp(1.2rem, 4vw, 2rem) clamp(0.8rem, 3vw, 1.5rem);
+      }
+
+      .services-wrapper h2 {
+        font-size: clamp(1.3rem, 4.5vw, 2rem) !important;
+        margin-bottom: clamp(1.2rem, 3.5vw, 1.8rem) !important;
+      }
+
+      .services {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 1rem;
+        padding: 0;
+        overflow: visible;
+        justify-items: center;
+        align-items: start;
+        width: 100%;
+        margin: 0 auto;
+      }
+
+      .card {
+        width: clamp(110px, 35vw, 140px);
+        height: clamp(150px, 38vw, 180px);
+        margin: 0;
+      }
+
+      .service-image-frame {
+        padding: 5px !important;
+        height: 62% !important;
+      }
+
+      .service-image-frame img {
+        width: 88% !important;
+        height: 88% !important;
+        padding: 2px !important;
+      }
+
+      .service-card-info {
+        padding: 0.25rem !important;
+        height: 38% !important;
+      }
+
+      .service-card-info h3 {
+        font-size: 0.6rem !important;
+      }
+
+      .service-card-info .specs {
+        font-size: 0.55rem !important;
+      }
+
+      .services-card-back {
+        padding: 0.6rem !important;
+      }
+
+      .service-card-content p {
+        font-size: 0.6rem !important;
+        margin-bottom: 0.6rem !important;
+        line-height: 1.15 !important;
+      }
+
+      .book-btn {
+        padding: 0.3rem 0.6rem !important;
+        font-size: 0.55rem !important;
+        border-radius: 8px !important;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .services {
+        gap: 0.8rem !important;
+      }
+
+      .card {
+        width: clamp(100px, 32vw, 120px) !important;
+        height: clamp(135px, 35vw, 155px) !important;
+      }
+
+      .service-image-frame {
+        padding: 4px !important;
+        height: 65% !important;
+      }
+
+      .service-card-info {
+        padding: 0.2rem !important;
+        height: 35% !important;
+      }
+
+      .service-card-info h3 {
+        font-size: 0.55rem !important;
+      }
+
+      .service-card-info .specs {
+        font-size: 0.5rem !important;
+      }
+
+      .services-card-back {
+        padding: 0.5rem !important;
+      }
+
+      .service-card-content p {
+        font-size: 0.55rem !important;
+        margin-bottom: 0.5rem !important;
+      }
+
+      .book-btn {
+        padding: 0.25rem 0.5rem !important;
+        font-size: 0.5rem !important;
+        border-radius: 6px !important;
+      }
+
+      .hero-content {
+        width: 99vw;
+        padding: clamp(1.5rem, 5vw, 2.5rem) clamp(0.8rem, 3vw, 1.5rem);
+      }
+
+      .hero-inner-card {
+        padding: clamp(1.2rem, 4vw, 2rem) clamp(0.8rem, 3vw, 1.5rem);
+      }
+
+      .about-container,
+      .contact-container {
+        width: 99vw;
+        padding: clamp(1.5rem, 5vw, 2.5rem) clamp(0.8rem, 3vw, 1.5rem);
+      }
+
+      .about-inner-card,
+      .contact-inner-card {
+        padding: clamp(1.2rem, 4vw, 2rem) clamp(0.8rem, 3vw, 1.5rem);
+      }
+
+      /* Hero section adjustments for extra small screens */
+      .hero-section {
+        height: 100vh;
+        max-height: 100vh;
+        padding-top: calc(60px + 1rem);
+      }
+
+      .hero-content {
+        height: 440px;
+      }
+      
+      .hero-inner-card {
+        min-height: 340px;
+        max-height: 340px;
+        height: 340px;
+        padding: clamp(0.8rem, 2.5vw, 1.2rem) clamp(1rem, 3vw, 1.5rem);
+        overflow: visible;
+      }
+
+      .hero-text-wrapper {
+        height: clamp(75px, 12vh, 100px);
+        min-height: clamp(75px, 12vh, 100px);
+        max-height: clamp(75px, 12vh, 100px);
+        margin-bottom: 0.5rem;
+      }
+
+      #hero-line1 {
+        height: clamp(20px, 5vh, 30px);
+        min-height: clamp(20px, 5vh, 30px);
+        margin-bottom: 0.3rem;
+      }
+
+      #hero-line2 {
+        height: clamp(28px, 9vh, 50px);
+        min-height: clamp(28px, 9vh, 50px);
+        line-height: 1;
+      }
+      
+      .hero-content p {
+        height: auto;
+        max-height: none;
+        margin-top: 0.2rem;
+        margin-bottom: 0.6rem;
+        padding: 0 0.5rem;
+        font-size: clamp(0.95rem, 2.5vw, 1.15rem); /* Increased from 0.8rem to 0.95rem min, 1rem to 1.15rem max */
+        line-height: 1.4;
+      }
+      
+      .cta-btn {
+        height: 35px;
+        width: 150px;
+        padding: 0.5rem 1.2rem;
+        font-size: 0.8rem;
+        margin: 0 auto;
+      }
+    }
+
   </style>
 </head>
 <body>
