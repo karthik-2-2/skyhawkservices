@@ -1503,6 +1503,11 @@
         max-height: 100vh;
         padding: 1rem;
         padding-top: calc(60px + 1rem);
+        /* Center content vertically and horizontally */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
       }
       
       .hero-content {
@@ -1536,7 +1541,7 @@
       
       .hero-inner-card {
         height: auto !important;
-        min-height: auto !important;
+        min-height: 420px; /* Fixed min-height to prevent card resize during typing */
         max-height: none !important;
         padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1rem, 4vw, 2rem);
         overflow: visible;
@@ -1552,6 +1557,11 @@
           inset 0 1px 0 rgba(255, 255, 255, 0.4);
         position: relative;
         z-index: 3;
+        /* Flexbox to arrange children */
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
       }
 
       .hero-inner-card::before {
@@ -1568,38 +1578,42 @@
       }
 
       .hero-title-container {
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem;
+        width: 100%;
       }
 
       .hero-text-wrapper {
         height: auto !important;
-        min-height: auto !important;
+        min-height: 120px; /* Fixed min-height to prevent spacing changes during typing */
         max-height: none !important;
-        margin-bottom: 1rem;
+        margin-bottom: 0;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
+        gap: 0.5rem; /* Fixed spacing between lines */
       }
 
       #hero-line1 {
-        font-size: clamp(20px, 7vw, 40px);
+        font-size: clamp(22px, 7vw, 40px);
         height: auto !important;
-        min-height: auto !important;
-        margin-bottom: 0.8rem;
+        min-height: 1.3em; /* Minimum height to reserve space */
+        margin-bottom: 0;
         display: block;
         text-align: center;
         width: 100%;
         font-weight: 600;
         color: var(--text-black);
+        line-height: 1.3;
       }
 
       #hero-line2 {
-        font-size: clamp(28px, 10vw, 65px);
+        font-size: clamp(32px, 10vw, 65px);
         height: auto !important;
-        min-height: auto !important;
-        line-height: 1.2;
+        min-height: 1.3em; /* Minimum height to reserve space */
+        line-height: 1.3;
         padding-bottom: 0px;
+        margin-bottom: 0;
         display: block;
         text-align: center;
         width: 100%;
@@ -1608,26 +1622,47 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
-        font-weight: bold;
+        font-weight: 700;
         animation: gradientShift 4s ease-in-out infinite;
       }
       
       .hero-content p {
         height: auto;
         max-height: none;
-        margin-top: 0.5rem;
+        margin-top: 1rem;
         margin-bottom: 1rem;
         padding: 0 0.5rem;
-        font-size: clamp(1rem, 3vw, 1.2rem);
-        line-height: 1.5;
+        font-size: clamp(0.95rem, 3.5vw, 1.1rem);
+        line-height: 1.6;
+        text-align: center;
+        color: var(--text-black);
       }
       
       .cta-btn {
         height: auto;
         width: auto;
-        padding: clamp(0.7rem, 2.5vw, 1rem) clamp(1.8rem, 5vw, 2.2rem);
-        font-size: clamp(0.9rem, 3vw, 1.1rem);
+        padding: clamp(0.7rem, 2.5vw, 0.9rem) clamp(1.5rem, 5vw, 2rem);
+        font-size: clamp(0.85rem, 3vw, 1rem);
         margin: 0 auto;
+        margin-top: 0.5rem;
+        /* Button styling */
+        background: var(--white);
+        color: var(--text-black);
+        border: none;
+        border-radius: 25px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        text-decoration: none;
+        display: inline-block;
+        text-align: center;
+      }
+
+      .cta-btn:hover {
+        background: var(--light-grey);
+        transform: scale(1.05) translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
       }
 
       .about-container,
@@ -1998,65 +2033,94 @@
         height: 100vh;
         max-height: 100vh;
         padding-top: calc(60px + 1rem);
+        /* Center content vertically */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
       }
 
       .hero-content {
         height: auto !important; /* Changed from fixed 440px to auto for flexible content */
+        width: 99vw;
       }
       
       .hero-inner-card {
-        min-height: auto !important; /* Changed from fixed 340px to auto */
+        min-height: 360px !important; /* Fixed min-height for extra small screens */
         max-height: none !important; /* Removed max-height restriction */
         height: auto !important; /* Changed from fixed 340px to auto */
-        padding: clamp(0.8rem, 2.5vw, 1.2rem) clamp(1rem, 3vw, 1.5rem);
+        padding: clamp(1rem, 3vw, 1.5rem) clamp(0.8rem, 2.5vw, 1.2rem);
         overflow: visible;
+        /* Flexbox for arrangement */
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
       }
 
       .hero-text-wrapper {
-        height: auto !important; /* Changed from fixed clamp to auto */
-        min-height: auto !important; /* Removed min-height restriction */
-        max-height: none !important; /* Removed max-height restriction */
-        margin-bottom: 0.5rem;
+        height: auto !important;
+        min-height: 100px !important; /* Fixed min-height to prevent spacing changes */
+        max-height: none !important;
+        margin-bottom: 0.8rem;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
+        gap: 0.4rem; /* Fixed spacing between lines */
       }
 
       #hero-line1 {
-        height: auto !important; /* Changed from fixed clamp to auto */
-        min-height: auto !important; /* Removed min-height restriction */
-        margin-bottom: 0.3rem;
+        height: auto !important;
+        min-height: 1.3em !important; /* Reserve space for text */
+        margin-bottom: 0;
         display: block;
         text-align: center;
         width: 100%;
+        font-size: clamp(18px, 6vw, 24px);
+        line-height: 1.3;
+        font-weight: 600;
       }
 
       #hero-line2 {
-        height: auto !important; /* Changed from fixed clamp to auto */
-        min-height: auto !important; /* Removed min-height restriction */
-        line-height: 1.2; /* Slightly increased from 1 for better readability */
+        height: auto !important;
+        min-height: 1.3em !important; /* Reserve space for text */
+        line-height: 1.3;
+        margin-bottom: 0;
         display: block;
         text-align: center;
         width: 100%;
+        font-size: clamp(24px, 8vw, 32px);
+        font-weight: 700;
       }
       
       .hero-content p {
         height: auto;
         max-height: none;
-        margin-top: 0.2rem;
-        margin-bottom: 0.6rem;
+        margin-top: 0.5rem;
+        margin-bottom: 0.8rem;
         padding: 0 0.5rem;
-        font-size: clamp(0.95rem, 2.5vw, 1.15rem); /* Increased from 0.8rem to 0.95rem min, 1rem to 1.15rem max */
-        line-height: 1.4;
+        font-size: clamp(0.85rem, 3vw, 1rem);
+        line-height: 1.5;
+        text-align: center;
       }
       
       .cta-btn {
-        height: 35px;
-        width: 150px;
-        padding: 0.5rem 1.2rem;
-        font-size: 0.8rem;
-        margin: 0 auto;
+        height: auto !important;
+        width: auto !important;
+        padding: 0.6rem 1.5rem !important;
+        font-size: 0.85rem !important;
+        margin: 0.5rem auto 0 !important;
+        /* Button styling */
+        background: var(--white) !important;
+        color: var(--text-black) !important;
+        border: none !important;
+        border-radius: 25px !important;
+        font-weight: 700 !important;
+        cursor: pointer !important;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+        text-decoration: none !important;
+        display: inline-block !important;
       }
     }
 
