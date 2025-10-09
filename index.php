@@ -1508,16 +1508,21 @@
       .hero-content {
         width: 98vw;
         max-width: none;
-        height: auto;
+        height: auto !important;
         padding: clamp(2rem, 6vw, 3rem) clamp(1rem, 4vw, 2rem);
       }
       
       .hero-inner-card {
-        height: auto;
-        min-height: auto;
-        max-height: none;
+        height: auto !important;
+        min-height: auto !important;
+        max-height: none !important;
         padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1rem, 4vw, 2rem);
         overflow: visible;
+        border-radius: 15px;
+      }
+
+      .hero-inner-card::before {
+        border-radius: 15px;
       }
 
       .hero-title-container {
@@ -1525,23 +1530,23 @@
       }
 
       .hero-text-wrapper {
-        height: auto;
-        min-height: auto;
-        max-height: none;
+        height: auto !important;
+        min-height: auto !important;
+        max-height: none !important;
         margin-bottom: 1rem;
       }
 
       #hero-line1 {
         font-size: clamp(20px, 7vw, 40px);
-        height: auto;
-        min-height: auto;
+        height: auto !important;
+        min-height: auto !important;
         margin-bottom: 0.8rem;
       }
 
       #hero-line2 {
         font-size: clamp(28px, 10vw, 65px);
-        height: auto;
-        min-height: auto;
+        height: auto !important;
+        min-height: auto !important;
         line-height: 1.2;
         padding-bottom: 0px;
         background: linear-gradient(180deg, #2eb589 0%, #2eb589 45%, #2ba5d9 55%, #2ba5d9 100%);
@@ -1788,14 +1793,8 @@
         padding: 1.5rem 1rem;
       }
       
-      .hero-inner-card {
-        padding: 2rem 1.5rem;
-        border-radius: 15px;
-      }
-      
-      .hero-inner-card::before {
-        border-radius: 15px;
-      }
+      /* Removed duplicate .hero-inner-card definition - using the one at line 1515 instead */
+      /* Removed duplicate .hero-inner-card::before - using the one near line 1515 instead */
       
       .contact-content {
         grid-template-columns: 1fr;
