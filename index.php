@@ -1947,34 +1947,34 @@
       }
 
       .hero-content {
-        height: 440px;
+        height: auto !important; /* Changed from fixed 440px to auto for flexible content */
       }
       
       .hero-inner-card {
-        min-height: 340px;
-        max-height: 340px;
-        height: 340px;
+        min-height: auto !important; /* Changed from fixed 340px to auto */
+        max-height: none !important; /* Removed max-height restriction */
+        height: auto !important; /* Changed from fixed 340px to auto */
         padding: clamp(0.8rem, 2.5vw, 1.2rem) clamp(1rem, 3vw, 1.5rem);
         overflow: visible;
       }
 
       .hero-text-wrapper {
-        height: clamp(75px, 12vh, 100px);
-        min-height: clamp(75px, 12vh, 100px);
-        max-height: clamp(75px, 12vh, 100px);
+        height: auto !important; /* Changed from fixed clamp to auto */
+        min-height: auto !important; /* Removed min-height restriction */
+        max-height: none !important; /* Removed max-height restriction */
         margin-bottom: 0.5rem;
       }
 
       #hero-line1 {
-        height: clamp(20px, 5vh, 30px);
-        min-height: clamp(20px, 5vh, 30px);
+        height: auto !important; /* Changed from fixed clamp to auto */
+        min-height: auto !important; /* Removed min-height restriction */
         margin-bottom: 0.3rem;
       }
 
       #hero-line2 {
-        height: clamp(28px, 9vh, 50px);
-        min-height: clamp(28px, 9vh, 50px);
-        line-height: 1;
+        height: auto !important; /* Changed from fixed clamp to auto */
+        min-height: auto !important; /* Removed min-height restriction */
+        line-height: 1.2; /* Slightly increased from 1 for better readability */
       }
       
       .hero-content p {
