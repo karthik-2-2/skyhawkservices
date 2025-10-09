@@ -9,20 +9,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
   <style>
-    /* ============================================
-       CSS ORGANIZATION STRUCTURE:
-       1. Root Variables & Resets
-       2. Base Styles (body, animations)
-       3. Desktop/Large Screen Styles (Default)
-       4. Tablet/Medium Screens (@media max-width: 768px)
-       5. Small Screens (@media max-width: 480px)
-       6. Extra Small Screens (@media max-width: 360px)
-       7. Keyframe Animations
-       ============================================ */
-
-    /* ============================================
-       1. ROOT VARIABLES & RESETS
-       ============================================ */
     :root {
       --primary-green: #34d19d;
       --primary-blue: #38c1f2;
@@ -41,17 +27,14 @@
       --inner-card-bg: rgba(255, 255, 255, 0.25);
       --glass-border: rgba(255, 255, 255, 0.3);
     }
-
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-
     html {
       scroll-behavior: smooth;
     }
-
     body {
       font-family: 'Outfit', sans-serif;
       background: var(--animated-gradient);
@@ -62,31 +45,19 @@
       margin: 0;
       padding: 0;
     }
-
-    /* ============================================
-       2. BASE STYLES & UNIVERSAL CLASSES
-       ============================================ */
     @keyframes gradientShift {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
-
     /* Universal Button Hover Effect */
     button, .button, input[type="submit"] {
       transition: all 0.3s ease;
     }
-
     button:hover, .button:hover, input[type="submit"]:hover {
       transform: translateY(-3px);
       box-shadow: var(--hover-shadow);
     }
-
-    /* ============================================
-       3. DESKTOP/LARGE SCREEN STYLES (DEFAULT)
-       ============================================ */
-
-    /* --- Navigation --- */
     .navbar {
       display: flex;
       align-items: center;
@@ -102,7 +73,6 @@
       right: 0;
       z-index: 1000;
     }
-
     .logo-img {
       height: 80px;
       width: auto;
@@ -111,7 +81,6 @@
       display: block;
       animation: slideInLeft 1s ease forwards;
     }
-
     .nav-links {
       display: flex;
       gap: 1.5rem;
@@ -219,327 +188,7 @@
     /* ============================================
        4. TABLET/MEDIUM SCREENS (@media max-width: 768px)
        ============================================ */
-    @media (max-width: 768px) {
-      .navbar {
-        padding: 1rem;
-        height: 60px;
-      }
 
-      .hero-section {
-        height: 100vh; /* Fixed height on mobile */
-        max-height: 100vh;
-        padding: 1rem;
-        padding-top: calc(60px + 1rem); /* Account for mobile navbar height */
-      }
-      
-      .hero-content {
-        height: 420px; /* Reduced height for mobile */
-      }
-      
-      .hero-inner-card {
-        min-height: 340px; /* Reduced fixed minimum height for mobile */
-        max-height: 340px; /* Reduced fixed maximum height */
-        height: 340px; /* Reduced fixed height for mobile */
-        padding: clamp(0.8rem, 2.5vw, 1.2rem) clamp(1rem, 2.5vw, 1.2rem); /* Reduced padding for mobile */
-        overflow: visible; /* Allow text to show */
-      }
-      
-      .about-container,
-      .contact-container {
-        padding: clamp(1.5rem, 4vw, 2rem) clamp(1rem, 3vw, 1.5rem); /* Mobile padding for other sections */
-      }
-      
-      .about-inner-card,
-      .contact-inner-card {
-        padding: clamp(2rem, 5vw, 2.5rem) clamp(1.5rem, 4vw, 2rem); /* Mobile padding for inner cards */
-      }
-
-      .hero-title-container {
-        margin-bottom: 0.5rem;
-      }
-
-      .hero-text-wrapper {
-        height: clamp(80px, 14vh, 110px); /* Reduced height for mobile */
-        min-height: clamp(80px, 14vh, 110px);
-        max-height: clamp(80px, 14vh, 110px);
-        margin-bottom: 0.5rem; /* Reduced margin */
-      }
-
-      #hero-line1 {
-        font-size: clamp(18px, 6vw, 36px); /* Reduced font size */
-        height: clamp(20px, 5.5vh, 36px); /* Fixed height matches font-size for mobile */
-        min-height: clamp(20px, 5.5vh, 36px);
-        margin-bottom: 0.5rem; /* Reduced gap between lines on mobile */
-      }
-
-      #hero-line2 {
-        font-size: clamp(26px, 9vw, 60px); /* Reduced font size */
-        height: clamp(30px, 9vh, 60px); /* Fixed height matches font-size for mobile */
-        min-height: clamp(30px, 9vh, 60px);
-        line-height: 1; /* Tighter line height for mobile */
-        padding-bottom: 0px; /* No padding after Skyhawk text */
-        background: linear-gradient(180deg, #2eb589 0%, #2eb589 45%, #2ba5d9 55%, #2ba5d9 100%);
-        background-size: 100% 200%;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        font-weight: bold;
-        animation: gradientShift 4s ease-in-out infinite;
-      }
-      
-      .hero-content p {
-        height: auto;
-        max-height: none; /* Remove max height restriction for mobile */
-        margin-top: 0.3rem;
-        margin-bottom: 0.5rem; /* Reduced margin */
-        padding: 0 0.4rem; /* Reduced padding */
-        font-size: clamp(0.9rem, 2.5vw, 1.1rem); /* Reduced font size from 1.05rem to 0.9rem min, 1.3rem to 1.1rem max */
-        line-height: 1.4; /* Tighter line height */
-      }
-      
-      .cta-btn {
-        height: 36px; /* Smaller button for mobile */
-        width: 150px;
-        padding: 0.5rem 1.3rem;
-        font-size: 0.85rem;
-        margin: 0 auto;
-      }
-
-      .hero-content {
-        width: 98vw;
-        max-width: none;
-        padding: clamp(1.5rem, 5vw, 2.5rem) clamp(0.8rem, 3vw, 1.5rem); /* Reduced padding */
-      }
-
-      .hero-inner-card {
-        padding: clamp(1.2rem, 4vw, 2rem) clamp(0.8rem, 3vw, 1.5rem); /* Reduced padding */
-      }
-
-      .cta-btn {
-        padding: clamp(0.6rem, 2.5vw, 1rem) clamp(1.5rem, 5vw, 2rem); /* Reduced padding */
-        font-size: clamp(0.85rem, 3vw, 1rem); /* Reduced font size */
-      }
-
-      .menu-toggle {
-        display: block;
-      }
-
-      .nav-links {
-        display: none;
-        flex-direction: column;
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(10px);
-        width: 100%;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        padding: 1rem 2rem;
-        z-index: 999;
-        box-shadow: var(--card-shadow);
-      }
-
-      .nav-links.active {
-        display: flex;
-      }
-
-      .nav-links a.nav-link,
-      .dropdown-toggle {
-        animation: slideInUp 0.5s ease forwards;
-        animation-delay: calc(0.1s * var(--i));
-      }
-
-      .dropdown {
-        position: static;
-        background: rgba(52, 209, 157, 0.1);
-        padding: 0.5rem 1rem;
-        border-radius: 15px;
-        border: 1px solid var(--primary-green);
-        box-shadow: none;
-      }
-
-      .dropdown a {
-        animation: slideInUp 0.5s ease forwards;
-        animation-delay: calc(0.1s * var(--i));
-      }
-
-      .services-section {
-        min-height: 100vh; /* Full screen height on mobile */
-        padding: 1rem;
-      }
-
-      .services-container {
-        width: 98vw;
-        max-width: none;
-        padding: clamp(2rem, 6vw, 3rem) clamp(1rem, 4vw, 2rem);
-      }
-
-      .services-wrapper {
-        padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1rem, 4vw, 2rem);
-      }
-
-      .services-wrapper h2 {
-        font-size: clamp(1.5rem, 5vw, 2.2rem) !important;
-        margin-bottom: clamp(1.5rem, 4vw, 2rem) !important;
-      }
-
-      .services {
-        display: grid;
-        grid-template-columns: 1fr 1fr; /* 2 cards per row on mobile */
-        grid-template-rows: auto;
-        gap: clamp(0.8rem, 3vw, 1.2rem);
-        padding: 0;
-        overflow: visible;
-        justify-items: center;
-        align-items: start;
-        width: 100%;
-        margin: 0 auto;
-      }
-
-      .card {
-        width: clamp(150px, 45vw, 180px); /* Slightly larger cards for mobile */
-        height: clamp(190px, 47vw, 230px);
-        margin: 0;
-      }
-
-      .service-image-frame {
-        padding: 8px;
-        height: 60%;
-      }
-
-      .service-image-frame img {
-        width: 85%;
-        height: 85%;
-        padding: 6px;
-      }
-
-      .service-card-info {
-        padding: 0.4rem;
-        height: 40%;
-      }
-
-      .service-card-info h3 {
-        font-size: 0.75rem;
-        margin: 0 0 3px 0;
-        line-height: 1.1;
-      }
-
-      .service-card-info .specs {
-        font-size: 0.6rem;
-        line-height: 1.2;
-      }
-
-      .coming-soon {
-        font-size: 0.65rem;
-        margin-top: 3px;
-      }
-
-      .services-card-back {
-        padding: 1rem;
-      }
-
-      .service-card-content p {
-        font-size: 0.7rem;
-        margin-bottom: 0.8rem;
-        line-height: 1.3;
-      }
-
-      .book-btn {
-        padding: 0.4rem 0.8rem;
-        font-size: 0.65rem;
-        border-radius: 12px;
-      }
-
-      .about-section {
-        min-height: 100vh; /* Full screen height on mobile */
-        padding: 1rem;
-      }
-
-      .about-container {
-        width: 98vw;
-        max-width: none;
-        padding: clamp(2rem, 6vw, 3rem) clamp(1rem, 4vw, 2rem);
-      }
-
-      .about-inner-card {
-        padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1rem, 4vw, 2rem);
-      }
-
-      .cta-section {
-        min-height: 100vh; /* Full screen height on mobile */
-        padding: 1rem;
-      }
-
-      .contact-container {
-        width: 98vw;
-        max-width: none;
-        padding: clamp(2rem, 6vw, 3rem) clamp(1rem, 4vw, 2rem);
-      }
-
-      .contact-inner-card {
-        padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1rem, 4vw, 2rem);
-      }
-
-      .cta-section h2 {
-        font-size: 1.8rem;
-      }
-
-      .cta-section p {
-        font-size: 1.2rem;
-      }
-
-      .contact-info {
-        flex-direction: column;
-        gap: 1rem;
-        font-size: 1rem;
-      }
-
-      .contact-form {
-        max-width: 90%;
-        width: 100%;
-        margin: 1.5rem auto 0;
-      }
-
-      .contact-form label {
-        font-size: 0.9rem;
-      }
-
-      .contact-form input,
-      .contact-form textarea {
-        padding: 0.8rem;
-        font-size: 0.9rem;
-      }
-
-      .contact-form textarea {
-        min-height: 80px;
-      }
-
-      .contact-form button {
-        padding: 0.8rem 1.5rem;
-        font-size: 0.9rem;
-      }
-
-      /* Additional mobile overrides for desktop styles */
-      .hero-content,
-      .services-container,
-      .about-container,
-      .contact-container {
-        width: 95vw;
-        padding: 1.5rem 1rem;
-      }
-      
-      .hero-inner-card {
-        padding: 2rem 1.5rem;
-        border-radius: 15px;
-      }
-      
-      .hero-inner-card::before {
-        border-radius: 15px;
-      }
-      
-      .contact-content {
-        grid-template-columns: 1fr;
-      }
-    }
 
     /* ============================================
        5. SMALL SCREENS (@media max-width: 480px)
@@ -2049,6 +1698,327 @@
       transform: scale(1.2);
     }
 
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 1rem;
+        height: 60px;
+      }
+
+      .hero-section {
+        height: 100vh; /* Fixed height on mobile */
+        max-height: 100vh;
+        padding: 1rem;
+        padding-top: calc(60px + 1rem); /* Account for mobile navbar height */
+      }
+      
+      .hero-content {
+        height: 420px; /* Reduced height for mobile */
+      }
+      
+      .hero-inner-card {
+        min-height: 340px; /* Reduced fixed minimum height for mobile */
+        max-height: 340px; /* Reduced fixed maximum height */
+        height: 340px; /* Reduced fixed height for mobile */
+        padding: clamp(0.8rem, 2.5vw, 1.2rem) clamp(1rem, 2.5vw, 1.2rem); /* Reduced padding for mobile */
+        overflow: visible; /* Allow text to show */
+      }
+      
+      .about-container,
+      .contact-container {
+        padding: clamp(1.5rem, 4vw, 2rem) clamp(1rem, 3vw, 1.5rem); /* Mobile padding for other sections */
+      }
+      
+      .about-inner-card,
+      .contact-inner-card {
+        padding: clamp(2rem, 5vw, 2.5rem) clamp(1.5rem, 4vw, 2rem); /* Mobile padding for inner cards */
+      }
+
+      .hero-title-container {
+        margin-bottom: 0.5rem;
+      }
+
+      .hero-text-wrapper {
+        height: clamp(80px, 14vh, 110px); /* Reduced height for mobile */
+        min-height: clamp(80px, 14vh, 110px);
+        max-height: clamp(80px, 14vh, 110px);
+        margin-bottom: 0.5rem; /* Reduced margin */
+      }
+
+      #hero-line1 {
+        font-size: clamp(18px, 6vw, 36px); /* Reduced font size */
+        height: clamp(20px, 5.5vh, 36px); /* Fixed height matches font-size for mobile */
+        min-height: clamp(20px, 5.5vh, 36px);
+        margin-bottom: 0.5rem; /* Reduced gap between lines on mobile */
+      }
+
+      #hero-line2 {
+        font-size: clamp(26px, 9vw, 60px); /* Reduced font size */
+        height: clamp(30px, 9vh, 60px); /* Fixed height matches font-size for mobile */
+        min-height: clamp(30px, 9vh, 60px);
+        line-height: 1; /* Tighter line height for mobile */
+        padding-bottom: 0px; /* No padding after Skyhawk text */
+        background: linear-gradient(180deg, #2eb589 0%, #2eb589 45%, #2ba5d9 55%, #2ba5d9 100%);
+        background-size: 100% 200%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-weight: bold;
+        animation: gradientShift 4s ease-in-out infinite;
+      }
+      
+      .hero-content p {
+        height: auto;
+        max-height: none; /* Remove max height restriction for mobile */
+        margin-top: 0.3rem;
+        margin-bottom: 0.5rem; /* Reduced margin */
+        padding: 0 0.4rem; /* Reduced padding */
+        font-size: clamp(0.9rem, 2.5vw, 1.1rem); /* Reduced font size from 1.05rem to 0.9rem min, 1.3rem to 1.1rem max */
+        line-height: 1.4; /* Tighter line height */
+      }
+      
+      .cta-btn {
+        height: 36px; /* Smaller button for mobile */
+        width: 150px;
+        padding: 0.5rem 1.3rem;
+        font-size: 0.85rem;
+        margin: 0 auto;
+      }
+
+      .hero-content {
+        width: 98vw;
+        max-width: none;
+        padding: clamp(1.5rem, 5vw, 2.5rem) clamp(0.8rem, 3vw, 1.5rem); /* Reduced padding */
+      }
+
+      .hero-inner-card {
+        padding: clamp(1.2rem, 4vw, 2rem) clamp(0.8rem, 3vw, 1.5rem); /* Reduced padding */
+      }
+
+      .cta-btn {
+        padding: clamp(0.6rem, 2.5vw, 1rem) clamp(1.5rem, 5vw, 2rem); /* Reduced padding */
+        font-size: clamp(0.85rem, 3vw, 1rem); /* Reduced font size */
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        width: 100%;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        padding: 1rem 2rem;
+        z-index: 999;
+        box-shadow: var(--card-shadow);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-links a.nav-link,
+      .dropdown-toggle {
+        animation: slideInUp 0.5s ease forwards;
+        animation-delay: calc(0.1s * var(--i));
+      }
+
+      .dropdown {
+        position: static;
+        background: rgba(52, 209, 157, 0.1);
+        padding: 0.5rem 1rem;
+        border-radius: 15px;
+        border: 1px solid var(--primary-green);
+        box-shadow: none;
+      }
+
+      .dropdown a {
+        animation: slideInUp 0.5s ease forwards;
+        animation-delay: calc(0.1s * var(--i));
+      }
+
+      .services-section {
+        min-height: 100vh; /* Full screen height on mobile */
+        padding: 1rem;
+      }
+
+      .services-container {
+        width: 98vw;
+        max-width: none;
+        padding: clamp(2rem, 6vw, 3rem) clamp(1rem, 4vw, 2rem);
+      }
+
+      .services-wrapper {
+        padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1rem, 4vw, 2rem);
+      }
+
+      .services-wrapper h2 {
+        font-size: clamp(1.5rem, 5vw, 2.2rem) !important;
+        margin-bottom: clamp(1.5rem, 4vw, 2rem) !important;
+      }
+
+      .services {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* 2 cards per row on mobile */
+        grid-template-rows: auto;
+        gap: clamp(0.8rem, 3vw, 1.2rem);
+        padding: 0;
+        overflow: visible;
+        justify-items: center;
+        align-items: start;
+        width: 100%;
+        margin: 0 auto;
+      }
+
+      .card {
+        width: clamp(150px, 45vw, 180px); /* Slightly larger cards for mobile */
+        height: clamp(190px, 47vw, 230px);
+        margin: 0;
+      }
+
+      .service-image-frame {
+        padding: 8px;
+        height: 60%;
+      }
+
+      .service-image-frame img {
+        width: 85%;
+        height: 85%;
+        padding: 6px;
+      }
+
+      .service-card-info {
+        padding: 0.4rem;
+        height: 40%;
+      }
+
+      .service-card-info h3 {
+        font-size: 0.75rem;
+        margin: 0 0 3px 0;
+        line-height: 1.1;
+      }
+
+      .service-card-info .specs {
+        font-size: 0.6rem;
+        line-height: 1.2;
+      }
+
+      .coming-soon {
+        font-size: 0.65rem;
+        margin-top: 3px;
+      }
+
+      .services-card-back {
+        padding: 1rem;
+      }
+
+      .service-card-content p {
+        font-size: 0.7rem;
+        margin-bottom: 0.8rem;
+        line-height: 1.3;
+      }
+
+      .book-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.65rem;
+        border-radius: 12px;
+      }
+
+      .about-section {
+        min-height: 100vh; /* Full screen height on mobile */
+        padding: 1rem;
+      }
+
+      .about-container {
+        width: 98vw;
+        max-width: none;
+        padding: clamp(2rem, 6vw, 3rem) clamp(1rem, 4vw, 2rem);
+      }
+
+      .about-inner-card {
+        padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1rem, 4vw, 2rem);
+      }
+
+      .cta-section {
+        min-height: 100vh; /* Full screen height on mobile */
+        padding: 1rem;
+      }
+
+      .contact-container {
+        width: 98vw;
+        max-width: none;
+        padding: clamp(2rem, 6vw, 3rem) clamp(1rem, 4vw, 2rem);
+      }
+
+      .contact-inner-card {
+        padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1rem, 4vw, 2rem);
+      }
+
+      .cta-section h2 {
+        font-size: 1.8rem;
+      }
+
+      .cta-section p {
+        font-size: 1.2rem;
+      }
+
+      .contact-info {
+        flex-direction: column;
+        gap: 1rem;
+        font-size: 1rem;
+      }
+
+      .contact-form {
+        max-width: 90%;
+        width: 100%;
+        margin: 1.5rem auto 0;
+      }
+
+      .contact-form label {
+        font-size: 0.9rem;
+      }
+
+      .contact-form input,
+      .contact-form textarea {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+      }
+
+      .contact-form textarea {
+        min-height: 80px;
+      }
+
+      .contact-form button {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+      }
+
+      /* Additional mobile overrides for desktop styles */
+      .hero-content,
+      .services-container,
+      .about-container,
+      .contact-container {
+        width: 95vw;
+        padding: 1.5rem 1rem;
+      }
+      
+      .hero-inner-card {
+        padding: 2rem 1.5rem;
+        border-radius: 15px;
+      }
+      
+      .hero-inner-card::before {
+        border-radius: 15px;
+      }
+      
+      .contact-content {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
