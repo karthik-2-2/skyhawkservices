@@ -1728,13 +1728,14 @@
       }
 
       .services-container {
-        width: 98vw;
+        width: 94vw; /* Reduced from 98vw to add more margin from edges */
         max-width: none;
-        padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1rem, 4vw, 2rem); /* Reduced padding */
+        padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1rem, 4vw, 2rem);
+        margin: 0 auto; /* Center the container */
       }
 
       .services-wrapper {
-        padding: clamp(1.2rem, 4vw, 2rem) clamp(1rem, 4vw, 2rem); /* Reduced padding */
+        padding: clamp(1.2rem, 4vw, 2rem) clamp(1rem, 4vw, 2rem);
       }
 
       .services-wrapper h2 {
@@ -1746,7 +1747,7 @@
         display: grid;
         grid-template-columns: 1fr 1fr; /* 2 cards per row on mobile */
         grid-template-rows: auto;
-        gap: clamp(0.8rem, 3vw, 1.2rem);
+        gap: clamp(1rem, 3.5vw, 1.5rem); /* Increased gap between cards */
         padding: 0;
         overflow: visible;
         justify-items: center;
@@ -1756,57 +1757,72 @@
       }
 
       .card {
-        width: clamp(150px, 45vw, 180px); /* Slightly larger cards for mobile */
+        width: clamp(150px, 45vw, 180px);
         height: clamp(190px, 47vw, 230px);
         margin: 0;
+        /* Smoother flip transition */
+        transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+      }
+
+      .card .services-card-front, .card .services-card-back {
+        /* Smoother, faster flip with better easing */
+        transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1) !important;
       }
 
       .service-image-frame {
-        padding: 8px;
-        height: 60%;
+        padding: 6px; /* Reduced padding */
+        height: 55%; /* Reduced from 60% to make image smaller */
       }
 
       .service-image-frame img {
-        width: 85%;
-        height: 85%;
-        padding: 6px;
+        width: 75%; /* Reduced from 85% to make image smaller */
+        height: 75%; /* Reduced from 85% to make image smaller */
+        padding: 4px; /* Reduced padding */
       }
 
       .service-card-info {
-        padding: 0.4rem;
-        height: 40%;
+        padding: 0.5rem 0.4rem; /* Added top padding */
+        height: 45%; /* Increased from 40% to accommodate larger text */
       }
 
       .service-card-info h3 {
-        font-size: 0.75rem;
-        margin: 0 0 3px 0;
-        line-height: 1.1;
+        font-size: 0.85rem !important; /* Increased from 0.75rem */
+        margin: 0 0 5px 0; /* Increased bottom margin */
+        line-height: 1.2; /* Increased from 1.1 */
+        font-weight: 700; /* Make it bolder */
       }
 
       .service-card-info .specs {
-        font-size: 0.6rem;
-        line-height: 1.2;
+        font-size: 0.7rem !important; /* Increased from 0.6rem */
+        line-height: 1.5 !important; /* Increased from 1.2 for better spacing */
+        margin-top: 4px;
+      }
+
+      .service-card-info .specs strong {
+        font-size: 0.72rem; /* Slightly larger for labels */
       }
 
       .coming-soon {
-        font-size: 0.65rem;
-        margin-top: 3px;
+        font-size: 0.72rem; /* Increased from 0.65rem */
+        margin-top: 5px;
+        font-weight: 600;
       }
 
       .services-card-back {
-        padding: 1rem;
+        padding: 1.2rem; /* Increased padding */
       }
 
       .service-card-content p {
-        font-size: 0.7rem;
-        margin-bottom: 0.8rem;
-        line-height: 1.3;
+        font-size: 0.8rem !important; /* Increased from 0.7rem */
+        margin-bottom: 1rem; /* Increased spacing */
+        line-height: 1.5 !important; /* Increased from 1.3 */
       }
 
       .book-btn {
-        padding: 0.4rem 0.8rem;
-        font-size: 0.65rem;
+        padding: 0.5rem 1rem !important; /* Increased from 0.4rem 0.8rem */
+        font-size: 0.75rem !important; /* Increased from 0.65rem */
         border-radius: 12px;
+        font-weight: 700;
       }
 
       .about-section {
@@ -1819,9 +1835,10 @@
       }
 
       .about-container {
-        width: 98vw;
+        width: 94vw; /* Reduced from 98vw to match services section margin */
         max-width: none;
-        padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1rem, 4vw, 2rem); /* Reduced padding */
+        padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1rem, 4vw, 2rem);
+        margin: 0 auto; /* Center the container */
       }
 
       .about-inner-card {
@@ -1905,7 +1922,7 @@
 
     @media (max-width: 480px) {
       .services-container {
-        width: 99vw;
+        width: 95vw; /* Reduced to add margin from edges */
         padding: clamp(1.5rem, 5vw, 2.5rem) clamp(0.8rem, 3vw, 1.5rem);
       }
 
@@ -1935,46 +1952,56 @@
         width: clamp(110px, 35vw, 140px);
         height: clamp(150px, 38vw, 180px);
         margin: 0;
+        /* Smoother flip */
+        transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+      }
+
+      .card .services-card-front, .card .services-card-back {
+        transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1) !important;
       }
 
       .service-image-frame {
-        padding: 5px !important;
-        height: 62% !important;
+        padding: 4px !important; /* Reduced */
+        height: 55% !important; /* Reduced to make image smaller */
       }
 
       .service-image-frame img {
-        width: 88% !important;
-        height: 88% !important;
+        width: 75% !important; /* Reduced to make image smaller */
+        height: 75% !important; /* Reduced to make image smaller */
         padding: 2px !important;
       }
 
       .service-card-info {
-        padding: 0.25rem !important;
-        height: 38% !important;
+        padding: 0.3rem !important;
+        height: 45% !important; /* Increased for larger text */
       }
 
       .service-card-info h3 {
-        font-size: 0.6rem !important;
+        font-size: 0.7rem !important; /* Increased from 0.6rem */
+        line-height: 1.3 !important;
+        font-weight: 700 !important;
       }
 
       .service-card-info .specs {
-        font-size: 0.55rem !important;
+        font-size: 0.62rem !important; /* Increased from 0.55rem */
+        line-height: 1.5 !important; /* Added better line spacing */
       }
 
       .services-card-back {
-        padding: 0.6rem !important;
+        padding: 0.8rem !important; /* Increased */
       }
 
       .service-card-content p {
-        font-size: 0.6rem !important;
-        margin-bottom: 0.6rem !important;
-        line-height: 1.15 !important;
+        font-size: 0.68rem !important; /* Increased from 0.6rem */
+        margin-bottom: 0.7rem !important;
+        line-height: 1.4 !important; /* Increased from 1.15 */
       }
 
       .book-btn {
-        padding: 0.3rem 0.6rem !important;
-        font-size: 0.55rem !important;
+        padding: 0.35rem 0.7rem !important; /* Increased */
+        font-size: 0.6rem !important; /* Increased from 0.55rem */
         border-radius: 8px !important;
+        font-weight: 700 !important;
       }
     }
 
@@ -1986,39 +2013,55 @@
       .card {
         width: clamp(100px, 32vw, 120px) !important;
         height: clamp(135px, 35vw, 155px) !important;
+        /* Smoother flip */
+        transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1) !important;
+      }
+
+      .card .services-card-front, .card .services-card-back {
+        transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1) !important;
       }
 
       .service-image-frame {
-        padding: 4px !important;
-        height: 65% !important;
+        padding: 3px !important; /* Reduced */
+        height: 58% !important; /* Reduced to make image smaller */
+      }
+
+      .service-image-frame img {
+        width: 70% !important; /* Reduced to make image smaller */
+        height: 70% !important;
       }
 
       .service-card-info {
-        padding: 0.2rem !important;
-        height: 35% !important;
+        padding: 0.25rem !important; /* Increased */
+        height: 42% !important; /* Increased for larger text */
       }
 
       .service-card-info h3 {
-        font-size: 0.55rem !important;
+        font-size: 0.58rem !important; /* Increased */
+        line-height: 1.2 !important;
+        font-weight: 700 !important;
       }
 
       .service-card-info .specs {
-        font-size: 0.5rem !important;
+        font-size: 0.52rem !important; /* Increased */
+        line-height: 1.4 !important; /* Better spacing */
       }
 
       .services-card-back {
-        padding: 0.5rem !important;
+        padding: 0.6rem !important; /* Increased */
       }
 
       .service-card-content p {
-        font-size: 0.55rem !important;
-        margin-bottom: 0.5rem !important;
+        font-size: 0.58rem !important; /* Increased */
+        margin-bottom: 0.6rem !important;
+        line-height: 1.3 !important; /* Better spacing */
       }
 
       .book-btn {
-        padding: 0.25rem 0.5rem !important;
-        font-size: 0.5rem !important;
+        padding: 0.3rem 0.6rem !important; /* Increased */
+        font-size: 0.55rem !important; /* Increased */
         border-radius: 6px !important;
+        font-weight: 700 !important;
       }
 
       .hero-content {
