@@ -1758,7 +1758,8 @@
 
       .card {
         width: clamp(150px, 45vw, 180px);
-        height: clamp(190px, 47vw, 230px);
+        height: auto !important; /* Changed from fixed height to auto */
+        min-height: clamp(190px, 47vw, 230px); /* Minimum height, can expand */
         margin: 0;
         /* Smoother flip transition */
         transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
@@ -1771,18 +1772,22 @@
 
       .service-image-frame {
         padding: 6px; /* Reduced padding */
-        height: 55%; /* Reduced from 60% to make image smaller */
+        height: auto; /* Changed to auto */
+        min-height: 90px; /* Minimum height for image area */
+        max-height: 110px; /* Maximum to prevent too large */
       }
 
       .service-image-frame img {
         width: 75%; /* Reduced from 85% to make image smaller */
         height: 75%; /* Reduced from 85% to make image smaller */
+        max-height: 90px; /* Max height for image */
         padding: 4px; /* Reduced padding */
       }
 
       .service-card-info {
         padding: 0.5rem 0.4rem; /* Added top padding */
-        height: 45%; /* Increased from 40% to accommodate larger text */
+        height: auto !important; /* Changed to auto to expand with content */
+        min-height: 85px; /* Minimum height for text area */
       }
 
       .service-card-info h3 {
@@ -1790,12 +1795,16 @@
         margin: 0 0 5px 0; /* Increased bottom margin */
         line-height: 1.2; /* Increased from 1.1 */
         font-weight: 700; /* Make it bolder */
+        white-space: normal; /* Allow text wrapping */
+        overflow: visible; /* Show all text */
       }
 
       .service-card-info .specs {
         font-size: 0.7rem !important; /* Increased from 0.6rem */
         line-height: 1.5 !important; /* Increased from 1.2 for better spacing */
         margin-top: 4px;
+        white-space: normal; /* Allow text wrapping */
+        overflow: visible; /* Show all text */
       }
 
       .service-card-info .specs strong {
@@ -1950,7 +1959,8 @@
 
       .card {
         width: clamp(110px, 35vw, 140px);
-        height: clamp(150px, 38vw, 180px);
+        height: auto !important; /* Changed to auto */
+        min-height: clamp(150px, 38vw, 180px); /* Minimum, can expand */
         margin: 0;
         /* Smoother flip */
         transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
@@ -1961,30 +1971,38 @@
       }
 
       .service-image-frame {
-        padding: 4px !important; /* Reduced */
-        height: 55% !important; /* Reduced to make image smaller */
+        padding: 4px !important;
+        height: auto !important; /* Changed to auto */
+        min-height: 70px !important;
+        max-height: 90px !important;
       }
 
       .service-image-frame img {
-        width: 75% !important; /* Reduced to make image smaller */
-        height: 75% !important; /* Reduced to make image smaller */
+        width: 75% !important;
+        height: 75% !important;
+        max-height: 75px !important; /* Max height */
         padding: 2px !important;
       }
 
       .service-card-info {
         padding: 0.3rem !important;
-        height: 45% !important; /* Increased for larger text */
+        height: auto !important; /* Changed to auto */
+        min-height: 70px !important; /* Minimum, can expand */
       }
 
       .service-card-info h3 {
-        font-size: 0.7rem !important; /* Increased from 0.6rem */
+        font-size: 0.7rem !important;
         line-height: 1.3 !important;
         font-weight: 700 !important;
+        white-space: normal !important;
+        overflow: visible !important;
       }
 
       .service-card-info .specs {
-        font-size: 0.62rem !important; /* Increased from 0.55rem */
-        line-height: 1.5 !important; /* Added better line spacing */
+        font-size: 0.62rem !important;
+        line-height: 1.5 !important;
+        white-space: normal !important;
+        overflow: visible !important;
       }
 
       .services-card-back {
@@ -2012,7 +2030,8 @@
 
       .card {
         width: clamp(100px, 32vw, 120px) !important;
-        height: clamp(135px, 35vw, 155px) !important;
+        height: auto !important; /* Changed to auto */
+        min-height: clamp(135px, 35vw, 155px) !important; /* Minimum, can expand */
         /* Smoother flip */
         transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1) !important;
       }
@@ -2022,29 +2041,37 @@
       }
 
       .service-image-frame {
-        padding: 3px !important; /* Reduced */
-        height: 58% !important; /* Reduced to make image smaller */
+        padding: 3px !important;
+        height: auto !important; /* Changed to auto */
+        min-height: 60px !important;
+        max-height: 75px !important;
       }
 
       .service-image-frame img {
-        width: 70% !important; /* Reduced to make image smaller */
+        width: 70% !important;
         height: 70% !important;
+        max-height: 65px !important; /* Max height */
       }
 
       .service-card-info {
-        padding: 0.25rem !important; /* Increased */
-        height: 42% !important; /* Increased for larger text */
+        padding: 0.25rem !important;
+        height: auto !important; /* Changed to auto */
+        min-height: 60px !important; /* Minimum, can expand */
       }
 
       .service-card-info h3 {
-        font-size: 0.58rem !important; /* Increased */
+        font-size: 0.58rem !important;
         line-height: 1.2 !important;
         font-weight: 700 !important;
+        white-space: normal !important;
+        overflow: visible !important;
       }
 
       .service-card-info .specs {
-        font-size: 0.52rem !important; /* Increased */
-        line-height: 1.4 !important; /* Better spacing */
+        font-size: 0.52rem !important;
+        line-height: 1.4 !important;
+        white-space: normal !important;
+        overflow: visible !important;
       }
 
       .services-card-back {
