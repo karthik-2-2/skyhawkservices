@@ -1595,7 +1595,7 @@
       }
 
       #hero-line1 {
-        font-size: clamp(22px, 7vw, 40px);
+        font-size: clamp(26px, 8vw, 48px); /* Increased from 22px to 26px */
         height: auto !important;
         min-height: 1.3em; /* Minimum height to reserve space */
         margin-bottom: 0;
@@ -1608,7 +1608,7 @@
       }
 
       #hero-line2 {
-        font-size: clamp(32px, 10vw, 65px);
+        font-size: clamp(38px, 12vw, 72px); /* Increased from 32px to 38px */
         height: auto !important;
         min-height: 1.3em; /* Minimum height to reserve space */
         line-height: 1.3;
@@ -1631,10 +1631,11 @@
         max-height: none;
         margin-top: 1rem;
         margin-bottom: 1rem;
-        padding: 0 0.5rem;
-        font-size: clamp(0.95rem, 3.5vw, 1.1rem);
+        padding: 0 0.8rem; /* Increased padding for justify */
+        font-size: clamp(1rem, 3.8vw, 1.15rem); /* Increased from 0.95rem to 1rem */
         line-height: 1.6;
-        text-align: center;
+        text-align: justify; /* Changed from center to justify */
+        text-align-last: center; /* Keep last line centered */
         color: var(--text-black);
       }
       
@@ -1718,18 +1719,22 @@
       }
 
       .services-section {
-        min-height: 100vh; /* Full screen height on mobile */
-        padding: 1rem;
+        min-height: auto; /* Changed from 100vh - no need for full height */
+        padding: 2rem 1rem; /* Added top/bottom padding for spacing */
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start; /* Align to top, not center */
+        align-items: center;
       }
 
       .services-container {
         width: 98vw;
         max-width: none;
-        padding: clamp(2rem, 6vw, 3rem) clamp(1rem, 4vw, 2rem);
+        padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1rem, 4vw, 2rem); /* Reduced padding */
       }
 
       .services-wrapper {
-        padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1rem, 4vw, 2rem);
+        padding: clamp(1.2rem, 4vw, 2rem) clamp(1rem, 4vw, 2rem); /* Reduced padding */
       }
 
       .services-wrapper h2 {
@@ -1805,33 +1810,41 @@
       }
 
       .about-section {
-        min-height: 100vh; /* Full screen height on mobile */
-        padding: 1rem;
+        min-height: auto; /* Changed from 100vh - no need for full height */
+        padding: 2rem 1rem; /* Added top/bottom padding for spacing */
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start; /* Align to top, not center */
+        align-items: center;
       }
 
       .about-container {
         width: 98vw;
         max-width: none;
-        padding: clamp(2rem, 6vw, 3rem) clamp(1rem, 4vw, 2rem);
+        padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1rem, 4vw, 2rem); /* Reduced padding */
       }
 
       .about-inner-card {
-        padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1rem, 4vw, 2rem);
+        padding: clamp(1.2rem, 4vw, 2rem) clamp(1rem, 4vw, 2rem); /* Reduced padding */
       }
 
       .cta-section {
-        min-height: 100vh; /* Full screen height on mobile */
-        padding: 1rem;
+        min-height: auto; /* Changed from 100vh - no need for full height */
+        padding: 2rem 1rem; /* Added top/bottom padding for spacing */
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start; /* Align to top, not center */
+        align-items: center;
       }
 
       .contact-container {
         width: 98vw;
         max-width: none;
-        padding: clamp(2rem, 6vw, 3rem) clamp(1rem, 4vw, 2rem);
+        padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1rem, 4vw, 2rem); /* Reduced padding */
       }
 
       .contact-inner-card {
-        padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1rem, 4vw, 2rem);
+        padding: clamp(1.2rem, 4vw, 2rem) clamp(1rem, 4vw, 2rem); /* Reduced padding */
       }
 
       .cta-section h2 {
@@ -2077,7 +2090,7 @@
         display: block;
         text-align: center;
         width: 100%;
-        font-size: clamp(18px, 6vw, 24px);
+        font-size: clamp(22px, 7vw, 28px); /* Increased from 18px to 22px */
         line-height: 1.3;
         font-weight: 600;
       }
@@ -2090,7 +2103,7 @@
         display: block;
         text-align: center;
         width: 100%;
-        font-size: clamp(24px, 8vw, 32px);
+        font-size: clamp(30px, 10vw, 38px); /* Increased from 24px to 30px */
         font-weight: 700;
       }
       
@@ -2099,10 +2112,11 @@
         max-height: none;
         margin-top: 0.5rem;
         margin-bottom: 0.8rem;
-        padding: 0 0.5rem;
-        font-size: clamp(0.85rem, 3vw, 1rem);
+        padding: 0 0.8rem; /* Increased padding for justify */
+        font-size: clamp(0.9rem, 3.5vw, 1.05rem); /* Increased from 0.85rem to 0.9rem */
         line-height: 1.5;
-        text-align: center;
+        text-align: justify; /* Changed from center to justify */
+        text-align-last: center; /* Keep last line centered */
       }
       
       .cta-btn {
