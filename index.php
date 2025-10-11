@@ -294,9 +294,9 @@
     .card {
       background: var(--card-bg);
       backdrop-filter: blur(15px);
-      border-radius: 15px; /* Slightly smaller border radius */
-      width: clamp(140px, 16vw, 200px); /* Reduced card width */
-      height: clamp(220px, 24vw, 300px); /* Reduced card height */
+      border-radius: 15px;
+      width: clamp(140px, 16vw, 200px);
+      height: clamp(220px, 24vw, 300px);
       perspective: 1000px;
       position: relative;
       cursor: pointer;
@@ -308,6 +308,7 @@
       color: var(--text-black);
       overflow: hidden;
       transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      transform-style: preserve-3d; /* Fix flickering */
     }
 
     .card::before {
@@ -336,12 +337,14 @@
       position: absolute;
       top: 0;
       left: 0;
-      border-radius: 15px; /* Match card border radius */
+      border-radius: 15px;
       backface-visibility: hidden;
-      transition: transform 1.5s cubic-bezier(0.23, 1, 0.32, 1);
+      -webkit-backface-visibility: hidden; /* Fix Safari flickering */
+      transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
       display: flex;
       flex-direction: column;
       overflow: hidden;
+      transform-style: preserve-3d; /* Fix flickering */
     }
 
     .card .services-card-front {
@@ -400,21 +403,21 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: clamp(10px, 1.5vw, 15px); /* Increased padding around frame */
+      padding: clamp(6px, 1vw, 10px);
       background: rgba(255, 255, 255, 0.8);
       backdrop-filter: blur(10px);
-      border-radius: 15px 15px 0 0; /* Match card border radius */
+      border-radius: 15px 15px 0 0;
       border-bottom: 1px solid var(--glass-border);
     }
 
     .service-image-frame img {
-      width: 70%; /* Reduced image size */
-      height: 70%; /* Reduced image size */
+      width: 70%;
+      height: 70%;
       object-fit: cover;
-      border-radius: 10px; /* Smaller border radius */
+      border-radius: 10px;
       border: 2px solid var(--primary-green);
       background: rgba(52, 209, 157, 0.05);
-      padding: clamp(8px, 1.2vw, 12px); /* Increased padding for visibility */
+      padding: clamp(4px, 1vw, 6px);
       transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
       box-shadow: 0 4px 20px rgba(52, 209, 157, 0.2);
     }
@@ -449,17 +452,12 @@
     }
 
     .coming-soon {
-      font-size: clamp(0.6rem, 1vw, 0.75rem); /* Reduced font size */
+      font-size: clamp(0.6rem, 1vw, 0.75rem);
       color: var(--primary-blue);
       text-align: center;
       animation: pulse-glow 2s ease-in-out infinite;
-      margin-top: clamp(1px, 0.3vw, 2px); /* Reduced margin */
+      margin-top: clamp(1px, 0.3vw, 2px);
       font-weight: bold;
-      background: rgba(52, 209, 157, 0.15); /* Light background */
-      padding: clamp(4px, 0.6vw, 6px) clamp(8px, 1vw, 12px); /* Padding around text */
-      border-radius: 8px; /* Rounded corners */
-      display: inline-block; /* Fit to content */
-      border: 1px solid rgba(52, 209, 157, 0.3); /* Subtle border */
     }
 
     @keyframes pulse-glow {
@@ -508,19 +506,20 @@
     .service-card-content p {
       margin-bottom: clamp(1rem, 2vw, 1.5rem);
       color: var(--white);
-      font-size: clamp(0.9rem, 1.6vw, 1.1rem);
-      line-height: 1.5;
+      font-size: clamp(0.85rem, 1.4vw, 1.1rem); /* More responsive range */
+      line-height: 1.6;
+      font-weight: 500;
     }
 
     .book-btn {
       display: inline-block;
       margin-top: clamp(0.8rem, 1.5vw, 1rem);
-      padding: clamp(0.6rem, 1.2vw, 0.75rem) clamp(1.2rem, 2.2vw, 1.5rem);
+      padding: clamp(0.6rem, 1.2vw, 0.8rem) clamp(1.2rem, 2.2vw, 1.8rem); /* Better responsive padding */
       background-color: var(--primary-green);
       color: var(--white);
       border-radius: 30px;
       font-weight: 600;
-      font-size: clamp(0.8rem, 1.4vw, 1rem);
+      font-size: clamp(0.75rem, 1.3vw, 1rem); /* More responsive font-size */
       text-decoration: none;
       transition: all 0.3s ease;
       border: none;
@@ -1418,29 +1417,29 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 0.8rem 2rem; /* Reduced padding */
+      padding: 0.8rem 2rem;
       background: var(--primary-green);
       color: var(--white);
       border-radius: 50px;
       text-decoration: none;
       font-weight: 700;
-      font-size: 1rem; /* Slightly smaller font */
-      transition: all 0.3s ease;
+      font-size: 1rem;
+      transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1); /* Smooth transition for all properties */
       animation: bounceIn 1s ease forwards 1s, pulse 2s ease-in-out infinite;
       box-shadow: 0 8px 25px rgba(52, 209, 157, 0.4), 0 4px 12px rgba(52, 209, 157, 0.3);
       z-index: 1;
       position: relative;
-      height: 45px; /* Smaller fixed height for button */
-      width: 180px; /* Smaller fixed width for button */
-      margin: 0 auto; /* Center the button without bottom margin */
-      align-self: center; /* Ensure centered in flex container */
-      flex-shrink: 0; /* Prevent button from shrinking */
+      height: 45px;
+      width: 180px;
+      margin: 0 auto;
+      align-self: center;
+      flex-shrink: 0;
     }
 
     .cta-btn:hover {
       background: var(--primary-blue);
       transform: scale(1.05) translateY(-3px);
-      box-shadow: 0 12px 40px rgba(52, 209, 157, 0.4), 0 6px 20px rgba(56, 193, 242, 0.3);
+      box-shadow: 0 12px 40px rgba(56, 193, 242, 0.4), 0 6px 20px rgba(56, 193, 242, 0.3);
     }
   } /* End of @media (min-width: 769px) */
 
@@ -1763,31 +1762,40 @@
 
       .card {
         width: clamp(150px, 45vw, 180px);
-        height: clamp(210px, 52vw, 250px) !important; /* Fixed height with proper space for all lines */
+        height: clamp(210px, 52vw, 250px) !important;
         margin: 0;
-        /* Smoother flip transition */
-        transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+        transform-style: preserve-3d; /* Fix flickering */
+        transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
       }
 
       .card .services-card-front, .card .services-card-back {
-        /* Smoother, faster flip with better easing */
         transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1) !important;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        transform-style: preserve-3d; /* Fix flickering */
       }
 
       .service-image-frame {
-        padding: 6px;
-        height: 100px; /* Fixed height for image container */
+        padding: clamp(8px, 2vw, 12px); /* Proper padding around frame */
+        height: 100px;
         display: flex;
         align-items: center;
         justify-content: center;
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+        border-radius: 15px 15px 0 0;
+        border-bottom: 1px solid var(--glass-border);
       }
 
       .service-image-frame img {
-        width: 80px !important; /* Fixed square width */
-        height: 80px !important; /* Fixed square height */
-        object-fit: cover; /* Maintain aspect ratio in square */
+        width: 80px !important;
+        height: 80px !important;
+        object-fit: cover;
         border-radius: 8px;
-        padding: 0;
+        border: 2px solid var(--primary-green);
+        background: rgba(52, 209, 157, 0.05);
+        padding: clamp(6px, 1.5vw, 10px); /* Proper padding inside border */
+        box-shadow: 0 4px 20px rgba(52, 209, 157, 0.2);
       }
 
       .service-card-info {
@@ -1833,18 +1841,19 @@
       }
 
       .services-card-back {
-        padding: 1.2rem; /* Increased padding */
+        padding: clamp(1rem, 3vw, 1.5rem); /* Responsive padding */
       }
 
       .service-card-content p {
-        font-size: 0.8rem !important; /* Increased from 0.7rem */
-        margin-bottom: 1rem; /* Increased spacing */
-        line-height: 1.5 !important; /* Increased from 1.3 */
+        font-size: clamp(0.72rem, 2vw, 0.85rem) !important; /* More responsive */
+        margin-bottom: clamp(0.8rem, 2.5vw, 1.2rem); /* Responsive spacing */
+        line-height: 1.5 !important;
+        font-weight: 500;
       }
 
       .book-btn {
-        padding: 0.5rem 1rem !important; /* Increased from 0.4rem 0.8rem */
-        font-size: 0.75rem !important; /* Increased from 0.65rem */
+        padding: clamp(0.45rem, 1.5vw, 0.6rem) clamp(0.9rem, 2.5vw, 1.2rem) !important; /* Responsive padding */
+        font-size: clamp(0.7rem, 2vw, 0.8rem) !important; /* Responsive font */
         border-radius: 12px;
         font-weight: 700;
       }
@@ -1974,30 +1983,40 @@
 
       .card {
         width: clamp(110px, 35vw, 140px);
-        height: clamp(170px, 43vw, 200px) !important; /* Fixed height */
+        height: clamp(170px, 43vw, 200px) !important;
         margin: 0;
-        /* Smoother flip */
-        transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+        transform-style: preserve-3d; /* Fix flickering */
+        transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
       }
 
       .card .services-card-front, .card .services-card-back {
         transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1) !important;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        transform-style: preserve-3d; /* Fix flickering */
       }
 
       .service-image-frame {
-        padding: 4px !important;
-        height: 75px !important; /* Fixed height */
+        padding: clamp(6px, 1.5vw, 8px) !important; /* Proper frame padding */
+        height: 75px !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
+        background: rgba(255, 255, 255, 0.8) !important;
+        backdrop-filter: blur(10px) !important;
+        border-radius: 15px 15px 0 0 !important;
+        border-bottom: 1px solid var(--glass-border) !important;
       }
 
       .service-image-frame img {
-        width: 65px !important; /* Square */
-        height: 65px !important; /* Square */
+        width: 65px !important;
+        height: 65px !important;
         object-fit: cover !important;
         border-radius: 6px !important;
-        padding: 0 !important;
+        border: 2px solid var(--primary-green) !important;
+        background: rgba(52, 209, 157, 0.05) !important;
+        padding: clamp(4px, 1vw, 6px) !important; /* Proper image padding */
+        box-shadow: 0 4px 20px rgba(52, 209, 157, 0.2) !important;
       }
 
       .service-card-info {
@@ -2032,18 +2051,19 @@
       }
 
       .services-card-back {
-        padding: 0.8rem !important; /* Increased */
+        padding: clamp(0.7rem, 2.5vw, 1rem) !important; /* Responsive padding */
       }
 
       .service-card-content p {
-        font-size: 0.68rem !important; /* Increased from 0.6rem */
-        margin-bottom: 0.7rem !important;
-        line-height: 1.4 !important; /* Increased from 1.15 */
+        font-size: clamp(0.62rem, 1.8vw, 0.72rem) !important; /* More responsive */
+        margin-bottom: clamp(0.6rem, 2vw, 0.8rem) !important; /* Responsive spacing */
+        line-height: 1.45 !important;
+        font-weight: 500;
       }
 
       .book-btn {
-        padding: 0.35rem 0.7rem !important; /* Increased */
-        font-size: 0.6rem !important; /* Increased from 0.55rem */
+        padding: clamp(0.32rem, 1.2vw, 0.4rem) clamp(0.65rem, 2vw, 0.8rem) !important; /* Responsive */
+        font-size: clamp(0.55rem, 1.6vw, 0.65rem) !important; /* Responsive */
         border-radius: 8px !important;
         font-weight: 700 !important;
       }
@@ -2056,29 +2076,39 @@
 
       .card {
         width: clamp(100px, 32vw, 120px) !important;
-        height: clamp(155px, 40vw, 180px) !important; /* Fixed height */
-        /* Smoother flip */
-        transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1) !important;
+        height: clamp(155px, 40vw, 180px) !important;
+        transform-style: preserve-3d !important; /* Fix flickering */
+        transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1) !important;
       }
 
       .card .services-card-front, .card .services-card-back {
         transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1) !important;
+        -webkit-backface-visibility: hidden !important;
+        backface-visibility: hidden !important;
+        transform-style: preserve-3d !important; /* Fix flickering */
       }
 
       .service-image-frame {
-        padding: 3px !important;
-        height: 65px !important; /* Fixed height */
+        padding: clamp(5px, 1.2vw, 7px) !important; /* Proper frame padding */
+        height: 65px !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
+        background: rgba(255, 255, 255, 0.8) !important;
+        backdrop-filter: blur(10px) !important;
+        border-radius: 15px 15px 0 0 !important;
+        border-bottom: 1px solid var(--glass-border) !important;
       }
 
       .service-image-frame img {
-        width: 55px !important; /* Square */
-        height: 55px !important; /* Square */
+        width: 55px !important;
+        height: 55px !important;
         object-fit: cover !important;
         border-radius: 5px !important;
-        padding: 0 !important;
+        border: 2px solid var(--primary-green) !important;
+        background: rgba(52, 209, 157, 0.05) !important;
+        padding: clamp(3px, 0.8vw, 5px) !important; /* Proper image padding */
+        box-shadow: 0 4px 20px rgba(52, 209, 157, 0.2) !important;
       }
 
       .service-card-info {
@@ -2116,18 +2146,19 @@
       }
 
       .services-card-back {
-        padding: 0.6rem !important; /* Increased */
+        padding: clamp(0.55rem, 2vw, 0.75rem) !important; /* Responsive padding */
       }
 
       .service-card-content p {
-        font-size: 0.58rem !important; /* Increased */
-        margin-bottom: 0.6rem !important;
-        line-height: 1.3 !important; /* Better spacing */
+        font-size: clamp(0.52rem, 1.6vw, 0.62rem) !important; /* More responsive */
+        margin-bottom: clamp(0.5rem, 1.8vw, 0.7rem) !important; /* Responsive spacing */
+        line-height: 1.35 !important;
+        font-weight: 500;
       }
 
       .book-btn {
-        padding: 0.3rem 0.6rem !important; /* Increased */
-        font-size: 0.55rem !important; /* Increased */
+        padding: clamp(0.28rem, 1vw, 0.35rem) clamp(0.55rem, 1.8vw, 0.7rem) !important; /* Responsive */
+        font-size: clamp(0.5rem, 1.5vw, 0.6rem) !important; /* Responsive */
         border-radius: 6px !important;
         font-weight: 700 !important;
       }
