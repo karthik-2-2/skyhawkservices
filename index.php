@@ -1758,8 +1758,7 @@
 
       .card {
         width: clamp(150px, 45vw, 180px);
-        height: auto !important; /* Changed from fixed height to auto */
-        min-height: clamp(190px, 47vw, 230px); /* Minimum height, can expand */
+        height: clamp(210px, 52vw, 250px) !important; /* Fixed height with proper space for all lines */
         margin: 0;
         /* Smoother flip transition */
         transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
@@ -1771,50 +1770,61 @@
       }
 
       .service-image-frame {
-        padding: 6px; /* Reduced padding */
-        height: auto; /* Changed to auto */
-        min-height: 90px; /* Minimum height for image area */
-        max-height: 110px; /* Maximum to prevent too large */
+        padding: 6px;
+        height: 100px; /* Fixed height for image container */
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
 
       .service-image-frame img {
-        width: 75%; /* Reduced from 85% to make image smaller */
-        height: 75%; /* Reduced from 85% to make image smaller */
-        max-height: 90px; /* Max height for image */
-        padding: 4px; /* Reduced padding */
+        width: 80px !important; /* Fixed square width */
+        height: 80px !important; /* Fixed square height */
+        object-fit: cover; /* Maintain aspect ratio in square */
+        border-radius: 8px;
+        padding: 0;
       }
 
       .service-card-info {
-        padding: 0.5rem 0.4rem; /* Added top padding */
-        height: auto !important; /* Changed to auto to expand with content */
-        min-height: 85px; /* Minimum height for text area */
+        padding: 0.6rem 0.5rem 0.5rem 0.5rem; /* Proper padding for text area */
+        height: calc(100% - 100px); /* Take remaining height after image */
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
       }
 
       .service-card-info h3 {
-        font-size: 0.85rem !important; /* Increased from 0.75rem */
-        margin: 0 0 5px 0; /* Increased bottom margin */
-        line-height: 1.2; /* Increased from 1.1 */
-        font-weight: 700; /* Make it bolder */
-        white-space: normal; /* Allow text wrapping */
-        overflow: visible; /* Show all text */
+        font-size: 0.82rem !important;
+        margin: 0 0 6px 0;
+        line-height: 1.25;
+        font-weight: 700;
+        white-space: normal;
+        overflow: visible;
+        max-height: 2.5em; /* Limit to 2 lines */
       }
 
       .service-card-info .specs {
-        font-size: 0.7rem !important; /* Increased from 0.6rem */
-        line-height: 1.5 !important; /* Increased from 1.2 for better spacing */
-        margin-top: 4px;
-        white-space: normal; /* Allow text wrapping */
-        overflow: visible; /* Show all text */
+        font-size: 0.68rem !important;
+        line-height: 1.6 !important; /* Better spacing between lines */
+        margin-top: 0;
+        white-space: normal;
+        overflow: visible;
       }
 
       .service-card-info .specs strong {
-        font-size: 0.72rem; /* Slightly larger for labels */
+        font-size: 0.7rem;
+        font-weight: 700;
+        display: inline-block;
       }
 
       .coming-soon {
-        font-size: 0.72rem; /* Increased from 0.65rem */
-        margin-top: 5px;
-        font-weight: 600;
+        font-size: 0.7rem;
+        margin-top: 8px;
+        font-weight: 700;
+        padding: 4px 8px;
+        background: rgba(52, 209, 157, 0.2);
+        border-radius: 8px;
+        display: inline-block;
       }
 
       .services-card-back {
@@ -1959,8 +1969,7 @@
 
       .card {
         width: clamp(110px, 35vw, 140px);
-        height: auto !important; /* Changed to auto */
-        min-height: clamp(150px, 38vw, 180px); /* Minimum, can expand */
+        height: clamp(170px, 43vw, 200px) !important; /* Fixed height */
         margin: 0;
         /* Smoother flip */
         transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
@@ -1972,37 +1981,49 @@
 
       .service-image-frame {
         padding: 4px !important;
-        height: auto !important; /* Changed to auto */
-        min-height: 70px !important;
-        max-height: 90px !important;
+        height: 75px !important; /* Fixed height */
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
       }
 
       .service-image-frame img {
-        width: 75% !important;
-        height: 75% !important;
-        max-height: 75px !important; /* Max height */
-        padding: 2px !important;
+        width: 65px !important; /* Square */
+        height: 65px !important; /* Square */
+        object-fit: cover !important;
+        border-radius: 6px !important;
+        padding: 0 !important;
       }
 
       .service-card-info {
-        padding: 0.3rem !important;
-        height: auto !important; /* Changed to auto */
-        min-height: 70px !important; /* Minimum, can expand */
+        padding: 0.4rem 0.3rem !important;
+        height: calc(100% - 75px) !important; /* Remaining space */
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
       }
 
       .service-card-info h3 {
-        font-size: 0.7rem !important;
-        line-height: 1.3 !important;
+        font-size: 0.68rem !important;
+        line-height: 1.25 !important;
         font-weight: 700 !important;
+        margin: 0 0 4px 0 !important;
+        max-height: 2.5em !important;
         white-space: normal !important;
         overflow: visible !important;
       }
 
       .service-card-info .specs {
-        font-size: 0.62rem !important;
-        line-height: 1.5 !important;
+        font-size: 0.58rem !important;
+        line-height: 1.55 !important;
+        margin-top: 0 !important;
         white-space: normal !important;
         overflow: visible !important;
+      }
+
+      .service-card-info .specs strong {
+        font-size: 0.6rem !important;
+        font-weight: 700 !important;
       }
 
       .services-card-back {
@@ -2030,8 +2051,7 @@
 
       .card {
         width: clamp(100px, 32vw, 120px) !important;
-        height: auto !important; /* Changed to auto */
-        min-height: clamp(135px, 35vw, 155px) !important; /* Minimum, can expand */
+        height: clamp(155px, 40vw, 180px) !important; /* Fixed height */
         /* Smoother flip */
         transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1) !important;
       }
@@ -2042,34 +2062,50 @@
 
       .service-image-frame {
         padding: 3px !important;
-        height: auto !important; /* Changed to auto */
-        min-height: 60px !important;
-        max-height: 75px !important;
+        height: 65px !important; /* Fixed height */
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
       }
 
       .service-image-frame img {
-        width: 70% !important;
-        height: 70% !important;
-        max-height: 65px !important; /* Max height */
+        width: 55px !important; /* Square */
+        height: 55px !important; /* Square */
+        object-fit: cover !important;
+        border-radius: 5px !important;
+        padding: 0 !important;
       }
 
       .service-card-info {
-        padding: 0.25rem !important;
-        height: auto !important; /* Changed to auto */
-        min-height: 60px !important; /* Minimum, can expand */
+        padding: 0.3rem 0.25rem !important;
+        height: calc(100% - 65px) !important; /* Remaining space */
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
       }
 
       .service-card-info h3 {
-        font-size: 0.58rem !important;
+        font-size: 0.56rem !important;
         line-height: 1.2 !important;
         font-weight: 700 !important;
+        margin: 0 0 3px 0 !important;
+        max-height: 2.4em !important;
         white-space: normal !important;
         overflow: visible !important;
       }
 
       .service-card-info .specs {
+        font-size: 0.5rem !important;
+        line-height: 1.5 !important;
+        margin-top: 0 !important;
+        white-space: normal !important;
+        overflow: visible !important;
+      }
+
+      .service-card-info .specs strong {
         font-size: 0.52rem !important;
-        line-height: 1.4 !important;
+        font-weight: 700 !important;
+      }
         white-space: normal !important;
         overflow: visible !important;
       }
