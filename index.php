@@ -1441,7 +1441,7 @@
       transform: scale(1.05) translateY(-3px);
       box-shadow: 0 12px 40px rgba(56, 193, 242, 0.4), 0 6px 20px rgba(56, 193, 242, 0.3);
     }
-  } /* End of @media (min-width: 769px) */
+    } /* End of @media (min-width: 769px) */
 
     @media (max-width: 991px) {
       .contact-content {
@@ -2143,7 +2143,7 @@
       }
         white-space: normal !important;
         overflow: visible !important;
-      }
+      
 
       .services-card-back {
         padding: clamp(0.55rem, 2vw, 0.75rem) !important; /* Responsive padding */
