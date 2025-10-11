@@ -400,7 +400,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: clamp(6px, 1vw, 10px); /* Reduced padding */
+      padding: clamp(10px, 1.5vw, 15px); /* Increased padding around frame */
       background: rgba(255, 255, 255, 0.8);
       backdrop-filter: blur(10px);
       border-radius: 15px 15px 0 0; /* Match card border radius */
@@ -414,7 +414,7 @@
       border-radius: 10px; /* Smaller border radius */
       border: 2px solid var(--primary-green);
       background: rgba(52, 209, 157, 0.05);
-      padding: clamp(4px, 1vw, 6px); /* Reduced padding */
+      padding: clamp(8px, 1.2vw, 12px); /* Increased padding for visibility */
       transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
       box-shadow: 0 4px 20px rgba(52, 209, 157, 0.2);
     }
@@ -455,6 +455,11 @@
       animation: pulse-glow 2s ease-in-out infinite;
       margin-top: clamp(1px, 0.3vw, 2px); /* Reduced margin */
       font-weight: bold;
+      background: rgba(52, 209, 157, 0.15); /* Light background */
+      padding: clamp(4px, 0.6vw, 6px) clamp(8px, 1vw, 12px); /* Padding around text */
+      border-radius: 8px; /* Rounded corners */
+      display: inline-block; /* Fit to content */
+      border: 1px solid rgba(52, 209, 157, 0.3); /* Subtle border */
     }
 
     @keyframes pulse-glow {
@@ -1421,8 +1426,8 @@
       font-weight: 700;
       font-size: 1rem; /* Slightly smaller font */
       transition: all 0.3s ease;
-      animation: bounceIn 1s ease forwards 1s;
-      box-shadow: var(--button-shadow);
+      animation: bounceIn 1s ease forwards 1s, pulse 2s ease-in-out infinite;
+      box-shadow: 0 8px 25px rgba(52, 209, 157, 0.4), 0 4px 12px rgba(52, 209, 157, 0.3);
       z-index: 1;
       position: relative;
       height: 45px; /* Smaller fixed height for button */
@@ -1432,12 +1437,12 @@
       flex-shrink: 0; /* Prevent button from shrinking */
     }
 
-      .cta-btn:hover {
-        background: var(--primary-blue);
-        transform: scale(1.05) translateY(-3px);
-        box-shadow: var(--hover-shadow);
-      }
+    .cta-btn:hover {
+      background: var(--primary-blue);
+      transform: scale(1.05) translateY(-3px);
+      box-shadow: 0 12px 40px rgba(52, 209, 157, 0.4), 0 6px 20px rgba(56, 193, 242, 0.3);
     }
+  } /* End of @media (min-width: 769px) */
 
     @media (max-width: 991px) {
       .contact-content {
