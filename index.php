@@ -1441,66 +1441,149 @@
       transform: scale(1.05) translateY(-3px);
       box-shadow: 0 12px 40px rgba(56, 193, 242, 0.4), 0 6px 20px rgba(56, 193, 242, 0.3);
     }
-    } /* End of @media (min-width: 769px) */
+  } /* End of @media (min-width: 769px) */
 
-    @media (max-width: 991px) {
-      .contact-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 1.5rem; /* Reduced gap for mobile */
-      }
-      
-      .contact-inner-card h2 {
-        margin-bottom: 0.8rem; /* Reduced margin for mobile */
-        font-size: clamp(1.6rem, 6vw, 2.2rem); /* Adjusted for mobile */
-      }
-      
-      .contact-subtitle {
-        margin-bottom: 1.2rem; /* Reduced margin for mobile */
-      }
-      
-      .contact-form-wrapper {
-        order: 2;
-      }
-      
-      .contact-info {
-        order: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      /* Show "Request a Free Quote" on mobile */
-      .contact-cta {
-        display: block;
-        margin-top: 1rem;
-      }
-
-      .contact-hero-content {
-        text-align: center;
-      }
-      
-      .contact-details-modern {
-        align-items: center;
-      }
-      
-      .contact-item {
-        max-width: 400px;
-        width: 100%;
-      }
-      
-      .cta-highlight {
-        max-width: 300px;
-        width: 100%;
-        justify-content: center;
-      }
+  /* === MEDIUM SCREENS (769px - 991px) === */
+  @media (min-width: 769px) and (max-width: 991px) {
+    /* Fix hero heading overflow for medium screens */
+    #hero-line1 {
+      font-size: clamp(20px, 4vw, 32px) !important;
     }
 
-    @media (max-width: 768px) {
-      .navbar {
-        padding: 1rem;
-        height: 60px;
-      }
+    #hero-line2 {
+      font-size: clamp(28px, 6vw, 56px) !important;
+      height: clamp(40px, 8vh, 70px) !important;
+      min-height: clamp(40px, 8vh, 70px) !important;
+    }
+
+    .hero-text-wrapper {
+      height: clamp(150px, 20vh, 180px) !important;
+      min-height: clamp(150px, 20vh, 180px) !important;
+    }
+
+    /* Two-column layout for contact section */
+    .contact-content {
+      grid-template-columns: 1fr 1fr !important;
+      gap: 2.5rem !important;
+      text-align: left !important;
+    }
+    
+    .contact-inner-card h2 {
+      grid-column: 1 / -1 !important;
+      text-align: center !important;
+      font-size: clamp(2rem, 4.5vw, 2.8rem) !important;
+      margin-bottom: 1.5rem !important;
+    }
+    
+    /* Hide the top subtitle */
+    .contact-subtitle {
+      display: none !important;
+    }
+    
+    .contact-form-wrapper {
+      order: 1 !important;
+      grid-column: 1 !important;
+    }
+    
+    .contact-info {
+      order: 2 !important;
+      grid-column: 2 !important;
+      display: flex !important;
+      align-items: flex-start !important;
+      justify-content: flex-start !important;
+      text-align: left !important;
+    }
+
+    /* Add subtitle text as pseudo-element in right column */
+    .contact-hero-content::before {
+      content: 'Our expert drone services are tailored to bring your vision to life. Whether you need aerial photography, surveying, or custom solutions — we're here to help.';
+      display: block;
+      font-size: clamp(0.95rem, 2vw, 1.15rem);
+      color: var(--text-grey);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+    }
+
+    .contact-details-modern {
+      align-items: flex-start !important;
+    }
+    
+    .contact-item {
+      max-width: 100% !important;
+      width: 100% !important;
+    }
+    
+    /* Hide "Request a Free Quote" */
+    .contact-cta {
+      display: none !important;
+    }
+  }
+
+  @media (max-width: 768px) {
+    /* Contact section single column for mobile */
+    .contact-content {
+      grid-template-columns: 1fr;
+      text-align: center;
+      gap: 1.5rem;
+    }
+    
+    .contact-inner-card h2 {
+      margin-bottom: 0.8rem;
+      font-size: clamp(1.6rem, 6vw, 2.2rem);
+    }
+    
+    .contact-subtitle {
+      margin-bottom: 1.2rem;
+      display: block !important; /* Show on mobile */
+    }
+    
+    .contact-form-wrapper {
+      order: 2;
+    }
+    
+    .contact-info {
+      order: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Show "Request a Free Quote" on mobile */
+    .contact-cta {
+      display: block;
+      margin-top: 1rem;
+    }
+
+    .contact-hero-content {
+      text-align: center;
+    }
+
+    /* Remove the pseudo-element on mobile */
+    .contact-hero-content::before {
+      display: none !important;
+    }
+    
+    .contact-details-modern {
+      align-items: center;
+    }
+    
+    .contact-item {
+      max-width: 400px;
+      width: 100%;
+    }
+    
+    .cta-highlight {
+      max-width: 300px;
+      width: 100%;
+      justify-content: center;
+    }
+
+    /* Mobile styles continue */
+    .navbar {
+      padding: 1rem;
+      height: 60px;
+    }
 
       .hero-section {
         height: 100vh;
