@@ -1097,14 +1097,14 @@
       }
       
       .contact-inner-card h2 {
-        grid-column: 1 / -1; /* Span both columns */
-        white-space: nowrap; /* Keep in single line */
-        font-size: clamp(2.2rem, 4vw, 3.2rem); /* Larger on desktop */
+        grid-column: 1 / -1;
+        white-space: nowrap;
+        font-size: clamp(2.2rem, 4vw, 3.2rem);
       }
       
+      /* Hide the top subtitle that spans both columns */
       .contact-subtitle {
-        grid-column: 1 / -1; /* Span both columns */
-        margin-bottom: 2rem;
+        display: none !important;
       }
       
       .contact-form-wrapper {
@@ -1115,17 +1115,28 @@
       .contact-info {
         order: 2;
         grid-column: 2;
-        display: flex;
-        align-items: flex-start; /* Changed to flex-start */
-        justify-content: center;
-        padding-top: 1rem; /* Added top padding */
+        display: flex !important;
+        align-items: center !important; /* Vertical center */
+        justify-content: center !important; /* Horizontal center */
       }
 
-      /* Keep only email and location items on desktop */
+      /* Show subtitle as first element in right column */
+      .contact-hero-content::before {
+        content: 'Our expert drone services are tailored to bring your vision to life. Whether you need aerial photography, surveying, or custom solutions — we're here to help.';
+        display: block;
+        font-size: clamp(1rem, 2.2vw, 1.25rem);
+        color: var(--text-grey);
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+        font-weight: 500;
+        text-align: left;
+      }
+
       .contact-details-modern {
         display: flex;
         flex-direction: column;
         gap: 1.5rem;
+        width: 100%;
       }
       
       /* Hide the "Request a Free Quote" on desktop */
@@ -1489,8 +1500,8 @@
       order: 2 !important;
       grid-column: 2 !important;
       display: flex !important;
-      align-items: flex-start !important;
-      justify-content: flex-start !important;
+      align-items: center !important; /* Vertical center */
+      justify-content: center !important; /* Horizontal center */
       text-align: left !important;
     }
 
@@ -1503,10 +1514,12 @@
       line-height: 1.6;
       margin-bottom: 1.5rem;
       font-weight: 500;
+      text-align: left;
     }
 
     .contact-details-modern {
       align-items: flex-start !important;
+      width: 100%;
     }
     
     .contact-item {
